@@ -10,6 +10,7 @@ public class BuildingManager : MonoBehaviour
     private RaycastHit hit;
     [SerializeField] Image Cross;
     [SerializeField] LayerMask layerMask;
+    [SerializeField] LayerMask NotDeletingLayerMask;
     private GameObject pendingObj;
     public float rotateAmount = 45;
     bool IsBuildingOpened;
@@ -36,7 +37,7 @@ public class BuildingManager : MonoBehaviour
             return;
         }
         Ray ray = Camera.main.ScreenPointToRay(Cross.transform.position);
-        if(Physics.Raycast(ray, out hit, 1000, layerMask))
+        if (Physics.Raycast(ray, out hit, 1000, layerMask))
         {
             pos = hit.point;
         }
@@ -101,7 +102,24 @@ public class BuildingManager : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 1000, layerMask))
         {
             GameObject deletingObject = hit.collider.gameObject;
-            Destroy(deletingObject);
+            if (IsItDestructable(deletingObject))
+            {
+                Destroy(deletingObject);
+            }
+            else
+            {
+                Debug.Log("Этот объект нельзя удалить");
+            }
+        }
+        bool IsItDestructable(GameObject deletingObject)
+        {
+            Debug.Log(deletingObject.layer);
+            if(((NotDeletingLayerMask & (1 << deletingObject.layer)) != 0))
+            {
+                return false;
+            }
+            //return (!deletingObject.CompareTag("Ground"));
+            return true;
         }
     }
     public void ActivateBuildingButton(bool Is)
@@ -124,7 +142,7 @@ public class BuildingManager : MonoBehaviour
         pendingObj = Instantiate(CurrentPrefab, pos, transform.rotation);
         DeactivateColliders(pendingObj.GetComponentsInChildren<Collider>());
         SetOnBuildMaterial(pendingObj.GetComponentsInChildren<MeshRenderer>());
-        if (pendingObj.GetComponentInChildren<Rigidbody>() != null)     pendingObj.GetComponentInChildren<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        if (pendingObj.GetComponentInChildren<Rigidbody>() != null) pendingObj.GetComponentInChildren<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         Debug.Log("Object Selected");
         player.SwitchPlayerState(Player.PlayerState.Building);
         player.examplePlayer.LockCursor(true);
@@ -144,7 +162,7 @@ public class BuildingManager : MonoBehaviour
             for (int j = 0; j < renderers[i].materials.Length; j++)
             {
                 Destroy(renderers[i].materials[j]);
-               
+
             }
             //renderers[i].materials = null;
             renderers[i].material = OnBuildingMaterial;

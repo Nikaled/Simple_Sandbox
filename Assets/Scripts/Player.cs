@@ -67,6 +67,11 @@ public class Player : MonoBehaviour
         {
             GoToNormalCamera();
         }
+        StartCoroutine(DelaySwitchState(newPlayerState));
+    }
+    private IEnumerator DelaySwitchState(Player.PlayerState newPlayerState)
+    {
+        yield return new WaitForEndOfFrame();
         currentState = newPlayerState;
     }
     private void SwitchWeapon(int PressedNumber)
