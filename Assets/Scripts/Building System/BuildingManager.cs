@@ -54,7 +54,6 @@ public class BuildingManager : MonoBehaviour
         if (pendingObj != null)
         {
             pendingObj.transform.position = pos;
-            Debug.Log(pos);
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -77,13 +76,14 @@ public class BuildingManager : MonoBehaviour
         {
             ActivateDeletingState(false);
         }
-        if (Input.GetKeyDown(KeyCode.Y))
+        if (Input.GetMouseButtonDown(0))
         {
             DeleteObject();
         }
     }
     public void ActivateDeletingState(bool Is)
     {
+        IsDeletingBuilding = Is;
         if (Is)
         {
             player.SwitchPlayerState(Player.PlayerState.DeletingBuilding);
@@ -92,6 +92,8 @@ public class BuildingManager : MonoBehaviour
         {
             player.SwitchPlayerState(Player.PlayerState.Idle);
         }
+        BuildingMenu.SetActive(IsDeletingBuilding);
+        player.examplePlayer.LockCursor(IsDeletingBuilding);
     }
     private void DeleteObject()
     {
@@ -99,15 +101,15 @@ public class BuildingManager : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 1000, layerMask))
         {
             GameObject deletingObject = hit.collider.gameObject;
-            Debug.Log(deletingObject.name);
+            Destroy(deletingObject);
         }
     }
     public void ActivateBuildingButton(bool Is)
     {
         IsBuildingOpened = Is;
         BuildingMenu.SetActive(IsBuildingOpened);
-        Destroy(pendingObj);
         player.examplePlayer.LockCursor(!IsBuildingOpened);
+        Destroy(pendingObj);
         if (Is)
         {
             player.currentState = Player.PlayerState.Building;

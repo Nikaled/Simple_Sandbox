@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
-        if(currentState == PlayerState.Building)
+        if(currentState == PlayerState.Building || currentState == PlayerState.DeletingBuilding)
         {
             return;
         }
