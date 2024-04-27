@@ -5,7 +5,16 @@ using UnityEngine;
 public class AnimationPlayer : MonoBehaviour
 {
     [SerializeField] private Animator anim;
+    [SerializeField] private Player player;
 
+    private void OnEnable()
+    {
+        player.PistolFire += DoPistolAnimation;
+    }
+    private void OnDisable()
+    {
+        player.PistolFire -= DoPistolAnimation;
+    }
     void Update()
     {
         float h = Input.GetAxisRaw("Horizontal");
@@ -18,4 +27,9 @@ public class AnimationPlayer : MonoBehaviour
             anim.SetTrigger("jump");
         }
     }
+    private void DoPistolAnimation()
+    {
+        anim.SetTrigger("PistolFire");
+    }
+
 }

@@ -23,9 +23,13 @@ namespace KinematicCharacterController.Examples
         public Joystick FixedJoystick;
         public bool Mobile = true;
         public bool PC = false;
+        public bool IsCursorLocked;
         private void Start()
         {
+            if (IsCursorLocked)
+            {
             Cursor.lockState = CursorLockMode.Locked;
+            }
 
             // Tell camera to follow transform
             CharacterCamera.SetFollowTransform(Character.CameraFollowPoint);
@@ -35,6 +39,13 @@ namespace KinematicCharacterController.Examples
             CharacterCamera.IgnoredColliders.AddRange(Character.GetComponentsInChildren<Collider>());
         }
 
+        public void LockCursor(bool Is)
+        {
+            if(Is)
+            Cursor.lockState = CursorLockMode.Locked;
+            else
+            Cursor.lockState = CursorLockMode.None;
+        }
         private void Update()
         {
             //if (Input.GetMouseButtonDown(0))

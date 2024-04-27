@@ -269,7 +269,13 @@ public class VehicleControl : MonoBehaviour
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     
-
+    public void OnCarQuit()
+    {
+        steer = 0;
+        accel = 0;
+        brake = false;
+        shift = false;
+    }
     void Awake()
     {
 

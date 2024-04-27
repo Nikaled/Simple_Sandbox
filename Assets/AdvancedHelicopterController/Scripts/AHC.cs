@@ -8,6 +8,9 @@ namespace alelavoie
 {
     public class AHC : MonoBehaviour
     {
+        [SerializeField] private Transform _rotorMainTransform;
+        [SerializeField] private Transform _rotorTailTransform;
+        [SerializeField] private bool ExplosionOn;
         [HideInInspector]
         public Rigidbody HeliRigidbody;
         [HideInInspector]
@@ -141,8 +144,8 @@ namespace alelavoie
         {            
             _engine.ProcessState();
             // Debug.Log(HeliRigidbody.inertiaTensor.magnitude);
-            Vector3 hVelocity = new Vector3(HeliRigidbody.velocity.x, 0, HeliRigidbody.velocity.z); 
-            Debug.Log(Mathf.Round(hVelocity.magnitude * 3.6f).ToString()); 
+            Vector3 hVelocity = new Vector3(HeliRigidbody.velocity.x, 0, HeliRigidbody.velocity.z);
+            //Debug.Log(Mathf.Round(hVelocity.magnitude * 3.6f).ToString()); 
         }
 
         void LateUpdate()
@@ -154,6 +157,7 @@ namespace alelavoie
 
         void OnCollisionEnter(Collision collision)
         {
+            if (ExplosionOn == false) return;
             if (collision.relativeVelocity.magnitude > minVelocityExplosion)
             {
                 if (_useExplosion)
@@ -162,7 +166,7 @@ namespace alelavoie
                 }
                 _crashed = true;
                 gameObject.SetActive(false);
-            }  
+            }
         }
 
         public bool IsUpsideDown()
@@ -216,11 +220,18 @@ namespace alelavoie
 
         private void SyncRotorAnimSpeed()
         {
+            MyRotorAnimation();
             if (_useAnim)
             {
                 RotorAnim["Fly"].speed = _engine.EngineSpeed;
             }
         }
+        public void MyRotorAnimation()
+        {
+                _rotorMainTransform.Rotate(Vector3.up * (_engine.EngineSpeed*3));
+            _rotorTailTransform.Rotate(Vector3.left * (_engine.EngineSpeed * 3));
+        }
+
         private void SyncAudioSourcePitch() {
             if (!_useSound) return;
             HeliAudioSource.pitch = _engine.EngineSpeed;
