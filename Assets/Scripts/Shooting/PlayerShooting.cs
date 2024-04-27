@@ -14,7 +14,7 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] public Image Crosshair;
     [SerializeField] Player player;
     Vector3 AimDirection;
-    Vector3 mouseWorldPosition;
+    Vector3 CrosshairWorldPosition;
     float GunTimer;
     float GunShootInterval=0.05f;
 
@@ -23,23 +23,22 @@ public class PlayerShooting : MonoBehaviour
 
     void Update()
     {
-         mouseWorldPosition = Vector3.zero;
-        Vector2 screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
+         CrosshairWorldPosition = Vector3.zero;
         Ray ray = Camera.main.ScreenPointToRay(Crosshair.transform.position);
         if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, aimColliderLayerMask))
         {
-            mouseWorldPosition = raycastHit.point;
+            CrosshairWorldPosition = raycastHit.point;
         }
         else
         {
-            mouseWorldPosition = Vector3.forward;
+            CrosshairWorldPosition = ray.GetPoint(50);
         }
 
     }
     public void Fire(Player.WeaponType currentWeapon)
     {
-        Vector3 aimDirection = (mouseWorldPosition - ProjectileSpawnPoint.position).normalized;
-         //Vector3 RotatingDirection = new Vector3(aimDirection.x, 0, aimDirection.z);
+        Vector3 aimDirection = (CrosshairWorldPosition - ProjectileSpawnPoint.position).normalized;
+        Vector3 RotatingDirection = new Vector3(0, 0, aimDirection.z);
         player.RotatePlayerOnShoot(aimDirection);
         if (currentWeapon == Player.WeaponType.Gun)
         {
@@ -60,7 +59,7 @@ public class PlayerShooting : MonoBehaviour
         if (Reloading == false)
         {
             Reloading = true;
-        Vector3 aimDirection = (mouseWorldPosition - ProjectileSpawnPoint.position).normalized;
+        Vector3 aimDirection = (CrosshairWorldPosition - ProjectileSpawnPoint.position).normalized;
         ShootingProjectile proj = Instantiate(projectile, ProjectileSpawnPoint.position, Quaternion.LookRotation(aimDirection, Vector3.up));
         GunTimer = Time.time;
         }

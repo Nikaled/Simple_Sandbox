@@ -23,8 +23,6 @@ public class Player : MonoBehaviour
     [SerializeField] public ExamplePlayer examplePlayer;
     [SerializeField] ExampleCharacterCamera normalCamera;
 
-    [SerializeField] GameObject FirstViewCross;
-    [SerializeField] GameObject ThirdViewCross;
 
     [SerializeField] GameObject GunModel;
     [SerializeField] GameObject PistolModel;
@@ -91,12 +89,7 @@ public class Player : MonoBehaviour
     private void SwitchCrossHair()
     {
         IsFirstView = !IsFirstView;
-        FirstViewCross.SetActive(IsFirstView);
-        ThirdViewCross.SetActive(!IsFirstView);
-        if(IsFirstView)
-        playerShooting.Crosshair = FirstViewCross.GetComponent<Image>();
-        if(!IsFirstView)
-        playerShooting.Crosshair = ThirdViewCross.GetComponent<Image>();
+            CanvasManager.instance.IsCrossForThirdView(!IsFirstView);
     }
     private void Update()
     {
@@ -158,11 +151,9 @@ public class Player : MonoBehaviour
 
     public void RotatePlayerOnShoot(Vector3 aimDirection)
     {
-        Debug.Log(aimDirection);
-        Quaternion rot = Quaternion.Euler(aimDirection.x, aimDirection.y, aimDirection.z);
-        motor.SetRotation(rot);
         Quaternion targetRotation = Quaternion.LookRotation(aimDirection);
-        motor.RotateCharacter(targetRotation);
+        Quaternion OnlyY = new Quaternion(0, targetRotation.y, 0, targetRotation.w);
+        motor.RotateCharacter(OnlyY);
     }
     private void GoToAimCamera()
     {
