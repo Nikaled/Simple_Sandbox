@@ -67,6 +67,13 @@ public class Player : MonoBehaviour
         {
             GoToNormalCamera();
         }
+        if(currentState == PlayerState.DeletingBuilding)
+        {
+
+            BuildingManager.instance.ActivateDeletingMode(false);
+            examplePlayer.LockCursor(true);
+        }
+        Debug.Log("Player State:" + currentState);
         StartCoroutine(DelaySwitchState(newPlayerState));
     }
     private IEnumerator DelaySwitchState(Player.PlayerState newPlayerState)
@@ -162,13 +169,26 @@ public class Player : MonoBehaviour
     }
     private void GoToAimCamera()
     {
+        if(IsFirstView == false)
+        {
         normalCamera.FollowPointFraming = new Vector2(1.5f, 1);
+        }
+        if (IsFirstView)
+        {
+        normalCamera.Camera.fieldOfView = 20;
+        }
+        else
+        {
         normalCamera.Camera.fieldOfView = 40;
+        }
 
     }
     private void GoToNormalCamera()
     {
+        if(IsFirstView == false)
+        {
         normalCamera.FollowPointFraming = new Vector2(0, 1.25f);
+        }
         normalCamera.Camera.fieldOfView = 55;
 
     }

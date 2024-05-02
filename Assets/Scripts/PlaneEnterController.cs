@@ -58,6 +58,7 @@ public class PlaneEnterController : EnterController
             }
             if (_planeController.airplaneState != SimpleAirPlaneController.AirplaneState.Landing)
             {
+                if(_rotorsTransform !=null)
                 _rotorsTransform.Rotate(Vector3.forward * _planeController.currentSpeed);
             }
         }

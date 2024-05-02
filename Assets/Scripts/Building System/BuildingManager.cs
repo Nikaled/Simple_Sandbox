@@ -11,23 +11,30 @@ public class BuildingManager : MonoBehaviour
     [SerializeField] Image Cross;
     [SerializeField] LayerMask layerMask;
     [SerializeField] LayerMask NotDeletingLayerMask;
+    [SerializeField] LayerMask TurnRedIgnoreMask;
     private GameObject pendingObj;
     public float rotateAmount = 45;
     bool IsBuildingOpened;
     [SerializeField] GameObject BuildingMenu;
     [SerializeField] Material OnBuildingMaterial;
+    [SerializeField] Material RedMaterial;
 
     [SerializeField] Player player;
     public static BuildingManager instance;
 
     private bool IsDeletingBuilding;
+    List<Material[]> CashedMaterialsOnDeleting;
+    private GameObject deletingObject;
     private void Awake()
     {
         instance = this;
     }
     void Update()
     {
-
+        if(deletingObject != null)
+        {
+            TurnDeletingObjectNormalAndClearFields();
+        }
         if (Input.GetKeyDown(KeyCode.B))
         {
             ActivateBuildingButton(!IsBuildingOpened);
@@ -36,6 +43,7 @@ public class BuildingManager : MonoBehaviour
         {
             return;
         }
+
         Ray ray = Camera.main.ScreenPointToRay(Cross.transform.position);
         if (Physics.Raycast(ray, out hit, 1000, layerMask))
         {
@@ -44,14 +52,18 @@ public class BuildingManager : MonoBehaviour
         else
         {
             RaycastHit DownHit = new();
-            Vector3 MaxDistancePos = ray.GetPoint(50);
-            Physics.Raycast(MaxDistancePos, Vector3.down, out DownHit, 500, layerMask);
-            pos = DownHit.point;
+            Vector3 MaxDistancePos = ray.GetPoint(20);
+            pos = MaxDistancePos;
+            // ------- Привязка объектов к полу
+            //Physics.Raycast(MaxDistancePos, Vector3.down, out DownHit, 500, layerMask);
+            //pos = DownHit.point;
         }
+
         if (player.currentState == Player.PlayerState.DeletingBuilding)
         {
             DeletingBuildingInput();
         }
+
         if (pendingObj != null)
         {
             pendingObj.transform.position = pos;
@@ -73,19 +85,57 @@ public class BuildingManager : MonoBehaviour
     }
     private void DeletingBuildingInput()
     {
+        Debug.Log("Deleting Input");
         if (Input.GetMouseButtonDown(1))
         {
-            ActivateDeletingState(false);
+            player.SwitchPlayerState(Player.PlayerState.Idle);
         }
-        if (Input.GetMouseButtonDown(0))
+        Ray ray = Camera.main.ScreenPointToRay(Cross.transform.position);
+        if (Physics.Raycast(ray, out hit, 1000, TurnRedIgnoreMask))
         {
-            DeleteObject();
+            TurnDeletingObjectNormalAndClearFields();
+            deletingObject = hit.collider.gameObject;
+            Debug.Log("deleting object:" + deletingObject);
+            if (IsItDestructable(deletingObject))
+            {
+                TurnRedDeletingObject(deletingObject.GetComponentsInChildren<MeshRenderer>());
+            }
+            if (Input.GetMouseButtonDown(0))
+            {
+                DeleteObject(deletingObject);
+            }
+        }
+        else
+        {
+            TurnDeletingObjectNormalAndClearFields();
         }
     }
-    public void ActivateDeletingState(bool Is)
+    private void TurnDeletingObjectNormalAndClearFields()
+    {
+        if (deletingObject != null && CashedMaterialsOnDeleting != null)
+        {
+            TurnNormalDeletingObject(deletingObject.GetComponentsInChildren<MeshRenderer>());
+            Debug.Log("Turn normal");
+        }
+        CashedMaterialsOnDeleting = null;
+        deletingObject = null;
+    }
+    public void DeletingButton(bool Is)
+    {
+        ActivateDeletingMode(Is);
+        SwitchPlayerState();
+    }
+
+    public void ActivateDeletingMode(bool Is)
     {
         IsDeletingBuilding = Is;
-        if (Is)
+        BuildingMenu.SetActive(IsDeletingBuilding);
+        player.examplePlayer.LockCursor(IsDeletingBuilding);
+        TurnDeletingObjectNormalAndClearFields();
+    }
+    private void SwitchPlayerState()
+    {
+        if (IsDeletingBuilding)
         {
             player.SwitchPlayerState(Player.PlayerState.DeletingBuilding);
         }
@@ -93,34 +143,27 @@ public class BuildingManager : MonoBehaviour
         {
             player.SwitchPlayerState(Player.PlayerState.Idle);
         }
-        BuildingMenu.SetActive(IsDeletingBuilding);
-        player.examplePlayer.LockCursor(IsDeletingBuilding);
     }
-    private void DeleteObject()
+    private void DeleteObject(GameObject deletingObject)
     {
-        Ray ray = Camera.main.ScreenPointToRay(Cross.transform.position);
-        if (Physics.Raycast(ray, out hit, 1000, layerMask))
+
+        if (IsItDestructable(deletingObject))
         {
-            GameObject deletingObject = hit.collider.gameObject;
-            if (IsItDestructable(deletingObject))
-            {
-                Destroy(deletingObject);
-            }
-            else
-            {
-                Debug.Log("Этот объект нельзя удалить");
-            }
+            Destroy(deletingObject);
         }
-        bool IsItDestructable(GameObject deletingObject)
+        else
         {
-            Debug.Log(deletingObject.layer);
-            if(((NotDeletingLayerMask & (1 << deletingObject.layer)) != 0))
-            {
-                return false;
-            }
-            //return (!deletingObject.CompareTag("Ground"));
-            return true;
+            Debug.Log("Этот объект нельзя удалить");
         }
+    }
+    private bool IsItDestructable(GameObject deletingObject)
+    {
+        Debug.Log(deletingObject.layer);
+        if (((NotDeletingLayerMask & (1 << deletingObject.layer)) != 0))
+        {
+            return false;
+        }
+        return true;
     }
     public void ActivateBuildingButton(bool Is)
     {
@@ -162,11 +205,32 @@ public class BuildingManager : MonoBehaviour
             for (int j = 0; j < renderers[i].materials.Length; j++)
             {
                 Destroy(renderers[i].materials[j]);
-
             }
-            //renderers[i].materials = null;
             renderers[i].material = OnBuildingMaterial;
 
+        }
+    }
+    private void TurnRedDeletingObject(MeshRenderer[] renderers)
+    {
+        List<Material[]> materials = new();
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            materials.Add(renderers[i].materials);
+            Material[] RedMats = new Material[renderers[i].materials.Length];
+            for (int j = 0; j < renderers[i].materials.Length; j++)
+            {
+                RedMats[j] = RedMaterial;
+            }
+            renderers[i].materials = RedMats;
+        }
+        CashedMaterialsOnDeleting = materials;
+    }
+    private void TurnNormalDeletingObject(MeshRenderer[] renderers)
+    {
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            Material[] CashedMat = CashedMaterialsOnDeleting[i];
+            renderers[i].materials = CashedMat;
         }
     }
     private void PlaceObject()

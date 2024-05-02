@@ -450,7 +450,7 @@ GameObject:
   - component: {fileID: 380247850608520559}
   - component: {fileID: 380247850608520556}
   - component: {fileID: 380247850608520558}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Enter Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

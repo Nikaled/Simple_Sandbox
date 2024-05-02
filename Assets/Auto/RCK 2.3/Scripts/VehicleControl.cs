@@ -278,10 +278,10 @@ public class VehicleControl : MonoBehaviour
     }
     void Awake()
     {
-
         if (carSetting.automaticGear) NeutralGear = false;
 
         myRigidbody = transform.GetComponent<Rigidbody>();
+        myRigidbody.velocity = Vector3.zero;
 
         wheels = new WheelComponent[4];
 

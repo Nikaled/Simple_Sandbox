@@ -7,14 +7,14 @@ public class CarEnterController : EnterController
 {
     [SerializeField] private Transform FirstViewCameraTransform;
     [SerializeField] VehicleControl vehicleControl;
-    //protected override void Update()
-    //{
-    //    base.Update();
-    //    if (Input.GetKeyDown(KeyCode.Q))
-    //    {
-    //        TransportCamera.transform.position = FirstViewCameraTransform.position;
-    //    }
-    //}
+    protected override void Update()
+    {
+        base.Update();
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            TransportCamera.transform.position = FirstViewCameraTransform.position;
+        }
+    }
     protected override void ActivateTransport()
     {
         vehicleControl.GetComponent<VehicleControl>().activeControl = true;

@@ -10747,7 +10747,7 @@ GameObject:
   - component: {fileID: 2749191994705881395}
   - component: {fileID: 2749191994705881394}
   - component: {fileID: 2749191994705881392}
-  m_Layer: 1
+  m_Layer: 2
   m_Name: RallyCar (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12258,7 +12258,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2749191995967668928
 Transform:
   m_ObjectHideFlags: 0
