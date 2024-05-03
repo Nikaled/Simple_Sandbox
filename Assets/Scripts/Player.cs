@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject GunModel;
     [SerializeField] GameObject PistolModel;
     [SerializeField] GameObject CharacterModel;
+    public static Player instance;
     public bool IsFirstView;
     public enum PlayerState
     {
@@ -44,6 +45,10 @@ public class Player : MonoBehaviour
         Gun
     }
 
+    private void Awake()
+    {
+        instance = this;
+    }
     public void PlayerSetActive(bool Is)
     {
         PlayerParent.SetActive(Is);

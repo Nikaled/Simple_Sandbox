@@ -6,6 +6,10 @@ public class RotatingToPlayer : MonoBehaviour
 {
     public Transform target;
 
+    private void Start()
+    {
+        target = Player.instance.transform;
+    }
     void Update()
     {
         if (target != null)

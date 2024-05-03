@@ -57,17 +57,47 @@ public class HpSystem : MonoBehaviour
         {
             if (!RootObject.CompareTag("Player"))
             {
-               var fx =  Instantiate(DestroyAnimation, RootObject.transform.position, Quaternion.identity);
-                fx.transform.parent = null;
-                fx.transform.DOScale(RootObject.transform.localScale, 0);
-                Debug.Log(RootObject.GetComponent<MeshRenderer>().bounds.size);
-                fx.transform.localScale *= 3;
+                Explosion(RootObject);
             }
         Destroy(RootObject);
         }
         else
         {
-            Destroy(gameObject);
+            Explosion(RootObject);
+            if(RootObject !=null)
+            Destroy(RootObject);
         }
+    }
+    private void Explosion(GameObject rootObject)
+    {
+        if (RootObject == null)
+        {
+            GameObject parent = this.transform.parent.gameObject;
+            if (parent.GetComponent<HpSystemCollision>() != null)
+            {
+                RootObject = parent;
+                rootObject = parent;
+            }
+        }
+            if (rootObject.GetComponent<MeshRenderer>() == null)
+            {
+                return;
+            }
+        Vector3 bounds = rootObject.GetComponent<MeshRenderer>().bounds.size;
+        float SumOfSides = FindSumOfSides(bounds) / 9 ;
+        Vector3 ExplosionPos = new Vector3(HpBar.transform.position.x, HpBar.transform.position.y-bounds.y, HpBar.transform.position.z);
+        var fx = Instantiate(DestroyAnimation, ExplosionPos, Quaternion.identity);
+        fx.transform.parent = null;
+        fx.transform.DOScale(DestroyAnimation.transform.localScale *SumOfSides, 0);
+    }
+    private float FindSumOfSides(Vector3 bounds)
+    {
+        float[] Vectors = new float[] { bounds.x, bounds.y, bounds.z };
+        float largerSide = 0;
+        for (int i = 0; i < Vectors.Length; i++)
+        {
+            largerSide+= Vectors[i];
+        }
+        return largerSide;
     }
 }

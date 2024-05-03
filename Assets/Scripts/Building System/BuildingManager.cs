@@ -175,6 +175,11 @@ public class BuildingManager : MonoBehaviour
         {
             player.currentState = Player.PlayerState.Building;
         }
+        else
+        {
+            player.currentState = Player.PlayerState.Idle;
+
+        }
     }
     private void RotateObject()
     {
