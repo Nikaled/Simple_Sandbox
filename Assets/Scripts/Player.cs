@@ -7,6 +7,7 @@ using KinematicCharacterController;
 using Cinemachine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class Player : MonoBehaviour
     public PlayerState currentState = PlayerState.Idle;
     public WeaponType CurrentWeapon;
     public event Action PistolFire;
-    [SerializeField] Animator animatior;
+    [SerializeField] public Animator animator;
 
     [SerializeField] public ExamplePlayer examplePlayer;
     [SerializeField] ExampleCharacterCamera normalCamera;
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour
         Aiming,
         Shooting,
         Idle,
+        Sitting,
         Building,
         DeletingBuilding,
     }
@@ -60,12 +62,12 @@ public class Player : MonoBehaviour
             case PlayerState.Aiming:
                 if (currentState != PlayerState.Aiming)
                 {
-                    animatior.SetBool("PistolAiming", true);
+                    animator.SetBool("PistolAiming", true);
                     GoToAimCamera();
                 }
                 break;
             case PlayerState.Idle:
-                animatior.SetBool("PistolAiming", false);
+                animator.SetBool("PistolAiming", false);
                 break;
         }
         if(currentState == PlayerState.Aiming && newPlayerState != PlayerState.Aiming)
@@ -78,13 +80,13 @@ public class Player : MonoBehaviour
             BuildingManager.instance.ActivateDeletingMode(false);
             examplePlayer.LockCursor(true);
         }
-        Debug.Log("Player State:" + currentState);
         StartCoroutine(DelaySwitchState(newPlayerState));
     }
     private IEnumerator DelaySwitchState(Player.PlayerState newPlayerState)
     {
         yield return new WaitForEndOfFrame();
         currentState = newPlayerState;
+        Debug.Log("Player State:" + currentState);
     }
     private void SwitchWeapon(int PressedNumber)
     {
@@ -110,6 +112,10 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
+        if( currentState == PlayerState.Sitting)
+        {
+            return;
+        }
         if(currentState == PlayerState.Building || currentState == PlayerState.DeletingBuilding)
         {
             return;
@@ -130,7 +136,7 @@ public class Player : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                animatior.SetTrigger("PistolFire");
+                animator.SetTrigger("PistolFire");
                 //PistolFire?.Invoke();
                 Fire();
             }
@@ -139,7 +145,7 @@ public class Player : MonoBehaviour
         {
             if (Input.GetMouseButton(0))
             {
-                animatior.SetTrigger("PistolFire");
+                animator.SetTrigger("PistolFire");
                 //PistolFire?.Invoke();
                 playerShooting.Fire(CurrentWeapon);
             }

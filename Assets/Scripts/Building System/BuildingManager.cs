@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 public class BuildingManager : MonoBehaviour
 {
     private GameObject CurrentPrefab;
@@ -194,6 +195,8 @@ public class BuildingManager : MonoBehaviour
         Debug.Log("Object Selected");
         player.SwitchPlayerState(Player.PlayerState.Building);
         player.examplePlayer.LockCursor(true);
+        pendingObj.transform.LookAt(player.transform);
+        pendingObj.transform.DORotate(new Vector3(0, pendingObj.transform.position.y, 0), 0);
 
     }
     private void DeactivateColliders(Collider[] colliders)
@@ -240,7 +243,11 @@ public class BuildingManager : MonoBehaviour
     }
     private void PlaceObject()
     {
-        Instantiate(CurrentPrefab, pendingObj.transform.position, pendingObj.transform.rotation);
+       var newObj =  Instantiate(CurrentPrefab, pendingObj.transform.position, pendingObj.transform.rotation);
+        if (CurrentPrefab.CompareTag("Road"))
+        {
+            newObj.transform.position += new Vector3(0,0.2f,0);
+        }
         Destroy(pendingObj);
         Debug.Log("Object placed");
         player.SwitchPlayerState(Player.PlayerState.Idle);

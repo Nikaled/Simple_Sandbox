@@ -15,14 +15,13 @@ public class ShootingProjectile : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other == ProjectileSource)
+        if (other == ProjectileSource)
         {
             return;
         }
         Debug.Log(other.name);
-        if(other.GetComponent<HpSystemCollision>() != null)
+        if (other.GetComponent<HpSystemCollision>() != null)
         {
-            Debug.Log("Damage taked");
             other.GetComponent<HpSystemCollision>().TakeDamage(bulletDamage);
         }
         Destroy(gameObject);

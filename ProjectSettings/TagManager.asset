@@ -9,6 +9,7 @@ TagManager:
   - Street
   - Ground
   - DestructalbeObject
+  - Road
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Undestructable
   - RawImageSource
   - Building
-  - 
+  - Enter Collider
   - 
   - 
   - 

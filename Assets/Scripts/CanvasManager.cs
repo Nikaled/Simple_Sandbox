@@ -9,6 +9,7 @@ public class CanvasManager : MonoBehaviour
 
     [SerializeField] GameObject _helicopterInstruction;
     [SerializeField] GameObject _planeInstruction;
+    [SerializeField] GameObject _objectInteractionInstruction;
     [SerializeField] GameObject _EnterTransportInstruction;
     [SerializeField] public Image Crosshair;
     Vector2 ThirdViewCrossPosition = new Vector2(150, 150);
@@ -39,5 +40,9 @@ public class CanvasManager : MonoBehaviour
         {
             Crosshair.gameObject.transform.localPosition = FirstViewCrossPosition;
         }
+    }
+    public void ShowObjectInteructInstruction(bool Is)
+    {
+        _objectInteractionInstruction.SetActive(Is);
     }
 }
