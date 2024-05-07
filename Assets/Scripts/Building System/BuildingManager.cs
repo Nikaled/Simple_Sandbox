@@ -32,19 +32,48 @@ public class BuildingManager : MonoBehaviour
     }
     void Update()
     {
-        if(deletingObject != null)
-        {
-            TurnDeletingObjectNormalAndClearFields();
-        }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            ActivateBuildingButton(!IsBuildingOpened);
-        }
+        //if (deletingObject != null)
+        //{
+        //    TurnDeletingObjectNormalAndClearFields();
+        //}
+        //if (Input.GetKeyDown(KeyCode.B))
+        //{
+        //    ActivateBuildingButton(!IsBuildingOpened);
+        //}
         if (player.currentState != Player.PlayerState.Building && player.currentState != Player.PlayerState.DeletingBuilding)
         {
             return;
         }
 
+        //Ray ray = Camera.main.ScreenPointToRay(Cross.transform.position);
+        //if (Physics.Raycast(ray, out hit, 1000, layerMask))
+        //{
+        //    pos = hit.point;
+        //}
+        //else
+        //{
+        //    RaycastHit DownHit = new();
+        //    Vector3 MaxDistancePos = ray.GetPoint(20);
+        //    pos = MaxDistancePos;
+        //    // ------- Привязка объектов к полу
+        //    //Physics.Raycast(MaxDistancePos, Vector3.down, out DownHit, 500, layerMask);
+        //    //pos = DownHit.point;
+        //}
+
+        //if (player.currentState == Player.PlayerState.DeletingBuilding)
+        //{
+        //    DeletingBuildingInput();
+        //}
+
+
+    }
+    public void SetBuildingObject(GameObject ObjectPrefab)
+    {
+        CurrentPrefab = ObjectPrefab;
+        SelectObject();
+    }
+    public void BuildingInput()
+    {
         Ray ray = Camera.main.ScreenPointToRay(Cross.transform.position);
         if (Physics.Raycast(ray, out hit, 1000, layerMask))
         {
@@ -55,16 +84,7 @@ public class BuildingManager : MonoBehaviour
             RaycastHit DownHit = new();
             Vector3 MaxDistancePos = ray.GetPoint(20);
             pos = MaxDistancePos;
-            // ------- Привязка объектов к полу
-            //Physics.Raycast(MaxDistancePos, Vector3.down, out DownHit, 500, layerMask);
-            //pos = DownHit.point;
         }
-
-        if (player.currentState == Player.PlayerState.DeletingBuilding)
-        {
-            DeletingBuildingInput();
-        }
-
         if (pendingObj != null)
         {
             pendingObj.transform.position = pos;
@@ -79,18 +99,14 @@ public class BuildingManager : MonoBehaviour
             }
         }
     }
-    public void SetBuildingObject(GameObject ObjectPrefab)
+    public  void DeletingBuildingInput()
     {
-        CurrentPrefab = ObjectPrefab;
-        SelectObject();
-    }
-    private void DeletingBuildingInput()
-    {
+
         Debug.Log("Deleting Input");
-        if (Input.GetMouseButtonDown(1))
-        {
-            player.SwitchPlayerState(Player.PlayerState.Idle);
-        }
+        //if (Input.GetKeyDown(player.DeletingModeButton))
+        //{
+        //    player.SwitchPlayerState(Player.PlayerState.Idle);
+        //}
         Ray ray = Camera.main.ScreenPointToRay(Cross.transform.position);
         if (Physics.Raycast(ray, out hit, 1000, TurnRedIgnoreMask))
         {
@@ -111,7 +127,7 @@ public class BuildingManager : MonoBehaviour
             TurnDeletingObjectNormalAndClearFields();
         }
     }
-    private void TurnDeletingObjectNormalAndClearFields()
+    public void TurnDeletingObjectNormalAndClearFields()
     {
         if (deletingObject != null && CashedMaterialsOnDeleting != null)
         {
@@ -171,16 +187,8 @@ public class BuildingManager : MonoBehaviour
         IsBuildingOpened = Is;
         BuildingMenu.SetActive(IsBuildingOpened);
         player.examplePlayer.LockCursor(!IsBuildingOpened);
-        Destroy(pendingObj);
-        if (Is)
-        {
-            player.currentState = Player.PlayerState.Building;
-        }
-        else
-        {
-            player.currentState = Player.PlayerState.Idle;
 
-        }
+        if (pendingObj != null) { Destroy(pendingObj); }
     }
     private void RotateObject()
     {

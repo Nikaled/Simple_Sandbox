@@ -46,6 +46,8 @@ GameObject:
   - component: {fileID: 1256013856449765212}
   - component: {fileID: 4059383468386266353}
   - component: {fileID: 6398779359466665296}
+  - component: {fileID: 5651340443069303252}
+  - component: {fileID: 4332435389554458444}
   m_Layer: 10
   m_Name: SC_Bld_02_Brown
   m_TagString: Untagged
@@ -158,6 +160,32 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 14.151291, y: 3.0689392, z: 9.698364}
   m_Center: {x: 0.83257294, y: 16.320358, z: 0.036621094}
+--- !u!65 &5651340443069303252
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8007112151338381183}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6937863, y: 3.8552666, z: 0.717285}
+  m_Center: {x: -9.437021, y: 1.899271, z: -3.1523075}
+--- !u!65 &4332435389554458444
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8007112151338381183}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9144282, y: 3.8896904, z: 0.7542115}
+  m_Center: {x: -9.621134, y: 1.9164829, z: 3.192113}
 --- !u!1001 &1450071937527254562
 PrefabInstance:
   m_ObjectHideFlags: 0

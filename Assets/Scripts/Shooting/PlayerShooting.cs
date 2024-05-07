@@ -13,12 +13,17 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] ShootingProjectile projectile;
     [SerializeField] public Image Crosshair;
     [SerializeField] Player player;
+    [SerializeField] MeleeAttackHitbox handHitbox;
     Vector3 AimDirection;
-    Vector3 CrosshairWorldPosition;
+  [HideInInspector] public  Vector3 CrosshairWorldPosition;
     float GunTimer;
     float GunShootInterval=0.05f;
-
-    // TODO:анимации автомата, взрывы
+    private int HandDamage = 1;
+    public static PlayerShooting instance;
+    private void Start()
+    {
+        instance = this;
+    }
     public bool Reloading { get; private set; }
 
     void Update()
@@ -38,7 +43,6 @@ public class PlayerShooting : MonoBehaviour
     public void Fire(Player.WeaponType currentWeapon)
     {
         Vector3 aimDirection = (CrosshairWorldPosition - ProjectileSpawnPoint.position).normalized;
-        Vector3 RotatingDirection = new Vector3(0, 0, aimDirection.z);
         player.RotatePlayerOnShoot(aimDirection);
         if (currentWeapon == Player.WeaponType.Gun)
         {
@@ -65,11 +69,30 @@ public class PlayerShooting : MonoBehaviour
         }
 
     }
-
-    private void OnDrawGizmos()
+    public void HandAttack()
     {
-        Gizmos.color = Color.red;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Gizmos.DrawRay(RaycastOrigin.position, ray.direction * 999);
+        Vector3 aimDirection = (CrosshairWorldPosition - ProjectileSpawnPoint.position).normalized;
+        player.RotatePlayerOnShoot(aimDirection);
+        List<HpSystemCollision> targets = new();
+        if(handHitbox.GetEnemies() != null)
+        {
+        targets.AddRange(handHitbox.GetEnemies());
+        }
+
+        if(targets.Count > 0)
+        {
+            for (int i = 0; i < targets.Count; i++)
+            {
+                targets[i].TakeDamage(HandDamage);
+            }
+        }
+        handHitbox.EndAttack();
     }
+
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.red;
+    //    Ray ray = Camera.main.ScreenPointToRay(Crosshair.transform.position);
+    //    Gizmos.DrawRay(RaycastOrigin.position, ray.direction * 999);
+    //}
 }

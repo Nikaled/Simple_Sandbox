@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField] public ExampleCharacterController characterController;
     [SerializeField] private PlayerShooting playerShooting;
     [SerializeField] private AnimationPlayer animationPlayer;
+    [SerializeField] GrenadeLauncher grenadeLauncher;
     public PlayerState currentState = PlayerState.Idle;
     public WeaponType CurrentWeapon;
     public event Action PistolFire;
@@ -27,7 +28,12 @@ public class Player : MonoBehaviour
 
     [SerializeField] GameObject GunModel;
     [SerializeField] GameObject PistolModel;
+    [SerializeField] GameObject KnifeModel;
+    [SerializeField] GameObject GrenadeModel;
     [SerializeField] GameObject CharacterModel;
+
+    public KeyCode DeletingModeButton = KeyCode.N;
+    public KeyCode BuildingModeButton = KeyCode.B;
     public static Player instance;
     public bool IsFirstView;
     public enum PlayerState
@@ -39,12 +45,16 @@ public class Player : MonoBehaviour
         Sitting,
         Building,
         DeletingBuilding,
+        AimingGrenade,
     }
     float startTime;
     public enum WeaponType
     {
         Pistol,
-        Gun
+        Gun,
+        Knife,
+        Hand,
+        Grenade
     }
 
     private void Awake()
@@ -92,6 +102,15 @@ public class Player : MonoBehaviour
     {
         GunModel.SetActive(false);
         PistolModel.SetActive(false);
+        KnifeModel.SetActive(false);
+        GrenadeModel.SetActive(false);
+
+        if(CurrentWeapon == WeaponType.Grenade)
+        {
+        animator.SetBool("AimingGrenade", false);
+            grenadeLauncher.ClearTrajectory();
+        }
+
 
         switch (PressedNumber)
         {
@@ -103,6 +122,18 @@ public class Player : MonoBehaviour
                 CurrentWeapon = WeaponType.Pistol;
                 PistolModel.SetActive(true);
                 break;
+            case 3:
+                CurrentWeapon = WeaponType.Knife;
+                KnifeModel.SetActive(true);
+                break;
+            case 4:
+                CurrentWeapon = WeaponType.Hand;
+                break;
+            case 5:
+                CurrentWeapon = WeaponType.Grenade;
+                GrenadeModel.SetActive(true);
+                break;
+
         }
     }
     private void SwitchCrossHair()
@@ -116,10 +147,52 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        if(currentState == PlayerState.Building || currentState == PlayerState.DeletingBuilding)
+
+        if(currentState == PlayerState.Idle)
         {
+            if (Input.GetKeyDown(DeletingModeButton))
+            {
+                SwitchPlayerState(Player.PlayerState.DeletingBuilding);
+            }
+            if (Input.GetKeyDown(BuildingModeButton))
+            {
+                BuildingManager.instance.ActivateBuildingButton(true);
+                SwitchPlayerState(Player.PlayerState.Building);
+            }
+
+        }
+        if(currentState !=PlayerState.Building && currentState != PlayerState.DeletingBuilding)
+        {
+            FireInput();
+            ChangeWeaponInput();
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            SwitchCrossHair();
+        }
+
+        if (currentState == PlayerState.Building)
+        {
+            BuildingManager.instance.BuildingInput();
+            if (Input.GetKeyDown(BuildingModeButton))
+            {
+                BuildingManager.instance.ActivateBuildingButton(false);
+                SwitchPlayerState(Player.PlayerState.Idle);
+            }
             return;
         }
+        if (currentState == PlayerState.DeletingBuilding)
+        {
+            BuildingManager.instance.DeletingBuildingInput();
+            if (Input.GetKeyDown(DeletingModeButton))
+            {
+                BuildingManager.instance.TurnDeletingObjectNormalAndClearFields();
+                SwitchPlayerState(Player.PlayerState.Idle);
+            }
+        }
+    }
+    private void ChangeWeaponInput()
+    {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             SwitchWeapon(1);
@@ -128,29 +201,73 @@ public class Player : MonoBehaviour
         {
             SwitchWeapon(2);
         }
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            SwitchCrossHair();
+            SwitchWeapon(3);
         }
-        if(CurrentWeapon == WeaponType.Pistol)
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            SwitchWeapon(4);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            SwitchWeapon(5);
+        }
+    }
+    private void FireInput()
+    {
+      
+        if (CurrentWeapon == WeaponType.Pistol)
         {
             if (Input.GetMouseButtonDown(0))
             {
                 animator.SetTrigger("PistolFire");
-                //PistolFire?.Invoke();
                 Fire();
             }
         }
-        if(CurrentWeapon == WeaponType.Gun)
+        if(CurrentWeapon == WeaponType.Knife)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                animator.SetTrigger("Stab");
+                playerShooting.HandAttack();
+            }
+        }
+        if (CurrentWeapon == WeaponType.Hand)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                animator.SetTrigger("Punch");
+                playerShooting.HandAttack();
+            }
+        }
+        if (CurrentWeapon == WeaponType.Gun)
         {
             if (Input.GetMouseButton(0))
             {
                 animator.SetTrigger("PistolFire");
-                //PistolFire?.Invoke();
                 playerShooting.Fire(CurrentWeapon);
             }
         }
+        if (CurrentWeapon == WeaponType.Grenade)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                animator.SetBool("AimingGrenade", true);
+                currentState = PlayerState.AimingGrenade;
+            }
+            if (Input.GetMouseButton(0))
+            {
+                grenadeLauncher.GrenadeInput();
 
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                animator.SetBool("AimingGrenade", false);
+                grenadeLauncher.LaunchGrenade();
+                currentState = PlayerState.Idle;
+            }
+        }
         if (currentState != PlayerState.Aiming)
         {
             if (Input.GetMouseButton(1))
@@ -168,10 +285,7 @@ public class Player : MonoBehaviour
             }
         }
 
-
-
     }
-
     public void RotatePlayerOnShoot(Vector3 aimDirection)
     {
         Quaternion targetRotation = Quaternion.LookRotation(aimDirection);

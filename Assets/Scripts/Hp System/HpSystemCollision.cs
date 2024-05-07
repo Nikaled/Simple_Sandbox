@@ -10,13 +10,13 @@ public class HpSystemCollision : MonoBehaviour
     {
         if(hpSystem !=null)
         hpSystem.TakeDamage(DamageCount);
-        else
-        {
-            hpSystem = GetComponentInChildren<HpSystem>();
-            if(hpSystem != null)
-            {
-                hpSystem.TakeDamage(DamageCount);
-            }
-        }
+        //else
+        //{
+        //    hpSystem = GetComponentInChildren<HpSystem>();
+        //    if(hpSystem != null)
+        //    {
+        //        hpSystem.TakeDamage(DamageCount);
+        //    }
+        //}
     }
 }

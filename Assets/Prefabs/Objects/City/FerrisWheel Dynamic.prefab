@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RootObject: {fileID: 259203914020430440}
-  MeshObject: {fileID: 7260382724214178477}
+  MeshObject: {fileID: 7260382724214164489}
   HpBar: {fileID: 4499249471114218675}
   MaxHp: 11
   HpText: {fileID: 4499249470116909328}
@@ -592,6 +592,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 428740, guid: 12f4fd5539dd3ed4cba438c8f8079a6a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 454088, guid: 12f4fd5539dd3ed4cba438c8f8079a6a, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -635,6 +639,10 @@ PrefabInstance:
     - target: {fileID: 454088, guid: 12f4fd5539dd3ed4cba438c8f8079a6a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308894, guid: 12f4fd5539dd3ed4cba438c8f8079a6a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12f4fd5539dd3ed4cba438c8f8079a6a, type: 3}
