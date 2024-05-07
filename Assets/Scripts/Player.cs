@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     [SerializeField] public ExamplePlayer examplePlayer;
     [SerializeField] ExampleCharacterCamera normalCamera;
 
-
+    public EnterController currentNearTransport;
     [SerializeField] GameObject GunModel;
     [SerializeField] GameObject PistolModel;
     [SerializeField] GameObject KnifeModel;
@@ -230,6 +230,7 @@ public class Player : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 animator.SetTrigger("Stab");
+               
                 playerShooting.HandAttack();
             }
         }
@@ -237,6 +238,7 @@ public class Player : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
+                animator.SetBool("IsRun", false);
                 animator.SetTrigger("Punch");
                 playerShooting.HandAttack();
             }

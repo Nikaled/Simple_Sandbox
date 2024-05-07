@@ -30,43 +30,6 @@ public class BuildingManager : MonoBehaviour
     {
         instance = this;
     }
-    void Update()
-    {
-        //if (deletingObject != null)
-        //{
-        //    TurnDeletingObjectNormalAndClearFields();
-        //}
-        //if (Input.GetKeyDown(KeyCode.B))
-        //{
-        //    ActivateBuildingButton(!IsBuildingOpened);
-        //}
-        if (player.currentState != Player.PlayerState.Building && player.currentState != Player.PlayerState.DeletingBuilding)
-        {
-            return;
-        }
-
-        //Ray ray = Camera.main.ScreenPointToRay(Cross.transform.position);
-        //if (Physics.Raycast(ray, out hit, 1000, layerMask))
-        //{
-        //    pos = hit.point;
-        //}
-        //else
-        //{
-        //    RaycastHit DownHit = new();
-        //    Vector3 MaxDistancePos = ray.GetPoint(20);
-        //    pos = MaxDistancePos;
-        //    // ------- Привязка объектов к полу
-        //    //Physics.Raycast(MaxDistancePos, Vector3.down, out DownHit, 500, layerMask);
-        //    //pos = DownHit.point;
-        //}
-
-        //if (player.currentState == Player.PlayerState.DeletingBuilding)
-        //{
-        //    DeletingBuildingInput();
-        //}
-
-
-    }
     public void SetBuildingObject(GameObject ObjectPrefab)
     {
         CurrentPrefab = ObjectPrefab;
@@ -75,7 +38,7 @@ public class BuildingManager : MonoBehaviour
     public void BuildingInput()
     {
         Ray ray = Camera.main.ScreenPointToRay(Cross.transform.position);
-        if (Physics.Raycast(ray, out hit, 1000, layerMask))
+        if (Physics.Raycast(ray, out hit, 100, layerMask))
         {
             pos = hit.point;
         }
@@ -103,10 +66,6 @@ public class BuildingManager : MonoBehaviour
     {
 
         Debug.Log("Deleting Input");
-        //if (Input.GetKeyDown(player.DeletingModeButton))
-        //{
-        //    player.SwitchPlayerState(Player.PlayerState.Idle);
-        //}
         Ray ray = Camera.main.ScreenPointToRay(Cross.transform.position);
         if (Physics.Raycast(ray, out hit, 1000, TurnRedIgnoreMask))
         {

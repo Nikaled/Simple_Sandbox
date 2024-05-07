@@ -154,7 +154,7 @@ MonoBehaviour:
   DelayBeforeExplosion: 5
   DestroyAnimation: {fileID: 1056904543853562, guid: 4cf45cdce36e66e4a93614abb5ae7821, type: 3}
   GrenadeDamage: 10
-  ExplosionScale: 5
+  ExplosionScale: 2
 --- !u!135 &2253238092017262361
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -166,5 +166,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Radius: 20
+  m_Radius: 15
   m_Center: {x: 0, y: 0.035273597, z: 0.00000017881393}

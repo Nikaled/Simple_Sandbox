@@ -17,6 +17,7 @@ public class EnterController : MonoBehaviour
             player = other.GetComponent<Player>();
             ShowEnterInstruction();
             IsInterfaceActive = true;
+            player.currentNearTransport = this;
         }
     }
     protected virtual void OnTriggerExit(Collider other)
@@ -25,6 +26,10 @@ public class EnterController : MonoBehaviour
         {
             HideEnterInstruction();
             player = null;
+            if (player.currentNearTransport == this)
+            {
+                player.currentNearTransport = null;
+            }
         }
     }
     private void ShowEnterInstruction()
@@ -36,6 +41,10 @@ public class EnterController : MonoBehaviour
     {
         if (IsInterfaceActive == true)
         {
+            if(player.currentNearTransport != this)
+            {
+                return;
+            }
             if (Input.GetKeyDown(KeyCode.F))
             {
                 SitIntoTransport();
@@ -63,7 +72,7 @@ public class EnterController : MonoBehaviour
         ActivateTransport();
         IsPlayerIn = true;
         IsInterfaceActive = false;
-        player.currentState = Player.PlayerState.InTransport;
+        player.SwitchPlayerState(Player.PlayerState.InTransport);
     }
     private void GetOutTransport()
     {
@@ -72,14 +81,13 @@ public class EnterController : MonoBehaviour
         player.PlayerSetActive(true);
         DeactivateTransport();
         TransportCamera.gameObject.SetActive(false);
-        player.currentState = Player.PlayerState.Idle;
+        player.SwitchPlayerState(Player.PlayerState.Idle);
+
     }
     protected virtual void ActivateTransport()
     {
-        //vehicleControl.enabled = true;
     }
     protected virtual void DeactivateTransport()
     {
-        //vehicleControl.enabled = false;
     }
 }

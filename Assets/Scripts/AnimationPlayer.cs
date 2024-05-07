@@ -6,7 +6,6 @@ public class AnimationPlayer : MonoBehaviour
 {
     [SerializeField] private Animator anim;
     [SerializeField] private Player player;
-
     private void OnEnable()
     {
         player.PistolFire += DoPistolAnimation;
