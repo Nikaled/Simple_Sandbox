@@ -12,20 +12,31 @@ public class BuildingManager : MonoBehaviour
     [SerializeField] Image Cross;
     [SerializeField] LayerMask layerMask;
     [SerializeField] LayerMask NotDeletingLayerMask;
-    [SerializeField] LayerMask TurnRedIgnoreMask;
+    [SerializeField] LayerMask TurnRedIncludeMask;
     private GameObject pendingObj;
     public float rotateAmount = 45;
     bool IsBuildingOpened;
     [SerializeField] GameObject BuildingMenu;
     [SerializeField] Material OnBuildingMaterial;
     [SerializeField] Material RedMaterial;
+    [SerializeField] Material YellowMaterial;
 
     [SerializeField] Player player;
     public static BuildingManager instance;
 
     private bool IsDeletingBuilding;
     List<Material[]> CashedMaterialsOnDeleting;
+    List<Material[]> CashedMaterialsOnRotating;
     private GameObject deletingObject;
+    private GameObject rotatingObject;
+
+    Vector3 RotatingCashedRotating;
+    Vector3 RotatingCashedScale;
+    private float CashedRotatingX;
+    private float CashedRotatingY;
+    private float CashedRotatingZ;
+    public bool RotateChosenObjectMode { get; private set; }
+
     private void Awake()
     {
         instance = this;
@@ -62,19 +73,22 @@ public class BuildingManager : MonoBehaviour
             }
         }
     }
-    public  void DeletingBuildingInput()
+    public void DeletingBuildingInput()
     {
 
         Debug.Log("Deleting Input");
         Ray ray = Camera.main.ScreenPointToRay(Cross.transform.position);
-        if (Physics.Raycast(ray, out hit, 1000, TurnRedIgnoreMask))
+        if (Physics.Raycast(ray, out hit, 1000, TurnRedIncludeMask))
         {
-            TurnDeletingObjectNormalAndClearFields();
-            deletingObject = hit.collider.gameObject;
-            Debug.Log("deleting object:" + deletingObject);
-            if (IsItDestructable(deletingObject))
+            if(deletingObject != hit.collider.gameObject)
             {
-                TurnRedDeletingObject(deletingObject.GetComponentsInChildren<MeshRenderer>());
+                TurnDeletingObjectNormalAndClearFields();
+                deletingObject = hit.collider.gameObject;
+                Debug.Log("deleting object:" + deletingObject);
+                if (IsItDestructable(deletingObject))
+                {
+                    TurnIntoColorChosenObject(deletingObject.GetComponentsInChildren<MeshRenderer>(), RedMaterial, ref CashedMaterialsOnDeleting);
+                }
             }
             if (Input.GetMouseButtonDown(0))
             {
@@ -90,12 +104,12 @@ public class BuildingManager : MonoBehaviour
     {
         if (deletingObject != null && CashedMaterialsOnDeleting != null)
         {
-            TurnNormalDeletingObject(deletingObject.GetComponentsInChildren<MeshRenderer>());
-            Debug.Log("Turn normal");
+            TurnNormalChosenObject(deletingObject.GetComponentsInChildren<MeshRenderer>(), CashedMaterialsOnDeleting);
         }
         CashedMaterialsOnDeleting = null;
         deletingObject = null;
     }
+
     public void DeletingButton(bool Is)
     {
         ActivateDeletingMode(Is);
@@ -134,7 +148,6 @@ public class BuildingManager : MonoBehaviour
     }
     private bool IsItDestructable(GameObject deletingObject)
     {
-        Debug.Log(deletingObject.layer);
         if (((NotDeletingLayerMask & (1 << deletingObject.layer)) != 0))
         {
             return false;
@@ -166,6 +179,18 @@ public class BuildingManager : MonoBehaviour
         pendingObj.transform.DORotate(new Vector3(0, pendingObj.transform.position.y, 0), 0);
 
     }
+    private void PlaceObject()
+    {
+        var newObj = Instantiate(CurrentPrefab, pendingObj.transform.position, pendingObj.transform.rotation);
+        if (CurrentPrefab.CompareTag("Road"))
+        {
+            newObj.transform.position += new Vector3(0, 0.2f, 0);
+        }
+        Destroy(pendingObj);
+        Debug.Log("Object placed");
+        player.SwitchPlayerState(Player.PlayerState.Idle);
+
+    }
     private void DeactivateColliders(Collider[] colliders)
     {
         for (int i = 0; i < colliders.Length; i++)
@@ -185,7 +210,7 @@ public class BuildingManager : MonoBehaviour
 
         }
     }
-    private void TurnRedDeletingObject(MeshRenderer[] renderers)
+    private void TurnIntoColorChosenObject(MeshRenderer[] renderers, Material colorMaterial, ref List<Material[]> CashedMaterials)
     {
         List<Material[]> materials = new();
         for (int i = 0; i < renderers.Length; i++)
@@ -194,30 +219,132 @@ public class BuildingManager : MonoBehaviour
             Material[] RedMats = new Material[renderers[i].materials.Length];
             for (int j = 0; j < renderers[i].materials.Length; j++)
             {
-                RedMats[j] = RedMaterial;
+                RedMats[j] = colorMaterial;
             }
             renderers[i].materials = RedMats;
         }
-        CashedMaterialsOnDeleting = materials;
+        CashedMaterials = materials;
     }
-    private void TurnNormalDeletingObject(MeshRenderer[] renderers)
+    private void TurnNormalChosenObject(MeshRenderer[] renderers, List<Material[]> CashedMaterials)
     {
         for (int i = 0; i < renderers.Length; i++)
         {
-            Material[] CashedMat = CashedMaterialsOnDeleting[i];
+            Material[] CashedMat = CashedMaterials[i];
             renderers[i].materials = CashedMat;
         }
     }
-    private void PlaceObject()
-    {
-       var newObj =  Instantiate(CurrentPrefab, pendingObj.transform.position, pendingObj.transform.rotation);
-        if (CurrentPrefab.CompareTag("Road"))
-        {
-            newObj.transform.position += new Vector3(0,0.2f,0);
-        }
-        Destroy(pendingObj);
-        Debug.Log("Object placed");
-        player.SwitchPlayerState(Player.PlayerState.Idle);
 
+    #region RotatingBuildings
+
+    public void ActivateRotatingMode(bool IsActive)
+    {
+        CanvasManager.instance.ShowRotatingModeInstruction(IsActive);
+        player.examplePlayer.LockCursor(IsActive);
+        TurnRotatingObjectNormalAndClearFields();
     }
+    public void RotatingInput()
+    {
+        if (!RotateChosenObjectMode)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Cross.transform.position);
+            if (Physics.Raycast(ray, out hit, 1000, TurnRedIncludeMask))
+            {
+                if(rotatingObject != hit.collider.gameObject)
+                {
+                    TurnRotatingObjectNormalAndClearFields();
+
+
+                    rotatingObject = hit.collider.gameObject;
+                    Debug.Log("rotatingObject object:" + rotatingObject);
+                    if (IsItDestructable(rotatingObject))
+                    {
+                        TurnIntoColorChosenObject(rotatingObject.GetComponentsInChildren<MeshRenderer>(), YellowMaterial, ref CashedMaterialsOnRotating);
+                    }
+                }
+               
+            }
+            else
+            {
+                TurnRotatingObjectNormalAndClearFields();
+            }
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (rotatingObject != null)
+                {
+                    ActivateRotateChosenObjectMode(true);
+                }
+            }
+        }
+        else
+        {
+            RotateChosenObjectInput();
+        }
+    }
+    public void TurnRotatingObjectNormalAndClearFields()
+    {
+        if (rotatingObject != null && CashedMaterialsOnRotating != null)
+        {
+            Debug.Log("Turn object from yellow to normal" + rotatingObject.name);
+            TurnNormalChosenObject(rotatingObject.GetComponentsInChildren<MeshRenderer>(), CashedMaterialsOnRotating);
+        }
+        CashedMaterialsOnRotating = null;
+        rotatingObject = null;
+    }
+    private void ActivateRotateChosenObjectMode(bool Is)
+    {
+        RotateChosenObjectMode = Is;
+        RotatingCashedRotating = rotatingObject.transform.eulerAngles;
+        RotatingCashedScale = rotatingObject.transform.localScale;
+        CanvasManager.instance.ShowRotatingModeInstruction(false);
+        CanvasManager.instance.ShowChosenObjectRotatingModeInstruction(Is, Scale:RotatingCashedScale, Rotation: RotatingCashedRotating);
+
+        player.examplePlayer.LockCursor(!Is);
+    }
+    private void RotateChosenObjectInput()
+    {
+        if (rotatingObject == null)
+        {
+            Debug.Log("Объект кручения null");
+        }
+    }
+    public void ApplyRotatingChanges()
+    {
+        ActivateRotateChosenObjectMode(false);
+        player.SwitchPlayerState(Player.PlayerState.Idle);
+    }
+    public void CancelRotatingChanges()
+    {
+        rotatingObject.transform.localScale = RotatingCashedScale;
+        rotatingObject.transform.eulerAngles = RotatingCashedRotating;
+        CanvasManager.instance.ShowChosenObjectRotatingModeInstruction(true, Scale: RotatingCashedScale, Rotation: RotatingCashedRotating);
+    }
+    #region RotatingSliders
+    public void RotatingSliderScaleX(float IncreaseNumber)
+    {
+        rotatingObject.transform.DOScaleX( IncreaseNumber, 0);
+    }
+    public void RotatingSliderScaleY(float IncreaseNumber)
+    {
+        rotatingObject.transform.DOScaleY(IncreaseNumber, 0);
+    }
+    public void RotatingSliderScaleZ(float IncreaseNumber)
+    {
+        rotatingObject.transform.DOScaleZ( IncreaseNumber,0);
+    }
+    public void RotatingSliderRotateX(float IncreaseNumber)
+    {
+        rotatingObject.transform.rotation = Quaternion.Euler(IncreaseNumber, rotatingObject.transform.eulerAngles.y, rotatingObject.transform.eulerAngles.z);
+    }
+    public void RotatingSliderRotateY(float IncreaseNumber)
+    {
+        rotatingObject.transform.rotation = Quaternion.Euler(rotatingObject.transform.eulerAngles.x, IncreaseNumber, rotatingObject.transform.eulerAngles.z);
+    }
+    public void RotatingSliderRotateZ(float IncreaseNumber)
+    {
+        rotatingObject.transform.rotation = Quaternion.Euler(rotatingObject.transform.eulerAngles.x, rotatingObject.transform.eulerAngles.y, IncreaseNumber);
+    }
+
+    #endregion
+    #endregion
+
 }

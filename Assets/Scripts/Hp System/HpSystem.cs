@@ -64,6 +64,7 @@ public class HpSystem : MonoBehaviour
         }
         else
         {
+            Debug.Log("Не назначен родитель удаления");
             MeshObject = RootObject;
             Explosion(RootObject);
             if(RootObject !=null)

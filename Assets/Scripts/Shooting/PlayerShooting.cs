@@ -19,6 +19,7 @@ public class PlayerShooting : MonoBehaviour
     float GunTimer;
     float GunShootInterval=0.05f;
     private int HandDamage = 1;
+    private int KnifeDamage = 1;
     public static PlayerShooting instance;
     private void Start()
     {
@@ -69,7 +70,7 @@ public class PlayerShooting : MonoBehaviour
         }
 
     }
-    public void HandAttack()
+    public void HandAttack(Player.WeaponType meleeWeapon)
     {
         Vector3 aimDirection = (CrosshairWorldPosition - ProjectileSpawnPoint.position).normalized;
         player.RotatePlayerOnShoot(aimDirection);
@@ -78,12 +79,16 @@ public class PlayerShooting : MonoBehaviour
         {
         targets.AddRange(handHitbox.GetEnemies());
         }
-
+        int meleeDamage = 1;
+        if(meleeWeapon == Player.WeaponType.Knife)
+        {
+            meleeDamage = 2;
+        }
         if(targets.Count > 0)
         {
             for (int i = 0; i < targets.Count; i++)
             {
-                targets[i].TakeDamage(HandDamage);
+                targets[i].TakeDamage(meleeDamage);
             }
         }
         handHitbox.EndAttack();

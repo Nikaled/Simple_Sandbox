@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
 
     public KeyCode DeletingModeButton = KeyCode.N;
     public KeyCode BuildingModeButton = KeyCode.B;
+    public KeyCode RotatingModeButton = KeyCode.M;
     public static Player instance;
     public bool IsFirstView;
     public enum PlayerState
@@ -45,6 +46,7 @@ public class Player : MonoBehaviour
         Sitting,
         Building,
         DeletingBuilding,
+        RotatingBuilding,
         AimingGrenade,
     }
     float startTime;
@@ -65,7 +67,7 @@ public class Player : MonoBehaviour
     {
         PlayerParent.SetActive(Is);
     }
-    public void SwitchPlayerState(PlayerState newPlayerState)
+    public void SwitchPlayerState(PlayerState newPlayerState, float Delay = 0.1f)
     {
         switch (newPlayerState)
         {
@@ -90,11 +92,34 @@ public class Player : MonoBehaviour
             BuildingManager.instance.ActivateDeletingMode(false);
             examplePlayer.LockCursor(true);
         }
-        StartCoroutine(DelaySwitchState(newPlayerState));
+        if(Delay > 0)
+        {
+        StartCoroutine(DelaySwitchState(newPlayerState, Delay));
+        }
+        else
+        {
+            if (currentState == PlayerState.DeletingBuilding)
+            {
+                BuildingManager.instance.TurnDeletingObjectNormalAndClearFields();
+            }
+            if (currentState == PlayerState.RotatingBuilding)
+            {
+                BuildingManager.instance.TurnRotatingObjectNormalAndClearFields();
+            }
+            currentState = newPlayerState;
+        }
     }
-    private IEnumerator DelaySwitchState(Player.PlayerState newPlayerState)
+    private IEnumerator DelaySwitchState(Player.PlayerState newPlayerState, float Delay)
     {
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(Delay);
+        if(currentState == PlayerState.DeletingBuilding)
+        {
+            BuildingManager.instance.TurnDeletingObjectNormalAndClearFields();
+        }
+        if(currentState == PlayerState.RotatingBuilding)
+        {
+            BuildingManager.instance.TurnRotatingObjectNormalAndClearFields();
+        }
         currentState = newPlayerState;
         Debug.Log("Player State:" + currentState);
     }
@@ -159,18 +184,22 @@ public class Player : MonoBehaviour
                 BuildingManager.instance.ActivateBuildingButton(true);
                 SwitchPlayerState(Player.PlayerState.Building);
             }
+            if (Input.GetKeyDown(RotatingModeButton))
+            {
+                BuildingManager.instance.ActivateRotatingMode(true);
+                SwitchPlayerState(Player.PlayerState.RotatingBuilding);
+            }
 
         }
-        if(currentState !=PlayerState.Building && currentState != PlayerState.DeletingBuilding)
+        if(currentState !=PlayerState.Building && currentState != PlayerState.DeletingBuilding && currentState  != PlayerState.RotatingBuilding)
         {
             FireInput();
             ChangeWeaponInput();
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                SwitchCrossHair();
+            }
         }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            SwitchCrossHair();
-        }
-
         if (currentState == PlayerState.Building)
         {
             BuildingManager.instance.BuildingInput();
@@ -186,8 +215,17 @@ public class Player : MonoBehaviour
             BuildingManager.instance.DeletingBuildingInput();
             if (Input.GetKeyDown(DeletingModeButton))
             {
-                BuildingManager.instance.TurnDeletingObjectNormalAndClearFields();
                 SwitchPlayerState(Player.PlayerState.Idle);
+                BuildingManager.instance.TurnDeletingObjectNormalAndClearFields();
+            }
+        }
+        if (currentState == PlayerState.RotatingBuilding)
+        {
+            BuildingManager.instance.RotatingInput();
+            if (Input.GetKeyDown(RotatingModeButton))
+            {
+                SwitchPlayerState(Player.PlayerState.Idle);
+                BuildingManager.instance.TurnRotatingObjectNormalAndClearFields();
             }
         }
     }
@@ -231,7 +269,7 @@ public class Player : MonoBehaviour
             {
                 animator.SetTrigger("Stab");
                
-                playerShooting.HandAttack();
+                playerShooting.HandAttack(WeaponType.Knife);
             }
         }
         if (CurrentWeapon == WeaponType.Hand)
@@ -240,7 +278,7 @@ public class Player : MonoBehaviour
             {
                 animator.SetBool("IsRun", false);
                 animator.SetTrigger("Punch");
-                playerShooting.HandAttack();
+                playerShooting.HandAttack(WeaponType.Hand);
             }
         }
         if (CurrentWeapon == WeaponType.Gun)

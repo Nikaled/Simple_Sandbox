@@ -438,7 +438,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.6043949
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -1612,6 +1612,7 @@ MonoBehaviour:
   animator: {fileID: 7504767723708561398}
   examplePlayer: {fileID: 7504767724818692975}
   normalCamera: {fileID: 7616508333099249939}
+  currentNearTransport: {fileID: 0}
   GunModel: {fileID: 7504767725412537656}
   PistolModel: {fileID: 7504767723371450116}
   KnifeModel: {fileID: 5725679912604213224}
