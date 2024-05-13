@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1643642082077230727}
   - component: {fileID: 1643642082077230725}
   - component: {fileID: 1643642082077230726}
+  - component: {fileID: 1457184085398999845}
   m_Layer: 10
   m_Name: Ticket_Booth01
   m_TagString: Untagged
@@ -127,6 +128,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSystem: {fileID: 820097801886272400}
+--- !u!208 &1457184085398999845
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643642081428334344}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.292, y: 2.124, z: 2.7940001}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 3.0660002, y: 2.117, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1643642081428334346
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,7 +286,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8114461315222842174}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -22.363968, y: 0.5029297, z: -39.746674}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

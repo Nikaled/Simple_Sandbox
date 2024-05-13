@@ -23,7 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 334669566853525250}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -41.942093, y: 1.3330078, z: -89.128235}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -173,6 +173,7 @@ GameObject:
   - component: {fileID: 8072350669155850983}
   - component: {fileID: 6128884203444497157}
   - component: {fileID: 3694086363284583406}
+  - component: {fileID: 1745310131359246281}
   m_Layer: 10
   m_Name: Runway_Road
   m_TagString: Untagged
@@ -272,6 +273,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSystem: {fileID: 5422176475140585590}
+--- !u!208 &1745310131359246281
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4585112127216274332}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 7.0270004, y: 0.027, z: 7.0270004}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -7.0000005, y: 0, z: 7.0000005}
+  m_TimeToStationary: 0.5
 --- !u!1 &4795598460294613274
 GameObject:
   m_ObjectHideFlags: 0

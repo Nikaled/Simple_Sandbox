@@ -23,7 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1663184526188219818}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -59.39998, y: 0.35180664, z: 9.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 2158894024545612914}
   - component: {fileID: 2158894024167984747}
   - component: {fileID: 2158894024167984744}
+  - component: {fileID: 7652116865346817085}
   m_Layer: 10
   m_Name: heli_pad
   m_TagString: Untagged
@@ -144,6 +145,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSystem: {fileID: 25649362177711100}
+--- !u!208 &7652116865346817085
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2158894024547871410}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 6.9070005, y: 0.71800005, z: 6.9070005}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: -0.407, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &2158894024844521171
 PrefabInstance:
   m_ObjectHideFlags: 0

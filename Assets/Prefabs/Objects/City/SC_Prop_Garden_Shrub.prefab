@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1249569885786226564}
   - component: {fileID: 3092864203626828439}
   - component: {fileID: 541182162912001139}
+  - component: {fileID: 6806608405188976821}
   m_Layer: 10
   m_Name: SC_Prop_Garden_Shrub
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1249569885788745660}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -60.5959, y: 0.49926758, z: -269.64636}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -112,6 +113,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.76825887, y: 1.7616937, z: 0.7682572}
   m_Center: {x: -0.0000019073486, y: 0.8787574, z: 0.00000011920929}
+--- !u!208 &6806608405188976821
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249569885788745660}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.384, y: 0.88100004, z: 0.384}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.87900007, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &6435780538368842069
 PrefabInstance:
   m_ObjectHideFlags: 0

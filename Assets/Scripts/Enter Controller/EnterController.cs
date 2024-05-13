@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class EnterController : MonoBehaviour
 {
-    private bool IsInterfaceActive;
+    protected bool IsInterfaceActive;
     protected bool IsPlayerIn;
     [SerializeField] private Transform PlayerSpawnTransform;
     [SerializeField] protected Camera TransportCamera;
-    [SerializeField] private GameObject HpView;
-    private Player player;
+    [SerializeField] protected GameObject HpView;
+    protected Player player;
     protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -83,7 +83,7 @@ public class EnterController : MonoBehaviour
     {
         CanvasManager.instance.ShowTransportEnterInstruction(false);
     }
-    private void SitIntoTransport()
+    protected  virtual void SitIntoTransport()
     {
         HpView.SetActive(false);
         player.PlayerSetActive(false);
@@ -93,7 +93,7 @@ public class EnterController : MonoBehaviour
         IsInterfaceActive = false;
         player.SwitchPlayerState(Player.PlayerState.InTransport, 0);
     }
-    private void GetOutTransport()
+    protected virtual void GetOutTransport()
     {
         HpView.SetActive(true);
         player.PlayerParent.transform.position = PlayerSpawnTransform.position;

@@ -37,6 +37,9 @@ public class Player : MonoBehaviour
     public KeyCode RotatingModeButton = KeyCode.M;
     public static Player instance;
     public bool IsFirstView;
+
+    public SkinnedMeshRenderer CurrentCitizenMesh;
+    public SkinnedMeshRenderer[] PlayerMeshes;
     public enum PlayerState
     {
         InTransport,
@@ -161,10 +164,10 @@ public class Player : MonoBehaviour
 
         }
     }
-    private void SwitchCrossHair()
+    private void SwitchView()
     {
         IsFirstView = !IsFirstView;
-            CanvasManager.instance.IsCrossForThirdView(!IsFirstView);
+        GoToNormalCamera();
     }
     private void Update()
     {
@@ -197,7 +200,7 @@ public class Player : MonoBehaviour
             ChangeWeaponInput();
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                SwitchCrossHair();
+                SwitchView();
             }
         }
         if (currentState == PlayerState.Building)
@@ -334,17 +337,18 @@ public class Player : MonoBehaviour
     }
     private void GoToAimCamera()
     {
-        if(IsFirstView == false)
-        {
-        normalCamera.FollowPointFraming = new Vector2(1.5f, 1);
-        }
+        //if(IsFirstView == false)
+        //{
+        //normalCamera.FollowPointFraming = new Vector2(1.2f, 0.4f);
+        //}
         if (IsFirstView)
         {
         normalCamera.Camera.fieldOfView = 20;
+            normalCamera.FollowPointFraming = new Vector2(0f, 0f);
         }
         else
         {
-        normalCamera.Camera.fieldOfView = 40;
+        normalCamera.Camera.fieldOfView = 30;
         }
 
     }
@@ -352,9 +356,14 @@ public class Player : MonoBehaviour
     {
         if(IsFirstView == false)
         {
-        normalCamera.FollowPointFraming = new Vector2(0, 1.25f);
-        }
+            normalCamera.FollowPointFraming = new Vector2(1.2f, 0.4f);
         normalCamera.Camera.fieldOfView = 55;
+        }
+        else
+        {
+            normalCamera.FollowPointFraming = new Vector2(0,0);
+            normalCamera.Camera.fieldOfView = 40;
+        }
 
     }
     private void Fire()

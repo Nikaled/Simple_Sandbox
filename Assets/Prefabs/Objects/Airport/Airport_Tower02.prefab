@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6200928112693641718}
   - component: {fileID: 6200928113591350244}
   - component: {fileID: 6200928113591350251}
+  - component: {fileID: 812557095148375007}
   m_Layer: 10
   m_Name: Airport_Tower02
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6200928112695582518}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -21.643112, y: 0.51416016, z: 7.046173}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -113,6 +114,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSystem: {fileID: 5449617350719699781}
+--- !u!208 &812557095148375007
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6200928112695582518}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 8.286, y: 26.385002, z: 8.286}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 26.326002, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &6200928111919402602
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -23,7 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6861039149084701357}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -63.5, y: 0.49975586, z: -319.45996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 8497437825466241665}
   - component: {fileID: 6404104381072062206}
   - component: {fileID: 2197862099855951269}
+  - component: {fileID: 1917508522117139986}
   m_Layer: 10
   m_Name: SC_Bld_01_Dark
   m_TagString: Untagged
@@ -158,6 +159,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 26.183762, y: 58.739685, z: 7.30542}
   m_Center: {x: 0.000002861023, y: 29.300018, z: 0.16821289}
+--- !u!208 &1917508522117139986
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8750545205021803729}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 13.092001, y: 29.37, z: 13.092001}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 29.300001, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &1811012192627439115
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -23,7 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5412338720236640849}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -63.28, y: 0.49926758, z: -274.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 8896465326970682970}
   - component: {fileID: 8888630298660414929}
   - component: {fileID: 1529601222742163236}
+  - component: {fileID: 4408222284367264967}
   m_Layer: 10
   m_Name: SC_Prop_Construction_Scaffolding
   m_TagString: Untagged
@@ -145,6 +146,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: aeef138b8cc24af4e880ee891d2c302e, type: 3}
+--- !u!208 &4408222284367264967
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8896465326968638056}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5550001, y: 2.551, z: 3.4780002}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 2.5430002, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &4815897197687843159
 PrefabInstance:
   m_ObjectHideFlags: 0

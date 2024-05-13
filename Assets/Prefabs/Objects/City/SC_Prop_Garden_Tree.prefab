@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4041956365266360439}
   - component: {fileID: 2924668469275067579}
   - component: {fileID: 3247894517278668835}
+  - component: {fileID: 4563241650051321894}
   m_Layer: 10
   m_Name: SC_Prop_Garden_Tree
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4041956365268541073}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -57.297363, y: 0.5007324, z: -267.2887}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -113,6 +114,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 614dbd9aa24622d4c8d61d0641d0d3d3, type: 3}
+--- !u!208 &4563241650051321894
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4041956365268541073}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.70500004, y: 1.8770001, z: 0.70500004}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.8720001, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &72928934973395719
 PrefabInstance:
   m_ObjectHideFlags: 0

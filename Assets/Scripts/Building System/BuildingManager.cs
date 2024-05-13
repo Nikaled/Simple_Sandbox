@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.AI;
+using Unity.AI.Navigation;
+
 public class BuildingManager : MonoBehaviour
 {
     private GameObject CurrentPrefab;
