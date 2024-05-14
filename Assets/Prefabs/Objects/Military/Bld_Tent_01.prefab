@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 2603509706202496018}
   - component: {fileID: 2603509706673951195}
   - component: {fileID: 2603509706673951194}
+  - component: {fileID: 4603159180794655847}
   m_Layer: 10
   m_Name: SM_Bld_Tent_01
   m_TagString: Untagged
@@ -144,6 +145,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSystem: {fileID: 4147664693551600796}
+--- !u!208 &4603159180794655847
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2603509706200377138}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 6.2730002, y: 2.709, z: 8.554001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.026, y: 2.5900002, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &2603509706099122611
 PrefabInstance:
   m_ObjectHideFlags: 0

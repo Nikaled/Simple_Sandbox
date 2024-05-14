@@ -31,6 +31,7 @@ public class CanvasManager : MonoBehaviour
     public void ShowTransportEnterInstruction(bool Is)
     {
         _EnterTransportInstruction.SetActive(Is);
+        ShowObjectInteructInstruction(false);
     }
     public void ShowPlaneInstruction(bool Is)
     {
@@ -55,7 +56,7 @@ public class CanvasManager : MonoBehaviour
     {
         _rotatingModeInstruction.SetActive(Is);
     }
-    public void ShowChosenObjectRotatingModeInstruction(bool Is,Vector3 Scale, Vector3 Rotation)
+    public void ShowChosenObjectRotatingModeInstruction(bool Is, Vector3 Scale, Vector3 Rotation)
     {
         _rotatingChosenObjectModeInstruction.SetActive(Is);
         if (Is)
@@ -64,14 +65,14 @@ public class CanvasManager : MonoBehaviour
             float[] RotationParametres = new float[] { Rotation.x, Rotation.y, Rotation.z };
             for (int i = 0; i < ScaleParametres.Length; i++)
             {
-                if(ScaleParametres[i] > RotatingModeSlidersScale[i].maxValue)
+                if (ScaleParametres[i] > RotatingModeSlidersScale[i].maxValue)
                 {
                     ScaleParametres[i] = RotatingModeSlidersScale[i].maxValue;
                 }
             }
             for (int i = 0; i < RotationParametres.Length; i++)
             {
-                if(RotationParametres[i] < RotatingModeSlidersRotation[i].minValue)
+                if (RotationParametres[i] < RotatingModeSlidersRotation[i].minValue)
                 {
                     RotationParametres[i] += 360f;
                 }

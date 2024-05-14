@@ -223,6 +223,7 @@ GameObject:
   - component: {fileID: 7720925578358740657}
   - component: {fileID: 7720925578359758891}
   - component: {fileID: 7720925578355610635}
+  - component: {fileID: 6429344966890359408}
   m_Layer: 0
   m_Name: Collision
   m_TagString: Untagged
@@ -312,6 +313,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300016, guid: 52f8a9226e9a0fd459fbbf5d5106632f, type: 3}
+--- !u!208 &6429344966890359408
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7720925578361909191}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.182, y: 0.87900007, z: 3.1910002}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.025, y: 0.19800001, z: 0.09900001}
+  m_TimeToStationary: 0.5
 --- !u!1 &7720925578361909739
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,6 +634,7 @@ GameObject:
   - component: {fileID: 7720925578367422611}
   - component: {fileID: 7720925579774749334}
   - component: {fileID: 7720925579774749335}
+  - component: {fileID: 84543583}
   m_Layer: 11
   m_Name: Limo upd
   m_TagString: Untagged
@@ -631,7 +649,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7720925578361925253}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -434.237, y: -2075.133, z: -629.47955}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -792,7 +810,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerSpawnTransform: {fileID: 7720925578870728049}
   TransportCamera: {fileID: 7720925580202108502}
-  HpView: {fileID: 0}
+  HpView: {fileID: 1172856371002085244}
   FirstViewCameraTransform: {fileID: 7720925578361650419}
   vehicleControl: {fileID: 7720925578367395373}
 --- !u!65 &7720925579774749335
@@ -808,6 +826,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6.758583, y: 2.5106354, z: 6.1470203}
   m_Center: {x: 0.4355531, y: 1.656071, z: 2.636867e-15}
+--- !u!114 &84543583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7720925578361925253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75e6d05188532347bd6bb7727a44aca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Variants:
+  - {fileID: 2800000, guid: 8b2d37b34a2103e4abb1e3c4cd325afd, type: 3}
+  - {fileID: 2800000, guid: aba2663ca66d4e8429c3419725cd3e6e, type: 3}
+  - {fileID: 2800000, guid: e4280c9625f83464ab294fca72d8a24b, type: 3}
+  - {fileID: 2800000, guid: eb3d72bd899705f4caa14609d842b7f5, type: 3}
+  ObjectToChange: {fileID: 1635284750529988667}
+  currentVariantIndex: 0
 --- !u!1 &7720925578361929223
 GameObject:
   m_ObjectHideFlags: 0
@@ -12220,12 +12257,17 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2138912237128217903, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
   m_PrefabInstance: {fileID: 1002090495849101933}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1172856371002085244}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad40f47e6c056484c9f743a92bf43959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1172856371002085244 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2138912237128217873, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
+  m_PrefabInstance: {fileID: 1002090495849101933}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1172856371002085245 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
@@ -12304,6 +12346,11 @@ Transform:
 --- !u!1 &1635284750528059131 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 9648e2532959a5d439ae961d9c5aeb76, type: 3}
+  m_PrefabInstance: {fileID: 1635284750528090203}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1635284750529988667 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2300000, guid: 9648e2532959a5d439ae961d9c5aeb76, type: 3}
   m_PrefabInstance: {fileID: 1635284750528090203}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7720925580202533590

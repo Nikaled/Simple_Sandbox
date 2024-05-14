@@ -9,10 +9,14 @@ public class AnimationPlayer : MonoBehaviour
     private void OnEnable()
     {
         player.PistolFire += DoPistolAnimation;
+        player.characterController.myJumpAction += JumpAnimation;
+
     }
     private void OnDisable()
     {
         player.PistolFire -= DoPistolAnimation;
+        player.characterController.myJumpAction -= JumpAnimation;
+
     }
     void Update()
     {
@@ -20,11 +24,11 @@ public class AnimationPlayer : MonoBehaviour
         float v = Input.GetAxisRaw("Vertical");
 
         anim.SetBool("isRun", h != 0 || v != 0);
+    }
+    public void JumpAnimation()
+    {
+        anim.SetTrigger("jump");
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            anim.SetTrigger("jump");
-        }
     }
     private void DoPistolAnimation()
     {

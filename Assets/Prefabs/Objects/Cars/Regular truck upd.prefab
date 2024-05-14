@@ -11428,6 +11428,7 @@ GameObject:
   - component: {fileID: 2638490995732485672}
   - component: {fileID: 2638490994862042157}
   - component: {fileID: 2638490994862042156}
+  - component: {fileID: 1896253682}
   m_Layer: 11
   m_Name: Regular truck upd
   m_TagString: Untagged
@@ -11442,7 +11443,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2638490995722790974}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -460.39584, y: -2075.133, z: -609.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11603,7 +11604,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerSpawnTransform: {fileID: 2638490996235822026}
   TransportCamera: {fileID: 2638490995423978607}
-  HpView: {fileID: 0}
+  HpView: {fileID: 2783026397224525330}
   FirstViewCameraTransform: {fileID: 2638490995722549832}
   vehicleControl: {fileID: 2638490995732390038}
 --- !u!65 &2638490994862042156
@@ -11619,6 +11620,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6.758583, y: 2.5106354, z: 6.1470203}
   m_Center: {x: 0.4355531, y: 1.656071, z: 2.636867e-15}
+--- !u!114 &1896253682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2638490995722790974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75e6d05188532347bd6bb7727a44aca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Variants:
+  - {fileID: 2800000, guid: f62a322596490364dba9c722638fd64f, type: 3}
+  - {fileID: 2800000, guid: 72cc1bd868f39ab499dfa509585210a9, type: 3}
+  ObjectToChange: {fileID: 4439373116805241979}
+  currentVariantIndex: 0
 --- !u!1 &2638490995722795196
 GameObject:
   m_ObjectHideFlags: 0
@@ -11886,6 +11904,7 @@ GameObject:
   - component: {fileID: 2638490995723735050}
   - component: {fileID: 2638490995724822160}
   - component: {fileID: 2638490995729093296}
+  - component: {fileID: 6480014162840735410}
   m_Layer: 0
   m_Name: Collision
   m_TagString: Untagged
@@ -11975,6 +11994,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300016, guid: 52f8a9226e9a0fd459fbbf5d5106632f, type: 3}
+--- !u!208 &6480014162840735410
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2638490995722807676}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.182, y: 0.87900007, z: 3.1910002}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.025, y: 0.19800001, z: 0.09900001}
+  m_TimeToStationary: 0.5
 --- !u!1 &2638490995722811216
 GameObject:
   m_ObjectHideFlags: 0
@@ -12195,7 +12230,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5b4adb6df76c8fc4498cd8340f59ae70, type: 2}
+  - {fileID: 2100000, guid: 0980f5b1c0fa78948a829a79a991ef8d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12420,6 +12455,11 @@ PrefabInstance:
       objectReference: {fileID: 2638490995722790974}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
+--- !u!1 &2783026397224525330 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2138912237128217873, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
+  m_PrefabInstance: {fileID: 4265395500147616515}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2783026397224525331 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
@@ -12430,7 +12470,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2138912237128217903, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
   m_PrefabInstance: {fileID: 4265395500147616515}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2783026397224525330}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad40f47e6c056484c9f743a92bf43959, type: 3}

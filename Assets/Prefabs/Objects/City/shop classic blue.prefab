@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5382999059007587772}
   - component: {fileID: 3361190643230454629}
   - component: {fileID: 5514704067609899534}
+  - component: {fileID: 1836289120}
   m_Layer: 10
   m_Name: shop_classic_blue
   m_TagString: Untagged
@@ -65,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e3b6641b7894abf4f892a5f76d2973fc, type: 2}
+  - {fileID: 2100000, guid: 6fa57ceeb02e570459423903b60f3e92, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -126,10 +127,28 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 6.1800003, y: 6.761, z: 5.8350005}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 6.742, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &1836289120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236759477073027475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75e6d05188532347bd6bb7727a44aca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Variants:
+  - {fileID: 2800000, guid: d0e0e581cdb16714bb4a34a12b9616ca, type: 3}
+  - {fileID: 2800000, guid: e2f3a223acd413a43b3fbfb8909bfd22, type: 3}
+  - {fileID: 2800000, guid: 82fc5911810743e41bccd25d0cd0d71c, type: 3}
+  ObjectToChange: {fileID: 1236759477075296083}
+  currentVariantIndex: 0
 --- !u!1 &6839918805823829931
 GameObject:
   m_ObjectHideFlags: 0

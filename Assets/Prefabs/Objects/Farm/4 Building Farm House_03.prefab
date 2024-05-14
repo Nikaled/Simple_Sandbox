@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 2431870375948277825}
   - component: {fileID: 2431870375948277824}
   - component: {fileID: 599121316}
+  - component: {fileID: 6392121371218772357}
   m_Layer: 10
   m_Name: Building_Farm_House_03
   m_TagString: Untagged
@@ -158,10 +159,27 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 9.001, y: 8.604, z: 10.515}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 8.577001, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &6392121371218772357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2431870375948246757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75e6d05188532347bd6bb7727a44aca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Variants:
+  - {fileID: 2800000, guid: 7e8685d0924076d448269cf73c9c8004, type: 3}
+  - {fileID: 2800000, guid: c98fad277a9f98340b870da9d485be53, type: 3}
+  ObjectToChange: {fileID: 2431870375946240037}
+  currentVariantIndex: 0
 --- !u!1001 &2431870375732461506
 PrefabInstance:
   m_ObjectHideFlags: 0

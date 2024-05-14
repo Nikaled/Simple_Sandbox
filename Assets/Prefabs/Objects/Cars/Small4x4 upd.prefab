@@ -503,6 +503,7 @@ GameObject:
   - component: {fileID: 7576233601625539698}
   - component: {fileID: 7576233601626567400}
   - component: {fileID: 7576233601622410952}
+  - component: {fileID: 6527422281068906730}
   m_Layer: 11
   m_Name: Collision
   m_TagString: Untagged
@@ -592,6 +593,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300016, guid: 52f8a9226e9a0fd459fbbf5d5106632f, type: 3}
+--- !u!208 &6527422281068906730
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7576233601628716292}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.182, y: 0.87900007, z: 3.1910002}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.025, y: 0.19800001, z: 0.09900001}
+  m_TimeToStationary: 0.5
 --- !u!1 &7576233601628719822
 GameObject:
   m_ObjectHideFlags: 0
@@ -897,6 +914,7 @@ GameObject:
   - component: {fileID: 7576233601635271248}
   - component: {fileID: 7576233600358250581}
   - component: {fileID: 7576233600358250580}
+  - component: {fileID: 1918194363}
   m_Layer: 11
   m_Name: Small4x4 upd
   m_TagString: Untagged
@@ -911,7 +929,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7576233601628732486}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -454.00787, y: -2075.133, z: -598.49615}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1088,6 +1106,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6.758583, y: 2.5106354, z: 6.1470203}
   m_Center: {x: 0.4355531, y: 1.656071, z: 2.636867e-15}
+--- !u!114 &1918194363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7576233601628732486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75e6d05188532347bd6bb7727a44aca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Variants:
+  - {fileID: 2800000, guid: 7e5538aec26f83c43afb7ffff4e5687f, type: 3}
+  - {fileID: 2800000, guid: 7e3d475a41817b64b8933e685f1c49fa, type: 3}
+  - {fileID: 2800000, guid: af173e6654ca90544a0e4363372eec95, type: 3}
+  ObjectToChange: {fileID: 6696330979720495446}
+  currentVariantIndex: 0
 --- !u!1 &7576233601628733986
 GameObject:
   m_ObjectHideFlags: 0
@@ -12317,6 +12353,11 @@ Transform:
 --- !u!1 &6696330979718307734 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: c103693be7c681c47833291bcf5bfe0c, type: 3}
+  m_PrefabInstance: {fileID: 6696330979718207798}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &6696330979720495446 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2300000, guid: c103693be7c681c47833291bcf5bfe0c, type: 3}
   m_PrefabInstance: {fileID: 6696330979718207798}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7576233599779401749

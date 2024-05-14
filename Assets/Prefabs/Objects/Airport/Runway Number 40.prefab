@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 998152449353310840}
   m_Layer: 10
   m_Name: Runway Number 40
-  m_TagString: Untagged
+  m_TagString: Road
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -474,7 +474,6 @@ GameObject:
   - component: {fileID: 7120366301187256689}
   - component: {fileID: 2239694041797678368}
   - component: {fileID: 3469191655735312930}
-  - component: {fileID: 6206397634409020794}
   m_Layer: 10
   m_Name: Runway_Number40
   m_TagString: Untagged
@@ -574,19 +573,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSystem: {fileID: 3933124463878765199}
---- !u!208 &6206397634409020794
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9136439951979051470}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 28.055002, y: 0.055000003, z: 14.055}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -28.000002, y: 0, z: -14.000001}
-  m_TimeToStationary: 0.5

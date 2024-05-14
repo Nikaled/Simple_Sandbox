@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6066052223367738296}
   - component: {fileID: 6066052223369547770}
   - component: {fileID: 6066052223369547771}
+  - component: {fileID: 5183449364822021367}
   m_Layer: 10
   m_Name: SM_Bld_GuardTower_01
   m_TagString: Untagged
@@ -113,6 +114,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSystem: {fileID: 5296236475312489926}
+--- !u!208 &5183449364822021367
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6066052223369531176}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 2.2770002, y: 6.5660005, z: 2.272}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 3.5800002, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &6097941860248454999
 GameObject:
   m_ObjectHideFlags: 0

@@ -228,6 +228,7 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(RotatingModeButton))
             {
                 SwitchPlayerState(Player.PlayerState.Idle);
+                BuildingManager.instance.ActivateRotatingMode(false);
                 BuildingManager.instance.TurnRotatingObjectNormalAndClearFields();
             }
         }

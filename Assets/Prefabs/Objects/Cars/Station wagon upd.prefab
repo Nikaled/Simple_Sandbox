@@ -10340,6 +10340,7 @@ GameObject:
   - component: {fileID: 105836190947106795}
   - component: {fileID: 105836190948190577}
   - component: {fileID: 105836190944042321}
+  - component: {fileID: 4604197733548718063}
   m_Layer: 11
   m_Name: Collision
   m_TagString: Untagged
@@ -10429,6 +10430,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300016, guid: 52f8a9226e9a0fd459fbbf5d5106632f, type: 3}
+--- !u!208 &4604197733548718063
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105836190950336157}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.182, y: 0.87900007, z: 3.1910002}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.025, y: 0.19900002, z: 0.09900001}
+  m_TimeToStationary: 0.5
 --- !u!1 &105836190950340785
 GameObject:
   m_ObjectHideFlags: 0
@@ -10703,6 +10720,7 @@ GameObject:
   - component: {fileID: 105836190939601353}
   - component: {fileID: 105836189528351692}
   - component: {fileID: 105836189528351693}
+  - component: {fileID: 1969676239}
   m_Layer: 11
   m_Name: Station wagon upd
   m_TagString: Untagged
@@ -10717,7 +10735,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 105836190950352863}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -470.63123, y: -2075.133, z: -596.0796}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10894,6 +10912,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6.758583, y: 2.5106354, z: 6.1470203}
   m_Center: {x: 0.4355531, y: 1.656071, z: 2.636867e-15}
+--- !u!114 &1969676239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105836190950352863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75e6d05188532347bd6bb7727a44aca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Variants:
+  - {fileID: 2800000, guid: 1b87e52af1c6e944eb0362f765b16393, type: 3}
+  - {fileID: 2800000, guid: ad8104eb0f4d3f24687791e8dcc22725, type: 3}
+  - {fileID: 2800000, guid: b8f01783c59e8a344bb3670eb41daae5, type: 3}
+  ObjectToChange: {fileID: 5484593589586162867}
+  currentVariantIndex: 0
 --- !u!1 &105836190950352949
 GameObject:
   m_ObjectHideFlags: 0
@@ -12432,5 +12468,10 @@ GameObject:
 --- !u!4 &5484593589584393811 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: fc8dd1f2661fea149aa903594000d7f8, type: 3}
+  m_PrefabInstance: {fileID: 5484593589583998163}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &5484593589586162867 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2300000, guid: fc8dd1f2661fea149aa903594000d7f8, type: 3}
   m_PrefabInstance: {fileID: 5484593589583998163}
   m_PrefabAsset: {fileID: 0}

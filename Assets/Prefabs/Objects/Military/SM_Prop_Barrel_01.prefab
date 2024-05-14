@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2539613765131164584}
   - component: {fileID: 2539613765133302589}
   - component: {fileID: 2539613765133302578}
+  - component: {fileID: 5944249813814704441}
   m_Layer: 10
   m_Name: SM_Prop_Barrel_01
   m_TagString: Untagged
@@ -113,6 +114,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSystem: {fileID: 4508230887832792719}
+--- !u!208 &5944249813814704441
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2539613765133150996}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.47500002, y: 0.674, z: 0.47500002}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.67200005, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &2539613765804284832
 PrefabInstance:
   m_ObjectHideFlags: 0

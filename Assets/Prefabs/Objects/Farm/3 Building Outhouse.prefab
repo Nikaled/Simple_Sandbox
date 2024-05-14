@@ -158,7 +158,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 1.3060001, y: 2.644, z: 1.835}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 2.637, z: 0}
   m_TimeToStationary: 0.5
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 3670628835039977550}
   - component: {fileID: 6924558234952555563}
   - component: {fileID: 2670744473579537461}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Object Activate Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

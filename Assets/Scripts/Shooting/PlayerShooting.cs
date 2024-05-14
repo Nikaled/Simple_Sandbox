@@ -18,8 +18,6 @@ public class PlayerShooting : MonoBehaviour
   [HideInInspector] public  Vector3 CrosshairWorldPosition;
     float GunTimer;
     float GunShootInterval=0.05f;
-    private int HandDamage = 1;
-    private int KnifeDamage = 1;
     public static PlayerShooting instance;
     private void Start()
     {
@@ -31,13 +29,13 @@ public class PlayerShooting : MonoBehaviour
     {
          CrosshairWorldPosition = Vector3.zero;
         Ray ray = Camera.main.ScreenPointToRay(Crosshair.transform.position);
-        if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, aimColliderLayerMask))
+        if (Physics.Raycast(ray, out RaycastHit raycastHit, 999, aimColliderLayerMask))
         {
             CrosshairWorldPosition = raycastHit.point;
         }
         else
         {
-            CrosshairWorldPosition = ray.GetPoint(50);
+            CrosshairWorldPosition = ray.GetPoint(998);
         }
 
     }

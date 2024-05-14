@@ -73,7 +73,6 @@ GameObject:
   - component: {fileID: 5930562928294623965}
   - component: {fileID: 5930562928294623967}
   - component: {fileID: 5930562928294623964}
-  - component: {fileID: 5930562928294623966}
   m_Layer: 2
   m_Name: Enter Collider
   m_TagString: Untagged
@@ -110,6 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerSpawnTransform: {fileID: 5930562928211553986}
   TransportCamera: {fileID: 5930562929032283851}
+  HpView: {fileID: 5756557822348879274}
   _helicopterController: {fileID: 6339226725734526460}
 --- !u!65 &5930562928294623964
 BoxCollider:
@@ -124,19 +124,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 11.798396, y: 9.474665, z: 15.101674}
   m_Center: {x: -2.5333486, y: 0.4320402, z: -3.6581912}
---- !u!114 &5930562928294623966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5930562928294623954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b6326d9a0d2b4646b0b3f178c6c2811, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hpSystem: {fileID: 5756557822348879252}
 --- !u!1 &5930562929032283854
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,6 +225,8 @@ GameObject:
   - component: {fileID: 6339226725734526461}
   - component: {fileID: 6339226725734526463}
   - component: {fileID: 6339226725734526462}
+  - component: {fileID: 3647763463820336675}
+  - component: {fileID: 456221373}
   m_Layer: 0
   m_Name: Attack Helicopter
   m_TagString: Untagged
@@ -343,6 +332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerSpawnTransform: {fileID: 5930562928211553986}
   TransportCamera: {fileID: 5930562929032283851}
+  HpView: {fileID: 5756557822348879274}
   _helicopterController: {fileID: 6339226725734526460}
 --- !u!114 &6339226725734526460
 MonoBehaviour:
@@ -439,6 +429,40 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.0017252, y: 3.322961, z: 10.84958}
   m_Center: {x: 0, y: 1.6491014, z: -2.458581}
+--- !u!208 &3647763463820336675
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6339226725735625202}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.501, y: 2.4150002, z: 5.425}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 2.403, z: -2.459}
+  m_TimeToStationary: 0.5
+--- !u!114 &456221373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6339226725735625202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75e6d05188532347bd6bb7727a44aca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Variants:
+  - {fileID: 2800000, guid: a641e0730edcf03459f220816b07b376, type: 3}
+  - {fileID: 2800000, guid: 173777f07788ef24eb1c2fbdb7f418e1, type: 3}
+  - {fileID: 2800000, guid: 0e81b92eae2982740ad1c01230682479, type: 3}
+  ObjectToChange: {fileID: 7040694931944537217}
+  currentVariantIndex: 0
 --- !u!1001 &5930562928542126267
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -525,12 +549,17 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2138912237128217903, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
   m_PrefabInstance: {fileID: 5930562928542126267}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 5756557822348879274}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad40f47e6c056484c9f743a92bf43959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5756557822348879274 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2138912237128217873, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
+  m_PrefabInstance: {fileID: 5930562928542126267}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5756557822348879275 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
@@ -623,5 +652,10 @@ Transform:
 --- !u!4 &7040694931942768247 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: ef96e3ea73734ac48ab02e84dc53ce24, type: 3}
+  m_PrefabInstance: {fileID: 7040694931942368501}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7040694931944537217 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2300020, guid: ef96e3ea73734ac48ab02e84dc53ce24, type: 3}
   m_PrefabInstance: {fileID: 7040694931942368501}
   m_PrefabAsset: {fileID: 0}

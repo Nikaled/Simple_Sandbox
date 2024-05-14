@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1431248671701902416}
   m_Layer: 10
   m_Name: 1 Env Dirt
-  m_TagString: Untagged
+  m_TagString: Road
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

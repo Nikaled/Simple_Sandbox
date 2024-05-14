@@ -14,6 +14,27 @@ public class ObjectInteraction : MonoBehaviour
             _isPlayerNear = true;
         }
     }
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (other.CompareTag("Player"))
+    //    {
+    //        if (Input.GetKeyDown(KeyCode.F))
+    //        {
+    //            if (_objectActivated == false)
+    //            {
+    //                ActivateObject();
+    //                _objectActivated = true;
+    //                return;
+    //            }
+    //            else
+    //            {
+    //                DeactivateObject();
+    //                _objectActivated = false;
+    //                return;
+    //            }
+    //        }
+    //    }
+    //}
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -31,9 +52,9 @@ public class ObjectInteraction : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (_objectActivated==false)
+            if (_objectActivated == false)
             {
-            ActivateObject();
+                ActivateObject();
                 _objectActivated = true;
                 return;
             }
@@ -44,6 +65,12 @@ public class ObjectInteraction : MonoBehaviour
                 return;
             }
         }
+
+    }
+    private void OnDestroy()
+    {
+        if(CanvasManager.instance !=null)
+        CanvasManager.instance.ShowObjectInteructInstruction(false);
     }
     protected virtual void ActivateObject()
     {

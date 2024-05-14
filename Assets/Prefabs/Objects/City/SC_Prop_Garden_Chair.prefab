@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3712558569621542068}
   - component: {fileID: 4784304503290592124}
   - component: {fileID: 1475390092549662168}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Enter Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,7 +186,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 1.4660001, y: 0.68, z: 0.50600004}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0.67700005, z: 0}
   m_TimeToStationary: 0.5

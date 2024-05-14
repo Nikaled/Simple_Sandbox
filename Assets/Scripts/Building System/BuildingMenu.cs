@@ -8,7 +8,6 @@ public class BuildingMenu : MonoBehaviour
 {
     [SerializeField] GameObject[] ContentPanels;
     [SerializeField] Button[] LeftPanelButtons;
-    private event Action OnButtonClick;
     public void HideAllOtherPanels()
     {
         for (int i = 0; i < ContentPanels.Length; i++)

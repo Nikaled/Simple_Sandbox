@@ -242,7 +242,6 @@ public class BuildingManager : MonoBehaviour
     public void ActivateRotatingMode(bool IsActive)
     {
         CanvasManager.instance.ShowRotatingModeInstruction(IsActive);
-        player.examplePlayer.LockCursor(IsActive);
         TurnRotatingObjectNormalAndClearFields();
     }
     public void RotatingInput()
@@ -300,7 +299,15 @@ public class BuildingManager : MonoBehaviour
         RotatingCashedScale = rotatingObject.transform.localScale;
         CanvasManager.instance.ShowRotatingModeInstruction(false);
         CanvasManager.instance.ShowChosenObjectRotatingModeInstruction(Is, Scale:RotatingCashedScale, Rotation: RotatingCashedRotating);
-
+        if (Is)
+        {
+            ChangeTextureManager.instance.ButtonsInitialize(rotatingObject);
+            TurnNormalChosenObject(rotatingObject.GetComponentsInChildren<MeshRenderer>(), CashedMaterialsOnRotating);
+        }
+        if (!Is)
+        {
+            ChangeTextureManager.instance.ClearButtonListeners();
+        }
         player.examplePlayer.LockCursor(!Is);
     }
     private void RotateChosenObjectInput()

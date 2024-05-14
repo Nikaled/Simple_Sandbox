@@ -12,11 +12,13 @@ GameObject:
   - component: {fileID: 68130099029359170}
   - component: {fileID: 68130099030489218}
   - component: {fileID: 68130099029359179}
+  - component: {fileID: 6563722940180193666}
   - component: {fileID: 68130099029359176}
   - component: {fileID: 68130099029359180}
   - component: {fileID: 68130099029359181}
   - component: {fileID: 68130099029359183}
   - component: {fileID: 68130099029359182}
+  - component: {fileID: 3870303413804091972}
   m_Layer: 0
   m_Name: Small_Heli01 (1)
   m_TagString: Untagged
@@ -109,6 +111,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSystem: {fileID: 1794711110891368996}
+--- !u!114 &6563722940180193666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68130099028551234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75e6d05188532347bd6bb7727a44aca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Variants:
+  - {fileID: 2800000, guid: 21b174dbab1faa447a2480f4c8b3648a, type: 3}
+  - {fileID: 2800000, guid: ca7fcd6b3a01c9548bfbe9f54d6723ca, type: 3}
+  - {fileID: 2800000, guid: 910c5096bdc94044a993b345255f014a, type: 3}
+  ObjectToChange: {fileID: 68130099030489218}
+  currentVariantIndex: 0
 --- !u!114 &68130099029359176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,6 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerSpawnTransform: {fileID: 380247850692376946}
   TransportCamera: {fileID: 380247850944582011}
+  HpView: {fileID: 1794711110891368986}
   _helicopterController: {fileID: 68130099029359180}
 --- !u!114 &68130099029359180
 MonoBehaviour:
@@ -219,6 +240,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.0017252, y: 3.322961, z: 10.84958}
   m_Center: {x: 0, y: 1.6491014, z: -2.458581}
+--- !u!208 &3870303413804091972
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68130099028551234}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.501, y: 2.4150002, z: 5.425}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 2.403, z: -2.459}
+  m_TimeToStationary: 0.5
 --- !u!1 &68130099028551236
 GameObject:
   m_ObjectHideFlags: 0
@@ -486,6 +523,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerSpawnTransform: {fileID: 380247850692376946}
   TransportCamera: {fileID: 380247850944582011}
+  HpView: {fileID: 1794711110891368986}
   _helicopterController: {fileID: 68130099029359180}
 --- !u!65 &380247850608520556
 BoxCollider:
@@ -709,6 +747,11 @@ PrefabInstance:
       objectReference: {fileID: 68130099028551234}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
+--- !u!1 &1794711110891368986 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2138912237128217873, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
+  m_PrefabInstance: {fileID: 380247851393025803}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1794711110891368987 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
@@ -719,7 +762,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2138912237128217903, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
   m_PrefabInstance: {fileID: 380247851393025803}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1794711110891368986}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad40f47e6c056484c9f743a92bf43959, type: 3}

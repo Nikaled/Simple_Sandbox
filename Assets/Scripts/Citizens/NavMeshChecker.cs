@@ -9,11 +9,14 @@ public class NavMeshChecker : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if ((NotAvailableToGoMask & (1 << other.gameObject.layer)) == 0)
+        if ((NotAvailableToGoMask & (1 << other.gameObject.layer)) != 0)
         {
-            Debug.Log("—фера столкнулась со зданием");
-            if(citizen !=null)
-            citizen.FindNewDestination();
+            if(other.CompareTag("Road")== false)
+            {
+                Debug.Log("—фера столкнулась со зданием:" + other.gameObject.name);
+                if (citizen != null)
+                    citizen.FindNewDestination();
+            }
         }
     }
 }

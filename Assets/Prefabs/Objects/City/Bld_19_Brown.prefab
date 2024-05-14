@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6771580936621066552}
   - component: {fileID: 3802414024244274175}
   - component: {fileID: 7584473962336357268}
+  - component: {fileID: 1633449548}
   m_Layer: 10
   m_Name: SC_Bld_19_Brown
   m_TagString: Untagged
@@ -65,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 34ea75e77a0029c4397f172ee87694b8, type: 2}
+  - {fileID: 2100000, guid: 7b42d1dbb0bfb4c4d9c9626ae72cf055, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -126,10 +127,28 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 16.091002, y: 11.489, z: 18.034}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 11.449, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &1633449548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2863309507207669625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75e6d05188532347bd6bb7727a44aca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Variants:
+  - {fileID: 2800000, guid: 0447cd66508e8bf4aa944d7b9347472c, type: 3}
+  - {fileID: 2800000, guid: c98fad277a9f98340b870da9d485be53, type: 3}
+  - {fileID: 2800000, guid: 96e05152811faee4281843a6ce5114c2, type: 3}
+  ObjectToChange: {fileID: 2863309507209544967}
+  currentVariantIndex: 0
 --- !u!1 &5637837091438343998
 GameObject:
   m_ObjectHideFlags: 0

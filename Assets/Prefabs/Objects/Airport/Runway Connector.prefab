@@ -45,7 +45,6 @@ GameObject:
   - component: {fileID: 8662361065535606770}
   - component: {fileID: 8662361065533708180}
   - component: {fileID: 8662361065533708181}
-  - component: {fileID: 4783076484828661375}
   m_Layer: 10
   m_Name: Runway_Connector
   m_TagString: Untagged
@@ -145,22 +144,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSystem: {fileID: 7320621151419998520}
---- !u!208 &4783076484828661375
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8662361065533608242}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 7.0550003, y: 0.055000003, z: 21.055}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -7.0000005, y: 0, z: 21.000002}
-  m_TimeToStationary: 0.5
 --- !u!1001 &8662361064712360983
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1528063657982074350}
   - component: {fileID: 1528063657982074351}
   - component: {fileID: 1528063657982074344}
+  - component: {fileID: 2433828828696788504}
   m_Layer: 10
   m_Name: SM_Prop_Mg_stand_01
   m_TagString: Untagged
@@ -140,6 +141,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1389802, y: 0.54248047, z: 0.4187622}
   m_Center: {x: 0.26193774, y: 1.5561523, z: -0.09182739}
+--- !u!208 &2433828828696788504
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528063657982103305}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.78800005, y: 0.99100006, z: 1.455}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.044000003, y: 0.98700005, z: -0.384}
+  m_TimeToStationary: 0.5
 --- !u!1001 &1528063659816480969
 PrefabInstance:
   m_ObjectHideFlags: 0

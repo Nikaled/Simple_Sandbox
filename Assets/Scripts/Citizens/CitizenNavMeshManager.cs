@@ -5,24 +5,11 @@ using UnityEngine;
 public class CitizenNavMeshManager : MonoBehaviour
 {
     public static CitizenNavMeshManager instance;
-    public GameObject[] Grounds;
-    public float[] GroundsX;
-    public float[] GroundsY;
-    public float[] GroundsZ;
     [SerializeField] private Collider teleportArea;
     [SerializeField] public NavMeshChecker Checker;
     private void Awake()
     {
         instance = this;
-        GroundsX = new float[Grounds.Length];
-        GroundsY = new float[Grounds.Length];
-        GroundsZ = new float[Grounds.Length];
-        for (int i = 0; i < Grounds.Length; i++)
-        {
-            GroundsX[i] = Grounds[i].GetComponent<MeshRenderer>().bounds.size.x;
-            GroundsY[i] = Grounds[i].GetComponent<MeshRenderer>().bounds.size.y;
-            GroundsZ[i] = Grounds[i].GetComponent<MeshRenderer>().bounds.size.z;
-        }
     }
     public Vector3? MoveCheckerToNewPoint(GameObject sphere)
     {

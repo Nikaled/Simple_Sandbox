@@ -298,6 +298,7 @@ GameObject:
   - component: {fileID: 4996815594853351668}
   - component: {fileID: 4996815594852284014}
   - component: {fileID: 4996815594847994446}
+  - component: {fileID: 4853922511769310295}
   m_Layer: 11
   m_Name: Collision
   m_TagString: Untagged
@@ -387,6 +388,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300016, guid: 52f8a9226e9a0fd459fbbf5d5106632f, type: 3}
+--- !u!208 &4853922511769310295
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4996815594854300034}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.182, y: 0.87900007, z: 3.1910002}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.025, y: 0.19800001, z: 0.09900001}
+  m_TimeToStationary: 0.5
 --- !u!1 &4996815594854305352
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,6 +709,7 @@ GameObject:
   - component: {fileID: 4996815594859808470}
   - component: {fileID: 4996815594854071214}
   - component: {fileID: 4996815594854071215}
+  - component: {fileID: 267872775}
   m_Layer: 11
   m_Name: Car sedan
   m_TagString: Untagged
@@ -706,7 +724,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4996815594854316224}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -440.75443, y: -2075.133, z: -624.7256}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -883,6 +901,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6.758583, y: 2.5106354, z: 6.1470203}
   m_Center: {x: 0.4355531, y: 1.656071, z: 2.636867e-15}
+--- !u!114 &267872775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4996815594854316224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75e6d05188532347bd6bb7727a44aca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Variants:
+  - {fileID: 2800000, guid: 8b2d37b34a2103e4abb1e3c4cd325afd, type: 3}
+  - {fileID: 2800000, guid: e4280c9625f83464ab294fca72d8a24b, type: 3}
+  - {fileID: 2800000, guid: f2df5b1912860c6449797a2aea7052e9, type: 3}
+  - {fileID: 2800000, guid: eb3d72bd899705f4caa14609d842b7f5, type: 3}
+  ObjectToChange: {fileID: 4996815596137983894}
+  currentVariantIndex: 0
 --- !u!1 &4996815594854319780
 GameObject:
   m_ObjectHideFlags: 0
