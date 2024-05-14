@@ -2417,8 +2417,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerSpawnTransform: {fileID: 8996489996994687153}
   TransportCamera: {fileID: 0}
-  HpView: {fileID: 7023085047603475173}
-  CitizenMesh: {fileID: 8996489997006573679}
+  HpView: {fileID: 8996489996994981349}
+  CitizenMesh: {fileID: 8996489997006581981}
   AllCitizenMeshes:
   - {fileID: 8996489997006581981}
   - {fileID: 8996489997006500615}
@@ -2535,7 +2535,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2138912237128217903, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
   m_PrefabInstance: {fileID: 8996489998366689268}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7023085047603475173}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad40f47e6c056484c9f743a92bf43959, type: 3}
@@ -2544,10 +2544,5 @@ MonoBehaviour:
 --- !u!4 &7023085047603475172 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
-  m_PrefabInstance: {fileID: 8996489998366689268}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7023085047603475173 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2138912237128217873, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
   m_PrefabInstance: {fileID: 8996489998366689268}
   m_PrefabAsset: {fileID: 0}

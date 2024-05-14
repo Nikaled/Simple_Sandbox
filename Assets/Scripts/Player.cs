@@ -289,7 +289,7 @@ public class Player : MonoBehaviour
         {
             if (Input.GetMouseButton(0))
             {
-                animator.SetTrigger("PistolFire");
+                animator.SetTrigger("GunFire");
                 playerShooting.Fire(CurrentWeapon);
             }
         }

@@ -899,7 +899,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1140125112142664271
 Transform:
   m_ObjectHideFlags: 0
@@ -2136,7 +2136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1140125112142719093
 Transform:
   m_ObjectHideFlags: 0
@@ -2418,7 +2418,7 @@ MonoBehaviour:
   PlayerSpawnTransform: {fileID: 1140125112142765597}
   TransportCamera: {fileID: 0}
   HpView: {fileID: 1332072523415657545}
-  CitizenMesh: {fileID: 1140125112131010243}
+  CitizenMesh: {fileID: 1140125112131004887}
   AllCitizenMeshes:
   - {fileID: 1140125112131001969}
   - {fileID: 1140125112130985387}

@@ -9,16 +9,19 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private float normalSensitivity;
     [SerializeField] private LayerMask aimColliderLayerMask;
     [SerializeField] private Transform RaycastOrigin;
-    [SerializeField] private Transform ProjectileSpawnPoint;
+    [SerializeField] private Transform PistolProjectileSpawnPoint;
+    [SerializeField] private Transform GunProjectileSpawnPoint;
     [SerializeField] ShootingProjectile projectile;
     [SerializeField] public Image Crosshair;
     [SerializeField] Player player;
     [SerializeField] MeleeAttackHitbox handHitbox;
     Vector3 AimDirection;
-  [HideInInspector] public  Vector3 CrosshairWorldPosition;
+    [HideInInspector] public Vector3 CrosshairWorldPosition;
     float GunTimer;
-    float GunShootInterval=0.05f;
+    float GunShootInterval = 0.05f;
     public static PlayerShooting instance;
+    [SerializeField] private LineRenderer lineRenderer;
+
     private void Start()
     {
         instance = this;
@@ -27,30 +30,44 @@ public class PlayerShooting : MonoBehaviour
 
     void Update()
     {
-         CrosshairWorldPosition = Vector3.zero;
-        Ray ray = Camera.main.ScreenPointToRay(Crosshair.transform.position);
+        CrosshairWorldPosition = Vector3.zero;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit raycastHit, 999, aimColliderLayerMask))
         {
             CrosshairWorldPosition = raycastHit.point;
+
         }
         else
         {
             CrosshairWorldPosition = ray.GetPoint(998);
         }
+        if (player.CurrentWeapon == Player.WeaponType.Pistol)
+        {
+            lineRenderer.SetPosition(0, PistolProjectileSpawnPoint.position);
+        }
+        if (player.CurrentWeapon == Player.WeaponType.Gun)
+        {
+            lineRenderer.SetPosition(0, GunProjectileSpawnPoint.position);
+        }
+        lineRenderer.enabled = true;
+
+        lineRenderer.SetPosition(1, raycastHit.point);
 
     }
     public void Fire(Player.WeaponType currentWeapon)
     {
-        Vector3 aimDirection = (CrosshairWorldPosition - ProjectileSpawnPoint.position).normalized;
-        player.RotatePlayerOnShoot(aimDirection);
+        if (currentWeapon == Player.WeaponType.Pistol)
+        {
+            Vector3 aimDirection = (CrosshairWorldPosition - PistolProjectileSpawnPoint.position).normalized;
+            player.RotatePlayerOnShoot(aimDirection);
+            ShootingProjectile proj = Instantiate(projectile, PistolProjectileSpawnPoint.position, Quaternion.LookRotation(aimDirection, Vector3.up));
+
+        }
+
         if (currentWeapon == Player.WeaponType.Gun)
         {
             FireGun();
             return;
-        }
-        if(currentWeapon == Player.WeaponType.Pistol)
-        {
-            ShootingProjectile proj = Instantiate(projectile, ProjectileSpawnPoint.position, Quaternion.LookRotation(aimDirection, Vector3.up));
         }
     }
     public void FireGun()
@@ -62,27 +79,28 @@ public class PlayerShooting : MonoBehaviour
         if (Reloading == false)
         {
             Reloading = true;
-        Vector3 aimDirection = (CrosshairWorldPosition - ProjectileSpawnPoint.position).normalized;
-        ShootingProjectile proj = Instantiate(projectile, ProjectileSpawnPoint.position, Quaternion.LookRotation(aimDirection, Vector3.up));
-        GunTimer = Time.time;
+            Vector3 aimDirection = (CrosshairWorldPosition - GunProjectileSpawnPoint.position).normalized;
+            player.RotatePlayerOnShoot(aimDirection);
+            ShootingProjectile proj = Instantiate(projectile, GunProjectileSpawnPoint.position, Quaternion.LookRotation(aimDirection, Vector3.up));
+            GunTimer = Time.time;
         }
 
     }
     public void HandAttack(Player.WeaponType meleeWeapon)
     {
-        Vector3 aimDirection = (CrosshairWorldPosition - ProjectileSpawnPoint.position).normalized;
+        Vector3 aimDirection = (CrosshairWorldPosition - PistolProjectileSpawnPoint.position).normalized;
         player.RotatePlayerOnShoot(aimDirection);
         List<HpSystemCollision> targets = new();
-        if(handHitbox.GetEnemies() != null)
+        if (handHitbox.GetEnemies() != null)
         {
-        targets.AddRange(handHitbox.GetEnemies());
+            targets.AddRange(handHitbox.GetEnemies());
         }
         int meleeDamage = 1;
-        if(meleeWeapon == Player.WeaponType.Knife)
+        if (meleeWeapon == Player.WeaponType.Knife)
         {
             meleeDamage = 2;
         }
-        if(targets.Count > 0)
+        if (targets.Count > 0)
         {
             for (int i = 0; i < targets.Count; i++)
             {

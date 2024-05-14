@@ -2418,7 +2418,7 @@ MonoBehaviour:
   PlayerSpawnTransform: {fileID: 1777814274119967599}
   TransportCamera: {fileID: 0}
   HpView: {fileID: 361099345555104059}
-  CitizenMesh: {fileID: 1777814274117043121}
+  CitizenMesh: {fileID: 1777814274117048811}
   AllCitizenMeshes:
   - {fileID: 1777814274117051139}
   - {fileID: 1777814274117099737}
