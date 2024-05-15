@@ -228,8 +228,8 @@ namespace alelavoie
         }
         public void MyRotorAnimation()
         {
-                _rotorMainTransform.Rotate(Vector3.up * (_engine.EngineSpeed*3));
-            _rotorTailTransform.Rotate(Vector3.left * (_engine.EngineSpeed * 3));
+                _rotorMainTransform.Rotate(Vector3.up * (_engine.EngineSpeed*10));
+            _rotorTailTransform.Rotate(Vector3.left * (_engine.EngineSpeed * 10));
         }
 
         private void SyncAudioSourcePitch() {

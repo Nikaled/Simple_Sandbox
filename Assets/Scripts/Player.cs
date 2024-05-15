@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
 
     public SkinnedMeshRenderer CurrentCitizenMesh;
     public SkinnedMeshRenderer[] PlayerMeshes;
+    private IEnumerator lockOnShoot;
     public enum PlayerState
     {
         InTransport,
@@ -85,19 +86,27 @@ public class Player : MonoBehaviour
                 animator.SetBool("PistolAiming", false);
                 break;
         }
-        if(currentState == PlayerState.Aiming && newPlayerState != PlayerState.Aiming)
+        if (currentState == PlayerState.Aiming && newPlayerState != PlayerState.Aiming)
         {
             GoToNormalCamera();
         }
-        if(currentState == PlayerState.DeletingBuilding)
+        if (currentState == PlayerState.DeletingBuilding)
         {
 
             BuildingManager.instance.ActivateDeletingMode(false);
             examplePlayer.LockCursor(true);
         }
-        if(Delay > 0)
+        if (newPlayerState == PlayerState.Idle)
         {
-        StartCoroutine(DelaySwitchState(newPlayerState, Delay));
+            CanvasManager.instance.ShowIdleInstruction(true);
+        }
+        else
+        {
+            CanvasManager.instance.ShowIdleInstruction(false);
+        }
+        if (Delay > 0)
+        {
+            StartCoroutine(DelaySwitchState(newPlayerState, Delay));
         }
         else
         {
@@ -115,11 +124,11 @@ public class Player : MonoBehaviour
     private IEnumerator DelaySwitchState(Player.PlayerState newPlayerState, float Delay)
     {
         yield return new WaitForSeconds(Delay);
-        if(currentState == PlayerState.DeletingBuilding)
+        if (currentState == PlayerState.DeletingBuilding)
         {
             BuildingManager.instance.TurnDeletingObjectNormalAndClearFields();
         }
-        if(currentState == PlayerState.RotatingBuilding)
+        if (currentState == PlayerState.RotatingBuilding)
         {
             BuildingManager.instance.TurnRotatingObjectNormalAndClearFields();
         }
@@ -133,18 +142,18 @@ public class Player : MonoBehaviour
         KnifeModel.SetActive(false);
         GrenadeModel.SetActive(false);
 
-        if(CurrentWeapon == WeaponType.Grenade)
+        if (CurrentWeapon == WeaponType.Grenade)
         {
-        animator.SetBool("AimingGrenade", false);
+            animator.SetBool("AimingGrenade", false);
             grenadeLauncher.ClearTrajectory();
         }
-
 
         switch (PressedNumber)
         {
             case 1:
                 CurrentWeapon = WeaponType.Gun;
                 GunModel.SetActive(true);
+
                 break;
             case 2:
                 CurrentWeapon = WeaponType.Pistol;
@@ -171,15 +180,16 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
-        if( currentState == PlayerState.Sitting)
+        if (currentState == PlayerState.Sitting)
         {
             return;
         }
 
-        if(currentState == PlayerState.Idle)
+        if (currentState == PlayerState.Idle)
         {
             if (Input.GetKeyDown(DeletingModeButton))
             {
+                BuildingManager.instance.ActivateDeletingMode(true);
                 SwitchPlayerState(Player.PlayerState.DeletingBuilding);
             }
             if (Input.GetKeyDown(BuildingModeButton))
@@ -194,13 +204,16 @@ public class Player : MonoBehaviour
             }
 
         }
-        if(currentState !=PlayerState.Building && currentState != PlayerState.DeletingBuilding && currentState  != PlayerState.RotatingBuilding)
+        if (currentState != PlayerState.Building && currentState != PlayerState.DeletingBuilding && currentState != PlayerState.RotatingBuilding)
         {
             FireInput();
             ChangeWeaponInput();
-            if (Input.GetKeyDown(KeyCode.Q))
+            if(CurrentWeapon == WeaponType.Pistol || CurrentWeapon == WeaponType.Gun)
             {
-                SwitchView();
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    SwitchView();
+                }
             }
         }
         if (currentState == PlayerState.Building)
@@ -225,11 +238,13 @@ public class Player : MonoBehaviour
         if (currentState == PlayerState.RotatingBuilding)
         {
             BuildingManager.instance.RotatingInput();
-            if (Input.GetKeyDown(RotatingModeButton))
+            if (BuildingManager.instance.RotateChosenObjectMode == false)
             {
-                SwitchPlayerState(Player.PlayerState.Idle);
-                BuildingManager.instance.ActivateRotatingMode(false);
-                BuildingManager.instance.TurnRotatingObjectNormalAndClearFields();
+                if (Input.GetKeyDown(RotatingModeButton))
+                {
+                    SwitchPlayerState(Player.PlayerState.Idle);
+                    BuildingManager.instance.ActivateRotatingMode(false);
+                }
             }
         }
     }
@@ -256,23 +271,37 @@ public class Player : MonoBehaviour
             SwitchWeapon(5);
         }
     }
+
+    public IEnumerator LockPositionOnShoot()
+    {
+        examplePlayer.LockOnShoot = true;
+        yield return new WaitForSeconds(1f);
+        //for (int i = 0; i < 30; i++)
+        //{
+        //    yield return new WaitForEndOfFrame();
+        //}
+        examplePlayer.LockOnShoot = false;
+    }
     private void FireInput()
     {
-      
+        if (CurrentWeapon != WeaponType.Grenade)
+        {
+        }
         if (CurrentWeapon == WeaponType.Pistol)
         {
             if (Input.GetMouseButtonDown(0))
             {
                 animator.SetTrigger("PistolFire");
+                motor.SetPosition(transform.position);
                 Fire();
             }
         }
-        if(CurrentWeapon == WeaponType.Knife)
+        if (CurrentWeapon == WeaponType.Knife)
         {
             if (Input.GetMouseButtonDown(0))
             {
                 animator.SetTrigger("Stab");
-               
+
                 playerShooting.HandAttack(WeaponType.Knife);
             }
         }
@@ -291,6 +320,11 @@ public class Player : MonoBehaviour
             {
                 animator.SetTrigger("GunFire");
                 playerShooting.Fire(CurrentWeapon);
+                examplePlayer.LockOnShoot = true;
+
+                //motor.SetPositionAndRotation(transform.position, transform.rotation);
+                //motor.SetRotation(transform.rotation);
+                motor.SetPosition(transform.position);
             }
         }
         if (CurrentWeapon == WeaponType.Grenade)
@@ -316,7 +350,7 @@ public class Player : MonoBehaviour
         {
             if (Input.GetMouseButton(1))
             {
-                SwitchPlayerState(PlayerState.Aiming);
+                SwitchPlayerState(PlayerState.Aiming, 0);
             }
         }
         if (currentState == PlayerState.Aiming)
@@ -324,8 +358,7 @@ public class Player : MonoBehaviour
             if (Input.GetMouseButtonUp(1))
             {
                 Debug.Log("Stop Aiming");
-                SwitchPlayerState(PlayerState.Idle);
-                return;
+                SwitchPlayerState(PlayerState.Idle, 0);
             }
         }
 
@@ -338,33 +371,31 @@ public class Player : MonoBehaviour
     }
     private void GoToAimCamera()
     {
-        //if(IsFirstView == false)
-        //{
-        //normalCamera.FollowPointFraming = new Vector2(1.2f, 0.4f);
-        //}
         if (IsFirstView)
         {
-        normalCamera.Camera.fieldOfView = 20;
+            normalCamera.Camera.fieldOfView = 20;
             normalCamera.FollowPointFraming = new Vector2(0f, 0f);
         }
         else
         {
-        normalCamera.Camera.fieldOfView = 30;
+            normalCamera.Camera.fieldOfView = 30;
         }
+        playerShooting.lineRenderer.enabled = true;
 
     }
     private void GoToNormalCamera()
     {
-        if(IsFirstView == false)
+        if (IsFirstView == false)
         {
-            normalCamera.FollowPointFraming = new Vector2(1.2f, 0.4f);
-        normalCamera.Camera.fieldOfView = 55;
+            normalCamera.FollowPointFraming = new Vector2(1.8f, 1.8f);
+            normalCamera.Camera.fieldOfView = 55;
         }
         else
         {
-            normalCamera.FollowPointFraming = new Vector2(0,0);
+            normalCamera.FollowPointFraming = new Vector2(0, 0);
             normalCamera.Camera.fieldOfView = 40;
         }
+        playerShooting.lineRenderer.enabled = false;
 
     }
     private void Fire()

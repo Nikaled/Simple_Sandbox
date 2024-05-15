@@ -103,7 +103,8 @@ public class VehicleControl : MonoBehaviour
 
         public float carPower = 120f;
         public float shiftPower = 150f;
-        public float brakePower = 8000f;
+        //public float brakePower = 8000f;
+        public float brakePower = 800000f;
 
         public Vector3 shiftCentre = new Vector3(0.0f, -0.8f, 0.0f);
 
@@ -273,7 +274,7 @@ public class VehicleControl : MonoBehaviour
     {
         steer = 0;
         accel = 0;
-        brake = false;
+        brake = true;
         shift = false;
     }
     void Awake()
@@ -656,6 +657,8 @@ public class VehicleControl : MonoBehaviour
             {
                 if (!NeutralGear && brake && currentGear < 2)
                 {
+                    //////////////////////// --------------------------------------------------------------------
+                    //rpm += accel * carSetting.idleRPM*100;
                     rpm += accel * carSetting.idleRPM;
 
                     /*

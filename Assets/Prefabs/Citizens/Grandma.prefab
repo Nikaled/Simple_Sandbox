@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8125163560810426053}
   - component: {fileID: 8125163560810426059}
   - component: {fileID: 8125163560810426052}
-  m_Layer: 11
+  m_Layer: 13
   m_Name: Enter Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2277,9 +2277,10 @@ GameObject:
   - component: {fileID: 8125163561278500468}
   - component: {fileID: 8125163561278500475}
   - component: {fileID: 8125163561278500479}
-  m_Layer: 0
+  - component: {fileID: 5172861304553630495}
+  m_Layer: 15
   m_Name: Grandma
-  m_TagString: Untagged
+  m_TagString: Citizen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2345,7 +2346,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8125163561278400726}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 1000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -2392,8 +2393,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 11
-  m_Acceleration: 11
+  m_Speed: 6
+  m_Acceleration: 5
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -2417,6 +2418,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSystem: {fileID: 7884835847358379676}
+--- !u!114 &5172861304553630495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8125163561278400726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba2c762cebb6168488ddd7702842874c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Variants:
+  - {fileID: 2800000, guid: b2a136916dc70cc4da22fd5db8b55f47, type: 3}
+  - {fileID: 2800000, guid: 05aa82bfc1d3e6043be0f710951d99e0, type: 3}
+  - {fileID: 2800000, guid: 6aee4ef8d34f8a246a779bdaa1c0a9ac, type: 3}
+  ObjectToChange: {fileID: 0}
+  currentVariantIndex: 0
+  CitizenToChange: {fileID: 8125163561264702480}
 --- !u!1 &8125163561278402672
 GameObject:
   m_ObjectHideFlags: 0

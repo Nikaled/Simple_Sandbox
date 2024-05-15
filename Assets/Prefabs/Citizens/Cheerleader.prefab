@@ -646,9 +646,10 @@ GameObject:
   - component: {fileID: 1777814274120104429}
   - component: {fileID: 1777814274120104418}
   - component: {fileID: 1777814274120104422}
-  m_Layer: 0
+  - component: {fileID: 1466604014022105841}
+  m_Layer: 15
   m_Name: Cheerleader
-  m_TagString: Untagged
+  m_TagString: Citizen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -714,7 +715,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1777814274120204111}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 1000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -761,8 +762,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 11
-  m_Acceleration: 11
+  m_Speed: 6
+  m_Acceleration: 5
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -786,6 +787,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSystem: {fileID: 361099345555104005}
+--- !u!114 &1466604014022105841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1777814274120204111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba2c762cebb6168488ddd7702842874c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Variants:
+  - {fileID: 2800000, guid: 9ba2f89d5e0002445ab9494ddae0c7e9, type: 3}
+  - {fileID: 2800000, guid: 36cfcaecf558de04f903caadb6656327, type: 3}
+  - {fileID: 2800000, guid: 41f15c7d93da22d4c9d6624ae157227c, type: 3}
+  ObjectToChange: {fileID: 0}
+  currentVariantIndex: 0
+  CitizenToChange: {fileID: 1777814274117048811}
 --- !u!1 &1777814274120207403
 GameObject:
   m_ObjectHideFlags: 0
@@ -2381,7 +2401,7 @@ GameObject:
   - component: {fileID: 1777814274537847132}
   - component: {fileID: 1777814274537847122}
   - component: {fileID: 1777814274537847133}
-  m_Layer: 11
+  m_Layer: 13
   m_Name: Enter Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

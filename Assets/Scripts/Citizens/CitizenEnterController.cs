@@ -12,6 +12,7 @@ public class CitizenEnterController : EnterController
     private Quaternion PlayerRotation;
     protected override void SitIntoTransport()
     {
+        HideEnterInstruction();
         HpView.SetActive(false);
         ActivateTransport();
         IsInterfaceActive = false;
@@ -21,6 +22,14 @@ public class CitizenEnterController : EnterController
         SwapMeshes();
         CitizenRoot.transform.position = PlayerPosition;
         CitizenRoot.transform.rotation = PlayerRotation;
+    }
+    protected override void ShowEnterInstruction()
+    {
+        CanvasManager.instance.ShowCitizenEnterInstruction(true);
+    }
+    protected override void HideEnterInstruction()
+    {
+        CanvasManager.instance.ShowCitizenEnterInstruction(false);
     }
     private void SwapMeshes()
     {

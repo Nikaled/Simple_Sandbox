@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShootingProjectile : MonoBehaviour
 {
     [SerializeField] Rigidbody bulletRigidbody;
-    float speed = 100f;
+    public float speed = 500f;
     int bulletDamage = 1;
     public GameObject ProjectileSource;
     // Start is called before the first frame update
@@ -24,7 +24,7 @@ public class ShootingProjectile : MonoBehaviour
         {
             other.GetComponent<HpSystemCollision>().TakeDamage(bulletDamage);
         }
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
     private void OnCollisionEnter(Collision collision)
     {

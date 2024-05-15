@@ -24,6 +24,7 @@ namespace KinematicCharacterController.Examples
         public bool Mobile = true;
         public bool PC = false;
         public bool IsCursorLocked;
+        public bool LockOnShoot; // my field
         private void Start()
         {
             if (IsCursorLocked)
@@ -118,16 +119,20 @@ namespace KinematicCharacterController.Examples
             }
             if (PC)
             {
-                characterInputs.MoveAxisForward = Input.GetAxisRaw(VerticalInput);
-                characterInputs.MoveAxisRight = Input.GetAxisRaw(HorizontalInput);
+                if (!LockOnShoot)
+                {
+                    characterInputs.MoveAxisForward = Input.GetAxisRaw(VerticalInput);
+                    characterInputs.MoveAxisRight = Input.GetAxisRaw(HorizontalInput);
+                }
+
                 characterInputs.CameraRotation = CharacterCamera.Transform.rotation;
                 characterInputs.JumpDown = Input.GetKeyDown(KeyCode.Space);
                 characterInputs.CrouchDown = Input.GetKeyDown(KeyCode.C);
                 characterInputs.CrouchUp = Input.GetKeyUp(KeyCode.C);
             }
-
             // Apply inputs to character
             Character.SetInputs(ref characterInputs);
+           
         }
     }
 }

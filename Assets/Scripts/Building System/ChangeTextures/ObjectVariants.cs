@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class ObjectVariants : MonoBehaviour
 {
-    [SerializeField] Texture[] Variants;
-    [SerializeField] MeshRenderer ObjectToChange;
+    [SerializeField] protected Texture[] Variants;
+    [SerializeField] protected MeshRenderer ObjectToChange;
     [HideInInspector] public int currentVariantIndex;
 
-    public void ChangeTextures(Texture textures)
+    public virtual void ChangeTextures(Texture textures)
     {
 
-        for (int i = 0; i < ObjectToChange.materials.Length; i++)
-        {
-            ObjectToChange.materials[i].mainTexture = textures;
-        }
+            for (int i = 0; i < ObjectToChange.materials.Length; i++)
+            {
+                ObjectToChange.materials[i].mainTexture = textures;
+            }
     }
     
-    public void FindTextureIndex()
+    public virtual void FindTextureIndex()
     {
         for (int i = 0; i < Variants.Length; i++)
         {
@@ -29,7 +29,7 @@ public class ObjectVariants : MonoBehaviour
         }
         ChangeTextureManager.instance.ChangeVariantText(currentVariantIndex);
     }
-    public void ChangeTextures(int PlusOrMinusOne)
+    public virtual void ChangeTextures(int PlusOrMinusOne)
     {
         currentVariantIndex += PlusOrMinusOne;
         if(currentVariantIndex < 0)

@@ -1349,9 +1349,10 @@ GameObject:
   - component: {fileID: 5647279281999610291}
   - component: {fileID: 5647279281999610300}
   - component: {fileID: 5647279281999610296}
-  m_Layer: 0
+  - component: {fileID: 6314894269551717855}
+  m_Layer: 15
   m_Name: ShopKeeper
-  m_TagString: Untagged
+  m_TagString: Citizen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1417,7 +1418,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5647279281999644433}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 1000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -1464,8 +1465,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 11
-  m_Acceleration: 11
+  m_Speed: 6
+  m_Acceleration: 5
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -1489,6 +1490,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSystem: {fileID: 6048857455280953691}
+--- !u!114 &6314894269551717855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5647279281999644433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba2c762cebb6168488ddd7702842874c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Variants:
+  - {fileID: 2800000, guid: 9050fad2ed33d1c43be85269cd9c608b, type: 3}
+  - {fileID: 2800000, guid: fe1a4533e26ed614f89788475fd10ce9, type: 3}
+  - {fileID: 2800000, guid: d3a169c8b49d4d0479192a1dd962475d, type: 3}
+  ObjectToChange: {fileID: 0}
+  currentVariantIndex: 0
+  CitizenToChange: {fileID: 5647279282013138117}
 --- !u!1 &5647279281999644497
 GameObject:
   m_ObjectHideFlags: 0
@@ -2381,7 +2401,7 @@ GameObject:
   - component: {fileID: 5647279283442073858}
   - component: {fileID: 5647279283442073868}
   - component: {fileID: 5647279283442073859}
-  m_Layer: 11
+  m_Layer: 13
   m_Name: Enter Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

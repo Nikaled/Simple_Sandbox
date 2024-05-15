@@ -18,9 +18,18 @@ namespace HeneGames.Airplane
             {
                 collideSometing = true;
             }
-            if (other.CompareTag("Ground"))
+            if (other.CompareTag("Ground") || other.CompareTag("Road"))
             {
-                controller.airplaneState = SimpleAirPlaneController.AirplaneState.Landing;
+            }
+
+            if (Physics.Raycast(gameObject.transform.position, Vector3.down, out RaycastHit raycastHit, 45))
+            {
+                Debug.Log(raycastHit.collider.gameObject.name);
+                if(Vector3.Distance(raycastHit.collider.transform.position, gameObject.transform.position) < gameObject.GetComponent<Collider>().bounds.size.y)
+                {
+                    Debug.Log("самолет посажен");
+                    controller.airplaneState = SimpleAirPlaneController.AirplaneState.Landing;
+                }
             }
         }
     }

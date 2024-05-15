@@ -17,14 +17,16 @@ public class CarEnterController : EnterController
     }
     protected override void ActivateTransport()
     {
+        CanvasManager.instance.ShowControlCarInstruction(true);
         vehicleControl.GetComponent<VehicleControl>().activeControl = true;
         vehicleControl.enabled = true;
     }
     protected override void DeactivateTransport()
     {
+        CanvasManager.instance.ShowControlCarInstruction(false);
+        vehicleControl.carSetting.brakePower = float.MaxValue;
         vehicleControl.GetComponent<VehicleControl>().activeControl = false;
-        vehicleControl.GetComponent<VehicleControl>().OnCarQuit();
-
+        vehicleControl.GetComponent<VehicleControl>().OnCarQuit();  
         //vehicleControl.enabled = false;
     }
 }

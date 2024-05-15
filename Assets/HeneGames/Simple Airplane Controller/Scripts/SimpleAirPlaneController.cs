@@ -661,12 +661,19 @@ namespace HeneGames.Airplane
         private void HandleInputs()
         {
             //Rotate inputs
-            inputH = Input.GetAxis("Horizontal");
+            //inputH = Input.GetAxis("Horizontal");
+            //inputV = Input.GetAxis("Vertical");
+
+            ////Yaw axis inputs
+            //inputYawLeft = Input.GetKey(KeyCode.Q);
+            //inputYawRight = Input.GetKey(KeyCode.E);
+
+            inputH = Input.GetAxis("PlaneHorizontal");
             inputV = Input.GetAxis("Vertical");
 
             //Yaw axis inputs
-            inputYawLeft = Input.GetKey(KeyCode.Q);
-            inputYawRight = Input.GetKey(KeyCode.E);
+            inputYawLeft = Input.GetKey(KeyCode.A);
+            inputYawRight = Input.GetKey(KeyCode.D);
 
             //Turbo
             inputTurbo = Input.GetKey(KeyCode.LeftShift);

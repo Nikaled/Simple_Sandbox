@@ -83,14 +83,22 @@ public class BuildingManager : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Cross.transform.position);
         if (Physics.Raycast(ray, out hit, 1000, TurnRedIncludeMask))
         {
-            if(deletingObject != hit.collider.gameObject)
+            if (deletingObject != hit.collider.gameObject)
             {
                 TurnDeletingObjectNormalAndClearFields();
                 deletingObject = hit.collider.gameObject;
                 Debug.Log("deleting object:" + deletingObject);
                 if (IsItDestructable(deletingObject))
                 {
-                    TurnIntoColorChosenObject(deletingObject.GetComponentsInChildren<MeshRenderer>(), RedMaterial, ref CashedMaterialsOnDeleting);
+                    if (deletingObject.CompareTag("Citizen"))
+                    {
+                        Debug.Log("наведен на жителя");
+                        TurnIntoColorChosenCitizen(deletingObject.GetComponentsInChildren<SkinnedMeshRenderer>(), RedMaterial, ref CashedMaterialsOnDeleting);
+                    }
+                    else
+                    {
+                        TurnIntoColorChosenObject(deletingObject.GetComponentsInChildren<MeshRenderer>(), RedMaterial, ref CashedMaterialsOnDeleting);
+                    }
                 }
             }
             if (Input.GetMouseButtonDown(0))
@@ -100,7 +108,17 @@ public class BuildingManager : MonoBehaviour
         }
         else
         {
-            TurnDeletingObjectNormalAndClearFields();
+            if (deletingObject != null)
+            {
+                if (deletingObject.CompareTag("Citizen"))
+                {
+                    TurnDeletingCitizenNormalAndClearFields();
+                }
+                else
+                {
+                    TurnDeletingObjectNormalAndClearFields();
+                }
+            }
         }
     }
     public void TurnDeletingObjectNormalAndClearFields()
@@ -108,6 +126,15 @@ public class BuildingManager : MonoBehaviour
         if (deletingObject != null && CashedMaterialsOnDeleting != null)
         {
             TurnNormalChosenObject(deletingObject.GetComponentsInChildren<MeshRenderer>(), CashedMaterialsOnDeleting);
+        }
+        CashedMaterialsOnDeleting = null;
+        deletingObject = null;
+    }
+    public void TurnDeletingCitizenNormalAndClearFields()
+    {
+        if (deletingObject != null && CashedMaterialsOnDeleting != null)
+        {
+            TurnNormalChosenCitizen(deletingObject.GetComponentsInChildren<SkinnedMeshRenderer>(), CashedMaterialsOnDeleting);
         }
         CashedMaterialsOnDeleting = null;
         deletingObject = null;
@@ -122,11 +149,12 @@ public class BuildingManager : MonoBehaviour
     public void ActivateDeletingMode(bool Is)
     {
         IsDeletingBuilding = Is;
-        BuildingMenu.SetActive(IsDeletingBuilding);
+        BuildingMenu.SetActive(false);
         player.examplePlayer.LockCursor(IsDeletingBuilding);
         TurnDeletingObjectNormalAndClearFields();
+        CanvasManager.instance.ShowDeletingModeInstruction(Is);
     }
-    private void SwitchPlayerState()
+    public void SwitchPlayerState()
     {
         if (IsDeletingBuilding)
         {
@@ -162,8 +190,8 @@ public class BuildingManager : MonoBehaviour
         IsBuildingOpened = Is;
         BuildingMenu.SetActive(IsBuildingOpened);
         player.examplePlayer.LockCursor(!IsBuildingOpened);
-
         if (pendingObj != null) { Destroy(pendingObj); }
+        CanvasManager.instance.ShowBuildingModeInstruction(false);
     }
     private void RotateObject()
     {
@@ -171,6 +199,7 @@ public class BuildingManager : MonoBehaviour
     }
     public void SelectObject()
     {
+        CanvasManager.instance.ShowBuildingModeInstruction(true);
         pendingObj = Instantiate(CurrentPrefab, pos, transform.rotation);
         DeactivateColliders(pendingObj.GetComponentsInChildren<Collider>());
         SetOnBuildMaterial(pendingObj.GetComponentsInChildren<MeshRenderer>());
@@ -185,10 +214,11 @@ public class BuildingManager : MonoBehaviour
     private void PlaceObject()
     {
         var newObj = Instantiate(CurrentPrefab, pendingObj.transform.position, pendingObj.transform.rotation);
-        if (CurrentPrefab.CompareTag("Road"))
-        {
-            newObj.transform.position += new Vector3(0, 0.2f, 0);
-        }
+        CanvasManager.instance.ShowBuildingModeInstruction(false);
+        //if (CurrentPrefab.CompareTag("Road"))
+        //{
+        //    newObj.transform.position += new Vector3(0, 0.05f, 0);
+        //}
         Destroy(pendingObj);
         Debug.Log("Object placed");
         player.SwitchPlayerState(Player.PlayerState.Idle);
@@ -228,7 +258,30 @@ public class BuildingManager : MonoBehaviour
         }
         CashedMaterials = materials;
     }
+    private void TurnIntoColorChosenCitizen(SkinnedMeshRenderer[] renderers, Material colorMaterial, ref List<Material[]> CashedMaterials)
+    {
+        List<Material[]> materials = new();
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            materials.Add(renderers[i].materials);
+            Material[] RedMats = new Material[renderers[i].materials.Length];
+            for (int j = 0; j < renderers[i].materials.Length; j++)
+            {
+                RedMats[j] = colorMaterial;
+            }
+            renderers[i].materials = RedMats;
+        }
+        CashedMaterials = materials;
+    }
     private void TurnNormalChosenObject(MeshRenderer[] renderers, List<Material[]> CashedMaterials)
+    {
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            Material[] CashedMat = CashedMaterials[i];
+            renderers[i].materials = CashedMat;
+        }
+    }
+    private void TurnNormalChosenCitizen(SkinnedMeshRenderer[] renderers, List<Material[]> CashedMaterials)
     {
         for (int i = 0; i < renderers.Length; i++)
         {
@@ -251,7 +304,7 @@ public class BuildingManager : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Cross.transform.position);
             if (Physics.Raycast(ray, out hit, 1000, TurnRedIncludeMask))
             {
-                if(rotatingObject != hit.collider.gameObject)
+                if (rotatingObject != hit.collider.gameObject)
                 {
                     TurnRotatingObjectNormalAndClearFields();
 
@@ -260,14 +313,31 @@ public class BuildingManager : MonoBehaviour
                     Debug.Log("rotatingObject object:" + rotatingObject);
                     if (IsItDestructable(rotatingObject))
                     {
-                        TurnIntoColorChosenObject(rotatingObject.GetComponentsInChildren<MeshRenderer>(), YellowMaterial, ref CashedMaterialsOnRotating);
+                        if (rotatingObject.CompareTag("Citizen"))
+                        {
+                            TurnIntoColorChosenCitizen(rotatingObject.GetComponentsInChildren<SkinnedMeshRenderer>(), YellowMaterial, ref CashedMaterialsOnRotating);
+                        }
+                        else
+                        {
+                            TurnIntoColorChosenObject(rotatingObject.GetComponentsInChildren<MeshRenderer>(), YellowMaterial, ref CashedMaterialsOnRotating);
+                        }
                     }
                 }
-               
+
             }
             else
             {
-                TurnRotatingObjectNormalAndClearFields();
+                if(rotatingObject != null)
+                {
+                    if (rotatingObject.CompareTag("Citizen"))
+                    {
+                        TurnDeletingCitizenNormalAndClearFields();
+                    }
+                    else
+                    {
+                        TurnRotatingObjectNormalAndClearFields();
+                    }
+                }
             }
             if (Input.GetMouseButtonDown(0))
             {
@@ -287,26 +357,48 @@ public class BuildingManager : MonoBehaviour
         if (rotatingObject != null && CashedMaterialsOnRotating != null)
         {
             Debug.Log("Turn object from yellow to normal" + rotatingObject.name);
-            TurnNormalChosenObject(rotatingObject.GetComponentsInChildren<MeshRenderer>(), CashedMaterialsOnRotating);
+
+            if (rotatingObject.CompareTag("Citizen"))
+            {
+                TurnNormalChosenCitizen(rotatingObject.GetComponentsInChildren<SkinnedMeshRenderer>(), CashedMaterialsOnRotating);
+            }
+            else
+            {
+                TurnNormalChosenObject(rotatingObject.GetComponentsInChildren<MeshRenderer>(), CashedMaterialsOnRotating);
+            }
+
         }
         CashedMaterialsOnRotating = null;
         rotatingObject = null;
     }
+
     private void ActivateRotateChosenObjectMode(bool Is)
     {
         RotateChosenObjectMode = Is;
         RotatingCashedRotating = rotatingObject.transform.eulerAngles;
         RotatingCashedScale = rotatingObject.transform.localScale;
         CanvasManager.instance.ShowRotatingModeInstruction(false);
-        CanvasManager.instance.ShowChosenObjectRotatingModeInstruction(Is, Scale:RotatingCashedScale, Rotation: RotatingCashedRotating);
+        CanvasManager.instance.ShowChosenObjectRotatingModeInstruction(Is, Scale: RotatingCashedScale, Rotation: RotatingCashedRotating);
         if (Is)
         {
             ChangeTextureManager.instance.ButtonsInitialize(rotatingObject);
             TurnNormalChosenObject(rotatingObject.GetComponentsInChildren<MeshRenderer>(), CashedMaterialsOnRotating);
+            if (rotatingObject.CompareTag("Citizen"))
+            {
+                TurnNormalChosenCitizen(rotatingObject.GetComponentsInChildren<SkinnedMeshRenderer>(), CashedMaterialsOnRotating);
+
+                rotatingObject.GetComponent<NavMeshAgent>().enabled = false;
+
+            }
         }
         if (!Is)
         {
             ChangeTextureManager.instance.ClearButtonListeners();
+            if (rotatingObject.CompareTag("Citizen"))
+            {
+                rotatingObject.GetComponent<NavMeshAgent>().enabled = true;
+
+            }
         }
         player.examplePlayer.LockCursor(!Is);
     }
@@ -331,7 +423,7 @@ public class BuildingManager : MonoBehaviour
     #region RotatingSliders
     public void RotatingSliderScaleX(float IncreaseNumber)
     {
-        rotatingObject.transform.DOScaleX( IncreaseNumber, 0);
+        rotatingObject.transform.DOScaleX(IncreaseNumber, 0);
     }
     public void RotatingSliderScaleY(float IncreaseNumber)
     {
@@ -339,7 +431,7 @@ public class BuildingManager : MonoBehaviour
     }
     public void RotatingSliderScaleZ(float IncreaseNumber)
     {
-        rotatingObject.transform.DOScaleZ( IncreaseNumber,0);
+        rotatingObject.transform.DOScaleZ(IncreaseNumber, 0);
     }
     public void RotatingSliderRotateX(float IncreaseNumber)
     {

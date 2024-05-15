@@ -10,6 +10,7 @@ TagManager:
   - Ground
   - DestructalbeObject
   - Road
+  - Citizen
   layers:
   - Default
   - TransparentFX
@@ -24,9 +25,9 @@ TagManager:
   - Building
   - Enter Collider
   - Objects Enter Collider
-  - 
-  - 
-  - 
+  - Citizen Enter Collider
+  - Grenade
+  - Citizen
   - 
   - 
   - 

@@ -357,14 +357,14 @@ MonoBehaviour:
   Explosion: {fileID: 0}
   RotorAnim: {fileID: 0}
   minVelocityExplosion: 5
-  LiftStrength: 0.397
-  HelicopterDragCoefficient: 0.4
-  RotorDragCoefficientUnder: 0.4
-  RotorDragCoefficientAbove: 0.4
-  MaxLiftConservationAngle: 20
-  PitchSensitivity: 0.4
-  RollSensitivity: 0.4
-  YawSensitivity: 0.4
+  LiftStrength: 0.738
+  HelicopterDragCoefficient: 0.71
+  RotorDragCoefficientUnder: 0.699
+  RotorDragCoefficientAbove: 0.71
+  MaxLiftConservationAngle: 42.7
+  PitchSensitivity: 1
+  RollSensitivity: 1
+  YawSensitivity: 1
   EngineRunning: 1
   EnableThrottling: 1
   AltitudeStabilizer: 1

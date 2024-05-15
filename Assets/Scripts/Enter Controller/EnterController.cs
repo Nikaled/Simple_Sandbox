@@ -43,7 +43,7 @@ public class EnterController : MonoBehaviour
         player = null;
         }
     }
-    private void ShowEnterInstruction()
+    protected virtual void ShowEnterInstruction()
     {
         CanvasManager.instance.ShowTransportEnterInstruction(true);
     }
@@ -79,7 +79,7 @@ public class EnterController : MonoBehaviour
             }
         }
     }
-    private void HideEnterInstruction()
+    protected virtual void HideEnterInstruction()
     {
         CanvasManager.instance.ShowTransportEnterInstruction(false);
     }
@@ -95,6 +95,7 @@ public class EnterController : MonoBehaviour
     }
     protected virtual void GetOutTransport()
     {
+
         HpView.SetActive(true);
         player.PlayerParent.transform.position = PlayerSpawnTransform.position;
         player.motor.SetPositionAndRotation(PlayerSpawnTransform.position, PlayerSpawnTransform.rotation, true);

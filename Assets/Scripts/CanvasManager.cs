@@ -11,8 +11,13 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] GameObject _planeInstruction;
     [SerializeField] GameObject _objectInteractionInstruction;
     [SerializeField] GameObject _EnterTransportInstruction;
+    [SerializeField] GameObject _ControlCarInstruction;
+    [SerializeField] GameObject _EnterCitizenInstruction;
     [SerializeField] public Image Crosshair;
 
+    [SerializeField] GameObject _idleInstruction;
+    [SerializeField] GameObject _buildingModeInstruction;
+    [SerializeField] GameObject _deletingModeInstruction;
     [Header("Rotating Mode")]
     [SerializeField] GameObject _rotatingModeInstruction;
     [SerializeField] GameObject _rotatingChosenObjectModeInstruction;
@@ -32,6 +37,17 @@ public class CanvasManager : MonoBehaviour
     {
         _EnterTransportInstruction.SetActive(Is);
         ShowObjectInteructInstruction(false);
+    }
+    public void ShowControlCarInstruction(bool Is)
+    {
+        _ControlCarInstruction.SetActive(Is);
+    }
+
+    public void ShowCitizenEnterInstruction(bool Is)
+    {
+        _EnterCitizenInstruction.SetActive(Is);
+        ShowObjectInteructInstruction(false);
+        ShowTransportEnterInstruction(false);
     }
     public void ShowPlaneInstruction(bool Is)
     {
@@ -55,6 +71,18 @@ public class CanvasManager : MonoBehaviour
     public void ShowRotatingModeInstruction(bool Is)
     {
         _rotatingModeInstruction.SetActive(Is);
+    }
+    public void ShowDeletingModeInstruction(bool Is)
+    {
+        _deletingModeInstruction.SetActive(Is);
+    }
+    public void ShowBuildingModeInstruction(bool Is)
+    {
+        _buildingModeInstruction.SetActive(Is);
+    }
+    public void ShowIdleInstruction(bool Is)
+    {
+        _idleInstruction.SetActive(Is);
     }
     public void ShowChosenObjectRotatingModeInstruction(bool Is, Vector3 Scale, Vector3 Rotation)
     {

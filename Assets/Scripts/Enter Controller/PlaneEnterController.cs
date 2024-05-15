@@ -13,8 +13,8 @@ public class PlaneEnterController : EnterController
     {
         CanvasManager.instance.ShowPlaneInstruction(true);
         _planeController.enabled = true;
-        _planeController.airplaneState = SimpleAirPlaneController.AirplaneState.Takeoff;
-        _planeController.GetComponent<Rigidbody>().isKinematic = true;
+        _planeController.airplaneState = SimpleAirPlaneController.AirplaneState.Landing;
+        //_planeController.GetComponent<Rigidbody>().isKinematic = true;
         _planeController.GetComponent<Rigidbody>().useGravity = false;
     }
 

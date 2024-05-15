@@ -145,6 +145,7 @@ namespace KinematicCharacterController.Examples
         public void SetInputs(ref PlayerCharacterInputs inputs)
         {
             // Clamp input
+
             Vector3 moveInputVector = Vector3.ClampMagnitude(new Vector3(inputs.MoveAxisRight, 0f, inputs.MoveAxisForward), 1f);
 
             // Calculate camera direction and rotation on the character plane
@@ -153,6 +154,7 @@ namespace KinematicCharacterController.Examples
             {
                 cameraPlanarDirection = Vector3.ProjectOnPlane(inputs.CameraRotation * Vector3.up, Motor.CharacterUp).normalized;
             }
+
             Quaternion cameraPlanarRotation = Quaternion.LookRotation(cameraPlanarDirection, Motor.CharacterUp);
 
             switch (CurrentCharacterState)

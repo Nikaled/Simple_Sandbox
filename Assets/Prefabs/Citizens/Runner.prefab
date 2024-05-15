@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1025523335187066929}
   - component: {fileID: 1025523335187066943}
   - component: {fileID: 1025523335187066928}
-  m_Layer: 11
+  m_Layer: 13
   m_Name: Enter Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,9 +266,10 @@ GameObject:
   - component: {fileID: 1025523335834677376}
   - component: {fileID: 1025523335834677391}
   - component: {fileID: 1025523335834677387}
-  m_Layer: 0
+  - component: {fileID: 485976863903700558}
+  m_Layer: 15
   m_Name: Runner
-  m_TagString: Untagged
+  m_TagString: Citizen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -334,7 +335,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1025523335834711586}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 1000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -381,8 +382,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 11
-  m_Acceleration: 11
+  m_Speed: 6
+  m_Acceleration: 5
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -406,6 +407,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSystem: {fileID: 1411198241641375848}
+--- !u!114 &485976863903700558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025523335834711586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba2c762cebb6168488ddd7702842874c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Variants:
+  - {fileID: 2800000, guid: e2ab565f2bd1fd14495d4568ed6efcc8, type: 3}
+  - {fileID: 2800000, guid: 31ad3f624cb86db4890e6800c01dede9, type: 3}
+  - {fileID: 2800000, guid: 4de350ca63d9bde4d83ddd435bcb32b4, type: 3}
+  ObjectToChange: {fileID: 0}
+  currentVariantIndex: 0
+  CitizenToChange: {fileID: 1025523335839991366}
 --- !u!1 &1025523335834711616
 GameObject:
   m_ObjectHideFlags: 0
