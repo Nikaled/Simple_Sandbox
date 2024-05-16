@@ -98,7 +98,7 @@ public class PlayerShooting : MonoBehaviour
     {
         Vector3 aimDirection = (CrosshairWorldPosition - PistolProjectileSpawnPoint.position).normalized;
         player.RotatePlayerOnShoot(aimDirection);
-        LockPlayerMovement();
+        //LockPlayerMovement();
         List<HpSystemCollision> targets = new();
         if (handHitbox.GetEnemies() != null)
         {

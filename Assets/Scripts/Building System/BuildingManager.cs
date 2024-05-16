@@ -38,6 +38,8 @@ public class BuildingManager : MonoBehaviour
     private float CashedRotatingX;
     private float CashedRotatingY;
     private float CashedRotatingZ;
+    private GameObject rotatingObjectCenter;
+
     public bool RotateChosenObjectMode { get; private set; }
 
     private void Awake()
@@ -327,7 +329,7 @@ public class BuildingManager : MonoBehaviour
             }
             else
             {
-                if(rotatingObject != null)
+                if (rotatingObject != null)
                 {
                     if (rotatingObject.CompareTag("Citizen"))
                     {
@@ -346,10 +348,6 @@ public class BuildingManager : MonoBehaviour
                     ActivateRotateChosenObjectMode(true);
                 }
             }
-        }
-        else
-        {
-            RotateChosenObjectInput();
         }
     }
     public void TurnRotatingObjectNormalAndClearFields()
@@ -370,12 +368,53 @@ public class BuildingManager : MonoBehaviour
         }
         CashedMaterialsOnRotating = null;
         rotatingObject = null;
+        rotatingObjectCenter = null;
     }
 
     private void ActivateRotateChosenObjectMode(bool Is)
     {
+        Player.instance.examplePlayer.MyLockOnShoot = Is;
+        rotatingObjectCenter = null;
         RotateChosenObjectMode = Is;
-        RotatingCashedRotating = rotatingObject.transform.eulerAngles;
+        Debug.Log("Rotating object:"+rotatingObject.name);
+        if (rotatingObject.CompareTag("Car"))
+        {
+            if (rotatingObject.GetComponentInChildren<Rigidbody>() != null)
+            {
+                rotatingObject.GetComponentInChildren<Rigidbody>().useGravity = !Is;
+                rotatingObject.GetComponentInChildren<Rigidbody>().isKinematic = Is;
+                Debug.Log("rotatingObject.GetComponent<Rigidbody>().useGravity" + rotatingObject.GetComponentInChildren<Rigidbody>().useGravity);
+
+            }
+        }
+        if(rotatingObject.GetComponent<Rigidbody>() != null)
+        {
+            rotatingObject.GetComponent<Rigidbody>().useGravity = !Is;
+            rotatingObject.GetComponent<Rigidbody>().isKinematic = Is;
+            Debug.Log("rotatingObject.GetComponent<Rigidbody>().useGravity" + rotatingObject.GetComponent<Rigidbody>().useGravity);
+
+        }
+        if (rotatingObject.GetComponentInChildren<RotatingCenter>() != null)
+        {
+            rotatingObjectCenter = rotatingObject.GetComponentInChildren<RotatingCenter>().gameObject;
+            Debug.Log("Центр вращения найден");
+        }
+        else
+        {
+            if (rotatingObject.GetComponentInParent<RotatingCenter>() != null)
+            {
+                rotatingObjectCenter = rotatingObject.GetComponentInParent<RotatingCenter>().gameObject;
+
+            }
+            Debug.Log("Центр вращения  - родитель");
+        }
+        if (rotatingObjectCenter == null)
+        {
+            rotatingObjectCenter = rotatingObject;
+            Debug.Log("Центр вращения не  найден");
+
+        }
+        RotatingCashedRotating = rotatingObjectCenter.transform.eulerAngles;
         RotatingCashedScale = rotatingObject.transform.localScale;
         CanvasManager.instance.ShowRotatingModeInstruction(false);
         CanvasManager.instance.ShowChosenObjectRotatingModeInstruction(Is, Scale: RotatingCashedScale, Rotation: RotatingCashedRotating);
@@ -402,13 +441,6 @@ public class BuildingManager : MonoBehaviour
         }
         player.examplePlayer.LockCursor(!Is);
     }
-    private void RotateChosenObjectInput()
-    {
-        if (rotatingObject == null)
-        {
-            Debug.Log("Объект кручения null");
-        }
-    }
     public void ApplyRotatingChanges()
     {
         ActivateRotateChosenObjectMode(false);
@@ -417,7 +449,7 @@ public class BuildingManager : MonoBehaviour
     public void CancelRotatingChanges()
     {
         rotatingObject.transform.localScale = RotatingCashedScale;
-        rotatingObject.transform.eulerAngles = RotatingCashedRotating;
+        rotatingObjectCenter.transform.eulerAngles = RotatingCashedRotating;
         CanvasManager.instance.ShowChosenObjectRotatingModeInstruction(true, Scale: RotatingCashedScale, Rotation: RotatingCashedRotating);
     }
     #region RotatingSliders
@@ -435,15 +467,17 @@ public class BuildingManager : MonoBehaviour
     }
     public void RotatingSliderRotateX(float IncreaseNumber)
     {
-        rotatingObject.transform.rotation = Quaternion.Euler(IncreaseNumber, rotatingObject.transform.eulerAngles.y, rotatingObject.transform.eulerAngles.z);
+
+        rotatingObjectCenter.transform.rotation = Quaternion.Euler(IncreaseNumber, rotatingObjectCenter.transform.eulerAngles.y, rotatingObjectCenter.transform.eulerAngles.z);
+
     }
     public void RotatingSliderRotateY(float IncreaseNumber)
     {
-        rotatingObject.transform.rotation = Quaternion.Euler(rotatingObject.transform.eulerAngles.x, IncreaseNumber, rotatingObject.transform.eulerAngles.z);
+        rotatingObjectCenter.transform.rotation = Quaternion.Euler(rotatingObjectCenter.transform.eulerAngles.x, IncreaseNumber, rotatingObjectCenter.transform.eulerAngles.z);
     }
     public void RotatingSliderRotateZ(float IncreaseNumber)
     {
-        rotatingObject.transform.rotation = Quaternion.Euler(rotatingObject.transform.eulerAngles.x, rotatingObject.transform.eulerAngles.y, IncreaseNumber);
+        rotatingObjectCenter.transform.rotation = Quaternion.Euler(rotatingObjectCenter.transform.eulerAngles.x, rotatingObjectCenter.transform.eulerAngles.y, IncreaseNumber);
     }
 
     #endregion

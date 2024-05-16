@@ -20,10 +20,18 @@ public class AnimationPlayer : MonoBehaviour
     }
     void Update()
     {
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
+        if (player.examplePlayer.MyLockOnShoot == false)
+        {
+            float h = Input.GetAxisRaw("Horizontal");
+            float v = Input.GetAxisRaw("Vertical");
 
-        anim.SetBool("isRun", h != 0 || v != 0);
+            anim.SetBool("isRun", h != 0 || v != 0);
+        }
+        else
+        {
+            anim.SetBool("isRun", false);
+
+        }
     }
     public void JumpAnimation()
     {

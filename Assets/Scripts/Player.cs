@@ -274,13 +274,13 @@ public class Player : MonoBehaviour
 
     public IEnumerator LockPositionOnShoot()
     {
-        examplePlayer.LockOnShoot = true;
+        examplePlayer.MyLockOnShoot = true;
         yield return new WaitForSeconds(1f);
         //for (int i = 0; i < 30; i++)
         //{
         //    yield return new WaitForEndOfFrame();
         //}
-        examplePlayer.LockOnShoot = false;
+        examplePlayer.MyLockOnShoot = false;
     }
     private void FireInput()
     {
@@ -320,7 +320,7 @@ public class Player : MonoBehaviour
             {
                 animator.SetTrigger("GunFire");
                 playerShooting.Fire(CurrentWeapon);
-                examplePlayer.LockOnShoot = true;
+                examplePlayer.MyLockOnShoot = true;
 
                 //motor.SetPositionAndRotation(transform.position, transform.rotation);
                 //motor.SetRotation(transform.rotation);

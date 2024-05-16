@@ -20,6 +20,7 @@ public class CarEnterController : EnterController
         CanvasManager.instance.ShowControlCarInstruction(true);
         vehicleControl.GetComponent<VehicleControl>().activeControl = true;
         vehicleControl.enabled = true;
+        vehicleControl.OnCarEnter();
     }
     protected override void DeactivateTransport()
     {

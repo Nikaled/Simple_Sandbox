@@ -24,7 +24,7 @@ namespace KinematicCharacterController.Examples
         public bool Mobile = true;
         public bool PC = false;
         public bool IsCursorLocked;
-        public bool LockOnShoot; // my field
+        public bool MyLockOnShoot; // my field
         private void Start()
         {
             if (IsCursorLocked)
@@ -119,7 +119,7 @@ namespace KinematicCharacterController.Examples
             }
             if (PC)
             {
-                if (!LockOnShoot)
+                if (!MyLockOnShoot)
                 {
                     characterInputs.MoveAxisForward = Input.GetAxisRaw(VerticalInput);
                     characterInputs.MoveAxisRight = Input.GetAxisRaw(HorizontalInput);

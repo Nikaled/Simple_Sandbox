@@ -224,7 +224,7 @@ public class VehicleControl : MonoBehaviour
 
     private WheelComponent[] wheels;
 
-
+    public bool CarQuit;
 
     private class WheelComponent
     {
@@ -269,13 +269,14 @@ public class VehicleControl : MonoBehaviour
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    
+    public void OnCarEnter()
+    {
+        CarQuit = false;
+    }
+
     public void OnCarQuit()
     {
-        steer = 0;
-        accel = 0;
-        brake = true;
-        shift = false;
+        CarQuit = true;
     }
     void Awake()
     {
@@ -447,7 +448,10 @@ public class VehicleControl : MonoBehaviour
 
     void Update()
     {
-
+        if (CarQuit)
+        {
+            myRigidbody.velocity = myRigidbody.velocity / 1.03f;
+         }
 
         if (!carSetting.automaticGear && activeControl)
         {
