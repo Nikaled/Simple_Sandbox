@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 6973970911526818848}
   - component: {fileID: 6973970911531989280}
   - component: {fileID: 1568292253873116201}
-  - component: {fileID: 1222482211567975453}
   - component: {fileID: 458413996290837666}
   - component: {fileID: 2253238092017262361}
+  - component: {fileID: 9007742707771667329}
   m_Layer: 7
   m_Name: FX_Grenade_01
   m_TagString: Untagged
@@ -125,20 +125,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &1222482211567975453
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6973970911524555488}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.14790502
-  m_Height: 0.5946944
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.035273597, z: 0.00000017881393}
 --- !u!114 &458413996290837666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,4 +153,18 @@ SphereCollider:
   m_Enabled: 0
   serializedVersion: 2
   m_Radius: 15
+  m_Center: {x: 0, y: 0.035273597, z: 0.00000017881393}
+--- !u!136 &9007742707771667329
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6973970911524555488}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.2
+  m_Height: 1
+  m_Direction: 1
   m_Center: {x: 0, y: 0.035273597, z: 0.00000017881393}

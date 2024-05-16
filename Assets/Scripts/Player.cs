@@ -172,6 +172,7 @@ public class Player : MonoBehaviour
                 break;
 
         }
+        SwitchPlayerState(PlayerState.Idle);
     }
     private void SwitchView()
     {
@@ -208,12 +209,9 @@ public class Player : MonoBehaviour
         {
             FireInput();
             ChangeWeaponInput();
-            if(CurrentWeapon == WeaponType.Pistol || CurrentWeapon == WeaponType.Gun)
+            if (Input.GetKeyDown(KeyCode.Q))
             {
-                if (Input.GetKeyDown(KeyCode.Q))
-                {
-                    SwitchView();
-                }
+                SwitchView();
             }
         }
         if (currentState == PlayerState.Building)
@@ -348,9 +346,13 @@ public class Player : MonoBehaviour
         }
         if (currentState != PlayerState.Aiming)
         {
-            if (Input.GetMouseButton(1))
+            if (CurrentWeapon == WeaponType.Pistol || CurrentWeapon == WeaponType.Gun)
             {
-                SwitchPlayerState(PlayerState.Aiming, 0);
+                if (Input.GetMouseButton(1))
+                {
+
+                    SwitchPlayerState(PlayerState.Aiming, 0);
+                }
             }
         }
         if (currentState == PlayerState.Aiming)
@@ -371,16 +373,16 @@ public class Player : MonoBehaviour
     }
     private void GoToAimCamera()
     {
-        if (IsFirstView)
-        {
-            normalCamera.Camera.fieldOfView = 20;
-            normalCamera.FollowPointFraming = new Vector2(0f, 0f);
-        }
-        else
-        {
-            normalCamera.Camera.fieldOfView = 30;
-        }
-        playerShooting.lineRenderer.enabled = true;
+            if (IsFirstView)
+            {
+                normalCamera.Camera.fieldOfView = 20;
+                normalCamera.FollowPointFraming = new Vector2(0f, 0f);
+            }
+            else
+            {
+                normalCamera.Camera.fieldOfView = 30;
+            }
+            playerShooting.lineRenderer.enabled = true;
 
     }
     private void GoToNormalCamera()

@@ -24,7 +24,7 @@ public class BuildingManager : MonoBehaviour
     [SerializeField] Material RedMaterial;
     [SerializeField] Material YellowMaterial;
 
-    [SerializeField] Player player;
+    Player player;
     public static BuildingManager instance;
 
     private bool IsDeletingBuilding;
@@ -45,6 +45,10 @@ public class BuildingManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+    }
+    private void Start()
+    {
+        player = Player.instance;
     }
     public void SetBuildingObject(GameObject ObjectPrefab)
     {
