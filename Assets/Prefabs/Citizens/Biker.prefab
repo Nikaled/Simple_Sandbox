@@ -1703,6 +1703,7 @@ MonoBehaviour:
   agent: {fileID: 8996489996995078716}
   animator: {fileID: 8996489997002465105}
   CurrentDestination: {fileID: 0}
+  hpSystem: {fileID: 7023085047603475163}
 --- !u!195 &8996489996995078716
 NavMeshAgent:
   m_ObjectHideFlags: 0

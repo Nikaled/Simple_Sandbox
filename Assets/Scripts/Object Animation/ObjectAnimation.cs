@@ -12,6 +12,7 @@ public class ObjectAnimation : ObjectInteraction
 
     protected override void ActivateObject()
     {
+        base.ActivateObject();
         if (Animation)
         {
             animator.SetBool("Activated", true);
@@ -24,6 +25,7 @@ public class ObjectAnimation : ObjectInteraction
     }
     protected override void DeactivateObject()
     {
+        base.DeactivateObject();
         if (Animation)
         {
             animator.SetBool("Activated", false);

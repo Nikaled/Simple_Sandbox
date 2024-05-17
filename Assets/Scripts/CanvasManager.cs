@@ -7,19 +7,25 @@ public class CanvasManager : MonoBehaviour
 {
     public static CanvasManager instance;
 
+    [SerializeField] public Image Crosshair;
+    [Header("PC Interfaces")]
     [SerializeField] GameObject _helicopterInstruction;
     [SerializeField] GameObject _planeInstruction;
     [SerializeField] GameObject _objectInteractionInstruction;
-    [SerializeField] GameObject _EnterTransportInstruction;
     [SerializeField] GameObject _ControlCarInstruction;
-    [SerializeField] GameObject _EnterCitizenInstruction;
-    [SerializeField] public Image Crosshair;
 
+    [SerializeField] GameObject _EnterTransportInstruction;
+    [SerializeField] GameObject _EnterCitizenInstruction;
+
+    [SerializeField] GameObject _rotatingModeInstruction;
     [SerializeField] GameObject _idleInstruction;
     [SerializeField] GameObject _buildingModeInstruction;
     [SerializeField] GameObject _deletingModeInstruction;
+    [Header("Mobile Interfaces")]
+    [SerializeField] GameObject CanvasMobileInterface;
+    [SerializeField] public Button DoButton;
+    [SerializeField] public Button InteracteButton;
     [Header("Rotating Mode")]
-    [SerializeField] GameObject _rotatingModeInstruction;
     [SerializeField] GameObject _rotatingChosenObjectModeInstruction;
     [SerializeField] Slider[] RotatingModeSlidersScale;
     [SerializeField] Slider[] RotatingModeSlidersRotation;
@@ -28,6 +34,10 @@ public class CanvasManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+    }
+    private void Start()
+    {
+        
     }
     public void ShowHelicopterInstruction(bool Is)
     {

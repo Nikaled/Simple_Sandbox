@@ -71,16 +71,28 @@ namespace KinematicCharacterController.Examples
 
         private void HandleCameraInput()
         {
+            Vector3 lookInputVector = Vector3.zero;
+
+
+
             // Create the look input vector for the camera
-            float mouseLookAxisUp = Input.GetAxisRaw(MouseYInput);
-            float mouseLookAxisRight = Input.GetAxisRaw(MouseXInput);
-            Vector3 lookInputVector = new Vector3(mouseLookAxisRight, mouseLookAxisUp, 0f);
+            if (Geekplay.Instance.mobile == false)
+            {
+                float mouseLookAxisUp = Input.GetAxisRaw(MouseYInput);
+                float mouseLookAxisRight = Input.GetAxisRaw(MouseXInput);
+                 lookInputVector = new Vector3(mouseLookAxisRight, mouseLookAxisUp, 0f);
+                if (Cursor.lockState != CursorLockMode.Locked)
+                {
+                    lookInputVector = Vector3.zero;
+                }
+            }
+            else
+            {
+                lookInputVector = SwipeDetector.instance.swipeDelta;
+                SwipeDetector.instance.swipeDelta = Vector2.zero;
+            }
 
             // Prevent moving the camera while the cursor isn't locked
-            if (Cursor.lockState != CursorLockMode.Locked)
-            {
-                lookInputVector = Vector3.zero;
-            }
 
             // Input for zooming the camera (disabled in WebGL because it can cause problems)
             float scrollInput = -Input.GetAxis(MouseScrollInput);
@@ -109,8 +121,11 @@ namespace KinematicCharacterController.Examples
             // Build the CharacterInputs struct
             if (Mobile)
             {
-                characterInputs.MoveAxisForward = FixedJoystick.Vertical;
-                characterInputs.MoveAxisRight = FixedJoystick.Horizontal;
+                if (!MyLockOnShoot)
+                {
+                    characterInputs.MoveAxisForward = FixedJoystick.Vertical;
+                    characterInputs.MoveAxisRight = FixedJoystick.Horizontal;
+                }
                 characterInputs.CameraRotation = CharacterCamera.Transform.rotation;
                 characterInputs.JumpDown = IsJumpTrue;
                 IsJumpTrue = false;

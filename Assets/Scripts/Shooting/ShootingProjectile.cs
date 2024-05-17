@@ -5,13 +5,14 @@ using UnityEngine;
 public class ShootingProjectile : MonoBehaviour
 {
     [SerializeField] Rigidbody bulletRigidbody;
-    public float speed = 500f;
+    public float speed = 300;
     int bulletDamage = 1;
     public GameObject ProjectileSource;
     // Start is called before the first frame update
     void Start()
     {
         bulletRigidbody.velocity = transform.forward * speed;
+        StartCoroutine(DestroyObj());
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -23,8 +24,8 @@ public class ShootingProjectile : MonoBehaviour
         if (other.GetComponent<HpSystemCollision>() != null)
         {
             other.GetComponent<HpSystemCollision>().TakeDamage(bulletDamage);
+        Destroy(gameObject);
         }
-        //Destroy(gameObject);
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -37,6 +38,11 @@ public class ShootingProjectile : MonoBehaviour
         {
             collision.gameObject.GetComponent<HpSystemCollision>().TakeDamage(bulletDamage);
         }
+        Destroy(gameObject);
+    }
+    private IEnumerator DestroyObj()
+    {
+        yield return new WaitForSeconds(10f);
         Destroy(gameObject);
     }
 }

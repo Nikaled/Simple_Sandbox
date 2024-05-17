@@ -10,7 +10,7 @@ public class CarEnterController : EnterController
     protected override void Update()
     {
         base.Update();
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && IsPlayerIn)
         {
             TransportCamera.transform.position = FirstViewCameraTransform.position;
         }

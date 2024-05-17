@@ -19,6 +19,9 @@ public class EnterController : MonoBehaviour
             ShowEnterInstruction();
             IsInterfaceActive = true;
             player.currentNearTransport = this;
+            CanvasManager.instance.InteracteButton.gameObject.SetActive(true);
+            CanvasManager.instance.InteracteButton.onClick.RemoveAllListeners();
+            CanvasManager.instance.InteracteButton.onClick.AddListener(delegate { SitIntoTransport(); });
         }
     }
     protected virtual void OnTriggerExit(Collider other)
@@ -26,8 +29,10 @@ public class EnterController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             HideEnterInstruction();
-           
-            if(player != null)
+            CanvasManager.instance.InteracteButton.gameObject.SetActive(false);
+            CanvasManager.instance.InteracteButton.onClick.RemoveListener(delegate { SitIntoTransport(); });
+
+            if (player != null)
             {
                 if (player.currentNearTransport != null)
                 {
@@ -38,9 +43,9 @@ public class EnterController : MonoBehaviour
                 }
             }
         }
-        if(IsPlayerIn == false)
+        if (IsPlayerIn == false)
         {
-        player = null;
+            player = null;
         }
     }
     protected virtual void ShowEnterInstruction()
@@ -61,13 +66,12 @@ public class EnterController : MonoBehaviour
                         if (Input.GetKeyDown(KeyCode.F))
                         {
                             SitIntoTransport();
-                            HideEnterInstruction();
                             return;
                         }
                     }
 
                 }
-               
+
             }
         }
         if (IsPlayerIn)
@@ -83,15 +87,38 @@ public class EnterController : MonoBehaviour
     {
         CanvasManager.instance.ShowTransportEnterInstruction(false);
     }
-    protected  virtual void SitIntoTransport()
+    protected virtual void SitIntoTransport()
     {
-        HpView.SetActive(false);
-        player.PlayerSetActive(false);
-        TransportCamera.gameObject.SetActive(true);
-        ActivateTransport();
-        IsPlayerIn = true;
-        IsInterfaceActive = false;
-        player.SwitchPlayerState(Player.PlayerState.InTransport, 0);
+        if(Player.instance.currentState != Player.PlayerState.Idle)
+        {
+            return;
+        }
+        if (IsInterfaceActive == true)
+        {
+            if (player != null)
+            {
+                if (player.currentNearTransport != null)
+                {
+                    if (player.currentNearTransport == this)
+                    {
+                        HpView.SetActive(false);
+                        player.PlayerSetActive(false);
+                        TransportCamera.gameObject.SetActive(true);
+                        ActivateTransport();
+                        IsPlayerIn = true;
+                        IsInterfaceActive = false;
+                        player.SwitchPlayerState(Player.PlayerState.InTransport, 0);
+                        HideEnterInstruction();
+
+                        CanvasManager.instance.InteracteButton.gameObject.SetActive(true);
+                        CanvasManager.instance.InteracteButton.onClick.RemoveAllListeners();
+                        CanvasManager.instance.InteracteButton.onClick.AddListener(delegate { GetOutTransport(); });
+                    }
+
+                }
+
+            }
+        }
     }
     protected virtual void GetOutTransport()
     {
@@ -103,6 +130,9 @@ public class EnterController : MonoBehaviour
         DeactivateTransport();
         IsPlayerIn = false;
         TransportCamera.gameObject.SetActive(false);
+
+        CanvasManager.instance.InteracteButton.gameObject.SetActive(false);
+        CanvasManager.instance.InteracteButton.onClick.RemoveAllListeners();
         player.SwitchPlayerState(Player.PlayerState.Idle);
 
     }

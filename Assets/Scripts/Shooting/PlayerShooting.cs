@@ -15,7 +15,7 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] public Image Crosshair;
     [SerializeField] Player player;
     [SerializeField] MeleeAttackHitbox handHitbox;
-    Vector3 AimDirection;
+   public Vector3 AimDirection;
     [HideInInspector] public Vector3 CrosshairWorldPosition;
     float GunTimer;
     float GunShootInterval = 0.05f;
@@ -31,8 +31,9 @@ public class PlayerShooting : MonoBehaviour
     void Update()
     {
         CrosshairWorldPosition = Vector3.zero;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit raycastHit, 2000, aimColliderLayerMask))
+        Ray ray = Camera.main.ScreenPointToRay(Crosshair.transform.position);
+        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit raycastHit, 5000, aimColliderLayerMask))
         {
             CrosshairWorldPosition = raycastHit.point;
             if (player.CurrentWeapon == Player.WeaponType.Pistol)

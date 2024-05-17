@@ -78,4 +78,11 @@ public class CitizenEnterController : EnterController
         }
 
     }
+    private void OnDestroy()
+    {
+        if(CanvasManager.instance != null)
+        {
+            HideEnterInstruction();
+        }
+    }
 }

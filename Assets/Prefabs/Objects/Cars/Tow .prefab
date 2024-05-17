@@ -68,8 +68,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6063116552234464911}
-  - component: {fileID: 3925991953549126713}
-  - component: {fileID: 478330869941114801}
+  - component: {fileID: 803414740183848092}
   m_Layer: 11
   m_Name: 'Tow '
   m_TagString: Untagged
@@ -94,7 +93,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3925991953549126713
+--- !u!114 &803414740183848092
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,27 +102,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1759748661376315775}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8267b16683a55d14bb52394bb5f5cc69, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c6ed66f0c5f83146bb830a8911a1206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerSpawnTransform: {fileID: 1884736415042394786}
-  TransportCamera: {fileID: 1884736416372824453}
-  HpView: {fileID: 8493725296039490655}
-  FirstViewCameraTransform: {fileID: 1884736414532256544}
-  vehicleControl: {fileID: 1884736414539160062}
---- !u!65 &478330869941114801
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1759748661376315775}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 6.758583, y: 2.5106354, z: 6.3233}
-  m_Center: {x: 0.43555307, y: 1.656071, z: 0.002029707}
 --- !u!1 &1884736414532501972
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,6 +247,8 @@ GameObject:
   - component: {fileID: 1884736414539067200}
   - component: {fileID: 1884736415946380614}
   - component: {fileID: 4972365911036434407}
+  - component: {fileID: 1416059986365783176}
+  - component: {fileID: 8787603838668967692}
   m_Layer: 11
   m_Name: Tow upd
   m_TagString: Untagged
@@ -458,6 +441,36 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 294848a84ccd936409c97e046dd2b6be, type: 3}
   ObjectToChange: {fileID: 101156391212640513}
   currentVariantIndex: 0
+--- !u!114 &1416059986365783176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884736414532505942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8267b16683a55d14bb52394bb5f5cc69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerSpawnTransform: {fileID: 1884736415042394786}
+  TransportCamera: {fileID: 1884736416372824453}
+  HpView: {fileID: 8493725296039490655}
+  FirstViewCameraTransform: {fileID: 1884736414532256544}
+  vehicleControl: {fileID: 1884736414539160062}
+--- !u!65 &8787603838668967692
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884736414532505942}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.758583, y: 2.5106354, z: 6.3233}
+  m_Center: {x: 0.43555307, y: 1.656071, z: 0.002029707}
 --- !u!1 &1884736414532509372
 GameObject:
   m_ObjectHideFlags: 0

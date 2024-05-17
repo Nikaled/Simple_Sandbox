@@ -23,6 +23,7 @@ public class BuildingManager : MonoBehaviour
     [SerializeField] Material OnBuildingMaterial;
     [SerializeField] Material RedMaterial;
     [SerializeField] Material YellowMaterial;
+    [SerializeField] Button DoButton;
 
     Player player;
     public static BuildingManager instance;
@@ -72,14 +73,22 @@ public class BuildingManager : MonoBehaviour
         {
             pendingObj.transform.position = pos;
 
-            if (Input.GetMouseButtonDown(0))
+            if (Geekplay.Instance.mobile == false)
             {
-                PlaceObject();
+                if (Input.GetMouseButtonDown(0))
+                {
+                    PlaceObject();
+                }
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+                    RotateObject();
+                }
             }
-            if (Input.GetKeyDown(KeyCode.R))
+            else
             {
-                RotateObject();
+                player.examplePlayer.LockCursor(false);
             }
+
         }
     }
     public void DeletingBuildingInput()
@@ -87,11 +96,23 @@ public class BuildingManager : MonoBehaviour
 
         Debug.Log("Deleting Input");
         Ray ray = Camera.main.ScreenPointToRay(Cross.transform.position);
-        if (Physics.Raycast(ray, out hit, 1000, TurnRedIncludeMask))
+        if (Physics.Raycast(ray, out hit, 10000, TurnRedIncludeMask))
+
         {
             if (deletingObject != hit.collider.gameObject)
             {
-                TurnDeletingObjectNormalAndClearFields();
+                if (deletingObject != null)
+                {
+                    if (deletingObject.CompareTag("Citizen"))
+                    {
+                        TurnDeletingCitizenNormalAndClearFields();
+                    }
+                    else
+                    {
+                        TurnDeletingObjectNormalAndClearFields();
+                    }
+                }
+
                 deletingObject = hit.collider.gameObject;
                 Debug.Log("deleting object:" + deletingObject);
                 if (IsItDestructable(deletingObject))
@@ -107,9 +128,16 @@ public class BuildingManager : MonoBehaviour
                     }
                 }
             }
-            if (Input.GetMouseButtonDown(0))
+            if (Geekplay.Instance.mobile == false)
             {
-                DeleteObject(deletingObject);
+                if (Input.GetMouseButtonDown(0))
+                {
+                    DeleteObject(deletingObject);
+                }
+            }
+            else
+            {
+                player.examplePlayer.LockCursor(false);
             }
         }
         else
@@ -146,23 +174,44 @@ public class BuildingManager : MonoBehaviour
         deletingObject = null;
     }
 
-    public void DeletingButton(bool Is)
-    {
-        ActivateDeletingMode(Is);
-        SwitchPlayerState();
-    }
-
     public void ActivateDeletingMode(bool Is)
     {
+        //if (IsDeletingBuilding == true && Is == true)
+        //{
+        //    Is = false;
+        //}
+        DoButton.onClick.RemoveAllListeners();
+        if (Is)
+        {
+        DoButton.onClick.AddListener(delegate { DeleteObject(deletingObject); });
+        }
         IsDeletingBuilding = Is;
         BuildingMenu.SetActive(false);
-        player.examplePlayer.LockCursor(IsDeletingBuilding);
+        if(Geekplay.Instance.mobile == false)
+        {
+            player.examplePlayer.LockCursor(IsDeletingBuilding);
+        }
+        else
+        {
+            player.examplePlayer.LockCursor(false);
+        }
         TurnDeletingObjectNormalAndClearFields();
         CanvasManager.instance.ShowDeletingModeInstruction(Is);
     }
+    public void SwitchPlayerStateToRotating()
+    {
+        if (Player.instance.currentState != Player.PlayerState.RotatingBuilding)
+        {
+            player.SwitchPlayerState(Player.PlayerState.RotatingBuilding);
+        }
+        else
+        {
+            player.SwitchPlayerState(Player.PlayerState.Idle);
+        }
+    }
     public void SwitchPlayerState()
     {
-        if (IsDeletingBuilding)
+        if (Player.instance.currentState != Player.PlayerState.DeletingBuilding)
         {
             player.SwitchPlayerState(Player.PlayerState.DeletingBuilding);
         }
@@ -176,7 +225,15 @@ public class BuildingManager : MonoBehaviour
 
         if (IsItDestructable(deletingObject))
         {
-            Destroy(deletingObject);
+            if (deletingObject.GetComponentInParent<DeletingRoot>() != null)
+            {
+                Destroy(deletingObject.GetComponentInParent<DeletingRoot>().gameObject);
+                Debug.Log("Удален родитель");
+            }
+            else
+            {
+                Destroy(deletingObject);
+            }
         }
         else
         {
@@ -185,6 +242,10 @@ public class BuildingManager : MonoBehaviour
     }
     private bool IsItDestructable(GameObject deletingObject)
     {
+        if(deletingObject == null)
+        {
+            return false;
+        }
         if (((NotDeletingLayerMask & (1 << deletingObject.layer)) != 0))
         {
             return false;
@@ -195,7 +256,14 @@ public class BuildingManager : MonoBehaviour
     {
         IsBuildingOpened = Is;
         BuildingMenu.SetActive(IsBuildingOpened);
+        if(Geekplay.Instance.mobile == false)
+        {
         player.examplePlayer.LockCursor(!IsBuildingOpened);
+        }
+        else
+        {
+            player.examplePlayer.LockCursor(false);
+        }
         if (pendingObj != null) { Destroy(pendingObj); }
         CanvasManager.instance.ShowBuildingModeInstruction(false);
     }
@@ -212,19 +280,31 @@ public class BuildingManager : MonoBehaviour
         if (pendingObj.GetComponentInChildren<Rigidbody>() != null) pendingObj.GetComponentInChildren<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         Debug.Log("Object Selected");
         player.SwitchPlayerState(Player.PlayerState.Building);
-        player.examplePlayer.LockCursor(true);
+        if (Geekplay.Instance.mobile == false)
+        {
+            player.examplePlayer.LockCursor(true);
+        }
+        else
+        {
+            DoButton.onClick.RemoveAllListeners();
+            DoButton.onClick.AddListener(delegate { PlaceObject(); });
+        }
         pendingObj.transform.LookAt(player.transform);
         pendingObj.transform.DORotate(new Vector3(0, pendingObj.transform.position.y, 0), 0);
+
+
 
     }
     private void PlaceObject()
     {
+        DoButton.onClick.RemoveAllListeners();
+
         var newObj = Instantiate(CurrentPrefab, pendingObj.transform.position, pendingObj.transform.rotation);
         CanvasManager.instance.ShowBuildingModeInstruction(false);
-        //if (CurrentPrefab.CompareTag("Road"))
-        //{
-        //    newObj.transform.position += new Vector3(0, 0.05f, 0);
-        //}
+        if (CurrentPrefab.CompareTag("Road"))
+        {
+            newObj.transform.position += new Vector3(0, 0.05f, 0);
+        }
         Destroy(pendingObj);
         Debug.Log("Object placed");
         player.SwitchPlayerState(Player.PlayerState.Idle);
@@ -302,6 +382,11 @@ public class BuildingManager : MonoBehaviour
     {
         CanvasManager.instance.ShowRotatingModeInstruction(IsActive);
         TurnRotatingObjectNormalAndClearFields();
+        DoButton.onClick.RemoveAllListeners();
+        if (IsActive)
+        {
+            DoButton.onClick.AddListener(delegate { ActivateRotateChosenObjectMode(true); });
+        }
     }
     public void RotatingInput()
     {
@@ -345,11 +430,14 @@ public class BuildingManager : MonoBehaviour
                     }
                 }
             }
-            if (Input.GetMouseButtonDown(0))
+            if(Geekplay.Instance.mobile == false)
             {
-                if (rotatingObject != null)
+                if (Input.GetMouseButtonDown(0))
                 {
-                    ActivateRotateChosenObjectMode(true);
+                    if (rotatingObject != null)
+                    {
+                        ActivateRotateChosenObjectMode(true);
+                    }
                 }
             }
         }
@@ -377,10 +465,14 @@ public class BuildingManager : MonoBehaviour
 
     private void ActivateRotateChosenObjectMode(bool Is)
     {
+        if(rotatingObject == null)
+        {
+            return;
+        }
         Player.instance.examplePlayer.MyLockOnShoot = Is;
         rotatingObjectCenter = null;
         RotateChosenObjectMode = Is;
-        Debug.Log("Rotating object:"+rotatingObject.name);
+        Debug.Log("Rotating object:" + rotatingObject.name);
         if (rotatingObject.CompareTag("Car"))
         {
             if (rotatingObject.GetComponentInChildren<Rigidbody>() != null)
@@ -391,7 +483,7 @@ public class BuildingManager : MonoBehaviour
 
             }
         }
-        if(rotatingObject.GetComponent<Rigidbody>() != null)
+        if (rotatingObject.GetComponent<Rigidbody>() != null)
         {
             rotatingObject.GetComponent<Rigidbody>().useGravity = !Is;
             rotatingObject.GetComponent<Rigidbody>().isKinematic = Is;
@@ -443,7 +535,14 @@ public class BuildingManager : MonoBehaviour
 
             }
         }
+        if(Geekplay.Instance.mobile== false)
+        {
         player.examplePlayer.LockCursor(!Is);
+        }
+        else
+        {
+            player.examplePlayer.LockCursor(false);
+        }
     }
     public void ApplyRotatingChanges()
     {
@@ -459,29 +558,39 @@ public class BuildingManager : MonoBehaviour
     #region RotatingSliders
     public void RotatingSliderScaleX(float IncreaseNumber)
     {
-        rotatingObject.transform.DOScaleX(IncreaseNumber, 0);
+        if (rotatingObject != null)
+            rotatingObject.transform.DOScaleX(IncreaseNumber, 0);
     }
     public void RotatingSliderScaleY(float IncreaseNumber)
     {
-        rotatingObject.transform.DOScaleY(IncreaseNumber, 0);
+        if (rotatingObject != null)
+
+            rotatingObject.transform.DOScaleY(IncreaseNumber, 0);
     }
     public void RotatingSliderScaleZ(float IncreaseNumber)
     {
-        rotatingObject.transform.DOScaleZ(IncreaseNumber, 0);
+        if (rotatingObject != null)
+
+            rotatingObject.transform.DOScaleZ(IncreaseNumber, 0);
     }
     public void RotatingSliderRotateX(float IncreaseNumber)
     {
+        if (rotatingObjectCenter != null)
 
-        rotatingObjectCenter.transform.rotation = Quaternion.Euler(IncreaseNumber, rotatingObjectCenter.transform.eulerAngles.y, rotatingObjectCenter.transform.eulerAngles.z);
+            rotatingObjectCenter.transform.rotation = Quaternion.Euler(IncreaseNumber, rotatingObjectCenter.transform.eulerAngles.y, rotatingObjectCenter.transform.eulerAngles.z);
 
     }
     public void RotatingSliderRotateY(float IncreaseNumber)
     {
-        rotatingObjectCenter.transform.rotation = Quaternion.Euler(rotatingObjectCenter.transform.eulerAngles.x, IncreaseNumber, rotatingObjectCenter.transform.eulerAngles.z);
+        if (rotatingObjectCenter != null)
+
+            rotatingObjectCenter.transform.rotation = Quaternion.Euler(rotatingObjectCenter.transform.eulerAngles.x, IncreaseNumber, rotatingObjectCenter.transform.eulerAngles.z);
     }
     public void RotatingSliderRotateZ(float IncreaseNumber)
     {
-        rotatingObjectCenter.transform.rotation = Quaternion.Euler(rotatingObjectCenter.transform.eulerAngles.x, rotatingObjectCenter.transform.eulerAngles.y, IncreaseNumber);
+        if (rotatingObjectCenter != null)
+
+            rotatingObjectCenter.transform.rotation = Quaternion.Euler(rotatingObjectCenter.transform.eulerAngles.x, rotatingObjectCenter.transform.eulerAngles.y, IncreaseNumber);
     }
 
     #endregion

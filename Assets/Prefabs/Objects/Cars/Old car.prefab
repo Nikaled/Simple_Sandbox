@@ -1287,6 +1287,8 @@ GameObject:
   - component: {fileID: 63968495078707759}
   - component: {fileID: 63968495078614161}
   - component: {fileID: 8000099906921165335}
+  - component: {fileID: 1258788333839146877}
+  - component: {fileID: 4153074039009941022}
   m_Layer: 11
   m_Name: Old car upd
   m_TagString: Untagged
@@ -1468,6 +1470,36 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 9bb50d1cc20713c448e457432893590a, type: 3}
   ObjectToChange: {fileID: 203077038694924173}
   currentVariantIndex: 0
+--- !u!65 &1258788333839146877
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63968495067863687}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.758583, y: 2.5106354, z: 7.328247}
+  m_Center: {x: 0.43555307, y: 1.656071, z: 0.06738281}
+--- !u!114 &4153074039009941022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63968495067863687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8267b16683a55d14bb52394bb5f5cc69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerSpawnTransform: {fileID: 63968494575309171}
+  TransportCamera: {fileID: 63968493754061396}
+  HpView: {fileID: 5819603812238751764}
+  FirstViewCameraTransform: {fileID: 63968495067613425}
+  vehicleControl: {fileID: 63968495078707759}
 --- !u!1 &63968495067868175
 GameObject:
   m_ObjectHideFlags: 0
@@ -12149,8 +12181,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3737507275711214157}
-  - component: {fileID: 5031195126649777416}
-  - component: {fileID: 3460474736702067228}
+  - component: {fileID: -338866544580832779}
   m_Layer: 11
   m_Name: Old car
   m_TagString: Untagged
@@ -12175,20 +12206,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5031195126649777416
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3991304073795517343}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 6.758583, y: 2.5106354, z: 7.328247}
-  m_Center: {x: 0.43555307, y: 1.656071, z: 0.06738281}
---- !u!114 &3460474736702067228
+--- !u!114 &-338866544580832779
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12197,14 +12215,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3991304073795517343}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8267b16683a55d14bb52394bb5f5cc69, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c6ed66f0c5f83146bb830a8911a1206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerSpawnTransform: {fileID: 63968494575309171}
-  TransportCamera: {fileID: 63968493754061396}
-  HpView: {fileID: 5819603812238751764}
-  FirstViewCameraTransform: {fileID: 63968495067613425}
-  vehicleControl: {fileID: 63968495078707759}
 --- !u!1001 &63968493755274964
 PrefabInstance:
   m_ObjectHideFlags: 0

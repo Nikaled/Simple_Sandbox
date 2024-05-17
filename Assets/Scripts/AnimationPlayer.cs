@@ -22,10 +22,20 @@ public class AnimationPlayer : MonoBehaviour
     {
         if (player.examplePlayer.MyLockOnShoot == false)
         {
-            float h = Input.GetAxisRaw("Horizontal");
-            float v = Input.GetAxisRaw("Vertical");
+            if(Geekplay.Instance.mobile == false)
+            {
+                float h = Input.GetAxisRaw("Horizontal");
+                float v = Input.GetAxisRaw("Vertical");
 
-            anim.SetBool("isRun", h != 0 || v != 0);
+                anim.SetBool("isRun", h != 0 || v != 0);
+            }
+            else
+            {
+                float h = player.examplePlayer.FixedJoystick.Horizontal;
+                float v = player.examplePlayer.FixedJoystick.Vertical;
+                anim.SetBool("isRun", h != 0 || v != 0);
+            }
+
         }
         else
         {

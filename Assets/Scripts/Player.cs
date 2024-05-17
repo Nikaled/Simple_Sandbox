@@ -73,6 +73,7 @@ public class Player : MonoBehaviour
     }
     public void SwitchPlayerState(PlayerState newPlayerState, float Delay = 0.1f)
     {
+        CanvasManager.instance.DoButton.onClick.RemoveAllListeners();
         switch (newPlayerState)
         {
             case PlayerState.Aiming:
@@ -85,6 +86,13 @@ public class Player : MonoBehaviour
             case PlayerState.Idle:
                 animator.SetBool("PistolAiming", false);
                 break;
+            case PlayerState.DeletingBuilding:
+                BuildingManager.instance.ActivateDeletingMode(true);
+                break;
+            case PlayerState.RotatingBuilding:
+                BuildingManager.instance.ActivateRotatingMode(true);
+                break;
+
         }
         if (currentState == PlayerState.Aiming && newPlayerState != PlayerState.Aiming)
         {
@@ -94,11 +102,12 @@ public class Player : MonoBehaviour
         {
 
             BuildingManager.instance.ActivateDeletingMode(false);
-            examplePlayer.LockCursor(true);
         }
         if (newPlayerState == PlayerState.Idle)
         {
             CanvasManager.instance.ShowIdleInstruction(true);
+            CanvasManager.instance.DoButton.onClick.AddListener(delegate { MobileFireInput(); });
+
         }
         else
         {
@@ -135,7 +144,7 @@ public class Player : MonoBehaviour
         currentState = newPlayerState;
         Debug.Log("Player State:" + currentState);
     }
-    private void SwitchWeapon(int PressedNumber)
+    public void SwitchWeapon(int PressedNumber)
     {
         GunModel.SetActive(false);
         PistolModel.SetActive(false);
@@ -153,6 +162,8 @@ public class Player : MonoBehaviour
             case 1:
                 CurrentWeapon = WeaponType.Gun;
                 GunModel.SetActive(true);
+                CanvasManager.instance.DoButton.onClick.RemoveAllListeners();
+                CanvasManager.instance.DoButton.GetComponent<MobileShootButton>().enabled = true;
 
                 break;
             case 2:
@@ -169,6 +180,7 @@ public class Player : MonoBehaviour
             case 5:
                 CurrentWeapon = WeaponType.Grenade;
                 GrenadeModel.SetActive(true);
+                CanvasManager.instance.DoButton.GetComponent<MobileShootButton>().enabled = true;
                 break;
 
         }
@@ -190,7 +202,6 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKeyDown(DeletingModeButton))
             {
-                BuildingManager.instance.ActivateDeletingMode(true);
                 SwitchPlayerState(Player.PlayerState.DeletingBuilding);
             }
             if (Input.GetKeyDown(BuildingModeButton))
@@ -200,18 +211,20 @@ public class Player : MonoBehaviour
             }
             if (Input.GetKeyDown(RotatingModeButton))
             {
-                BuildingManager.instance.ActivateRotatingMode(true);
                 SwitchPlayerState(Player.PlayerState.RotatingBuilding);
             }
 
         }
         if (currentState != PlayerState.Building && currentState != PlayerState.DeletingBuilding && currentState != PlayerState.RotatingBuilding)
         {
-            FireInput();
-            ChangeWeaponInput();
-            if (Input.GetKeyDown(KeyCode.Q))
+            if(Geekplay.Instance.mobile == false)
             {
-                SwitchView();
+                FireInput();
+                ChangeWeaponInput();
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    SwitchView();
+                }
             }
         }
         if (currentState == PlayerState.Building)
@@ -227,6 +240,7 @@ public class Player : MonoBehaviour
         if (currentState == PlayerState.DeletingBuilding)
         {
             BuildingManager.instance.DeletingBuildingInput();
+
             if (Input.GetKeyDown(DeletingModeButton))
             {
                 SwitchPlayerState(Player.PlayerState.Idle);
@@ -246,6 +260,7 @@ public class Player : MonoBehaviour
             }
         }
     }
+
     private void ChangeWeaponInput()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -274,17 +289,80 @@ public class Player : MonoBehaviour
     {
         examplePlayer.MyLockOnShoot = true;
         yield return new WaitForSeconds(1f);
-        //for (int i = 0; i < 30; i++)
-        //{
-        //    yield return new WaitForEndOfFrame();
-        //}
         examplePlayer.MyLockOnShoot = false;
     }
+
+    #region MobileFunctions
+    public void AimingGrenadeOnMobile()
+    {
+        animator.SetBool("AimingGrenade", true);
+        currentState = PlayerState.AimingGrenade;
+        grenadeLauncher.GrenadeInput();
+        examplePlayer.MyLockOnShoot = true;
+    }
+    public void LaunchGrenadeOnMobile()
+    {
+        animator.SetBool("AimingGrenade", false);
+        grenadeLauncher.LaunchGrenade();
+        currentState = PlayerState.Idle;
+        examplePlayer.MyLockOnShoot = false;
+    }
+    public void MobileJump()
+    {
+        examplePlayer.JumpIsTrue();
+    }
+    public void MobileFireInput()
+    {
+        if (CurrentWeapon == WeaponType.Pistol)
+        {
+
+            animator.SetTrigger("PistolFire");
+            motor.SetPosition(transform.position);
+            Fire();
+        }
+        if (CurrentWeapon == WeaponType.Knife)
+        {
+
+            animator.SetTrigger("Stab");
+            playerShooting.HandAttack(WeaponType.Knife);
+        }
+        if (CurrentWeapon == WeaponType.Hand)
+        {
+            animator.SetBool("IsRun", false);
+            animator.SetTrigger("Punch");
+            playerShooting.HandAttack(WeaponType.Hand);
+        }
+        if (CurrentWeapon == WeaponType.Gun)
+        {
+            animator.SetTrigger("GunFire");
+            playerShooting.Fire(CurrentWeapon);
+            examplePlayer.MyLockOnShoot = true;
+            motor.SetPosition(transform.position);
+        }
+        if (CurrentWeapon == WeaponType.Grenade)
+        {
+            AimingGrenadeOnMobile();
+        }
+    } // Used by Fire Button
+    public void MobileAiming()// Used by Aim Button
+    {
+        if (currentState != PlayerState.Aiming)
+        {
+            if (CurrentWeapon == WeaponType.Pistol || CurrentWeapon == WeaponType.Gun)
+            {
+                SwitchPlayerState(PlayerState.Aiming, 0);
+                return;
+            }
+        }
+        if (currentState == PlayerState.Aiming)
+        {
+            Debug.Log("Stop Aiming");
+            SwitchPlayerState(PlayerState.Idle, 0);
+        }
+    }
+    #endregion
     private void FireInput()
     {
-        if (CurrentWeapon != WeaponType.Grenade)
-        {
-        }
         if (CurrentWeapon == WeaponType.Pistol)
         {
             if (Input.GetMouseButtonDown(0))
@@ -319,9 +397,6 @@ public class Player : MonoBehaviour
                 animator.SetTrigger("GunFire");
                 playerShooting.Fire(CurrentWeapon);
                 examplePlayer.MyLockOnShoot = true;
-
-                //motor.SetPositionAndRotation(transform.position, transform.rotation);
-                //motor.SetRotation(transform.rotation);
                 motor.SetPosition(transform.position);
             }
         }
@@ -335,6 +410,7 @@ public class Player : MonoBehaviour
             if (Input.GetMouseButton(0))
             {
                 grenadeLauncher.GrenadeInput();
+                examplePlayer.MyLockOnShoot = true;
 
             }
             if (Input.GetMouseButtonUp(0))
@@ -342,6 +418,7 @@ public class Player : MonoBehaviour
                 animator.SetBool("AimingGrenade", false);
                 grenadeLauncher.LaunchGrenade();
                 currentState = PlayerState.Idle;
+                examplePlayer.MyLockOnShoot = false;
             }
         }
         if (currentState != PlayerState.Aiming)
@@ -357,6 +434,9 @@ public class Player : MonoBehaviour
         }
         if (currentState == PlayerState.Aiming)
         {
+            //Quaternion targetRotation = Quaternion.LookRotation(playerShooting.AimDirection);
+            //Quaternion OnlyY = new Quaternion(0, targetRotation.y, 0, targetRotation.w);
+            //motor.SetRotation(OnlyY);
             if (Input.GetMouseButtonUp(1))
             {
                 Debug.Log("Stop Aiming");
@@ -373,16 +453,16 @@ public class Player : MonoBehaviour
     }
     private void GoToAimCamera()
     {
-            if (IsFirstView)
-            {
-                normalCamera.Camera.fieldOfView = 20;
-                normalCamera.FollowPointFraming = new Vector2(0f, 0f);
-            }
-            else
-            {
-                normalCamera.Camera.fieldOfView = 30;
-            }
-            playerShooting.lineRenderer.enabled = true;
+        if (IsFirstView)
+        {
+            normalCamera.Camera.fieldOfView = 20;
+            normalCamera.FollowPointFraming = new Vector2(0f, 0f);
+        }
+        else
+        {
+            normalCamera.Camera.fieldOfView = 30;
+        }
+        playerShooting.lineRenderer.enabled = true;
 
     }
     private void GoToNormalCamera()

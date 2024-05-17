@@ -8,6 +8,12 @@ public class SwipeDetector : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public Vector2 swipeDelta;
 
     public Transform PlayerCamera;
+    public static SwipeDetector instance;
+
+    private void Start()
+    {
+        instance = this;
+    }
     public void OnBeginDrag(PointerEventData data)
     {
         startPosition = data.position;

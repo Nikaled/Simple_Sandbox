@@ -1478,6 +1478,8 @@ GameObject:
   - component: {fileID: 2591663414681515054}
   - component: {fileID: 2591663414681404048}
   - component: {fileID: 2591663413399926934}
+  - component: {fileID: 6460650774935622939}
+  - component: {fileID: 2833827085592198512}
   m_Layer: 11
   m_Name: mail truck upd
   m_TagString: Untagged
@@ -1653,6 +1655,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSystem: {fileID: 3295608035808946021}
+--- !u!114 &6460650774935622939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2591663414687972486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8267b16683a55d14bb52394bb5f5cc69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerSpawnTransform: {fileID: 2591663414178117490}
+  TransportCamera: {fileID: 2591663412837299285}
+  HpView: {fileID: 3295608035808946011}
+  FirstViewCameraTransform: {fileID: 2591663414688247536}
+  vehicleControl: {fileID: 2591663414681515054}
+--- !u!65 &2833827085592198512
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2591663414687972486}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.758583, y: 2.9305456, z: 6.442871}
+  m_Center: {x: 0.43555307, y: 1.866026, z: -0.00079345703}
 --- !u!1 &2591663414687976822
 GameObject:
   m_ObjectHideFlags: 0
@@ -12143,8 +12175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4805781909486408845}
-  - component: {fileID: 3877207489434533669}
-  - component: {fileID: 3154304631373949075}
+  - component: {fileID: 7270648268246507578}
   m_Layer: 11
   m_Name: Mail truck
   m_TagString: Untagged
@@ -12169,7 +12200,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3877207489434533669
+--- !u!114 &7270648268246507578
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12178,27 +12209,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4837762413127716609}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8267b16683a55d14bb52394bb5f5cc69, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c6ed66f0c5f83146bb830a8911a1206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerSpawnTransform: {fileID: 2591663414178117490}
-  TransportCamera: {fileID: 2591663412837299285}
-  HpView: {fileID: 3295608035808946011}
-  FirstViewCameraTransform: {fileID: 2591663414688247536}
-  vehicleControl: {fileID: 2591663414681515054}
---- !u!65 &3154304631373949075
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4837762413127716609}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 6.758583, y: 2.9305456, z: 6.442871}
-  m_Center: {x: 0.43555307, y: 1.866026, z: -0.00079345703}
 --- !u!1001 &225283563837572598
 PrefabInstance:
   m_ObjectHideFlags: 0

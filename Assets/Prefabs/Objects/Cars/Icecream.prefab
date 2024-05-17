@@ -9,8 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4755083594933034408}
-  - component: {fileID: 6525282917361851783}
-  - component: {fileID: 433052147529969833}
+  - component: {fileID: -600171218375377932}
   m_Layer: 11
   m_Name: Icecream
   m_TagString: Untagged
@@ -35,7 +34,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6525282917361851783
+--- !u!114 &-600171218375377932
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,27 +43,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4294780161499669621}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8267b16683a55d14bb52394bb5f5cc69, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c6ed66f0c5f83146bb830a8911a1206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerSpawnTransform: {fileID: 6955328954706363171}
-  TransportCamera: {fileID: 6955328953372262404}
-  HpView: {fileID: 743524225241790017}
-  FirstViewCameraTransform: {fileID: 6955328955287804577}
-  vehicleControl: {fileID: 6955328955276771455}
---- !u!65 &433052147529969833
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4294780161499669621}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 9.166354, y: 3.012333, z: 6.4648185}
-  m_Center: {x: 0.21780536, y: 1.9069195, z: 0.1588993}
 --- !u!1 &6955328953780467459
 GameObject:
   m_ObjectHideFlags: 0
@@ -1679,6 +1660,8 @@ GameObject:
   - component: {fileID: 6955328955284871069}
   - component: {fileID: 6955328955276771455}
   - component: {fileID: 6955328955276818113}
+  - component: {fileID: 9183682118832788166}
+  - component: {fileID: 1809339678697340796}
   m_Layer: 11
   m_Name: Icecream Car Upd
   m_TagString: Untagged
@@ -1842,6 +1825,36 @@ MonoBehaviour:
   optionalMeshList:
   - {fileID: 6955328955287031375}
   crashSound: {fileID: 6955328955282084553}
+--- !u!114 &9183682118832788166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6955328955288078551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8267b16683a55d14bb52394bb5f5cc69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerSpawnTransform: {fileID: 6955328954706363171}
+  TransportCamera: {fileID: 6955328953372262404}
+  HpView: {fileID: 743524225241790017}
+  FirstViewCameraTransform: {fileID: 6955328955287804577}
+  vehicleControl: {fileID: 6955328955276771455}
+--- !u!65 &1809339678697340796
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6955328955288078551}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.166354, y: 3.012333, z: 6.4648185}
+  m_Center: {x: 0.21780536, y: 1.9069195, z: 0.1588993}
 --- !u!1 &6955328955288082517
 GameObject:
   m_ObjectHideFlags: 0

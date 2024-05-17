@@ -8,12 +8,13 @@ using DG.Tweening;
 
 public class HpSystem : MonoBehaviour
 {
-    [SerializeField] GameObject RootObject;
+    [SerializeField]public GameObject RootObject;
     [SerializeField] GameObject MeshObject;
     [SerializeField] Image HpBar;
     [SerializeField] private int MaxHp;
     [SerializeField] TextMeshProUGUI HpText;
     [SerializeField] GameObject DestroyAnimation;
+    public bool Citizen;
     [SerializeField]  public int CurrentHP
     {
         get { return _currentHP; }
@@ -54,6 +55,10 @@ public class HpSystem : MonoBehaviour
     private void ObjectDies()
     {
         OnDied?.Invoke();
+        if (RootObject.CompareTag("Citizen"))
+        {
+            return;
+        }
         if(MeshObject != null)
         {
             if (!MeshObject.CompareTag("Player"))

@@ -12,6 +12,10 @@ public class ObjectInteraction : MonoBehaviour
         {
             CanvasManager.instance.ShowObjectInteructInstruction(true);
             _isPlayerNear = true;
+            CanvasManager.instance.InteracteButton.onClick.RemoveAllListeners();
+            CanvasManager.instance.InteracteButton.onClick.AddListener(delegate { ActivateObject(); });
+            CanvasManager.instance.InteracteButton.gameObject.SetActive(true);
+
         }
     }
     //private void OnTriggerStay(Collider other)
@@ -41,12 +45,14 @@ public class ObjectInteraction : MonoBehaviour
         {
             CanvasManager.instance.ShowObjectInteructInstruction(false);
             _isPlayerNear = false;
+            CanvasManager.instance.InteracteButton.onClick.RemoveAllListeners();
+            CanvasManager.instance.InteracteButton.gameObject.SetActive(false);
         }
     }
 
     private void Update()
     {
-        if(_isPlayerNear == false)
+        if (_isPlayerNear == false)
         {
             return;
         }
@@ -69,15 +75,31 @@ public class ObjectInteraction : MonoBehaviour
     }
     private void OnDestroy()
     {
-        if(CanvasManager.instance !=null)
-        CanvasManager.instance.ShowObjectInteructInstruction(false);
+        if (CanvasManager.instance != null)
+        {
+            CanvasManager.instance.ShowObjectInteructInstruction(false);
+            CanvasManager.instance.InteracteButton.gameObject.SetActive(false);
+        }
+
     }
     protected virtual void ActivateObject()
     {
-
+        if (_objectActivated == true)
+        {
+            return;
+        }
+        CanvasManager.instance.InteracteButton.onClick.RemoveAllListeners();
+        CanvasManager.instance.InteracteButton.onClick.AddListener(delegate { DeactivateObject(); });
+        _objectActivated = true;
     }
     protected virtual void DeactivateObject()
     {
-
+        if (_objectActivated == false)
+        {
+            return;
+        }
+        CanvasManager.instance.InteracteButton.onClick.RemoveAllListeners();
+        CanvasManager.instance.InteracteButton.onClick.AddListener(delegate { ActivateObject(); });
+        _objectActivated = false;
     }
 }

@@ -38,7 +38,7 @@ namespace alelavoie
         [Tooltip("Helicopter's drag coeficient (wind resistance). Will affect top speed")]
         public float HelicopterDragCoefficient = 0.4f;
 
-        [Range(0f, 1f)]
+        [Range(0f, 5f)]
         [Tooltip("Drag coefficient applied under the rotor. Will push the heli up if the wind hits under the rotor")]
         public float RotorDragCoefficientUnder = 0.4f;
 
@@ -51,14 +51,14 @@ namespace alelavoie
             "angle is smaller than the specified value.")]
         public float MaxLiftConservationAngle = 20f;
 
-        [Range(0f, 1)]
+        [Range(0f, 20f)]
         [Tooltip("Torque strength applied when tilting forward or backward.")]
         public float PitchSensitivity = 0.4f;
 
-        [Range(0f, 1)]
+        [Range(0f, 20f)]
         [Tooltip("Torque strength applied when tilting sideways.")]
         public float RollSensitivity = 0.4f;
-        [Range(0f, 1)]
+        [Range(0f, 20f)]
         [Tooltip("Torque strength applied when rotating.")]
         public float YawSensitivity = 0.4f;
 

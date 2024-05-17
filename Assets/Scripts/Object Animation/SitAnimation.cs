@@ -7,6 +7,7 @@ public class SitAnimation : ObjectInteraction
     [SerializeField] Transform SitTransform;
     protected override void ActivateObject()
     {
+        base.ActivateObject();
         Player.instance.motor.SetPositionAndRotation(SitTransform.position, SitTransform.rotation);
         Player.instance.motor.enabled = false;
         Player.instance.SwitchPlayerState(Player.PlayerState.Sitting);
@@ -14,6 +15,7 @@ public class SitAnimation : ObjectInteraction
     }
     protected override void DeactivateObject()
     {
+        base.DeactivateObject();
         Player.instance.animator.SetBool("Sitting", false);
         Player.instance.motor.enabled = true;
         Player.instance.SwitchPlayerState(Player.PlayerState.Idle);
