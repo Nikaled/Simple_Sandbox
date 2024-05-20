@@ -142,6 +142,10 @@ namespace HeneGames.Airplane
         [Tooltip("How far must the plane be from the runway before it can be controlled again")]
         [SerializeField] private float takeoffLenght = 30f;
 
+        public void MyInitializeButtons()
+        {
+
+        }
         private void Start()
         {
             //Setup speeds
@@ -381,7 +385,11 @@ namespace HeneGames.Airplane
             currentSpeed = Mathf.Lerp(currentSpeed, 0f, Time.deltaTime);
 
             //Set local rotation to zero
-            transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(0f, transform.eulerAngles.y, 0f), 2f * Time.deltaTime);
+            if(transform.rotation != Quaternion.Euler(0f, transform.eulerAngles.y, 0f))
+            {
+            //transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(0f, transform.eulerAngles.y, 0f), 2f * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0f, transform.eulerAngles.y, 0f), 2f * Time.deltaTime);
+            }
         }
 
         #endregion
@@ -677,6 +685,22 @@ namespace HeneGames.Airplane
 
             //Turbo
             inputTurbo = Input.GetKey(KeyCode.LeftShift);
+        }
+        public void RollLeft()
+        {
+            inputYawLeft = true;
+        }
+        public void RollRight()
+        {
+            inputYawRight = true;
+        }
+        public void GoSide(float value)
+        {
+            inputH = value;
+        }
+        public void GoUpAndDown(float value)
+        {
+            inputV = value;
         }
 
         #endregion

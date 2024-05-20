@@ -2065,6 +2065,7 @@ MonoBehaviour:
   animator: {fileID: 4754219774940777849}
   CurrentDestination: {fileID: 0}
   hpSystem: {fileID: 6653101888324985075}
+  DieAnimationTime: 2
 --- !u!195 &4754219774948112404
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2540,6 +2541,10 @@ PrefabInstance:
     - target: {fileID: 2138912237128217873, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_Name
       value: Hp System
+      objectReference: {fileID: 0}
+    - target: {fileID: 2138912237128217903, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
+      propertyPath: Citizen
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217903, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: MeshObject

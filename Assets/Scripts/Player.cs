@@ -67,6 +67,19 @@ public class Player : MonoBehaviour
     {
         instance = this;
     }
+    private void Start()
+    {
+        if (Geekplay.Instance.mobile)
+        {
+            examplePlayer.Mobile = true;
+            examplePlayer.PC = false;
+        }
+        else
+        {
+            examplePlayer.Mobile = false;
+            examplePlayer.PC = true;
+        }
+    }
     public void PlayerSetActive(bool Is)
     {
         PlayerParent.SetActive(Is);

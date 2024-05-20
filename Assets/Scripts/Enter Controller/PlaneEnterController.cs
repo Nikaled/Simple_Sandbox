@@ -7,7 +7,9 @@ public class PlaneEnterController : EnterController
 {
     [SerializeField] private Transform _rotorsTransform;
     [SerializeField] SimpleAirPlaneController _planeController;
-    float startTime;
+    public bool IsStartFlying;
+    public float MobileHoldButtonTime;
+     float startTime;
     float timeToUp = 1.5f;
     protected override void ActivateTransport()
     {
@@ -29,12 +31,61 @@ public class PlaneEnterController : EnterController
     protected override void Update()
     {
         base.Update();
+        if(Geekplay.Instance.mobile == false)
+        {
+            PCPlaneInput();
+        }
+        else
+        {
+            MobilePlaneInput();
+        }
+      
+    }
+    private void  MobilePlaneInput()
+    {
+        if (IsPlayerIn)
+        {
+            if (_planeController.airplaneState == SimpleAirPlaneController.AirplaneState.Landing)
+            {
+                if (PlaneUpButton.instance.isPressed)
+                {
+                    _planeController.airplaneState = SimpleAirPlaneController.AirplaneState.Takeoff;
+                }
+            }
+            if (_planeController.airplaneState != SimpleAirPlaneController.AirplaneState.Flying)
+            {
+                if (PlaneUpButton.instance.isPressedThisFrame)
+                {
+                    startTime = Time.time;
+                }
+                if (PlaneUpButton.instance.isPressed && Time.time - startTime > timeToUp)
+                {
+                    _planeController.airplaneState = SimpleAirPlaneController.AirplaneState.Flying;
+                    _planeController.UpThePlaneFromGround();
+                    Debug.Log((Time.time - startTime).ToString("00:00.00"));
+                }
+
+            }
+            if (PlaneUpButton.instance.isPressed && _planeController.airplaneState == SimpleAirPlaneController.AirplaneState.Flying)
+            {
+                _planeController.UpThePlane();
+            }
+            if (_planeController.airplaneState != SimpleAirPlaneController.AirplaneState.Landing)
+            {
+                if (_rotorsTransform != null)
+                    _rotorsTransform.Rotate(Vector3.forward * _planeController.currentSpeed);
+            }
+        }
+    }
+    private void PCPlaneInput()
+    {
         if (IsPlayerIn)
         {
             if (_planeController.airplaneState == SimpleAirPlaneController.AirplaneState.Landing)
             {
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
+                    IsStartFlying = true;
                     _planeController.airplaneState = SimpleAirPlaneController.AirplaneState.Takeoff;
                 }
             }
@@ -58,9 +109,10 @@ public class PlaneEnterController : EnterController
             }
             if (_planeController.airplaneState != SimpleAirPlaneController.AirplaneState.Landing)
             {
-                if(_rotorsTransform !=null)
-                _rotorsTransform.Rotate(Vector3.forward * _planeController.currentSpeed);
+                if (_rotorsTransform != null)
+                    _rotorsTransform.Rotate(Vector3.forward * _planeController.currentSpeed);
             }
         }
     }
+
 }

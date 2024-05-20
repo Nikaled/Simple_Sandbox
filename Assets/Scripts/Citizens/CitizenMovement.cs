@@ -13,6 +13,7 @@ public class CitizenMovement : MonoBehaviour
     private NavMeshChecker checker;
     private bool IsDying;
     [SerializeField] HpSystem hpSystem;
+    public float DieAnimationTime = 2f;
     private void Start()
     {
         checker = Instantiate(CitizenNavMeshManager.instance.Checker, gameObject.transform.position, Quaternion.identity);
@@ -48,7 +49,7 @@ public class CitizenMovement : MonoBehaviour
     private IEnumerator WaitForDyingAnimation()
     {
         hpSystem.enabled = false;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(DieAnimationTime);
         Destroy(hpSystem.RootObject);
     }
     public void FindNewDestination()

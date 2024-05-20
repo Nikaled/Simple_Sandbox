@@ -1229,7 +1229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSpeed: 0
-  airplaneState: 2
+  airplaneState: 1
   trailThickness: 0.045
   wingTrailEffects:
   - {fileID: 8514294856983235724}
@@ -1681,6 +1681,8 @@ MonoBehaviour:
   HpView: {fileID: 2982017127678243230}
   _rotorsTransform: {fileID: 0}
   _planeController: {fileID: 780294564409667848}
+  IsStartFlying: 0
+  MobileHoldButtonTime: 0
 --- !u!1 &8398980633488026466
 GameObject:
   m_ObjectHideFlags: 0
@@ -2031,11 +2033,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 872882975568434130, guid: a19a552538ae4914ea15c6422412b965, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.46
+      value: 3.09
       objectReference: {fileID: 0}
     - target: {fileID: 872882975568434130, guid: a19a552538ae4914ea15c6422412b965, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.56
+      value: -1.89
       objectReference: {fileID: 0}
     - target: {fileID: 872882975568434130, guid: a19a552538ae4914ea15c6422412b965, type: 3}
       propertyPath: m_LocalRotation.w

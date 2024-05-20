@@ -10,9 +10,40 @@ public class BuildingCell : MonoBehaviour
     public string ObjectName = "------";
     public TextMeshProUGUI ObjectNameText; 
     public RawImage ObjectScreen;
-
+    public int CoinPrice;
+    public TextMeshProUGUI PriceText;
+    private void Start()
+    {
+        InitializeButtons();
+        if(CoinPrice > 0)
+        {
+        PriceText.text = CoinPrice.ToString();
+        }
+        else
+        {
+            PriceText.gameObject.SetActive(false);
+        }
+        
+    }
+    private void InitializeButtons()
+    {
+        if(gameObject.GetComponent<Button>() != null)
+        {
+            gameObject.GetComponent<Button>().onClick.AddListener(delegate { SendPrefabToManager(); });
+        }
+    }
     public void SendPrefabToManager()
     {
-        BuildingManager.instance.SetBuildingObject(objectPrefab);
+        if(Geekplay.Instance.PlayerData.Coins >= CoinPrice)
+        {
+            BuildingManager.instance.ActivateBuildingButton(false);
+            CanvasManager.instance.ShowBuildingMenu(false);
+            Geekplay.Instance.PlayerData.Coins -= CoinPrice;
+            BuildingManager.instance.SetBuildingObject(objectPrefab);
+        }
+        else
+        {
+            CanvasManager.instance.ShowInAppShop(true);
+        }
     }
 }

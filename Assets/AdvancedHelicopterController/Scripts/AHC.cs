@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using System;
 using UnityEditor;
 using static UnityEngine.InputSystem.InputAction;
+using UnityEngine.UI;
 
 namespace alelavoie
 {
@@ -134,6 +135,47 @@ namespace alelavoie
             InitAudioSource();  
             
         }
+        public void MyInitializeButtons()
+        {
+            HelicopterButtons.instance.GoForward.GetComponent<HelicopterButton>().TranslatingFloat = -30f;
+            HelicopterButtons.instance.GoForward.GetComponent<HelicopterButton>().ActionOnHold += OnPitchMobile;
+
+            HelicopterButtons.instance.GoBack.GetComponent<HelicopterButton>().TranslatingFloat = 30f;
+            HelicopterButtons.instance.GoBack.GetComponent<HelicopterButton>().ActionOnHold += OnPitchMobile;
+
+            HelicopterButtons.instance.UpEngine.GetComponent<HelicopterButton>().TranslatingFloat = 1f;
+            HelicopterButtons.instance.UpEngine.GetComponent<HelicopterButton>().ActionOnHold += OnCollectiveMobile;
+
+
+            HelicopterButtons.instance.DownEngine.GetComponent<HelicopterButton>().TranslatingFloat = -1f;
+            HelicopterButtons.instance.DownEngine.GetComponent<HelicopterButton>().ActionOnHold += OnCollectiveMobile;
+
+            HelicopterButtons.instance.GoLeft.GetComponent<HelicopterButton>().TranslatingFloat = -4f;
+            HelicopterButtons.instance.GoLeft.GetComponent<HelicopterButton>().ActionOnHold += OnYawMobile;
+
+            HelicopterButtons.instance.GoRight.GetComponent<HelicopterButton>().TranslatingFloat = 4f;
+            HelicopterButtons.instance.GoRight.GetComponent<HelicopterButton>().ActionOnHold += OnYawMobile;
+
+            HelicopterButtons.instance.RollLeft.GetComponent<HelicopterButton>().TranslatingFloat = -20f;
+            HelicopterButtons.instance.RollLeft.GetComponent<HelicopterButton>().ActionOnHold += OnRollMobile;
+
+            HelicopterButtons.instance.RollRight.GetComponent<HelicopterButton>().TranslatingFloat = 20f;
+            HelicopterButtons.instance.RollRight.GetComponent<HelicopterButton>().ActionOnHold += OnRollMobile;
+
+        }
+        public void MyClearButtons()
+        {
+            HelicopterButtons.instance.GoForward.GetComponent<HelicopterButton>().ActionOnHold -= OnPitchMobile;
+            HelicopterButtons.instance.GoBack.GetComponent<HelicopterButton>().ActionOnHold -= OnPitchMobile;
+            HelicopterButtons.instance.UpEngine.GetComponent<HelicopterButton>().ActionOnHold -= OnCollectiveMobile;
+            HelicopterButtons.instance.DownEngine.GetComponent<HelicopterButton>().ActionOnHold -= OnCollectiveMobile;
+            HelicopterButtons.instance.GoLeft.GetComponent<HelicopterButton>().ActionOnHold -= OnYawMobile;
+            HelicopterButtons.instance.GoRight.GetComponent<HelicopterButton>().ActionOnHold -= OnYawMobile;
+            HelicopterButtons.instance.RollLeft.GetComponent<HelicopterButton>().ActionOnHold -= OnRollMobile;
+            HelicopterButtons.instance.RollRight.GetComponent<HelicopterButton>().ActionOnHold -= OnRollMobile;
+            OnCollectiveMobile(-1);
+
+        }
         void Start()
         {           
             
@@ -240,13 +282,46 @@ namespace alelavoie
 
         public void OnPitch(InputValue value)
         {
+            //if (Geekplay.Instance.mobile)
+            //{
+            //    return;
+            //}
             _controls.Pitch = value.Get<float>();
             _controls.PitchLastChanged = 0f;
 
         }
+        public void OnPitchMobile(float value)
+        {
+            //if(value  == -1 && _controls.Pitch == 1)
+            //{
+            //    value = 0;
+            //}
+            //if (value == 1 && _controls.Pitch == -1)
+            //{
+            //    value = 0;
+            //}
+            _controls.Pitch = value;
+            _controls.PitchLastChanged = 0f;
+            Debug.Log("Pitching Value" + value);
+        }
+
         public void OnYaw(InputValue value)
         {
             _controls.Yaw = value.Get<float>();
+            _controls.YawLastChanged = 0f;
+
+        }
+        public void OnYawMobile(float value)
+        {
+            //if (value == -1 && _controls.Yaw == 1)
+            //{
+            //    value = 0;
+            //}
+            //if (value == 1 && _controls.Yaw == -1)
+            //{
+            //    value = 0;
+            //}
+            _controls.Yaw = value;
             _controls.YawLastChanged = 0f;
 
         }
@@ -255,9 +330,23 @@ namespace alelavoie
             _controls.Roll = value.Get<float>();
             _controls.RollLastChanged = 0f;
         }
+        public void OnRollMobile(float value)
+        {
+            //if (value == -1 && _controls.Roll == 1)
+            //{
+            //    value = 0;
+            //}
+            //if (value == 1 && _controls.Roll == -1)
+            //{
+            //    value = 0;
+            //}
+            _controls.Roll = value;
+            _controls.RollLastChanged = 0f;
+        }
         public void OnCollective(InputValue value)
         {
             float collectiveValue = value.Get<float>();
+
             if (collectiveValue > 0f) {
                 Engine.Throttling = false;
             }
@@ -265,6 +354,27 @@ namespace alelavoie
                 return;
             _controls.Collective = value.Get<float>();
         }
+        public void OnCollectiveMobile(float value)
+        {
+            //if (value == -1 && _controls.Collective == 1)
+            //{
+            //    value = 0;
+            //}
+            //if (value == 1 && _controls.Collective == -1)
+            //{
+            //    value = 0;
+            //}
+            float collectiveValue = value;
+
+            if (collectiveValue > 0f)
+            {
+                Engine.Throttling = false;
+            }
+            if (!Engine.EngineOn)
+                return;
+            _controls.Collective = value;
+        }
+
 
         public void OnToggleEngine()
         {

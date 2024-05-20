@@ -211,7 +211,7 @@ public class BuildingManager : MonoBehaviour
     }
     public void SwitchPlayerState()
     {
-        if (Player.instance.currentState != Player.PlayerState.DeletingBuilding)
+        if (Player.instance.currentState != Player.PlayerState.DeletingBuilding || Player.instance.currentState != Player.PlayerState.Building)
         {
             player.SwitchPlayerState(Player.PlayerState.DeletingBuilding);
         }
