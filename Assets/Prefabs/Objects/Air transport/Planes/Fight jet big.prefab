@@ -1228,6 +1228,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d236260ee0d659a4383b8680de7ec2ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ColliderLayerMask:
+    serializedVersion: 2
+    m_Bits: 1281
   currentSpeed: 0
   airplaneState: 1
   trailThickness: 0.045
@@ -1693,7 +1696,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1616729202161356311}
   - component: {fileID: 1345991473196921457}
-  m_Layer: 0
+  - component: {fileID: 4279244830323471895}
+  m_Layer: 2
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1726,8 +1730,24 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.68722034, y: 1, z: 2.8640287}
-  m_Center: {x: -0.15639006, y: 0, z: 0.9320146}
+  m_Size: {x: 0.68722034, y: 1.962715, z: 9.214643}
+  m_Center: {x: -0.15639004, y: 0.48135725, z: -2.2432926}
+--- !u!54 &4279244830323471895
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8398980633488026466}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &8514294856066003221
 GameObject:
   m_ObjectHideFlags: 0

@@ -35,6 +35,18 @@ public class SaverBuildingMenu : MonoBehaviour
         }
     }
 
+    public void ClearSave()
+    {
+        for (int i = 0; i < BuildingMenuDataList.Count; i++)
+        {
+            for (int j = 0; j < BuildingMenuDataList[i].Count; j++)
+            {
+                BuildingMenuDataList[i][j] = false;
+            }
+        }
+        Geekplay.Instance.PlayerData.IsFirstPlay = true;
+        Geekplay.Instance.Save();
+    }
     public void SaveItemsState(List<bool> contentState, BuildingContentManager ContentManager)
     {
         Geekplay.Instance.PlayerData.IsFirstPlay = false;
@@ -61,6 +73,10 @@ public class SaverBuildingMenu : MonoBehaviour
             List<bool> States = BuildingMenuDataList[i];
             for (int j = 0; j < ContentManagers[i].CellsInGrid.Length; j++)
             {
+                if(j > States.Count-1)
+                {
+                    return;
+                }
                 ContentManagers[i].CellsInGrid[j].IsOpened = States[j];
                 ContentManagers[i].CellsInGrid[j].CheckPriceVisible();
             }

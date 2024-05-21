@@ -31,6 +31,7 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] GameObject LeftButtonsZone;
     [SerializeField] GameObject RightButtonsZone;
     [SerializeField] GameObject HelicopterMobileInstruction;
+    [SerializeField] GameObject PlaneMobileInstruction;
     [SerializeField] public Button DoButton;
     [SerializeField] public Button InteracteButton;
     [Header("Rotating Mode")]
@@ -66,6 +67,11 @@ public class CanvasManager : MonoBehaviour
     public void ShowHelicopterMobileInstruction(bool Is)
     {
         HelicopterMobileInstruction.SetActive(Is);
+        ShowMobileIdleButtons(!Is);
+    }
+    public void ShowPlaneMobileInstruction(bool Is)
+    {
+        PlaneMobileInstruction.SetActive(Is);
         ShowMobileIdleButtons(!Is);
     }
     #endregion

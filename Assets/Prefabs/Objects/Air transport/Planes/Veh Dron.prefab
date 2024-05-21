@@ -226,6 +226,8 @@ MonoBehaviour:
   HpView: {fileID: 2931573398936530219}
   _rotorsTransform: {fileID: 1357953696891027690}
   _planeController: {fileID: 7553215280742273697}
+  IsStartFlying: 0
+  MobileHoldButtonTime: 0
 --- !u!1 &1357953696512290567
 GameObject:
   m_ObjectHideFlags: 0
@@ -1022,7 +1024,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1623948850996447435}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.55, z: -0.25}
+  m_LocalPosition: {x: 0, y: 0.528, z: -0.25}
   m_LocalScale: {x: 6.7579107, y: 0.62366, z: 1.333}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1040,8 +1042,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.68722034, y: 1, z: 2.8640287}
-  m_Center: {x: -0.15639006, y: 0, z: 0.9320146}
+  m_Size: {x: 0.22000054, y: 1, z: 4.3954287}
+  m_Center: {x: 0.07721985, y: 0, z: 0.16631494}
 --- !u!1 &2463760933712205707
 GameObject:
   m_ObjectHideFlags: 0
@@ -1176,6 +1178,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d236260ee0d659a4383b8680de7ec2ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ColliderLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
   currentSpeed: 0
   airplaneState: 2
   trailThickness: 0.045
@@ -2393,7 +2398,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6111752372188371293}
   - component: {fileID: 1948807977644196906}
-  - component: {fileID: 1593457278950077991}
   m_Layer: 0
   m_Name: Veh Dron
   m_TagString: Untagged
@@ -2420,18 +2424,6 @@ Transform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1948807977644196906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7827940310086566848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c6ed66f0c5f83146bb830a8911a1206, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1593457278950077991
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

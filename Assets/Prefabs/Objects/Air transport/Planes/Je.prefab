@@ -43,8 +43,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.68722034, y: 1, z: 12.095761}
-  m_Center: {x: -0.15639006, y: 0, z: 2.5560534}
+  m_Size: {x: 0.68722034, y: 3.2390752, z: 14.285538}
+  m_Center: {x: -0.15639006, y: 1.119538, z: 1.4611651}
 --- !u!1 &227343956197188624
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,6 +388,8 @@ MonoBehaviour:
   HpView: {fileID: 3955532039077256079}
   _rotorsTransform: {fileID: 0}
   _planeController: {fileID: 9213032048083769750}
+  IsStartFlying: 0
+  MobileHoldButtonTime: 0
 --- !u!1 &419187861744344309
 GameObject:
   m_ObjectHideFlags: 0
@@ -745,6 +747,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d236260ee0d659a4383b8680de7ec2ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ColliderLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
   currentSpeed: 0
   airplaneState: 2
   trailThickness: 0.045
@@ -2015,7 +2020,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3742326419806190208}
   - component: {fileID: -1656722946579116253}
-  - component: {fileID: 1662219645007465623}
   m_Layer: 0
   m_Name: Je
   m_TagString: Untagged
@@ -2042,18 +2046,6 @@ Transform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-1656722946579116253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8038275816824921252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c6ed66f0c5f83146bb830a8911a1206, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1662219645007465623
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

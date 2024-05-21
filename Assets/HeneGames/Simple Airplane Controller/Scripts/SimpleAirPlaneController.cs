@@ -17,6 +17,7 @@ namespace HeneGames.Airplane
 
         private List<SimpleAirPlaneCollider> airPlaneColliders = new List<SimpleAirPlaneCollider>();
 
+        [SerializeField] private LayerMask ColliderLayerMask;
         private float maxSpeed = 0.6f;
         private float speedMultiplier;
         private float currentYawSpeed;
@@ -144,6 +145,47 @@ namespace HeneGames.Airplane
 
         public void MyInitializeButtons()
         {
+            PlaneButtons.instance.GoForward.GetComponent<HelicopterButton>().TranslatingFloat = -1;
+            PlaneButtons.instance.GoForward.GetComponent<HelicopterButton>().ActionOnHold += GoUpAndDown;
+
+            PlaneButtons.instance.GoBack.GetComponent<HelicopterButton>().TranslatingFloat = 1;
+            PlaneButtons.instance.GoBack.GetComponent<HelicopterButton>().ActionOnHold += GoUpAndDown;
+
+            //HelicopterButtons.instance.UpEngine.GetComponent<HelicopterButton>().TranslatingFloat = 1f;
+            //HelicopterButtons.instance.UpEngine.GetComponent<HelicopterButton>().ActionOnHold += OnCollectiveMobile;
+
+
+            PlaneButtons.instance.DownEngine.GetComponent<HelicopterButton>().TranslatingFloat = 1f;
+            PlaneButtons.instance.DownEngine.GetComponent<HelicopterButton>().ActionOnHold += DownThePlane;
+
+            PlaneButtons.instance.GoLeft.GetComponent<HelicopterButton>().TranslatingFloat = -1f;
+            PlaneButtons.instance.GoLeft.GetComponent<HelicopterButton>().ActionOnHold += RollLeft;
+
+            PlaneButtons.instance.GoRight.GetComponent<HelicopterButton>().TranslatingFloat = 1f;
+            PlaneButtons.instance.GoRight.GetComponent<HelicopterButton>().ActionOnHold +=  RollRight;
+
+            PlaneButtons.instance.RollLeft.GetComponent<HelicopterButton>().TranslatingFloat = -0.4f;
+            PlaneButtons.instance.RollLeft.GetComponent<HelicopterButton>().ActionOnHold += GoSide;
+
+            PlaneButtons.instance.RollRight.GetComponent<HelicopterButton>().TranslatingFloat = 0.4f;
+            PlaneButtons.instance.RollRight.GetComponent<HelicopterButton>().ActionOnHold += GoSide;
+        }
+        public void MyClearButtons()
+        {
+            PlaneButtons.instance.GoForward.GetComponent<HelicopterButton>().ActionOnHold -= GoUpAndDown;
+
+            PlaneButtons.instance.GoBack.GetComponent<HelicopterButton>().ActionOnHold -= GoUpAndDown;
+
+            PlaneButtons.instance.GoLeft.GetComponent<HelicopterButton>().ActionOnHold -= GoSide;
+
+            PlaneButtons.instance.GoRight.GetComponent<HelicopterButton>().ActionOnHold -= GoSide;
+
+            PlaneButtons.instance.RollLeft.GetComponent<HelicopterButton>().ActionOnHold -= RollLeft;
+
+            PlaneButtons.instance.RollRight.GetComponent<HelicopterButton>().ActionOnHold -= RollRight;
+
+            HelicopterButtons.instance.DownEngine.GetComponent<HelicopterButton>().ActionOnHold -= DownThePlane;
+
 
         }
         private void Start()
@@ -511,6 +553,7 @@ namespace HeneGames.Airplane
 
                 //Add airplane collider to it and put it on the list
                 SimpleAirPlaneCollider _airplaneCollider = _currentObject.AddComponent<SimpleAirPlaneCollider>();
+                _airplaneCollider.ColliderLayerMask = ColliderLayerMask;
                 airPlaneColliders.Add(_airplaneCollider);
 
                 //Add airplane conroller reference to collider
@@ -521,7 +564,15 @@ namespace HeneGames.Airplane
                 _rb.useGravity = false;
                 _rb.isKinematic = true;
                 _rb.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
+
             }
+
+
+
+            // -----------------------------------------------------------
+            colliders[0].enabled = false;
+            colliders[2].enabled = false;
+
         }
 
         private void RotatePropellers(GameObject[] _rotateThese, float _speed)
@@ -676,31 +727,64 @@ namespace HeneGames.Airplane
             //inputYawLeft = Input.GetKey(KeyCode.Q);
             //inputYawRight = Input.GetKey(KeyCode.E);
 
-            inputH = Input.GetAxis("PlaneHorizontal");
-            inputV = Input.GetAxis("Vertical");
+            if(Geekplay.Instance.mobile == false)
+            {
+                inputH = Input.GetAxis("PlaneHorizontal");
+                inputV = Input.GetAxis("Vertical");
 
-            //Yaw axis inputs
-            inputYawLeft = Input.GetKey(KeyCode.A);
-            inputYawRight = Input.GetKey(KeyCode.D);
+                //Yaw axis inputs
+                inputYawLeft = Input.GetKey(KeyCode.A);
+                inputYawRight = Input.GetKey(KeyCode.D);
 
-            //Turbo
-            inputTurbo = Input.GetKey(KeyCode.LeftShift);
+                //Turbo
+                inputTurbo = Input.GetKey(KeyCode.LeftShift);
+            }
+
         }
-        public void RollLeft()
+        public void RollLeft(float value)
         {
+            Debug.Log("Roll left");
+            
             inputYawLeft = true;
+            if (value == 0)
+            {
+            inputYawLeft = false;
+            }
         }
-        public void RollRight()
+        public void RollRight(float value)
         {
+            Debug.Log("Roll right");
             inputYawRight = true;
+
+            if (value == 0)
+            {
+            inputYawRight = false;
+            }
         }
         public void GoSide(float value)
         {
+            Debug.Log("GoSide");
             inputH = value;
         }
         public void GoUpAndDown(float value)
         {
+            Debug.Log("GoUpAndDown");
             inputV = value;
+        }
+        public void DownThePlane(float value)
+        {
+            //rb.AddForce(Vector3.down * currentSpeed * 0.2f * Time.deltaTime*rb.mass*100);
+            //rb.AddForce(Vector3.forward * currentSpeed * 0.2f * Time.deltaTime *rb.mass);
+            ////if (value == 0)
+            ////{
+            ////    rb.isKinematic = true;
+            ////}
+            ///
+            if(airplaneState == AirplaneState.Flying)
+            {
+            transform.Translate(Vector3.forward * currentSpeed * 0.2f * Time.deltaTime);
+            transform.Translate(Vector3.down * currentSpeed * 0.2f * Time.deltaTime);
+            }
         }
 
         #endregion

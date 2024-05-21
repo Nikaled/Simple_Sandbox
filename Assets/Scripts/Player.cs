@@ -206,10 +206,10 @@ public class Player : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (animationPlayer.IsMoving == false && currentState == PlayerState.Idle)
-        {
-            RotatePlayerOnShoot(playerShooting.AimDirection);
-        }
+        //if (animationPlayer.IsMoving == false && currentState == PlayerState.Idle)
+        //{
+        //    RotatePlayerOnShoot(playerShooting.AimDirection);
+        //}
     }
     private void Update()
     {
@@ -265,6 +265,7 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(DeletingModeButton))
             {
                 SwitchPlayerState(Player.PlayerState.Idle);
+                BuildingManager.instance.TurnDeletingCitizenNormalAndClearFields();
                 BuildingManager.instance.TurnDeletingObjectNormalAndClearFields();
             }
         }

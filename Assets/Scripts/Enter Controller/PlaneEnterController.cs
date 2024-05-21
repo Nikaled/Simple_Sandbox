@@ -7,6 +7,7 @@ public class PlaneEnterController : EnterController
 {
     [SerializeField] private Transform _rotorsTransform;
     [SerializeField] SimpleAirPlaneController _planeController;
+
     public bool IsStartFlying;
     public float MobileHoldButtonTime;
      float startTime;
@@ -18,10 +19,23 @@ public class PlaneEnterController : EnterController
         _planeController.airplaneState = SimpleAirPlaneController.AirplaneState.Landing;
         //_planeController.GetComponent<Rigidbody>().isKinematic = true;
         _planeController.GetComponent<Rigidbody>().useGravity = false;
+        if (Geekplay.Instance.mobile)
+        {
+            CanvasManager.instance.ShowPlaneMobileInstruction(true);
+            _planeController.MyInitializeButtons();
+            PlaneButtons.instance.GetOutButton.onClick.RemoveAllListeners();
+            PlaneButtons.instance.GetOutButton.onClick.AddListener(delegate { GetOutTransport(); });
+        }
     }
 
     protected override void DeactivateTransport()
     {
+        if (Geekplay.Instance.mobile)
+        {
+            CanvasManager.instance.ShowPlaneMobileInstruction(false);
+            _planeController.MyClearButtons();
+            PlaneButtons.instance.GetOutButton.onClick.RemoveAllListeners();
+        }
         CanvasManager.instance.ShowPlaneInstruction(false);
         _planeController.airplaneState = SimpleAirPlaneController.AirplaneState.Landing;
         _planeController.GetComponent<Rigidbody>().isKinematic = false;
@@ -43,6 +57,10 @@ public class PlaneEnterController : EnterController
     }
     private void  MobilePlaneInput()
     {
+        if(PlaneUpButton.instance == null)
+        {
+            return;
+        }
         if (IsPlayerIn)
         {
             if (_planeController.airplaneState == SimpleAirPlaneController.AirplaneState.Landing)

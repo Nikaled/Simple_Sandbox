@@ -157,9 +157,17 @@ public class BuildingManager : MonoBehaviour
     }
     public void TurnDeletingObjectNormalAndClearFields()
     {
+      
         if (deletingObject != null && CashedMaterialsOnDeleting != null)
         {
+            if (deletingObject.CompareTag("Citizen"))
+            {
+                TurnDeletingCitizenNormalAndClearFields();
+            }
+            else
+            {
             TurnNormalChosenObject(deletingObject.GetComponentsInChildren<MeshRenderer>(), CashedMaterialsOnDeleting);
+            }
         }
         CashedMaterialsOnDeleting = null;
         deletingObject = null;
@@ -183,11 +191,10 @@ public class BuildingManager : MonoBehaviour
         DoButton.onClick.RemoveAllListeners();
         if (Is)
         {
-        DoButton.onClick.AddListener(delegate { DeleteObject(deletingObject); });
+            DoButton.onClick.AddListener(delegate { DeleteObject(deletingObject); });
         }
         IsDeletingBuilding = Is;
-        BuildingMenu.SetActive(false);
-        if(Geekplay.Instance.mobile == false)
+        if (Geekplay.Instance.mobile == false)
         {
             player.examplePlayer.LockCursor(true);
         }
@@ -195,8 +202,18 @@ public class BuildingManager : MonoBehaviour
         {
             player.examplePlayer.LockCursor(false);
         }
-        TurnDeletingObjectNormalAndClearFields();
-        TurnDeletingCitizenNormalAndClearFields();
+        if (deletingObject != null)
+        {
+            if (deletingObject.CompareTag("Citizen"))
+            {
+                Debug.Log("Делаю жителя из красного нормальным");
+                TurnDeletingCitizenNormalAndClearFields();
+            }
+            else
+            {
+                TurnDeletingObjectNormalAndClearFields();
+            }
+        }
         CanvasManager.instance.ShowDeletingModeInstruction(Is);
     }
     public void SwitchPlayerStateToRotating()
@@ -243,7 +260,7 @@ public class BuildingManager : MonoBehaviour
     }
     private bool IsItDestructable(GameObject deletingObject)
     {
-        if(deletingObject == null)
+        if (deletingObject == null)
         {
             return false;
         }
@@ -257,9 +274,9 @@ public class BuildingManager : MonoBehaviour
     {
         IsBuildingOpened = Is;
         BuildingMenu.SetActive(IsBuildingOpened);
-        if(Geekplay.Instance.mobile == false)
+        if (Geekplay.Instance.mobile == false)
         {
-        player.examplePlayer.LockCursor(!IsBuildingOpened);
+            player.examplePlayer.LockCursor(!IsBuildingOpened);
         }
         else
         {
@@ -309,6 +326,11 @@ public class BuildingManager : MonoBehaviour
         Destroy(pendingObj);
         Debug.Log("Object placed");
         player.SwitchPlayerState(Player.PlayerState.Idle);
+
+        Geekplay.Instance.PlayerData.BuildCount++;
+        Geekplay.Instance.Leaderboard("Buildings", Geekplay.Instance.PlayerData.BuildCount);
+
+        Geekplay.Instance.Save();
 
     }
     private void DeactivateColliders(Collider[] colliders)
@@ -431,7 +453,7 @@ public class BuildingManager : MonoBehaviour
                     }
                 }
             }
-            if(Geekplay.Instance.mobile == false)
+            if (Geekplay.Instance.mobile == false)
             {
                 if (Input.GetMouseButtonDown(0))
                 {
@@ -466,7 +488,7 @@ public class BuildingManager : MonoBehaviour
 
     private void ActivateRotateChosenObjectMode(bool Is)
     {
-        if(rotatingObject == null)
+        if (rotatingObject == null)
         {
             return;
         }
@@ -536,9 +558,9 @@ public class BuildingManager : MonoBehaviour
 
             }
         }
-        if(Geekplay.Instance.mobile== false)
+        if (Geekplay.Instance.mobile == false)
         {
-        player.examplePlayer.LockCursor(!Is);
+            player.examplePlayer.LockCursor(!Is);
         }
         else
         {

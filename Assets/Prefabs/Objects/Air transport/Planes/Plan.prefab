@@ -89,6 +89,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d236260ee0d659a4383b8680de7ec2ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ColliderLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
   currentSpeed: 0
   airplaneState: 2
   trailThickness: 0.045
@@ -744,8 +747,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.68722034, y: 1, z: 12.095761}
-  m_Center: {x: -0.15639006, y: 0, z: 2.5560534}
+  m_Size: {x: 0.68722034, y: 3.5334687, z: 19.570938}
+  m_Center: {x: -0.15639007, y: 1.266735, z: 2.9709682}
 --- !u!1 &2761425392529014204
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,6 +812,8 @@ MonoBehaviour:
   HpView: {fileID: 1519151164828753941}
   _rotorsTransform: {fileID: 0}
   _planeController: {fileID: 6654225910948133455}
+  IsStartFlying: 0
+  MobileHoldButtonTime: 0
 --- !u!1 &2761425393251303212
 GameObject:
   m_ObjectHideFlags: 0
@@ -2029,7 +2034,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8673612862850026981}
   - component: {fileID: 5258113675367854061}
-  - component: {fileID: -2309386210800519143}
   m_Layer: 0
   m_Name: Plan
   m_TagString: Untagged
@@ -2056,18 +2060,6 @@ Transform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5258113675367854061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8673612862850026982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c6ed66f0c5f83146bb830a8911a1206, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-2309386210800519143
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

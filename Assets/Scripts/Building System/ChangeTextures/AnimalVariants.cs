@@ -34,5 +34,6 @@ public class AnimalVariants : ObjectVariants
                 currentVariantIndex = i;
             }
         }
+        ChangeTextureManager.instance.ChangeVariantText(currentVariantIndex);
     }
 }

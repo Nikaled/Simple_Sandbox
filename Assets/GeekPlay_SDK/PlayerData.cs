@@ -21,6 +21,8 @@ public class PlayerData
 
     public bool IsFirstPlay;
 
+    public int BuildCount;
+    public int DestroyCount;
 
 
 

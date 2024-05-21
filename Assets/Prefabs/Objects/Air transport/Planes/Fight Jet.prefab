@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 242715669074552047}
   - component: {fileID: 2985129075432689394}
-  - component: {fileID: -7201295953753090462}
   m_Layer: 0
   m_Name: Fight Jet
   m_TagString: Untagged
@@ -37,18 +36,6 @@ Transform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2985129075432689394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 237598470567638661}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c6ed66f0c5f83146bb830a8911a1206, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-7201295953753090462
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,6 +110,8 @@ MonoBehaviour:
   HpView: {fileID: 65359175265962792}
   _rotorsTransform: {fileID: 0}
   _planeController: {fileID: 8277621579875125472}
+  IsStartFlying: 0
+  MobileHoldButtonTime: 0
 --- !u!1 &642332554970484099
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,8 +270,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.68722034, y: 1, z: 2.8640287}
-  m_Center: {x: -0.15639006, y: 0, z: 0.9320146}
+  m_Size: {x: 0.68722034, y: 1.8571066, z: 7.895037}
+  m_Center: {x: -0.15639006, y: 0.64395875, z: -1.5834893}
 --- !u!1 &1016959410959103334
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,6 +641,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d236260ee0d659a4383b8680de7ec2ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ColliderLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
   currentSpeed: 0
   airplaneState: 2
   trailThickness: 0.045

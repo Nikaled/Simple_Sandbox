@@ -75,6 +75,10 @@ public class HpSystem : MonoBehaviour
             if(RootObject !=null)
             Destroy(RootObject);
         }
+
+        Geekplay.Instance.PlayerData.DestroyCount++;
+        Geekplay.Instance.Leaderboard("Destroy", Geekplay.Instance.PlayerData.DestroyCount);
+        Geekplay.Instance.Save();
     }
     private void Explosion(GameObject rootObject)
     {

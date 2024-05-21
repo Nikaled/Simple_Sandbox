@@ -3382,6 +3382,14 @@ PrefabInstance:
       value: Leaderboard (2)
       objectReference: {fileID: 0}
     - target: {fileID: 6031854394367820465, guid: 10e28c5b15c8ea94a8d0644c1c3a996d, type: 3}
+      propertyPath: m_text
+      value: "\u041B\u0443\u0447\u0448\u0430\u044F \u043F\u043E\u0434\u0434\u0435\u0440\u0436\u043A\u0430"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6031854394367820465, guid: 10e28c5b15c8ea94a8d0644c1c3a996d, type: 3}
+      propertyPath: m_fontSize
+      value: 49.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6031854394367820465, guid: 10e28c5b15c8ea94a8d0644c1c3a996d, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
@@ -3463,7 +3471,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9000892599051834937, guid: 10e28c5b15c8ea94a8d0644c1c3a996d, type: 3}
       propertyPath: LeaderboardName
-      value: Donate
+      value: Donat
       objectReference: {fileID: 0}
     - target: {fileID: 9139044354732661791, guid: 10e28c5b15c8ea94a8d0644c1c3a996d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -5153,6 +5161,14 @@ PrefabInstance:
     - target: {fileID: 5921780659353401053, guid: 10e28c5b15c8ea94a8d0644c1c3a996d, type: 3}
       propertyPath: m_Name
       value: Leaderboard (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6031854394367820465, guid: 10e28c5b15c8ea94a8d0644c1c3a996d, type: 3}
+      propertyPath: m_text
+      value: "\u0411\u043E\u043B\u044C\u0448\u0435 \u0432\u0441\u0435\u0445 \u0440\u0430\u0437\u0440\u0443\u0448\u0438\u043B"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6031854394367820465, guid: 10e28c5b15c8ea94a8d0644c1c3a996d, type: 3}
+      propertyPath: m_fontSize
+      value: 41.6
       objectReference: {fileID: 0}
     - target: {fileID: 6031854394367820465, guid: 10e28c5b15c8ea94a8d0644c1c3a996d, type: 3}
       propertyPath: m_hasFontAssetChanged
