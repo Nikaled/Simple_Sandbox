@@ -204,8 +204,16 @@ public class Player : MonoBehaviour
         IsFirstView = !IsFirstView;
         GoToNormalCamera();
     }
+    private void FixedUpdate()
+    {
+        if (animationPlayer.IsMoving == false && currentState == PlayerState.Idle)
+        {
+            RotatePlayerOnShoot(playerShooting.AimDirection);
+        }
+    }
     private void Update()
     {
+
         if (currentState == PlayerState.Sitting)
         {
             return;
@@ -298,10 +306,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    public IEnumerator LockPositionOnShoot()
+    public IEnumerator LockPositionOnShoot(float HoldingTime = 1f)
     {
         examplePlayer.MyLockOnShoot = true;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(HoldingTime);
+        //yield return new WaitForSeconds(5f);
         examplePlayer.MyLockOnShoot = false;
     }
 
@@ -409,7 +418,6 @@ public class Player : MonoBehaviour
             {
                 animator.SetTrigger("GunFire");
                 playerShooting.Fire(CurrentWeapon);
-                examplePlayer.MyLockOnShoot = true;
                 motor.SetPosition(transform.position);
             }
         }
@@ -449,7 +457,9 @@ public class Player : MonoBehaviour
         {
             //Quaternion targetRotation = Quaternion.LookRotation(playerShooting.AimDirection);
             //Quaternion OnlyY = new Quaternion(0, targetRotation.y, 0, targetRotation.w);
-            //motor.SetRotation(OnlyY);
+            //motor.RotateCharacter(OnlyY);
+
+            RotatePlayerOnShoot(playerShooting.AimDirection);
             if (Input.GetMouseButtonUp(1))
             {
                 Debug.Log("Stop Aiming");
@@ -475,7 +485,7 @@ public class Player : MonoBehaviour
         {
             normalCamera.Camera.fieldOfView = 30;
         }
-        playerShooting.lineRenderer.enabled = true;
+        //playerShooting.lineRenderer.enabled = true;
 
     }
     private void GoToNormalCamera()
@@ -490,7 +500,7 @@ public class Player : MonoBehaviour
             normalCamera.FollowPointFraming = new Vector2(0, 0);
             normalCamera.Camera.fieldOfView = 40;
         }
-        playerShooting.lineRenderer.enabled = false;
+        //playerShooting.lineRenderer.enabled = false;
 
     }
     private void Fire()

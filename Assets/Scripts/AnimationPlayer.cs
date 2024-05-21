@@ -6,6 +6,7 @@ public class AnimationPlayer : MonoBehaviour
 {
     [SerializeField] private Animator anim;
     [SerializeField] private Player player;
+    public bool IsMoving;
     private void OnEnable()
     {
         player.PistolFire += DoPistolAnimation;
@@ -27,12 +28,14 @@ public class AnimationPlayer : MonoBehaviour
                 float h = Input.GetAxisRaw("Horizontal");
                 float v = Input.GetAxisRaw("Vertical");
 
+                IsMoving = h != 0 || v != 0;
                 anim.SetBool("isRun", h != 0 || v != 0);
             }
             else
             {
                 float h = player.examplePlayer.FixedJoystick.Horizontal;
                 float v = player.examplePlayer.FixedJoystick.Vertical;
+                IsMoving = h != 0 || v != 0;
                 anim.SetBool("isRun", h != 0 || v != 0);
             }
 
@@ -45,7 +48,10 @@ public class AnimationPlayer : MonoBehaviour
     }
     public void JumpAnimation()
     {
+        if(Player.instance.examplePlayer.MyLockOnShoot == false)
+        {
         anim.SetTrigger("jump");
+        }
 
     }
     private void DoPistolAnimation()

@@ -20,7 +20,8 @@ public class PlayerShooting : MonoBehaviour
     float GunTimer;
     float GunShootInterval = 0.05f;
     public static PlayerShooting instance;
-    [SerializeField] public LineRenderer lineRenderer;
+    public IEnumerator HoldingCoroutine;
+    //[SerializeField] public LineRenderer lineRenderer;
 
     private void Start()
     {
@@ -36,22 +37,22 @@ public class PlayerShooting : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit raycastHit, 5000, aimColliderLayerMask))
         {
             CrosshairWorldPosition = raycastHit.point;
-            if (player.CurrentWeapon == Player.WeaponType.Pistol)
-            {
-                lineRenderer.SetPosition(0, PistolProjectileSpawnPoint.position);
-            }
-            if (player.CurrentWeapon == Player.WeaponType.Gun)
-            {
-                lineRenderer.SetPosition(0, GunProjectileSpawnPoint.position);
-            }
-            lineRenderer.SetPosition(1, raycastHit.point);
+            //if (player.CurrentWeapon == Player.WeaponType.Pistol)
+            //{
+            //    lineRenderer.SetPosition(0, PistolProjectileSpawnPoint.position);
+            //}
+            //if (player.CurrentWeapon == Player.WeaponType.Gun)
+            //{
+            //    lineRenderer.SetPosition(0, GunProjectileSpawnPoint.position);
+            //}
+            //lineRenderer.SetPosition(1, raycastHit.point);
         }
         else
         {
             CrosshairWorldPosition = ray.GetPoint(1998);
         }
-        
 
+         AimDirection = (CrosshairWorldPosition - PistolProjectileSpawnPoint.position).normalized;
     }
     public void Fire(Player.WeaponType currentWeapon)
     {
@@ -60,23 +61,26 @@ public class PlayerShooting : MonoBehaviour
             Vector3 aimDirection = (CrosshairWorldPosition - PistolProjectileSpawnPoint.position).normalized;
             player.RotatePlayerOnShoot(aimDirection);
             ShootingProjectile proj = Instantiate(projectile, PistolProjectileSpawnPoint.position, Quaternion.LookRotation(aimDirection, Vector3.up));
-
+            LockPlayerMovement(0.7f);
         }
 
         if (currentWeapon == Player.WeaponType.Gun)
         {
             FireGun();
+            LockPlayerMovement(0.4f);
         }
-        LockPlayerMovement();
+
     }
-    private void LockPlayerMovement()
+    public void LockPlayerMovement(float HoldingTime = 1f)
     {
-        var cor = player.LockPositionOnShoot();
-        if (cor != null)
+        //var cor = player.LockPositionOnShoot(HoldingTime);
+        if (HoldingCoroutine != null)
         {
-            StopCoroutine(cor);
+            StopCoroutine(HoldingCoroutine);
         }
-        StartCoroutine(cor);
+        HoldingCoroutine = null;
+        HoldingCoroutine = player.LockPositionOnShoot(HoldingTime);
+        StartCoroutine(HoldingCoroutine);
     }
     public void FireGun()
     {

@@ -65,8 +65,8 @@ public class Geekplay : MonoBehaviour
     public bool canReward;
 
     //ЗНАЧЕНИЯ ЛИДЕРБОРДА
-    public string[] l;
-    public string[] lN;
+    public List<string> lS;
+    public List<string> lN;
     public int leaderNumber;
     public int leaderNumberN;
     //public LeaderboardInGame leaderboardInGame;
@@ -74,7 +74,7 @@ public class Geekplay : MonoBehaviour
     public float timeToUpdateLeaderboard = 60;
     public string lastLeaderText;
 
-
+    public event Action LeaderboardValuesReady;
     public void RunCoroutine(IEnumerator enumerator)
     {
         StartCoroutine(enumerator);
@@ -126,30 +126,48 @@ public class Geekplay : MonoBehaviour
         cor = AdOff();
         StartCoroutine(cor);
     }
-    //public void GetLeaders(string value)
-    //{
-    //    l[leaderNumber] = value;
+    public void GetLeadersScore(string valueAndName)
+    {
+        string[] parts = valueAndName.Split(',');
+        string value = parts[0];
+        string leaderboardName = parts[1];
 
-    //    if (leaderNumber < 9)
-    //    {
-    //        leaderNumber += 1;
-    //        Utils.GetLeaderboard("score", leaderNumber);
-    //    }
+        lS.Add(value);
 
-    //    leaderboardInGame.SetText();
-    //}
-    //public void GetLeadersName(string value)
-    //{
-    //    lN[leaderNumberN] = value;
+        if (leaderNumber < 9)
+        {
+            leaderNumber += 1;
+            Utils.GetLeaderboard("score", leaderNumber, leaderboardName);
+        }
+        else if (leaderNumber == 9)
+        {
+            EndGetLeaderboardsValue();
+        }
+    }
 
-    //    if (leaderNumberN < 9)
-    //    {
-    //        leaderNumberN += 1;
-    //        Utils.GetLeaderboard("name", leaderNumberN);
-    //    }
+    public void GetLeadersName(string valueAndName)
+    {
+        string[] parts = valueAndName.Split(',');
+        string value = parts[0];
+        string leaderboardName = parts[1];
 
-    //    leaderboardInGame.SetText();
-    //}
+        lN.Add(value);
+
+        if (leaderNumberN < 9)
+        {
+            leaderNumberN += 1;
+            Utils.GetLeaderboard("name", leaderNumberN, leaderboardName);
+        }
+    }
+    public void EndGetLeaderboardsValue()
+    {
+        LeaderboardValuesReady?.Invoke();
+        lN.Clear();
+        lS.Clear();
+        //if (leaderboard == null) Debug.Log("Leaderboard is null");
+
+        //leaderboard.SetLeadersView(lN.ToArray(), lS.ToArray(), lS.Count);
+    }
     IEnumerator AdOff() //ТАЙМЕР С ВЫКЛЮЧЕНИЕМ РЕКЛАМЫ
     {
         canAd = false;

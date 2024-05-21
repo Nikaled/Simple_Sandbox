@@ -23,6 +23,7 @@ public class AnimalVariants : ObjectVariants
             AnimalSkins[i].SetActive(false);
         }
         AnimalSkins[currentVariantIndex].SetActive(true);
+        ChangeTextureManager.instance.ChangeVariantText(currentVariantIndex);
     }
     public override void FindTextureIndex()
     {

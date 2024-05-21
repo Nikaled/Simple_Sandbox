@@ -149,18 +149,22 @@ var plugin = {
   		  })
 	  },
 
-    GetLeaderboard: function (type, number) {
+    GetLeaderboard: function (type, number, name) {
       type = UTF8ToString(type);
+      console.log(type);
+
+      name = UTF8ToString(name);
       console.log(type);
 
           ysdk.getLeaderboards()
       .then(lb => {
         // Получение 10 топов
-        lb.getLeaderboardEntries('Points', { quantityTop: 10 })
+        lb.getLeaderboardEntries(name, { quantityTop: 10 })
           .then(res => {
             console.log(res);
             if (res.entries.length <= number)
             {
+              myGameInstance.SendMessage('Init', 'EndGetLeaderboardsValue');
               console.log("NULL");
               return;
             }
@@ -168,13 +172,16 @@ var plugin = {
             {
               console.log("SCORE");              
               console.log(String(res.entries[number].score));
-              myGameInstance.SendMessage('Init', 'GetLeaders', String(res.entries[number].score));
+              var message = String(res.entries[number].score) + "," + String(name);
+              myGameInstance.SendMessage('Init', 'GetLeadersScore', message);
               //return String(res.entries[number].score);
             }
             else if (type == "name")
             {
               console.log("NAME");
-              myGameInstance.SendMessage('Init', 'GetLeadersName', String(res.entries[number].player.publicName));
+              console.log(String(res.entries[number].player.publicName))
+              var message = String(res.entries[number].player.publicName) + "," + String(name);
+              myGameInstance.SendMessage('Init', 'GetLeadersName', message);
               //return UTF8ToString(res.entries[number].player.publicName);
             }
           });

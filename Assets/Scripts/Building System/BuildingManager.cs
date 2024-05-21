@@ -189,13 +189,14 @@ public class BuildingManager : MonoBehaviour
         BuildingMenu.SetActive(false);
         if(Geekplay.Instance.mobile == false)
         {
-            player.examplePlayer.LockCursor(IsDeletingBuilding);
+            player.examplePlayer.LockCursor(true);
         }
         else
         {
             player.examplePlayer.LockCursor(false);
         }
         TurnDeletingObjectNormalAndClearFields();
+        TurnDeletingCitizenNormalAndClearFields();
         CanvasManager.instance.ShowDeletingModeInstruction(Is);
     }
     public void SwitchPlayerStateToRotating()

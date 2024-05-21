@@ -12,20 +12,26 @@ public class HelicopterEnterController : EnterController
         CanvasManager.instance.ShowHelicopterInstruction(true);
         CanvasManager.instance.ShowHelicopterMobileInstruction(true);
         _helicopterController.enabled = true;
+        if (Geekplay.Instance.mobile)
+        {
         _helicopterController.MyInitializeButtons();
         HelicopterButtons.instance.GetOutButton.onClick.AddListener(delegate { GetOutTransport(); });
+        }
     }
     protected override void GetOutTransport()
     {
         base.GetOutTransport();
-        HelicopterButtons.instance.GetOutButton.onClick.RemoveAllListeners();
 
     }
     protected override void DeactivateTransport()
     {
         CanvasManager.instance.ShowHelicopterInstruction(false);
         CanvasManager.instance.ShowHelicopterMobileInstruction(false);
-        _helicopterController.MyClearButtons();
+        if (Geekplay.Instance.mobile)
+        {
+             _helicopterController.MyClearButtons();
+            HelicopterButtons.instance.GetOutButton.onClick.RemoveAllListeners();
+        }
         _helicopterController.enabled = false;
     }
 }

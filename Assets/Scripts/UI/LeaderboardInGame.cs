@@ -5,13 +5,13 @@ using System;
 public class LeaderboardInGame : MonoBehaviour
 {
     [SerializeField] private string leadersText;
-    [SerializeField] private TextMeshProUGUI leadersText1Bottom;
+    //[SerializeField] private TextMeshProUGUI leadersText1Bottom;
 
     [SerializeField] private TextMeshProUGUI[] linesTexts;
     [SerializeField] private TextMeshProUGUI[] linesPointsTexts;
     [SerializeField] private LeaderboardCell[] leaderboardCells;
-    public string LeaderboardNameString;
 
+    public string LeaderboardName;
     private float timeFlag = 0;
 
     void Start()
@@ -19,18 +19,18 @@ public class LeaderboardInGame : MonoBehaviour
         SetNamesAndPointsFieldsFromCells();
         int time = Convert.ToInt32(Geekplay.Instance.remainingTimeUntilUpdateLeaderboard);
 
-        if (Geekplay.Instance.language == "en")
-        {
-            leadersText1Bottom.text = $"Table will be updated in: {time}";
-        }
-        else if (Geekplay.Instance.language == "ru")
-        {
-            leadersText1Bottom.text = $"Таблица обновится через: {time}";
-        }
-        else if (Geekplay.Instance.language == "tr")
-        {
-            leadersText1Bottom.text = $"Su yolla güncellendi: {time}";
-        }
+        //if (Geekplay.Instance.language == "en")
+        //{
+        //    leadersText1Bottom.text = $"Table will be updated in: {time}";
+        //}
+        //else if (Geekplay.Instance.language == "ru")
+        //{
+        //    leadersText1Bottom.text = $"Таблица обновится через: {time}";
+        //}
+        //else if (Geekplay.Instance.language == "tr")
+        //{
+        //    leadersText1Bottom.text = $"Su yolla güncellendi: {time}";
+        //}
 
         if (Geekplay.Instance.remainingTimeUntilUpdateLeaderboard <= 0)
             UpdateLeaderBoard();
@@ -69,18 +69,18 @@ public class LeaderboardInGame : MonoBehaviour
         int time = Convert.ToInt32(Geekplay.Instance.remainingTimeUntilUpdateLeaderboard);
 
 
-        if (Geekplay.Instance.language == "en")
-        {
-            leadersText1Bottom.text = $"Table will be updated in: {time}";
-        }
-        else if (Geekplay.Instance.language == "ru")
-        {
-            leadersText1Bottom.text = $"Таблица обновится через: {time}";
-        }
-        else if (Geekplay.Instance.language == "tr")
-        {
-            leadersText1Bottom.text = $"Su yolla güncellendi: {time}";
-        }
+        //if (Geekplay.Instance.language == "en")
+        //{
+        //    leadersText1Bottom.text = $"Table will be updated in: {time}";
+        //}
+        //else if (Geekplay.Instance.language == "ru")
+        //{
+        //    leadersText1Bottom.text = $"Таблица обновится через: {time}";
+        //}
+        //else if (Geekplay.Instance.language == "tr")
+        //{
+        //    leadersText1Bottom.text = $"Su yolla güncellendi: {time}";
+        //}
 
     }
 
@@ -88,17 +88,17 @@ public class LeaderboardInGame : MonoBehaviour
     {
         leadersText = "";
         Geekplay.Instance.lastLeaderText = "";
-        for (int i = 0; i < Geekplay.Instance.l.Length; i++)
+        for (int i = 0; i < Geekplay.Instance.lS.Count; i++)
         {
-            if (Geekplay.Instance.l[i] != null && Geekplay.Instance.lN[i] != null)
+            if (Geekplay.Instance.lS[i] != null && Geekplay.Instance.lN[i] != null)
             {
-                string s = $"{i + 1}. {Geekplay.Instance.lN[i]} : {Geekplay.Instance.l[i]}\n";
+                string s = $"{i + 1}. {Geekplay.Instance.lN[i]} : {Geekplay.Instance.lS[i]}\n";
                 if (s == $"{i + 1}.  : \n")
                 {
                     s = $"{i + 1}.\n";
                 }
 
-                Geekplay.Instance.lastLeaderText += $"{i + 1}. {Geekplay.Instance.lN[i]} : {Geekplay.Instance.l[i]}\n";
+                Geekplay.Instance.lastLeaderText += $"{i + 1}. {Geekplay.Instance.lN[i]} : {Geekplay.Instance.lS[i]}\n";
                 leadersText = Geekplay.Instance.lastLeaderText;
                 ToLines();
             }
@@ -111,18 +111,27 @@ public class LeaderboardInGame : MonoBehaviour
 
         Geekplay.Instance.leaderNumber = 0;
         Geekplay.Instance.leaderNumberN = 0;
-        Utils.GetLeaderboard("score", 0);
-        Utils.GetLeaderboard("name", 0);
+        Utils.GetLeaderboard("score", 0, LeaderboardName);
+        Utils.GetLeaderboard("name", 0, LeaderboardName);
     }
 
+    public void SetLeadersView(string[] name, string[] value, int count)
+    {
+
+        for (int i = 0; i < count; i++)
+        {
+            Debug.Log("Name: " + name[i]);
+            Debug.Log("Value: " + value[i]);
+        }
+    }
     void ToLines()
     {
         int index = 0;
 
-        for (int i = 0; i < Geekplay.Instance.lN.Length; i++)
+        for (int i = 0; i < Geekplay.Instance.lN.Count; i++)
         {
             linesTexts[i].text = Geekplay.Instance.lN[i];
-            linesPointsTexts[i].text = Geekplay.Instance.l[i];
+            linesPointsTexts[i].text = Geekplay.Instance.lS[i];
         }
     }
 }

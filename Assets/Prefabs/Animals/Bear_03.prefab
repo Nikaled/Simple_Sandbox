@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 2892475632493056744}
   m_Layer: 15
   m_Name: Bear_03
-  m_TagString: Untagged
+  m_TagString: Citizen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24f5f26ca9c9d554485ce7737e364538, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
+  agent: {fileID: 6394596548428485472}
   animator: {fileID: 2892475633206397377}
   CurrentDestination: {fileID: 0}
   hpSystem: {fileID: 7332937989832169266}
