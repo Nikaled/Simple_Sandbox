@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5865997060785384089}
+  - component: {fileID: 5750301476152377133}
   m_Layer: 10
   m_Name: Airport Tower02
   m_TagString: Untagged
@@ -23,6 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7341508105605163855}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -130.98105, y: -2075.133, z: -197.96492}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,8 +33,27 @@ Transform:
   - {fileID: 8401576961404015250}
   - {fileID: 2298323618360439376}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5750301476152377133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7341508105605163855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a698b235370a1148ba1dd1c5e424b00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectName: AirportTower02
+  BuildingIndex: 0
+  CurrentTextureIndex: 0
+  CurrentHp: 0
+  CurrentRotationOfPoint: {x: 0, y: 0, z: 0}
+  CurrentRotationOfObject: {x: 0, y: 0, z: 0}
+  CurrentScale: {x: 0, y: 0, z: 0}
+  CurrentPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &8401576961403522738
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,6 +83,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8401576961403522738}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -69,7 +91,6 @@ Transform:
   m_Children:
   - {fileID: 7581410727351020286}
   m_Father: {fileID: 5865997060785384089}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8401576961404818098
 MeshFilter:
@@ -129,9 +150,17 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8401576961403522738}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 4
+  serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: c08d2f21505701a48956f4c13cbc4d73, type: 3}
@@ -188,6 +217,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 5865997060785384089}
     m_Modifications:
     - target: {fileID: 451376243957143738, guid: a19a552538ae4914ea15c6422412b965, type: 3}
@@ -243,6 +273,9 @@ PrefabInstance:
       value: RotatingCenter
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a19a552538ae4914ea15c6422412b965, type: 3}
 --- !u!4 &2298323618360439376 stripped
 Transform:
@@ -254,6 +287,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8401576961404015250}
     m_Modifications:
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
@@ -349,6 +383,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
 --- !u!114 &7581410727351020225 stripped
 MonoBehaviour:

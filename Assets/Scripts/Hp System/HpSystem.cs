@@ -23,6 +23,10 @@ public class HpSystem : MonoBehaviour
             _currentHP = value;
             HpBar.fillAmount = (float)_currentHP / MaxHp;
             HpText.text = $"{_currentHP} / {MaxHp}";
+            if(_currentHP < MaxHp)
+            {
+                HpBar.gameObject.SetActive(true);
+            }
         }
     }
     private int _currentHP;

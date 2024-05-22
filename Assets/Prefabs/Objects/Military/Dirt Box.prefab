@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1757998669172972176}
+  - component: {fileID: 7816132831068652540}
   m_Layer: 0
   m_Name: Dirt Box
   m_TagString: Untagged
@@ -23,6 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1304690457030679155}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -79.54786, y: -2075.133, z: -213.33041}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,8 +33,27 @@ Transform:
   - {fileID: 6524579800913264599}
   - {fileID: 230672673582587176}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7816132831068652540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304690457030679155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a698b235370a1148ba1dd1c5e424b00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectName: Dirt Box
+  BuildingIndex: 0
+  CurrentTextureIndex: 0
+  CurrentHp: 0
+  CurrentRotationOfPoint: {x: 0, y: 0, z: 0}
+  CurrentRotationOfObject: {x: 0, y: 0, z: 0}
+  CurrentScale: {x: 0, y: 0, z: 0}
+  CurrentPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &6524579800913002763
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,6 +82,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6524579800913002763}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -68,7 +90,6 @@ Transform:
   m_Children:
   - {fileID: 5126512109253111443}
   m_Father: {fileID: 1757998669172972176}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6524579800913992723
 MeshFilter:
@@ -128,9 +149,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6524579800913002763}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 1.9168504, y: 1.9168503, z: 1.9168489}
   m_Center: {x: 0, y: 0.9556255, z: -0.000000059604645}
 --- !u!114 &6524579800931108241
@@ -167,6 +196,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 1757998669172972176}
     m_Modifications:
     - target: {fileID: 451376243957143738, guid: a19a552538ae4914ea15c6422412b965, type: 3}
@@ -222,6 +252,9 @@ PrefabInstance:
       value: RotatingCenter
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a19a552538ae4914ea15c6422412b965, type: 3}
 --- !u!4 &230672673582587176 stripped
 Transform:
@@ -233,6 +266,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 6524579800913264599}
     m_Modifications:
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
@@ -328,6 +362,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
 --- !u!4 &5126512109253111443 stripped
 Transform:

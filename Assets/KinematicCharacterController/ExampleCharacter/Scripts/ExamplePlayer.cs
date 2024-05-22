@@ -32,6 +32,10 @@ namespace KinematicCharacterController.Examples
             Cursor.lockState = CursorLockMode.Locked;
             }
 
+            if(Geekplay.Instance.mobile == false)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
             // Tell camera to follow transform
             CharacterCamera.SetFollowTransform(Character.CameraFollowPoint);
 
@@ -42,6 +46,14 @@ namespace KinematicCharacterController.Examples
 
         public void LockCursor(bool Is)
         {
+            if(Geekplay.Instance != null)
+            {
+                if (Geekplay.Instance.mobile)
+                {
+                    Cursor.lockState = CursorLockMode.None;
+                    return;
+                }
+            }
             if(Is)
             Cursor.lockState = CursorLockMode.Locked;
             else

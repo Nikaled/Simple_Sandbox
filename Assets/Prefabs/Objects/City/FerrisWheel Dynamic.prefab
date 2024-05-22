@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 214829816535067716}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 15.94, z: -1.8}
   m_LocalScale: {x: 31.54, y: 31.54, z: 31.54}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8276177982499347076}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &4359135250604094203
 BoxCollider:
@@ -41,9 +41,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 214829816535067716}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 1.7711201, y: 0.3364557, z: 1.351338}
   m_Center: {x: 0.012293993, y: -0.3317726, z: -0.17566888}
 --- !u!114 &6666430435239443155
@@ -72,6 +80,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8276177982499347076}
+  - component: {fileID: 9205226404185527546}
   m_Layer: 10
   m_Name: FerrisWheel Dynamic
   m_TagString: Untagged
@@ -86,6 +95,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 259203914020430440}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 47, y: 0.48168945, z: -220}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -95,8 +105,27 @@ Transform:
   - {fileID: 8597294947276847229}
   - {fileID: 8320975774436533339}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9205226404185527546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259203914020430440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a698b235370a1148ba1dd1c5e424b00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectName: FerrisWheel Dynamic
+  BuildingIndex: 0
+  CurrentTextureIndex: 0
+  CurrentHp: 0
+  CurrentRotationOfPoint: {x: 0, y: 0, z: 0}
+  CurrentRotationOfObject: {x: 0, y: 0, z: 0}
+  CurrentScale: {x: 0, y: 0, z: 0}
+  CurrentPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &4499249469949470629
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,6 +150,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4499249469949470629}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: 9.199951, z: -0.13000488}
   m_LocalScale: {x: 152.08, y: 152.08, z: 152.08}
@@ -128,7 +158,6 @@ Transform:
   m_Children:
   - {fileID: 4499249470259279333}
   m_Father: {fileID: 7260382724214258511}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4499249469949470635
 MonoBehaviour:
@@ -148,6 +177,7 @@ MonoBehaviour:
   MaxHp: 11
   HpText: {fileID: 4499249470116909328}
   DestroyAnimation: {fileID: 1056904543853562, guid: 4cf45cdce36e66e4a93614abb5ae7821, type: 3}
+  Citizen: 0
 --- !u!1 &4499249470116909330
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,7 +209,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4499249471114218674}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -317,7 +346,6 @@ RectTransform:
   m_Children:
   - {fileID: 4499249471317075051}
   m_Father: {fileID: 4499249469949470634}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -341,7 +369,9 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -430,7 +460,6 @@ RectTransform:
   m_Children:
   - {fileID: 4499249470116909331}
   m_Father: {fileID: 4499249471317075051}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -506,7 +535,6 @@ RectTransform:
   m_Children:
   - {fileID: 4499249471114218674}
   m_Father: {fileID: 4499249470259279333}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -531,6 +559,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8276177982499347076}
     m_Modifications:
     - target: {fileID: 101856, guid: 12f4fd5539dd3ed4cba438c8f8079a6a, type: 3}
@@ -646,6 +675,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 454088, guid: 12f4fd5539dd3ed4cba438c8f8079a6a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4499249469949470634}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 119850, guid: 12f4fd5539dd3ed4cba438c8f8079a6a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8774437298022925803}
+    - targetCorrespondingSourceObject: {fileID: 119850, guid: 12f4fd5539dd3ed4cba438c8f8079a6a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8187607739478224975}
+    - targetCorrespondingSourceObject: {fileID: 119850, guid: 12f4fd5539dd3ed4cba438c8f8079a6a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3079925843807337341}
+    - targetCorrespondingSourceObject: {fileID: 105102, guid: 12f4fd5539dd3ed4cba438c8f8079a6a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3414575571115322465}
   m_SourcePrefab: {fileID: 100100000, guid: 12f4fd5539dd3ed4cba438c8f8079a6a, type: 3}
 --- !u!23 &7260382724211977625 stripped
 MeshRenderer:
@@ -691,9 +738,17 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7260382724214178477}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 4
+  serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: d6b788ee91aa3294ebccc4bd45bc560b, type: 3}
@@ -736,6 +791,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8276177982499347076}
     m_Modifications:
     - target: {fileID: 451376243957143738, guid: a19a552538ae4914ea15c6422412b965, type: 3}
@@ -795,6 +851,9 @@ PrefabInstance:
       value: RotatingCenter
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a19a552538ae4914ea15c6422412b965, type: 3}
 --- !u!4 &8320975774436533339 stripped
 Transform:

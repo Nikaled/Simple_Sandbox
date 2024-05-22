@@ -25,7 +25,7 @@ public class AnimalVariants : ObjectVariants
         AnimalSkins[currentVariantIndex].SetActive(true);
         ChangeTextureManager.instance.ChangeVariantText(currentVariantIndex);
     }
-    public override void FindTextureIndex()
+    public override int FindTextureIndex()
     {
         for (int i = 0; i < AnimalSkins.Length; i++)
         {
@@ -34,6 +34,6 @@ public class AnimalVariants : ObjectVariants
                 currentVariantIndex = i;
             }
         }
-        ChangeTextureManager.instance.ChangeVariantText(currentVariantIndex);
+        return currentVariantIndex;
     }
 }

@@ -24,6 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1267948912883871255}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -24.58, y: -2.03, z: -12.13}
   m_LocalScale: {x: 19.58, y: 19.58, z: 19.58}
@@ -31,7 +32,6 @@ Transform:
   m_Children:
   - {fileID: 2156818133435006874}
   m_Father: {fileID: 2396565430351475118}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3933124463878765199
 MonoBehaviour:
@@ -51,6 +51,7 @@ MonoBehaviour:
   MaxHp: 11
   HpText: {fileID: 2586803674281500065}
   DestroyAnimation: {fileID: 1056904543853562, guid: 4cf45cdce36e66e4a93614abb5ae7821, type: 3}
+  Citizen: 0
 --- !u!1 &1363101712579045135
 GameObject:
   m_ObjectHideFlags: 0
@@ -82,7 +83,6 @@ RectTransform:
   m_Children:
   - {fileID: 3224702468400422107}
   m_Father: {fileID: 2156818133435006874}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -136,7 +136,6 @@ RectTransform:
   m_Children:
   - {fileID: 5273040119591852182}
   m_Father: {fileID: 1814734303236432238}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -160,7 +159,9 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -226,6 +227,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 998152449353310840}
+  - component: {fileID: 178968036025858288}
   m_Layer: 10
   m_Name: Runway Number 40
   m_TagString: Road
@@ -240,6 +242,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5328043156580143125}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -79.67215, y: 0, z: -106.42822}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -248,8 +251,27 @@ Transform:
   - {fileID: 2396565430351475118}
   - {fileID: 1252374935463502449}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &178968036025858288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5328043156580143125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a698b235370a1148ba1dd1c5e424b00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectName: Runway Number 40
+  BuildingIndex: 0
+  CurrentTextureIndex: 0
+  CurrentHp: 0
+  CurrentRotationOfPoint: {x: 0, y: 0, z: 0}
+  CurrentRotationOfObject: {x: 0, y: 0, z: 0}
+  CurrentScale: {x: 0, y: 0, z: 0}
+  CurrentPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &7604069120384237939
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,7 +303,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3224702468400422107}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -417,7 +438,6 @@ RectTransform:
   m_Children:
   - {fileID: 5483797196612914309}
   m_Father: {fileID: 5273040119591852182}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -489,14 +509,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9136439951979051470}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.6971278, z: -0, w: 0.71694696}
-  m_LocalPosition: {x: 15.7, y: 0, z: -55.8}
+  m_LocalPosition: {x: 15.7, y: 0.05, z: -55.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1814734303236432238}
   m_Father: {fileID: 998152449353310840}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 88.394, z: 0}
 --- !u!33 &7300836859758876289
 MeshFilter:
@@ -556,9 +576,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9136439951979051470}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 56.109375, y: 0.109375, z: 28.109375}
   m_Center: {x: -28, y: 4.195164e-15, z: -14}
 --- !u!114 &3469191655735312930
@@ -579,6 +607,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 998152449353310840}
     m_Modifications:
     - target: {fileID: 451376243957143738, guid: a19a552538ae4914ea15c6422412b965, type: 3}
@@ -634,6 +663,9 @@ PrefabInstance:
       value: RotatingCenter
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a19a552538ae4914ea15c6422412b965, type: 3}
 --- !u!4 &1252374935463502449 stripped
 Transform:

@@ -39,7 +39,7 @@ public class ChangeTextureManager : MonoBehaviour
         {
             PreviousButton.onClick.AddListener(delegate { objectVariants.ChangeTextures(-1); });
             NextButton.onClick.AddListener(delegate { objectVariants.ChangeTextures(1); });
-            objectVariants.FindTextureIndex();
+            ChangeVariantText(objectVariants.FindTextureIndex());
         }
         else
         {

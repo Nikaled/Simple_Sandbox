@@ -248,6 +248,11 @@ public class BuildingManager : MonoBehaviour
                 Destroy(deletingObject.GetComponentInParent<DeletingRoot>().gameObject);
                 Debug.Log("Удален родитель");
             }
+            if(deletingObject.GetComponentInParent<SerializedBuilding>() != null)
+            {
+                Destroy(deletingObject.GetComponentInParent<SerializedBuilding>().gameObject);
+                Debug.Log("Удален родитель");
+            }
             else
             {
                 Destroy(deletingObject);
@@ -319,10 +324,10 @@ public class BuildingManager : MonoBehaviour
 
         var newObj = Instantiate(CurrentPrefab, pendingObj.transform.position, pendingObj.transform.rotation);
         CanvasManager.instance.ShowBuildingModeInstruction(false);
-        if (CurrentPrefab.CompareTag("Road"))
-        {
-            newObj.transform.position += new Vector3(0, 0.05f, 0);
-        }
+        //if (CurrentPrefab.CompareTag("Road"))
+        //{
+        //    newObj.transform.position += new Vector3(0, 0.05f, 0);
+        //}
         Destroy(pendingObj);
         Debug.Log("Object placed");
         player.SwitchPlayerState(Player.PlayerState.Idle);
@@ -493,7 +498,15 @@ public class BuildingManager : MonoBehaviour
             return;
         }
         Player.instance.examplePlayer.MyLockOnShoot = Is;
+        if(rotatingObjectCenter != null)
+        {
+            var rotateCenter = rotatingObjectCenter.GetComponent<RotatingCenter>();
+            if(rotateCenter != null)
+            {
+                rotateCenter.UnbindRotatingCenter();
+            }
         rotatingObjectCenter = null;
+        }
         RotateChosenObjectMode = Is;
         Debug.Log("Rotating object:" + rotatingObject.name);
         if (rotatingObject.CompareTag("Car"))
@@ -516,6 +529,7 @@ public class BuildingManager : MonoBehaviour
         if (rotatingObject.GetComponentInChildren<RotatingCenter>() != null)
         {
             rotatingObjectCenter = rotatingObject.GetComponentInChildren<RotatingCenter>().gameObject;
+            rotatingObjectCenter.GetComponent<RotatingCenter>().SetRotatingCenter();
             Debug.Log("Центр вращения найден");
         }
         else
@@ -523,9 +537,9 @@ public class BuildingManager : MonoBehaviour
             if (rotatingObject.GetComponentInParent<RotatingCenter>() != null)
             {
                 rotatingObjectCenter = rotatingObject.GetComponentInParent<RotatingCenter>().gameObject;
-
+                rotatingObjectCenter.GetComponent<RotatingCenter>().SetRotatingCenter();
+                Debug.Log("Центр вращения  - родитель");
             }
-            Debug.Log("Центр вращения  - родитель");
         }
         if (rotatingObjectCenter == null)
         {
@@ -569,6 +583,7 @@ public class BuildingManager : MonoBehaviour
     }
     public void ApplyRotatingChanges()
     {
+
         ActivateRotateChosenObjectMode(false);
         player.SwitchPlayerState(Player.PlayerState.Idle);
     }

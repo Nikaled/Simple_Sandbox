@@ -202,7 +202,7 @@ public class Geekplay : MonoBehaviour
                 {
                     canShowAd = false;
                     StartCoroutine(CanAdShow());
-                    Utils.VK_Interstitial();
+                    ////Utils.VK_Interstitial();
                 }
                 break;
             case Platform.CrazyGames:
@@ -220,7 +220,7 @@ public class Geekplay : MonoBehaviour
                 Gpx.Ads.InterstitialAd(ResumeMusAndGame);
                 break;
             case Platform.OK:
-                Utils.OK_Interstitial();
+                ////Utils.OK_Interstitial();
                 break;
         }
     }
@@ -260,7 +260,7 @@ public class Geekplay : MonoBehaviour
                     canShowAd = false;
                     StartCoroutine(CanAdShow());
                     rewardTag = idOrTag;
-                    Utils.VK_Rewarded();
+                    //Utils.VK_Rewarded();
                 break;
             case Platform.CrazyGames:
                 rewardTag = idOrTag;
@@ -278,7 +278,7 @@ public class Geekplay : MonoBehaviour
                 break;
             case Platform.OK:
                 rewardTag = idOrTag;
-                Utils.OK_ShowRewardedAd();
+                //Utils.OK_ShowRewardedAd();
                 break;
         }
     }
@@ -293,10 +293,10 @@ public class Geekplay : MonoBehaviour
 #endif
                 break;
             case Platform.VK:
-                Utils.VK_Banner();
+                //Utils.VK_Banner();
                 break;
             case Platform.OK:
-                Utils.OK_ShowBannerAds();
+                //Utils.OK_ShowBannerAds();
                 break;
         }
     }
@@ -317,7 +317,7 @@ public class Geekplay : MonoBehaviour
                 break;
             case Platform.VK:
                 rewardTag = "Group";
-                Utils.VK_ToGroup();
+                //Utils.VK_ToGroup();
                 break;
         }
     }
@@ -332,7 +332,7 @@ public class Geekplay : MonoBehaviour
                 Utils.RateGame();
                 break;
             case Platform.OK:
-                Utils.OK_ShowRating();
+                //Utils.OK_ShowRating();
                 break;
         }
     }
@@ -347,10 +347,10 @@ public class Geekplay : MonoBehaviour
             case Platform.Yandex:
                 Utils.SetToLeaderboard(value, leaderboardName);
                 break;
-            case Platform.VK:
-                if (mobile)
-                    Utils.VK_OpenLeaderboard(value);
-                break;
+            //case Platform.VK:
+            //    if (mobile)
+                    //Utils.VK_OpenLeaderboard(value);
+            //    break;
         }
     }
 
@@ -364,7 +364,7 @@ public class Geekplay : MonoBehaviour
             case Platform.Yandex:
                 break;
             case Platform.VK:
-                Utils.VK_Star();
+                //Utils.VK_Star();
                 break;
         }
     }
@@ -379,7 +379,7 @@ public class Geekplay : MonoBehaviour
             case Platform.Yandex:
                 break;
             case Platform.VK:
-                Utils.VK_Share();
+                //Utils.VK_Share();
                 break;
         }
     }
@@ -394,7 +394,7 @@ public class Geekplay : MonoBehaviour
             case Platform.Yandex:
                 break;
             case Platform.VK:
-                Utils.VK_Invite();
+                //Utils.VK_Invite();
                 break;
         }
     }
@@ -410,7 +410,7 @@ public class Geekplay : MonoBehaviour
             case Platform.Yandex:
                 break;
             case Platform.VK:
-                Utils.VK_OpenLeaderboard(value);
+                //Utils.VK_OpenLeaderboard(value);
                 break;
         }
     }
@@ -438,7 +438,7 @@ public class Geekplay : MonoBehaviour
                     break;
                 }
                 jsonString = JsonUtility.ToJson(PlayerData);
-                Utils.VK_Save(jsonString);
+                //Utils.VK_Save(jsonString);
                 break;
             case Platform.CrazyGames:
                 jsonString = JsonUtility.ToJson(PlayerData);
@@ -526,15 +526,15 @@ public class Geekplay : MonoBehaviour
                 Localization();
                 CheckBuysOnStart(PlayerData.lastBuy);
                 break;
-            case Platform.VK:
+            /*case Platform.VK:
                 language = "ru";
                 Localization();
                 StartCoroutine(BannerVK());
                 StartCoroutine(RewardLoad());
                 StartCoroutine(InterLoad());
                 if (wasLoad)
-                    Utils.VK_Load();
-                break;
+                    //Utils.VK_Load();
+                break;*/
             case Platform.CrazyGames:
                 language = "en";
                 Localization();
@@ -628,7 +628,7 @@ public class Geekplay : MonoBehaviour
     {
         if (Platform == Platform.OK)
         {   
-            Utils.OK_RequestBannerAds();
+            //Utils.OK_RequestBannerAds();
         }
     }
     IEnumerator RewardLoad()
@@ -640,10 +640,10 @@ public class Geekplay : MonoBehaviour
                 Debug.Log($"<color={colorDebug}>REWARD LOAD</color>");
                 break;
             case Platform.VK:
-                Utils.VK_AdRewardCheck();
+                //Utils.VK_AdRewardCheck();
                 break;
             case Platform.OK:
-                Utils.OK_LoadRewardedAd();
+                //Utils.OK_LoadRewardedAd();
                 break;
         }
     }
@@ -659,7 +659,7 @@ public class Geekplay : MonoBehaviour
                     Debug.Log($"<color={colorDebug}>INTERSTITIAL LOAD</color>");
                     break;
                 case Platform.VK:
-                    Utils.VK_AdInterCheck();
+                    //Utils.VK_AdInterCheck();
                     break;
             }
         }
@@ -700,7 +700,7 @@ public class Geekplay : MonoBehaviour
                 break;
             case Platform.Kongregate:
                 purchasedTag = idOrTag;
-                Utils.Kongregate_InApp(idOrTag);
+                //Utils.Kongregate_InApp(idOrTag);
                 break;
             /*case Platform.CrazyGames:
             	purchasedTag = idOrTag;

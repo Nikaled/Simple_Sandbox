@@ -12,6 +12,7 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] public Image Crosshair;
     [SerializeField] private GameObject BuildingMenu;
     [SerializeField] private GameObject InAppShop;
+    [SerializeField] public GameObject SaveMapUI;
     [Header("PC Interfaces")]
     [SerializeField] GameObject _helicopterInstruction;
     [SerializeField] GameObject _planeInstruction;
@@ -37,16 +38,31 @@ public class CanvasManager : MonoBehaviour
     [Header("Rotating Mode")]
     [SerializeField] GameObject _rotatingChosenObjectModeInstruction;
     [SerializeField] Slider[] RotatingModeSlidersScale;
-    [SerializeField] Slider[] RotatingModeSlidersRotation; 
-    Vector2 ThirdViewCrossPosition = new Vector2(150, 150);
-    Vector2 FirstViewCrossPosition = new Vector2(0, 0);
+    [SerializeField] Slider[] RotatingModeSlidersRotation;
+
+    private bool InAppShopActive;
+    private bool SaveMapUIActive;
+
     private void Awake()
     {
         InteracteButton.gameObject.SetActive(false);
         instance = this;
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            ShowInAppShop(!InAppShopActive);
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            ShowSaveMapUI(!SaveMapUIActive);
+        }
+    }
     private void Start()
     {
+        Geekplay.Instance.GameReady();
+        ChangeCoinsText(Geekplay.Instance.PlayerData.Coins);
         if (Geekplay.Instance.mobile)
         {
             CanvasMobileInterface.SetActive(true);
@@ -64,6 +80,12 @@ public class CanvasManager : MonoBehaviour
         LeftButtonsZone.SetActive(Is);
         RightButtonsZone.SetActive(Is);
     }
+    public void ShowSaveMapUI(bool Is)
+    {
+        SaveMapUIActive = Is;
+        SaveMapUI.SetActive(Is);
+        Player.instance.examplePlayer.LockCursor(!Is);
+    }
     public void ShowHelicopterMobileInstruction(bool Is)
     {
         HelicopterMobileInstruction.SetActive(Is);
@@ -78,7 +100,6 @@ public class CanvasManager : MonoBehaviour
     private void OnEnable()
     {
         Geekplay.Instance.PlayerData.CoinsChanged += ChangeCoinsText;
-        Geekplay.Instance.PlayerData.Coins += 15;
     }
     private void OnDisable()
     {
@@ -104,7 +125,12 @@ public class CanvasManager : MonoBehaviour
 
     public void ShowInAppShop(bool Is)
     {
+        InAppShopActive = Is;
         InAppShop.SetActive(Is);
+        if (Geekplay.Instance.mobile == false)
+        {
+            Player.instance.examplePlayer.LockCursor(!Is);
+        }
     }
     public void ShowCitizenEnterInstruction(bool Is)
     {
@@ -119,17 +145,6 @@ public class CanvasManager : MonoBehaviour
     public void ShowBuildingMenu(bool Is)
     {
         BuildingMenu.SetActive(Is);
-    }
-    public void IsCrossForThirdView(bool Is)
-    {
-        if (Is)
-        {
-            Crosshair.gameObject.transform.localPosition = ThirdViewCrossPosition;
-        }
-        else
-        {
-            Crosshair.gameObject.transform.localPosition = FirstViewCrossPosition;
-        }
     }
     public void ShowObjectInteructInstruction(bool Is)
     {

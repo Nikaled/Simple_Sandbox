@@ -498,7 +498,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            normalCamera.FollowPointFraming = new Vector2(0, 0);
+            normalCamera.FollowPointFraming = new Vector2(-0.1f, 0.69f);
             normalCamera.Camera.fieldOfView = 40;
         }
         //playerShooting.lineRenderer.enabled = false;

@@ -17,7 +17,7 @@ public class ObjectVariants : MonoBehaviour
             }
     }
     
-    public virtual void FindTextureIndex()
+    public virtual int FindTextureIndex()
     {
         for (int i = 0; i < Variants.Length; i++)
         {
@@ -27,7 +27,7 @@ public class ObjectVariants : MonoBehaviour
                 currentVariantIndex = i;
             }
         }
-        ChangeTextureManager.instance.ChangeVariantText(currentVariantIndex);
+        return currentVariantIndex;
     }
     public virtual void ChangeTextures(int PlusOrMinusOne)
     {
@@ -42,5 +42,10 @@ public class ObjectVariants : MonoBehaviour
         }
         ChangeTextures(Variants[currentVariantIndex]);
         ChangeTextureManager.instance.ChangeVariantText(currentVariantIndex);
+    }
+    public void ChangeTexturesOnLoad(int Index)
+    {
+        //ChangeTextures(Variants[Index]);
+        //ChangeTextureManager.instance.ChangeVariantText(Index);
     }
 }

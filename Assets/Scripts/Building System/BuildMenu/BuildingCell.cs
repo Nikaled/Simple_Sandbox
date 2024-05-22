@@ -42,7 +42,6 @@ public class BuildingCell : MonoBehaviour
         {
             BuildingManager.instance.ActivateBuildingButton(false);
             CanvasManager.instance.ShowBuildingMenu(false);
-            Geekplay.Instance.PlayerData.Coins -= CoinPrice;
             BuildingManager.instance.SetBuildingObject(objectPrefab);
         }
         else

@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Field.unity
     guid: d8a15448713654c4d94efe79573c451b
+  - enabled: 1
+    path: Assets/Scenes/Military Base.unity
+    guid: daf1dbb02bc44e645963e3c84f915aec
   m_configObjects: {}

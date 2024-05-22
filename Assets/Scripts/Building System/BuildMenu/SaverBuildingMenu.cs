@@ -28,13 +28,20 @@ public class SaverBuildingMenu : MonoBehaviour
         BuildingMenuDataList.Add(Geekplay.Instance.PlayerData.CitizensOpened);
         BuildingMenuDataList.Add(Geekplay.Instance.PlayerData.AnimalsOpened);
 
-        Geekplay.Instance.Save();
+        //Geekplay.Instance.Save();
         if (Geekplay.Instance.PlayerData.IsFirstPlay == false)
         {
             LoadItemsState();
         }
     }
-
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            Geekplay.Instance.PlayerData.Coins += 15;
+            Geekplay.Instance.Save();
+        }
+    }
     public void ClearSave()
     {
         for (int i = 0; i < BuildingMenuDataList.Count; i++)
@@ -75,7 +82,8 @@ public class SaverBuildingMenu : MonoBehaviour
             {
                 if(j > States.Count-1)
                 {
-                    return;
+                    Debug.Log("Номер списка:" + i + "/ Количество объектов: " + BuildingMenuDataList[i].Count + "/// невозможно загрузить");
+                    continue;
                 }
                 ContentManagers[i].CellsInGrid[j].IsOpened = States[j];
                 ContentManagers[i].CellsInGrid[j].CheckPriceVisible();

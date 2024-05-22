@@ -8,16 +8,16 @@ public class PlayerData
     public int Coins { 
         get
         {
-            return _coins;
+            return _coinsDontUse;
         }
         set
         {
-            _coins = value;
-            CoinsChanged?.Invoke(_coins);
+            _coinsDontUse = value;
+            CoinsChanged?.Invoke(_coinsDontUse);
         }
     }
     public event Action<int> CoinsChanged;
-    private int _coins;
+    public int _coinsDontUse;
 
     public bool IsFirstPlay;
 
@@ -33,7 +33,19 @@ public class PlayerData
     public List<bool> MilitaryOpened;   
     public List<bool> CityOpened;   
     public List<bool> CitizensOpened;   
-    public List<bool> AnimalsOpened;   
+    public List<bool> AnimalsOpened;
+    public List<SerializedBuildingData> BuildingData;
+    public List<SerializedBuildingData> BuildingDataMap1;
+    public List<SerializedBuildingData> BuildingDataMap2;
+    public List<SerializedBuildingData> BuildingDataMap3;
+    public List<SerializedBuildingData> BuildingDataMap4;
+    public string NameMap1;
+    public string NameMap2;
+    public string NameMap3;
+    public string NameMap4;
+
+    public int CurrentSaveSlotLoading;
+    public bool IsPlayerMapLoad;
     /////InApps//////
     public string lastBuy;
 }

@@ -14,7 +14,7 @@ public class CitizenObjectVariants : ObjectVariants
         }
     }
 
-    public override void FindTextureIndex()
+    public override int FindTextureIndex()
     {
         for (int i = 0; i < Variants.Length; i++)
         {
@@ -24,7 +24,7 @@ public class CitizenObjectVariants : ObjectVariants
                 currentVariantIndex = i;
             }
         }
-        ChangeTextureManager.instance.ChangeVariantText(currentVariantIndex);
+            return currentVariantIndex;
     }
     public override void ChangeTextures(int PlusOrMinusOne)
     {
