@@ -225,6 +225,7 @@ public class VehicleControl : MonoBehaviour
     private WheelComponent[] wheels;
 
     public bool CarQuit;
+    public bool MobileInput;
 
     private class WheelComponent
     {
@@ -277,6 +278,98 @@ public class VehicleControl : MonoBehaviour
     public void OnCarQuit()
     {
         CarQuit = true;
+    }
+    public void MyInitializeButtons()
+    {
+        MobileInput = true;
+        controlMode = ControlMode.touch;
+        CarButtons.instance.GoForward.GetComponent<HelicopterButton>().TranslatingFloat = 1;
+        CarButtons.instance.GoForward.GetComponent<HelicopterButton>().ActionOnHold += GoForwardAndBack;
+
+        CarButtons.instance.GoBack.GetComponent<HelicopterButton>().TranslatingFloat = -1f;
+        CarButtons.instance.GoBack.GetComponent<HelicopterButton>().ActionOnHold += GoForwardAndBack;
+
+        CarButtons.instance.DownEngine.GetComponent<HelicopterButton>().TranslatingFloat = -1f;
+        CarButtons.instance.DownEngine.GetComponent<HelicopterButton>().ActionOnHold += Brake;
+
+        CarButtons.instance.GoLeft.GetComponent<HelicopterButton>().TranslatingFloat = -3f;
+        CarButtons.instance.GoLeft.GetComponent<HelicopterButton>().ActionOnHold += GoLeftAndRight;
+
+        CarButtons.instance.GoRight.GetComponent<HelicopterButton>().TranslatingFloat = 3f;
+        CarButtons.instance.GoRight.GetComponent<HelicopterButton>().ActionOnHold += GoLeftAndRight;
+
+    }
+    public void MyClearButtons()
+    {
+        MobileInput = false;
+        CarButtons.instance.GoForward.GetComponent<HelicopterButton>().ActionOnHold -= GoForwardAndBack;
+        CarButtons.instance.GoBack.GetComponent<HelicopterButton>().ActionOnHold -= GoForwardAndBack;
+        CarButtons.instance.DownEngine.GetComponent<HelicopterButton>().ActionOnHold -= Brake;
+        CarButtons.instance.GoLeft.GetComponent<HelicopterButton>().ActionOnHold -= GoLeftAndRight;
+        CarButtons.instance.GoRight.GetComponent<HelicopterButton>().ActionOnHold -= GoLeftAndRight;
+    }
+    public void GoForwardAndBack(float value)
+    {
+        if(value > 0)
+        {
+            accel = 1;
+            accelFwd = 1;
+            accelBack = -1;
+        }
+
+
+        if(value == 0)
+        {
+            accel = 0;
+            accelFwd = 0;
+            accelBack = 0;
+        }
+        if (value == -1)
+        {
+            accel = 1;
+            accelFwd = -1;
+            accelBack = 1;
+        }
+    }
+
+    public void GOGOGO(bool forward)
+    {
+        if (forward)
+        {
+            accel = 1;
+        }
+        else
+        {
+            accel = -1;
+        }
+    }
+
+    public void STOPSTOPSTOP()
+    {
+        accel = 0;
+    }
+    public void GoLeftAndRight(float value)
+    {
+        steer = value;
+        //steer = Mathf.MoveTowards(steer, value, 0.2f);
+    }
+    public void Brake(float value)
+    {
+        if(value != 0)
+        {
+            brake = true;
+        }
+        else
+        {
+            brake = false;
+        }
+    }
+    public void Shpargalka()
+    {
+        steer = Mathf.MoveTowards(steer, Input.GetAxis("Horizontal"), 0.2f);
+        accel = Input.GetAxis("Vertical");
+        brake = Input.GetButton("Jump");
+        shift = Input.GetKey(KeyCode.LeftShift) | Input.GetKey(KeyCode.RightShift);
     }
     void Awake()
     {
@@ -515,10 +608,14 @@ public class VehicleControl : MonoBehaviour
 
                 if (carWheels.wheels.frontWheelDrive || carWheels.wheels.backWheelDrive)
                 {
-                    steer = Mathf.MoveTowards(steer, Input.GetAxis("Horizontal"), 0.2f);
-                    accel = Input.GetAxis("Vertical");
-                    brake = Input.GetButton("Jump");
-                    shift = Input.GetKey(KeyCode.LeftShift) | Input.GetKey(KeyCode.RightShift);
+                    if(MobileInput == false)
+                    {
+                        steer = Mathf.MoveTowards(steer, Input.GetAxis("Horizontal"), 0.2f);
+                        accel = Input.GetAxis("Vertical");
+                        brake = Input.GetButton("Jump");
+                        shift = Input.GetKey(KeyCode.LeftShift) | Input.GetKey(KeyCode.RightShift);
+                    }
+
 
 
                 }

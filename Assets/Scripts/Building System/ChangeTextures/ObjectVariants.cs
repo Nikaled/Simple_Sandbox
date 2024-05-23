@@ -41,11 +41,18 @@ public class ObjectVariants : MonoBehaviour
             currentVariantIndex = 0;
         }
         ChangeTextures(Variants[currentVariantIndex]);
+        if(ChangeTextureManager.instance != null)
+        {
         ChangeTextureManager.instance.ChangeVariantText(currentVariantIndex);
+        }
     }
     public void ChangeTexturesOnLoad(int Index)
     {
-        //ChangeTextures(Variants[Index]);
-        //ChangeTextureManager.instance.ChangeVariantText(Index);
+        if(Index < Variants.Length)
+        {
+            ChangeTextures(Variants[Index]);
+            currentVariantIndex = Index;
+        }
+
     }
 }

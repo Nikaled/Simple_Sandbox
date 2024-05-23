@@ -9,8 +9,9 @@ public class SerializedBuilding : MonoBehaviour
     [HideInInspector] public int CurrentTextureIndex;
     [HideInInspector] public int CurrentHp;
 
-    [HideInInspector] public Vector3 CurrentRotationOfPoint;// реализовать позже
-    [HideInInspector] public Vector3 CurrentRotationOfObject;// реализовать позже
+    [HideInInspector] public Vector3 CurrentRotationOfPoint;
+    [HideInInspector] public Vector3 CurrentRotationOfObject;
+    [HideInInspector] public Vector3 CurrentRotationOfTransport;
 
     [HideInInspector] public Vector3 CurrentScale;
     [HideInInspector] public Vector3 CurrentPosition;
@@ -42,7 +43,7 @@ public class SerializedBuilding : MonoBehaviour
         SavePositionAndScale();
         SaveRotation();
         Debug.Log("Current rotation of Root object:" + CurrentRotationOfObject);
-      SerializedBuildingData BuildingData = new(BuildingIndex, CurrentTextureIndex, CurrentHp, CurrentRotationOfPoint, CurrentRotationOfObject, CurrentScale, CurrentPosition);
+      SerializedBuildingData BuildingData = new(BuildingIndex, CurrentTextureIndex, CurrentHp, CurrentRotationOfPoint, CurrentRotationOfObject, CurrentRotationOfTransport, CurrentScale, CurrentPosition);
         return BuildingData;
     }
     public void LoadBuilding(SerializedBuildingData BuildingData)
@@ -54,11 +55,12 @@ public class SerializedBuilding : MonoBehaviour
         CurrentRotationOfObject = BuildingData.CurrentRotationOfObject;
         CurrentScale = BuildingData.CurrentScale;
         CurrentPosition = BuildingData.CurrentPosition;
+        CurrentRotationOfTransport = BuildingData.CurrentRotationOfTransport;
 
+        LoadPositionAndScale();
         LoadRotation();
         LoadCurrentTextureIndex();
         LoadHp();
-        LoadPositionAndScale();
         Debug.Log("Current rotation of Root object On Load:" + CurrentRotationOfObject);
     }
     public void LoadRotation()
@@ -69,12 +71,16 @@ public class SerializedBuilding : MonoBehaviour
         {
             center.SetRotatingCenter();
             center.gameObject.transform.eulerAngles = CurrentRotationOfPoint;
+            if (center.RootObjectEmpty != null)
+            {
+                center.RootObjectEmpty.transform.eulerAngles = CurrentRotationOfTransport;
+            }
             center.UnbindRotatingCenter();
 
         }
         else
         {
-            //gameObject.transform.eulerAngles = CurrentRotationOfPoint;
+            gameObject.transform.eulerAngles = CurrentRotationOfPoint;
         }
     }
     public void SaveRotation()
@@ -87,11 +93,16 @@ public class SerializedBuilding : MonoBehaviour
         {
             center.SetRotatingCenter();
             CurrentRotationOfPoint = center.gameObject.transform.eulerAngles;
+            if (center.RootObjectEmpty != null)
+            {
+                CurrentRotationOfTransport = center.RootObjectEmpty.transform.eulerAngles;
+            }
             center.UnbindRotatingCenter();
+          
         }
         else
         {
-            //CurrentRotationOfPoint = gameObject.transform.eulerAngles;
+            CurrentRotationOfPoint = gameObject.transform.eulerAngles;
         }
     }
     public void LoadHp()
@@ -121,12 +132,58 @@ public class SerializedBuilding : MonoBehaviour
     public void SavePositionAndScale()
     {
 
-        CurrentScale = transform.localScale;
         CurrentPosition = transform.position;
+        //CurrentPosition = transform.localPosition;
+        RotatingCenter center = GetComponentInChildren<RotatingCenter>();
+        if (center != null)
+        {
+            center.SetRotatingCenter();
+            if(center.RootObjectMesh != null)
+            {
+            CurrentScale =  center.RootObjectMesh.gameObject.transform.localScale;
+            }
+            if(center.RootObjectEmpty != null)
+            {
+                CurrentScale = center.RootObjectEmpty.gameObject.transform.localScale;
+                CurrentPosition = center.RootObjectEmpty.gameObject.transform.position;
+            }
+            center.UnbindRotatingCenter();
+        }
+        else
+        {
+            CurrentScale = transform.localScale;
+        }
+        Debug.Log(gameObject.name + " Позиция сохранена:" + CurrentPosition);
     }
     public void LoadPositionAndScale()
     {
+
         transform.position = CurrentPosition;
-        transform.localScale = CurrentScale;
+        //transform.localPosition = CurrentPosition;
+        RotatingCenter center = GetComponentInChildren<RotatingCenter>();
+        if (center != null)
+        {
+
+            center.SetRotatingCenter();
+            if (center.RootObjectMesh != null)
+            {
+                center.RootObjectMesh.gameObject.transform.localScale = CurrentScale;
+            }
+            if (center.RootObjectEmpty != null)
+            {
+                center.RootObjectEmpty.gameObject.transform.localScale = CurrentScale;
+                gameObject.transform.position = CurrentPosition;
+                center.RootObjectEmpty.gameObject.transform.position = CurrentPosition;
+
+            }
+
+            center.UnbindRotatingCenter();
+        }
+        else
+        {
+            transform.localScale  = CurrentScale;
+            Debug.Log("Current position of " + gameObject.name + ":" + CurrentPosition);
+            Debug.Log("Current position of " + gameObject.name + " по факту:" + transform.position);
+        }
     }
 }

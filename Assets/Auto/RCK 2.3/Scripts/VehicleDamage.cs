@@ -58,7 +58,7 @@ public class VehicleDamage : MonoBehaviour
                 crashSound.Play();
                 crashSound.volume = colStrength / 200;
 
-                OnMeshForce(collision.contacts[0].point, Mathf.Clamp01(colStrength / maxCollisionStrength));
+                // OnMeshForce(collision.contacts[0].point, Mathf.Clamp01(colStrength / maxCollisionStrength));
 
             }
         }

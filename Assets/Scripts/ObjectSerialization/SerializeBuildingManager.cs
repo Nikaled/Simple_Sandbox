@@ -14,6 +14,14 @@ public class SerializeBuildingManager : MonoBehaviour
     {
         instance = this;
     }
+    public void ToMenuButton()
+    {
+        SceneManager.LoadScene(0);
+    }
+    public void ReloadSceneButton()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
     public void SaveInMapSlot(int number)
     {
         for (int i = 0; i < BuildingsOnScene.Count; i++)
@@ -87,18 +95,13 @@ public class SerializeBuildingManager : MonoBehaviour
     }
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.K))
-        //{
-        //    SaveBuildings();
-        //}
-        //if (Input.GetKeyDown(KeyCode.L))
-        //{
-        //    if (Geekplay.Instance?.PlayerData?.BuildingData?.Count > 0)
-        //    {
-        //        LoadBuildings(Geekplay.Instance.PlayerData.BuildingData);
-        //    }
-        //    Debug.Log(Geekplay.Instance.PlayerData.BuildingData);
-        //}
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            if (Geekplay.Instance?.PlayerData?.BuildingData?.Count > 0)
+            {
+                LoadBuildings(Geekplay.Instance.PlayerData.BuildingDataMap1);
+            }   
+        }
     }
     public void SaveBuildings()
     {
@@ -113,16 +116,33 @@ public class SerializeBuildingManager : MonoBehaviour
     }
     private void LoadBuildings(List<SerializedBuildingData> BuildingData)
     {
-        for (int i = 0; i < BuildingData.Count; i++)
+        /*for (int i = 0; i < BuildingData.Count; i++)
         {
 
-           GameObject LoadedObj =  Instantiate(AllPrefabsInGame[BuildingData[i].BuildingIndex]);
+            GameObject LoadedObj =  Instantiate(AllPrefabsInGame[BuildingData[i].BuildingIndex]);
             SerializedBuilding SerObj = LoadedObj.GetComponent<SerializedBuilding>();
             if (SerObj != null)
             {
                 SerObj.LoadBuilding(BuildingData[i]);
             }
-        }
+        }*/
+        StartCoroutine(L(BuildingData));
         Debug.Log("Загружено объектов:" + BuildingData.Count);
+    }
+
+    IEnumerator L(List<SerializedBuildingData> BuildingData)
+    {
+        for (int i = 0; i < BuildingData.Count; i++)
+        {
+
+            GameObject LoadedObj = Instantiate(AllPrefabsInGame[BuildingData[i].BuildingIndex]);
+            SerializedBuilding SerObj = LoadedObj.GetComponent<SerializedBuilding>();
+            if (SerObj != null)
+            {
+                SerObj.LoadBuilding(BuildingData[i]);
+            }
+
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 }

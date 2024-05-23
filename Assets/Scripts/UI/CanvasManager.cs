@@ -33,6 +33,7 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] GameObject RightButtonsZone;
     [SerializeField] GameObject HelicopterMobileInstruction;
     [SerializeField] GameObject PlaneMobileInstruction;
+    [SerializeField] GameObject CarMobileInstruction;
     [SerializeField] public Button DoButton;
     [SerializeField] public Button InteracteButton;
     [Header("Rotating Mode")]
@@ -45,7 +46,6 @@ public class CanvasManager : MonoBehaviour
 
     private void Awake()
     {
-        InteracteButton.gameObject.SetActive(false);
         instance = this;
     }
     private void Update()
@@ -67,6 +67,8 @@ public class CanvasManager : MonoBehaviour
         {
             CanvasMobileInterface.SetActive(true);
             CanvasPCInterface.SetActive(false);
+            InteracteButton.gameObject.SetActive(false);
+            ShowMobileIdleButtons(true);
         }
         else
         {
@@ -89,6 +91,11 @@ public class CanvasManager : MonoBehaviour
     public void ShowHelicopterMobileInstruction(bool Is)
     {
         HelicopterMobileInstruction.SetActive(Is);
+        ShowMobileIdleButtons(!Is);
+    }
+    public void ShowCarMobileInstruction(bool Is)
+    {
+        CarMobileInstruction.SetActive(Is);
         ShowMobileIdleButtons(!Is);
     }
     public void ShowPlaneMobileInstruction(bool Is)

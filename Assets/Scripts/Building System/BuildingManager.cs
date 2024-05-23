@@ -540,6 +540,15 @@ public class BuildingManager : MonoBehaviour
                 rotatingObjectCenter.GetComponent<RotatingCenter>().SetRotatingCenter();
                 Debug.Log("Центр вращения  - родитель");
             }
+            if(rotatingObject.transform.parent != null)
+            {
+                if (rotatingObject.transform.parent.GetComponentInChildren<RotatingCenter>() != null)
+                {
+                    rotatingObjectCenter = rotatingObject.transform.parent.GetComponentInChildren<RotatingCenter>().gameObject;
+                    rotatingObjectCenter.GetComponent<RotatingCenter>().SetRotatingCenter();
+                    Debug.Log("Центр вращения  - брат");
+                }
+            }
         }
         if (rotatingObjectCenter == null)
         {

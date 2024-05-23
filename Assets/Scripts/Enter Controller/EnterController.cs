@@ -29,9 +29,8 @@ public class EnterController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             HideEnterInstruction();
-            CanvasManager.instance.InteracteButton.gameObject.SetActive(false);
             CanvasManager.instance.InteracteButton.onClick.RemoveListener(delegate { SitIntoTransport(); });
-
+            CanvasManager.instance.InteracteButton.gameObject.SetActive(false);
             if (player != null)
             {
                 if (player.currentNearTransport != null)
@@ -47,6 +46,7 @@ public class EnterController : MonoBehaviour
         {
             player = null;
         }
+       
     }
     protected virtual void ShowEnterInstruction()
     {
@@ -109,10 +109,8 @@ public class EnterController : MonoBehaviour
                         IsInterfaceActive = false;
                         player.SwitchPlayerState(Player.PlayerState.InTransport, 0);
                         HideEnterInstruction();
-
-                        CanvasManager.instance.InteracteButton.gameObject.SetActive(true);
                         CanvasManager.instance.InteracteButton.onClick.RemoveAllListeners();
-                        CanvasManager.instance.InteracteButton.onClick.AddListener(delegate { GetOutTransport(); });
+                        CanvasManager.instance.InteracteButton.gameObject.SetActive(false); 
                     }
 
                 }

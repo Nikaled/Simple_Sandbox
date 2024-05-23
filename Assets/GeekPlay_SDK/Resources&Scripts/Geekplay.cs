@@ -75,6 +75,7 @@ public class Geekplay : MonoBehaviour
     public string lastLeaderText;
 
     public event Action LeaderboardValuesReady;
+    public event Action ShowedAdInEditor;
     public void RunCoroutine(IEnumerator enumerator)
     {
         StartCoroutine(enumerator);
@@ -193,6 +194,7 @@ public class Geekplay : MonoBehaviour
         {
             case Platform.Editor:
                 Debug.Log($"<color={colorDebug}>INTERSTITIAL SHOW</color>");
+                ShowedAdInEditor?.Invoke();
                 break;
             case Platform.Yandex:
                 Utils.AdInterstitial();

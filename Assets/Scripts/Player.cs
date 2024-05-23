@@ -281,6 +281,11 @@ public class Player : MonoBehaviour
                 }
             }
         }
+        if (currentState == PlayerState.Aiming)
+        {
+            RotatePlayerOnShoot(playerShooting.AimDirection);
+            playerShooting.LockPlayerMovement(0.05f);
+        }
     }
 
     private void ChangeWeaponInput()
@@ -311,7 +316,6 @@ public class Player : MonoBehaviour
     {
         examplePlayer.MyLockOnShoot = true;
         yield return new WaitForSeconds(HoldingTime);
-        //yield return new WaitForSeconds(5f);
         examplePlayer.MyLockOnShoot = false;
     }
 
@@ -460,7 +464,7 @@ public class Player : MonoBehaviour
             //Quaternion OnlyY = new Quaternion(0, targetRotation.y, 0, targetRotation.w);
             //motor.RotateCharacter(OnlyY);
 
-            RotatePlayerOnShoot(playerShooting.AimDirection);
+            //RotatePlayerOnShoot(playerShooting.AimDirection);
             if (Input.GetMouseButtonUp(1))
             {
                 Debug.Log("Stop Aiming");

@@ -5,6 +5,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 192342, guid: 3183c916f57298a4896169b76ffef5be, type: 3}
@@ -76,6 +77,18 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 192342, guid: 3183c916f57298a4896169b76ffef5be, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 868298532}
+    - targetCorrespondingSourceObject: {fileID: 192342, guid: 3183c916f57298a4896169b76ffef5be, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 868298533}
+    - targetCorrespondingSourceObject: {fileID: 192342, guid: 3183c916f57298a4896169b76ffef5be, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 868298531}
   m_SourcePrefab: {fileID: 100100000, guid: 3183c916f57298a4896169b76ffef5be, type: 3}
 --- !u!1 &438583851593024563 stripped
 GameObject:
@@ -89,10 +102,21 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 438583851593024563}
-  serializedVersion: 2
+  serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
@@ -106,9 +130,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 438583851593024563}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 6, y: 6, z: 6}
   m_Center: {x: -0.000000022351747, y: 0, z: 0.52478695}
 --- !u!114 &868298531
@@ -124,5 +156,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletRigidbody: {fileID: 868298532}
-  speed: 300
+  speed: 50
   ProjectileSource: {fileID: 0}

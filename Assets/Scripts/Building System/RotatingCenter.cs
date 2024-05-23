@@ -5,9 +5,9 @@ using UnityEngine;
 public class RotatingCenter : MonoBehaviour
 {
     Vector3 CashedPositionInObject;
-    [SerializeField] MeshRenderer RootObjectMesh;
+    [SerializeField] public MeshRenderer RootObjectMesh;
     [Header("Transport only")]
-    [SerializeField] GameObject RootObjectEmpty;
+    [SerializeField]public GameObject RootObjectEmpty;
     public bool IsManualSet;
     private void OnEnable()
     {
@@ -23,7 +23,7 @@ public class RotatingCenter : MonoBehaviour
         }
         else if (RootObjectEmpty != null)
         {
-            gameObject.transform.parent = RootObjectEmpty.transform.parent;
+            gameObject.transform.SetParent(RootObjectEmpty.gameObject.transform);
             //CashedPositionInObject = transform.localPosition;
             //gameObject.transform.parent = null;
         }
@@ -42,12 +42,22 @@ public class RotatingCenter : MonoBehaviour
         }
         else if (RootObjectEmpty != null)
         {
+            gameObject.transform.parent = RootObjectEmpty.transform;
+            gameObject.transform.parent = RootObjectEmpty.transform.parent;
             RootObjectEmpty.transform.parent = gameObject.transform;
         }
     }
     public void UnbindRotatingCenter()
     {
+        if(RootObjectEmpty == null)
+        {
         RootObjectMesh.transform.parent = gameObject.transform.parent;  
         gameObject.transform.parent = RootObjectMesh.transform.parent;
+        }
+        else
+        {
+            RootObjectEmpty.transform.parent = gameObject.transform.parent;
+            gameObject.transform.parent = RootObjectEmpty.transform.parent;
+        }
     }
 }
