@@ -50,7 +50,14 @@ namespace alelavoie
             {
                 forceToApply += AltitudeStabilizer();
             }
+
+
+
             _ahc.HeliConstantForce.force = forceToApply * _ahc.Engine.EngineSpeed * throttlingModifier;
+
+
+
+            //_ahc.HeliConstantForce.force = forceToApply * _ahc.Engine.EngineSpeed * throttlingModifier*1.1f;
         }
 
         /// <summary>

@@ -36,8 +36,9 @@ public class BuildingCell : MonoBehaviour
             gameObject.GetComponent<Button>().onClick.AddListener(delegate { SendPrefabToManager(); });
         }
     }
-    public void SendPrefabToManager()
+    private IEnumerator SendPrefabToManagerCor()
     {
+        yield return new WaitForSeconds(0.1f);
         if (IsOpened)
         {
             BuildingManager.instance.ActivateBuildingButton(false);
@@ -61,6 +62,10 @@ public class BuildingCell : MonoBehaviour
                 CanvasManager.instance.ShowInAppShop(true);
             }
         }
+    }
+    public void SendPrefabToManager()
+    {
+        StartCoroutine(SendPrefabToManagerCor()); 
     }
     public void CheckPriceVisible()
     {

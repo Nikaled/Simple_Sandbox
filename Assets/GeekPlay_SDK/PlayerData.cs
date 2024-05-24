@@ -48,4 +48,6 @@ public class PlayerData
     public bool IsPlayerMapLoad;
     /////InApps//////
     public string lastBuy;
+
+    public int downloadsCount2;
 }

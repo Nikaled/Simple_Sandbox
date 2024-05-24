@@ -10,9 +10,13 @@ public class AdWarning : MonoBehaviour
     public TextMeshProUGUI WarningText;
     private void Start()
     {
-        Geekplay.Instance.ShowedAdInEditor += ResumeTime;
         StartCoroutine(AwaitAndShowWarningPanel());
         LocalizateText(5);
+        Debug.Log("Geekplay.Instance.cashedCursorMode" + Geekplay.Instance.cashedCursorModeSilence);
+    }
+    private void OnEnable()
+    {
+        Geekplay.Instance.ShowedAdInEditor += ResumeTime;
     }
     private void OnDisable()
     {
@@ -30,6 +34,7 @@ public class AdWarning : MonoBehaviour
     }
     private IEnumerator StartTimer()
     {
+        Geekplay.Instance.IsAdWarningShowing = true;
         Time.timeScale = 0f;
         int Timer = 5;
         while (Timer != 0)
@@ -39,6 +44,7 @@ public class AdWarning : MonoBehaviour
             yield return new WaitForSecondsRealtime(1f);
         }
         Geekplay.Instance.ShowInterstitialAd();
+        Geekplay.Instance.IsAdWarningShowing = false;
         WarningPanel.SetActive(false);
         StartCoroutine(AwaitAndShowWarningPanel());
     }

@@ -74,8 +74,13 @@ public class Geekplay : MonoBehaviour
     public float timeToUpdateLeaderboard = 60;
     public string lastLeaderText;
 
+
+    // Alex fields
     public event Action LeaderboardValuesReady;
     public event Action ShowedAdInEditor;
+    public bool IsAdWarningShowing;
+    public CursorLockMode? cashedCursorModeSilence = null;
+    public CursorLockMode? cashedCursorModeAd = null;
     public void RunCoroutine(IEnumerator enumerator)
     {
         StartCoroutine(enumerator);
@@ -831,11 +836,19 @@ public class Geekplay : MonoBehaviour
     //ПАУЗА И ПРОДОЛЖЕНИЕ ИГРЫ
     public void StopMusAndGame()
     {
+
+        cashedCursorModeAd = Cursor.lockState;
+        Cursor.lockState = CursorLockMode.None;
+
+
         adOpen = true;
         canShowAd = false;
         StartCoroutine(CanAdShow());
         AudioListener.volume = 0;
         Time.timeScale = 0;
+
+        //
+
     }
 
     public void ResumeMusAndGame()
@@ -846,7 +859,10 @@ public class Geekplay : MonoBehaviour
 
 
 
-
+        if(cashedCursorModeSilence != null)
+        {
+        Cursor.lockState = (CursorLockMode)cashedCursorModeAd;
+        }
         ////////////////
     }
 
@@ -866,12 +882,23 @@ public class Geekplay : MonoBehaviour
         AudioListener.volume = silence ? 0 : 1;
         Time.timeScale = silence ? 0 : 1;
 
-        if (adOpen)
+        if (adOpen || IsAdWarningShowing)
         {
             Time.timeScale = 0;
             AudioListener.volume = 0;
         }
         //////////
+        if (silence)
+        {
+            cashedCursorModeSilence = Cursor.lockState;
+        }
+        else
+        {
+            if(cashedCursorModeSilence != null)
+            {
+                 Cursor.lockState = (CursorLockMode)cashedCursorModeSilence;
+            }
+        }
     }
 
     public void ItIsMobile()

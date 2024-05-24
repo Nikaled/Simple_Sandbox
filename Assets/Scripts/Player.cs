@@ -104,6 +104,8 @@ public class Player : MonoBehaviour
                 break;
             case PlayerState.RotatingBuilding:
                 BuildingManager.instance.ActivateRotatingMode(true);
+                CanvasManager.instance.ShowCitizenEnterInstruction(false);
+                CanvasManager.instance.ShowTransportEnterInstruction(false);
                 break;
 
         }
@@ -345,7 +347,7 @@ public class Player : MonoBehaviour
 
             animator.SetTrigger("PistolFire");
             motor.SetPosition(transform.position);
-            Fire();
+            playerShooting.Fire(CurrentWeapon);
         }
         if (CurrentWeapon == WeaponType.Knife)
         {
@@ -396,7 +398,7 @@ public class Player : MonoBehaviour
             {
                 animator.SetTrigger("PistolFire");
                 motor.SetPosition(transform.position);
-                Fire();
+                playerShooting.Fire(CurrentWeapon);
             }
         }
         if (CurrentWeapon == WeaponType.Knife)
@@ -507,9 +509,5 @@ public class Player : MonoBehaviour
         }
         //playerShooting.lineRenderer.enabled = false;
 
-    }
-    private void Fire()
-    {
-        playerShooting.Fire(CurrentWeapon);
     }
 }

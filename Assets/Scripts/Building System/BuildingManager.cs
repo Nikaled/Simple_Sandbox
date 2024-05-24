@@ -36,6 +36,7 @@ public class BuildingManager : MonoBehaviour
 
     Vector3 RotatingCashedRotating;
     Vector3 RotatingCashedScale;
+    private GameObject ScalingObject;
     private float CashedRotatingX;
     private float CashedRotatingY;
     private float CashedRotatingZ;
@@ -157,7 +158,7 @@ public class BuildingManager : MonoBehaviour
     }
     public void TurnDeletingObjectNormalAndClearFields()
     {
-      
+
         if (deletingObject != null && CashedMaterialsOnDeleting != null)
         {
             if (deletingObject.CompareTag("Citizen"))
@@ -166,7 +167,7 @@ public class BuildingManager : MonoBehaviour
             }
             else
             {
-            TurnNormalChosenObject(deletingObject.GetComponentsInChildren<MeshRenderer>(), CashedMaterialsOnDeleting);
+                TurnNormalChosenObject(deletingObject.GetComponentsInChildren<MeshRenderer>(), CashedMaterialsOnDeleting);
             }
         }
         CashedMaterialsOnDeleting = null;
@@ -227,11 +228,22 @@ public class BuildingManager : MonoBehaviour
             player.SwitchPlayerState(Player.PlayerState.Idle);
         }
     }
-    public void SwitchPlayerState()
+    public void SwitchPlayerStateToDeleting()
     {
-        if (Player.instance.currentState != Player.PlayerState.DeletingBuilding || Player.instance.currentState != Player.PlayerState.Building)
+        if (Player.instance.currentState != Player.PlayerState.DeletingBuilding)
         {
             player.SwitchPlayerState(Player.PlayerState.DeletingBuilding);
+        }
+        else
+        {
+            player.SwitchPlayerState(Player.PlayerState.Idle);
+        }
+    }
+    public void SwitchPlayerStateToBuilding()
+    {
+        if (Player.instance.currentState != Player.PlayerState.Building)
+        {
+            player.SwitchPlayerState(Player.PlayerState.Building);
         }
         else
         {
@@ -248,7 +260,7 @@ public class BuildingManager : MonoBehaviour
                 Destroy(deletingObject.GetComponentInParent<DeletingRoot>().gameObject);
                 Debug.Log("Удален родитель");
             }
-            if(deletingObject.GetComponentInParent<SerializedBuilding>() != null)
+            if (deletingObject.GetComponentInParent<SerializedBuilding>() != null)
             {
                 Destroy(deletingObject.GetComponentInParent<SerializedBuilding>().gameObject);
                 Debug.Log("Удален родитель");
@@ -314,7 +326,6 @@ public class BuildingManager : MonoBehaviour
         }
         pendingObj.transform.LookAt(player.transform);
         pendingObj.transform.DORotate(new Vector3(0, pendingObj.transform.position.y, 0), 0);
-
 
 
     }
@@ -448,14 +459,7 @@ public class BuildingManager : MonoBehaviour
             {
                 if (rotatingObject != null)
                 {
-                    if (rotatingObject.CompareTag("Citizen"))
-                    {
-                        TurnDeletingCitizenNormalAndClearFields();
-                    }
-                    else
-                    {
-                        TurnRotatingObjectNormalAndClearFields();
-                    }
+                    TurnRotatingObjectNormalAndClearFields();
                 }
             }
             if (Geekplay.Instance.mobile == false)
@@ -498,14 +502,14 @@ public class BuildingManager : MonoBehaviour
             return;
         }
         Player.instance.examplePlayer.MyLockOnShoot = Is;
-        if(rotatingObjectCenter != null)
+        if (rotatingObjectCenter != null)
         {
             var rotateCenter = rotatingObjectCenter.GetComponent<RotatingCenter>();
-            if(rotateCenter != null)
+            if (rotateCenter != null)
             {
                 rotateCenter.UnbindRotatingCenter();
             }
-        rotatingObjectCenter = null;
+            rotatingObjectCenter = null;
         }
         RotateChosenObjectMode = Is;
         Debug.Log("Rotating object:" + rotatingObject.name);
@@ -540,7 +544,7 @@ public class BuildingManager : MonoBehaviour
                 rotatingObjectCenter.GetComponent<RotatingCenter>().SetRotatingCenter();
                 Debug.Log("Центр вращения  - родитель");
             }
-            if(rotatingObject.transform.parent != null)
+            if (rotatingObject.transform.parent != null)
             {
                 if (rotatingObject.transform.parent.GetComponentInChildren<RotatingCenter>() != null)
                 {
@@ -558,6 +562,31 @@ public class BuildingManager : MonoBehaviour
         }
         RotatingCashedRotating = rotatingObjectCenter.transform.eulerAngles;
         RotatingCashedScale = rotatingObject.transform.localScale;
+        ScalingObject = rotatingObject;
+
+
+        if (Is)
+        {
+            ScalingParent ScaleParent = rotatingObject.GetComponentInChildren<ScalingParent>();
+            if (ScaleParent != null)
+            {
+                ScaleParent.SetThisAsParent();
+                RotatingCashedScale = ScaleParent.transform.localScale;
+                ScalingObject = ScaleParent.gameObject;
+                Debug.Log("есть скейл перент");
+            }
+        }
+        else
+        {
+            if (rotatingObject.GetComponentInParent<ScalingParent>() != null)
+            {
+                ScalingObject.GetComponentInParent<ScalingParent>().SetThisAsChild();
+                RotatingCashedScale = ScalingObject.transform.localScale;
+                ScalingObject = null;
+            }
+        }
+
+
         CanvasManager.instance.ShowRotatingModeInstruction(false);
         CanvasManager.instance.ShowChosenObjectRotatingModeInstruction(Is, Scale: RotatingCashedScale, Rotation: RotatingCashedRotating);
         if (Is)
@@ -605,20 +634,20 @@ public class BuildingManager : MonoBehaviour
     #region RotatingSliders
     public void RotatingSliderScaleX(float IncreaseNumber)
     {
-        if (rotatingObject != null)
-            rotatingObject.transform.DOScaleX(IncreaseNumber, 0);
+        if (ScalingObject != null)
+            ScalingObject.transform.DOScaleX(IncreaseNumber, 0);
     }
     public void RotatingSliderScaleY(float IncreaseNumber)
     {
-        if (rotatingObject != null)
+        if (ScalingObject != null)
 
-            rotatingObject.transform.DOScaleY(IncreaseNumber, 0);
+            ScalingObject.transform.DOScaleY(IncreaseNumber, 0);
     }
     public void RotatingSliderScaleZ(float IncreaseNumber)
     {
-        if (rotatingObject != null)
+        if (ScalingObject != null)
 
-            rotatingObject.transform.DOScaleZ(IncreaseNumber, 0);
+            ScalingObject.transform.DOScaleZ(IncreaseNumber, 0);
     }
     public void RotatingSliderRotateX(float IncreaseNumber)
     {

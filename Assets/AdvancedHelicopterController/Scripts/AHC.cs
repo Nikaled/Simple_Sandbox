@@ -137,10 +137,10 @@ namespace alelavoie
         }
         public void MyInitializeButtons()
         {
-            HelicopterButtons.instance.GoForward.GetComponent<HelicopterButton>().TranslatingFloat = -30f;
+            HelicopterButtons.instance.GoForward.GetComponent<HelicopterButton>().TranslatingFloat = 30f;
             HelicopterButtons.instance.GoForward.GetComponent<HelicopterButton>().ActionOnHold += OnPitchMobile;
 
-            HelicopterButtons.instance.GoBack.GetComponent<HelicopterButton>().TranslatingFloat = 30f;
+            HelicopterButtons.instance.GoBack.GetComponent<HelicopterButton>().TranslatingFloat = -30f;
             HelicopterButtons.instance.GoBack.GetComponent<HelicopterButton>().ActionOnHold += OnPitchMobile;
 
             HelicopterButtons.instance.UpEngine.GetComponent<HelicopterButton>().TranslatingFloat = 1f;
@@ -270,8 +270,8 @@ namespace alelavoie
         }
         public void MyRotorAnimation()
         {
-                _rotorMainTransform.Rotate(Vector3.up * (_engine.EngineSpeed*10));
-            _rotorTailTransform.Rotate(Vector3.left * (_engine.EngineSpeed * 10));
+                _rotorMainTransform.Rotate(Vector3.up * (_engine.EngineSpeed*15));
+            _rotorTailTransform.Rotate(Vector3.left * (_engine.EngineSpeed * 15));
         }
 
         private void SyncAudioSourcePitch() {
@@ -307,7 +307,7 @@ namespace alelavoie
 
         public void OnYaw(InputValue value)
         {
-            _controls.Yaw = value.Get<float>();
+            _controls.Yaw = value.Get<float>() *10;
             _controls.YawLastChanged = 0f;
 
         }

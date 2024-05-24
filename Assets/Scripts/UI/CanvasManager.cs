@@ -13,6 +13,8 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private GameObject BuildingMenu;
     [SerializeField] private GameObject InAppShop;
     [SerializeField] public GameObject SaveMapUI;
+    [SerializeField] public GameObject CoinsUI;
+    [SerializeField] public GameObject MultiplatformUI;
     [Header("PC Interfaces")]
     [SerializeField] GameObject _helicopterInstruction;
     [SerializeField] GameObject _planeInstruction;
@@ -82,6 +84,19 @@ public class CanvasManager : MonoBehaviour
         LeftButtonsZone.SetActive(Is);
         RightButtonsZone.SetActive(Is);
     }
+
+    public void ShowAllUI(bool Is)
+    {
+        if (Geekplay.Instance.mobile)
+        {
+        CanvasMobileInterface.SetActive(Is);
+        }
+        else
+        {
+        CanvasPCInterface.SetActive(Is);
+        }
+        MultiplatformUI.SetActive(Is);
+    }
     public void ShowSaveMapUI(bool Is)
     {
         SaveMapUIActive = Is;
@@ -123,7 +138,11 @@ public class CanvasManager : MonoBehaviour
     public void ShowTransportEnterInstruction(bool Is)
     {
         _EnterTransportInstruction.SetActive(Is);
+        if (Is)
+        {
         ShowObjectInteructInstruction(false);
+            ShowCitizenEnterInstruction(false);
+        }
     }
     public void ShowControlCarInstruction(bool Is)
     {
@@ -134,16 +153,16 @@ public class CanvasManager : MonoBehaviour
     {
         InAppShopActive = Is;
         InAppShop.SetActive(Is);
-        if (Geekplay.Instance.mobile == false)
-        {
-            Player.instance.examplePlayer.LockCursor(!Is);
-        }
+       Player.instance.examplePlayer.LockCursor(!Is);
     }
     public void ShowCitizenEnterInstruction(bool Is)
     {
         _EnterCitizenInstruction.SetActive(Is);
-        ShowObjectInteructInstruction(false);
-        ShowTransportEnterInstruction(false);
+        if (Is)
+        {
+            ShowObjectInteructInstruction(false);
+            ShowTransportEnterInstruction(false);
+        }
     }
     public void ShowPlaneInstruction(bool Is)
     {
@@ -156,6 +175,12 @@ public class CanvasManager : MonoBehaviour
     public void ShowObjectInteructInstruction(bool Is)
     {
         _objectInteractionInstruction.SetActive(Is);
+        if (Is)
+        {
+            ShowTransportEnterInstruction(false);
+            ShowCitizenEnterInstruction(false);
+        }
+
     }
     public void ShowRotatingModeInstruction(bool Is)
     {
@@ -164,6 +189,8 @@ public class CanvasManager : MonoBehaviour
     public void ShowDeletingModeInstruction(bool Is)
     {
         _deletingModeInstruction.SetActive(Is);
+        ShowCitizenEnterInstruction(false);
+        ShowTransportEnterInstruction(false);
     }
     public void ShowBuildingModeInstruction(bool Is)
     {
@@ -176,6 +203,12 @@ public class CanvasManager : MonoBehaviour
     public void ShowChosenObjectRotatingModeInstruction(bool Is, Vector3 Scale, Vector3 Rotation)
     {
         _rotatingChosenObjectModeInstruction.SetActive(Is);
+        if (Is)
+        {
+            ShowTransportEnterInstruction(false);
+            ShowCitizenEnterInstruction(false);
+            ShowObjectInteructInstruction(false);
+        }
         if (Is)
         {
             float[] ScaleParametres = new float[] { Scale.x, Scale.y, Scale.z };

@@ -52,6 +52,7 @@ MonoBehaviour:
   CurrentHp: 0
   CurrentRotationOfPoint: {x: 0, y: 0, z: 0}
   CurrentRotationOfObject: {x: 0, y: 0, z: 0}
+  CurrentRotationOfTransport: {x: 0, y: 0, z: 0}
   CurrentScale: {x: 0, y: 0, z: 0}
   CurrentPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &8662361065533608242
@@ -83,7 +84,7 @@ Transform:
   m_GameObject: {fileID: 8662361065533608242}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.99987936, z: -0, w: 0.01553526}
-  m_LocalPosition: {x: -7.27, y: 0, z: -0.23}
+  m_LocalPosition: {x: -7.27, y: 0.05, z: -0.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

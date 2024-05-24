@@ -19,7 +19,7 @@ public class SerializedBuilding : MonoBehaviour
     public void SaveHp()
     {
         HpSystem hpSystem = GetComponentInChildren<HpSystem>();
-        if(hpSystem != null)
+        if (hpSystem != null)
         {
             CurrentHp = hpSystem.CurrentHP;
         }
@@ -30,7 +30,7 @@ public class SerializedBuilding : MonoBehaviour
     }
     private void OnDestroy()
     {
-        if(SerializeBuildingManager.instance != null)
+        if (SerializeBuildingManager.instance != null)
         {
             SerializeBuildingManager.instance.BuildingsOnScene.Remove(this);
         }
@@ -43,7 +43,7 @@ public class SerializedBuilding : MonoBehaviour
         SavePositionAndScale();
         SaveRotation();
         Debug.Log("Current rotation of Root object:" + CurrentRotationOfObject);
-      SerializedBuildingData BuildingData = new(BuildingIndex, CurrentTextureIndex, CurrentHp, CurrentRotationOfPoint, CurrentRotationOfObject, CurrentRotationOfTransport, CurrentScale, CurrentPosition);
+        SerializedBuildingData BuildingData = new(BuildingIndex, CurrentTextureIndex, CurrentHp, CurrentRotationOfPoint, CurrentRotationOfObject, CurrentRotationOfTransport, CurrentScale, CurrentPosition);
         return BuildingData;
     }
     public void LoadBuilding(SerializedBuildingData BuildingData)
@@ -65,7 +65,7 @@ public class SerializedBuilding : MonoBehaviour
     }
     public void LoadRotation()
     {
-            transform.Rotate(CurrentRotationOfObject);
+        transform.Rotate(CurrentRotationOfObject);
         RotatingCenter center = GetComponentInChildren<RotatingCenter>();
         if (center != null)
         {
@@ -98,7 +98,7 @@ public class SerializedBuilding : MonoBehaviour
                 CurrentRotationOfTransport = center.RootObjectEmpty.transform.eulerAngles;
             }
             center.UnbindRotatingCenter();
-          
+
         }
         else
         {
@@ -138,11 +138,11 @@ public class SerializedBuilding : MonoBehaviour
         if (center != null)
         {
             center.SetRotatingCenter();
-            if(center.RootObjectMesh != null)
+            if (center.RootObjectMesh != null)
             {
-            CurrentScale =  center.RootObjectMesh.gameObject.transform.localScale;
+                CurrentScale = center.RootObjectMesh.gameObject.transform.localScale;
             }
-            if(center.RootObjectEmpty != null)
+            if (center.RootObjectEmpty != null)
             {
                 CurrentScale = center.RootObjectEmpty.gameObject.transform.localScale;
                 CurrentPosition = center.RootObjectEmpty.gameObject.transform.position;
@@ -151,7 +151,19 @@ public class SerializedBuilding : MonoBehaviour
         }
         else
         {
-            CurrentScale = transform.localScale;
+            ScalingParent ScaleParent = GetComponentInChildren<ScalingParent>();
+            if (ScaleParent != null)
+            {
+                ScaleParent.SetThisAsParent();
+                CurrentScale = ScaleParent.transform.localScale;
+                ScaleParent.SetThisAsChild();
+
+            }
+            else
+            {
+                CurrentScale = transform.localScale;
+
+            }
         }
         Debug.Log(gameObject.name + " Позиция сохранена:" + CurrentPosition);
     }
@@ -181,7 +193,19 @@ public class SerializedBuilding : MonoBehaviour
         }
         else
         {
-            transform.localScale  = CurrentScale;
+            ScalingParent ScaleParent = GetComponentInChildren<ScalingParent>();
+            if (ScaleParent != null)
+            {
+                ScaleParent.SetThisAsParent();
+                ScaleParent.transform.localScale = CurrentScale;
+                ScaleParent.SetThisAsChild();
+
+            }
+            else
+            {
+                transform.localScale = CurrentScale;
+            }
+
             Debug.Log("Current position of " + gameObject.name + ":" + CurrentPosition);
             Debug.Log("Current position of " + gameObject.name + " по факту:" + transform.position);
         }
