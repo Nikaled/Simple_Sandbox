@@ -16,7 +16,7 @@ public class ChangeTextureManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        VariantNames = new string[] {"Вариант 1", "Вариант 2", "Вариант 3", "Вариант 4", "Вариант 5"};
+        VariantNames = new string[] {"Р¦Р’Р•Рў 1", "Р¦Р’Р•Рў 2", "Р¦Р’Р•Рў 3", "Р¦Р’Р•Рў 4", "Р¦Р’Р•Рў 5"};
     }
     public void ChangeVariantText(int index)
     {

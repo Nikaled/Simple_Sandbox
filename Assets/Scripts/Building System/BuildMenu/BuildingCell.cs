@@ -13,6 +13,7 @@ public class BuildingCell : MonoBehaviour
     public RawImage ObjectScreen;
     public int CoinPrice;
     public TextMeshProUGUI PriceText;
+    public GameObject priceObj;
     public bool IsOpened;
 
     public event Action ItemOpened;
@@ -25,7 +26,7 @@ public class BuildingCell : MonoBehaviour
         }
         else
         {
-            PriceText.gameObject.SetActive(false);
+            priceObj.gameObject.SetActive(false);
         }
         
     }
