@@ -36,10 +36,12 @@ public class BuildingManager : MonoBehaviour
 
     Vector3 RotatingCashedRotating;
     Vector3 RotatingCashedScale;
+    private Vector3 CashedHpScale;
     private GameObject ScalingObject;
     private float CashedRotatingX;
     private float CashedRotatingY;
     private float CashedRotatingZ;
+    HpSystem hpSystemOnObject;
     private GameObject rotatingObjectCenter;
 
     public bool RotateChosenObjectMode { get; private set; }
@@ -501,6 +503,13 @@ public class BuildingManager : MonoBehaviour
         {
             return;
         }
+         hpSystemOnObject = rotatingObject.GetComponentInChildren<HpSystem>();
+        if (Is)
+        {
+            if (hpSystemOnObject != null)
+                CashedHpScale = hpSystemOnObject.gameObject.transform.localScale;
+        }
+
         Player.instance.examplePlayer.MyLockOnShoot = Is;
         if (rotatingObjectCenter != null)
         {
@@ -586,7 +595,6 @@ public class BuildingManager : MonoBehaviour
             }
         }
 
-
         CanvasManager.instance.ShowRotatingModeInstruction(false);
         CanvasManager.instance.ShowChosenObjectRotatingModeInstruction(Is, Scale: RotatingCashedScale, Rotation: RotatingCashedRotating);
         if (Is)
@@ -635,7 +643,15 @@ public class BuildingManager : MonoBehaviour
     public void RotatingSliderScaleX(float IncreaseNumber)
     {
         if (ScalingObject != null)
+        {
             ScalingObject.transform.DOScaleX(IncreaseNumber, 0);
+            if (hpSystemOnObject != null)
+            {
+                //if (ScalingObject.transform.localScale.x < IncreaseNumber)
+                    hpSystemOnObject.gameObject.transform.DOScaleX(hpSystemOnObject.OriginScale.x / IncreaseNumber, 0);
+
+            }
+        }
     }
     public void RotatingSliderScaleY(float IncreaseNumber)
     {
@@ -648,6 +664,12 @@ public class BuildingManager : MonoBehaviour
         if (ScalingObject != null)
 
             ScalingObject.transform.DOScaleZ(IncreaseNumber, 0);
+
+        if (hpSystemOnObject != null)
+        {
+            if (ScalingObject.transform.localScale.z < IncreaseNumber)
+                hpSystemOnObject.gameObject.transform.DOScaleZ(hpSystemOnObject.OriginScale.z / IncreaseNumber, 0);
+        }
     }
     public void RotatingSliderRotateX(float IncreaseNumber)
     {

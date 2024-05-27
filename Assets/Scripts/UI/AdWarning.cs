@@ -34,6 +34,7 @@ public class AdWarning : MonoBehaviour
     }
     private IEnumerator StartTimer()
     {
+        Cursor.lockState = CursorLockMode.None;
         Geekplay.Instance.IsAdWarningShowing = true;
         Time.timeScale = 0f;
         int Timer = 5;
@@ -45,6 +46,8 @@ public class AdWarning : MonoBehaviour
         }
         Geekplay.Instance.ShowInterstitialAd();
         Geekplay.Instance.IsAdWarningShowing = false;
+        Geekplay.Instance.PlayerData.Coins++;
+        Geekplay.Instance.Save();
         WarningPanel.SetActive(false);
         StartCoroutine(AwaitAndShowWarningPanel());
     }

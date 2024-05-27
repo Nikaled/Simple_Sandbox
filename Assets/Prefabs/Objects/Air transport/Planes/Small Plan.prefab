@@ -84,7 +84,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 5000
+  far clip plane: 150
   field of view: 40
   orthographic: 0
   orthographic size: 10
@@ -1120,7 +1120,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1204,7 +1204,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1429,7 +1429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ColliderLayerMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 1025
   currentSpeed: 0
   airplaneState: 2
   trailThickness: 0.045
@@ -1513,8 +1513,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 7.5982265, y: 2.8111222, z: 9.051514}
-  m_Center: {x: 0.0871249, y: 1.4612473, z: -0.3021391}
+  m_Size: {x: 7.5982265, y: 2.4460728, z: 9.051514}
+  m_Center: {x: 0.0871249, y: 1.6437721, z: -0.3021391}
 --- !u!208 &8733328464211816307
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -2216,12 +2216,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.68722034, y: 1, z: 2.8640287}
-  m_Center: {x: -0.15639006, y: 0, z: 0.9320146}
+  m_Size: {x: 0.5098684, y: 4.8189273, z: 4.9551277}
+  m_Center: {x: -0.06771434, y: 0.15756342, z: 0.57278216}
 --- !u!1001 &875783002569226826
 PrefabInstance:
   m_ObjectHideFlags: 0

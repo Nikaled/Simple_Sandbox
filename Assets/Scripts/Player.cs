@@ -115,22 +115,11 @@ public class Player : MonoBehaviour
         }
         if (currentState == PlayerState.DeletingBuilding)
         {
-
             BuildingManager.instance.ActivateDeletingMode(false);
-        }
-        if (newPlayerState == PlayerState.Idle)
-        {
-            CanvasManager.instance.ShowIdleInstruction(true);
-            CanvasManager.instance.DoButton.onClick.AddListener(delegate { MobileFireInput(); });
-
-        }
-        else
-        {
-            CanvasManager.instance.ShowIdleInstruction(false);
         }
         if (Delay > 0)
         {
-            StartCoroutine(DelaySwitchState(newPlayerState, Delay));
+        StartCoroutine(DelaySwitchState(newPlayerState, Delay));
         }
         else
         {
@@ -147,7 +136,19 @@ public class Player : MonoBehaviour
     }
     private IEnumerator DelaySwitchState(Player.PlayerState newPlayerState, float Delay)
     {
+
         yield return new WaitForSeconds(Delay);
+
+        if (newPlayerState == PlayerState.Idle)
+        {
+            CanvasManager.instance.DoButton.onClick.AddListener(delegate { MobileFireInput(); });
+            CanvasManager.instance.ShowIdleInstruction(true);
+        }
+        else
+        {
+            if (currentState == PlayerState.Idle)
+                CanvasManager.instance.ShowIdleInstruction(false);
+        }
         if (currentState == PlayerState.DeletingBuilding)
         {
             BuildingManager.instance.TurnDeletingObjectNormalAndClearFields();
@@ -240,7 +241,7 @@ public class Player : MonoBehaviour
         }
         if (currentState != PlayerState.Building && currentState != PlayerState.DeletingBuilding && currentState != PlayerState.RotatingBuilding)
         {
-            if(Geekplay.Instance.mobile == false)
+            if (Geekplay.Instance.mobile == false)
             {
                 FireInput();
                 ChangeWeaponInput();

@@ -14,7 +14,9 @@ public class SerializedBuildingData
     public Vector3 CurrentScale;
     public Vector3 CurrentPosition;
     public Vector3 CurrentRotationOfTransport;
-    public SerializedBuildingData(int BuildingIndex, int CurrentTextureIndex, int CurrentHp, Vector3 CurrentRotation, Vector3 CurrentRotationOfObject, Vector3 CurrentRotationOfTransport, Vector3 CurrentScale, Vector3 CurrentPosition)
+    public Vector3 CurrentHpScale;
+    public SerializedBuildingData(int BuildingIndex, int CurrentTextureIndex, int CurrentHp, Vector3 CurrentRotation,
+        Vector3 CurrentRotationOfObject, Vector3 CurrentRotationOfTransport, Vector3 CurrentScale, Vector3 CurrentPosition, Vector3 CurrentHpScale)
     {
         this.BuildingIndex = BuildingIndex;
         this.CurrentTextureIndex = CurrentTextureIndex;
@@ -24,6 +26,7 @@ public class SerializedBuildingData
         this.CurrentScale = CurrentScale;
         this.CurrentPosition = CurrentPosition;
         this.CurrentRotationOfTransport = CurrentRotationOfTransport;
+        this.CurrentHpScale = CurrentHpScale;
     }
 
 }

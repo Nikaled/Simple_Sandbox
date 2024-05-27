@@ -14,7 +14,10 @@ public class RotatingToPlayer : MonoBehaviour
     {
         if (target != null)
         {
-            transform.LookAt(target);
+            Vector3 targetPostition = new Vector3(target.position.x,
+                                       this.transform.position.y,
+                                       target.position.z);
+           transform.LookAt(targetPostition);
         }
     }
 }

@@ -172,6 +172,8 @@ namespace HeneGames.Airplane
         }
         public void MyClearButtons()
         {
+            PlaneButtons.instance.DownEngine.GetComponent<HelicopterButton>().ActionOnHold -= DownThePlane;
+
             PlaneButtons.instance.GoForward.GetComponent<HelicopterButton>().ActionOnHold -= GoUpAndDown;
 
             PlaneButtons.instance.GoBack.GetComponent<HelicopterButton>().ActionOnHold -= GoUpAndDown;
@@ -184,7 +186,6 @@ namespace HeneGames.Airplane
 
             PlaneButtons.instance.RollRight.GetComponent<HelicopterButton>().ActionOnHold -= RollRight;
 
-            HelicopterButtons.instance.DownEngine.GetComponent<HelicopterButton>().ActionOnHold -= DownThePlane;
 
 
         }
@@ -197,8 +198,8 @@ namespace HeneGames.Airplane
 
             //Get and set rigidbody
             rb = GetComponent<Rigidbody>();
-            rb.isKinematic = true;
-            rb.useGravity = false;
+            //rb.isKinematic = true;
+            //rb.useGravity = false;
             rb.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
 
             SetupColliders(crashCollidersRoot);
@@ -231,6 +232,7 @@ namespace HeneGames.Airplane
         {
             UpdatePropellersAndLights();
 
+            //rb.AddForce(Vector3.zero);
             //Airplane move only if not dead
             if (!planeIsDead)
             {
@@ -301,18 +303,36 @@ namespace HeneGames.Airplane
 
         public void UpThePlaneFromGround()
         {
-            transform.Translate(Vector3.forward * currentSpeed * 0.2f * Time.deltaTime);
-            transform.Translate(Vector3.up * currentSpeed * 0.2f * Time.deltaTime);
+            //rb.MovePosition(Vector3.forward * Time.deltaTime);
+            //rb.MovePosition(Vector3.up * Time.deltaTime);
+
+            //rb.AddForce(Vector3.forward/* * currentSpeed * 0.2f*/ * Time.deltaTime);
+            //rb.AddForce(Vector3.up /** currentSpeed * 0.2f*/ * Time.deltaTime);
+            ////rb.Move(Vector3.up * 5, Quaternion.identity);
+            ////rb.Move(Vector3.forward * 5, Quaternion.identity);
+            rb.velocity = new Vector3(0, currentSpeed * 0.2f, currentSpeed * 0.2f);
+            //transform.Translate(Vector3.forward * currentSpeed * 0.2f * Time.deltaTime);
+            //transform.Translate(Vector3.up * currentSpeed * 0.2f * Time.deltaTime);
         }
         public void UpThePlane()
         {
-            transform.Translate(Vector3.up * currentSpeed * 0.2f * Time.deltaTime);
+            //rb.AddForce(Vector3.up);
+            //rb.MovePosition((transform.position + Vector3.up) /** Time.deltaTime*/);
+
+            rb.velocity = new Vector3(0, currentSpeed * 0.2f, currentSpeed * 0.2f);
+            //transform.Translate(Vector3.up * currentSpeed * 0.2f * Time.deltaTime);
+            //rb.AddForce(Vector3.up /** currentSpeed * 0.2f */* Time.deltaTime);
+            ////rb.Move(Vector3.up * 5, Quaternion.identity);
+            ///
+
         }
         private void Movement()
         {
             //Move forward
             transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime);
-
+            //rb.Move(Vector3.forward * currentSpeed * Time.deltaTime, Quaternion.identity);
+            //rb.AddForce(Vector3.forward * currentSpeed * Time.deltaTime*10);
+            //rb.MovePosition((transform.position + Vector3.forward) /** Time.deltaTime*/);
             //Rotate airplane by inputs
             transform.Rotate(Vector3.forward * -inputH * currentRollSpeed * Time.deltaTime);
             transform.Rotate(Vector3.right * inputV * currentPitchSpeed * Time.deltaTime);
@@ -730,7 +750,7 @@ namespace HeneGames.Airplane
             if(Geekplay.Instance.mobile == false)
             {
                 inputH = Input.GetAxis("PlaneHorizontal");
-                inputV = Input.GetAxis("Vertical");
+                inputV = (Input.GetAxis("Vertical"))*-1;
 
                 //Yaw axis inputs
                 inputYawLeft = Input.GetKey(KeyCode.A);
@@ -788,5 +808,10 @@ namespace HeneGames.Airplane
         }
 
         #endregion
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            Debug.Log("COLLISION");
+        }
     }
 }

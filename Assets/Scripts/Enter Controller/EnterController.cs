@@ -46,7 +46,7 @@ public class EnterController : MonoBehaviour
         {
             player = null;
         }
-       
+
     }
     protected virtual void ShowEnterInstruction()
     {
@@ -89,7 +89,7 @@ public class EnterController : MonoBehaviour
     }
     protected virtual void SitIntoTransport()
     {
-        if(Player.instance.currentState != Player.PlayerState.Idle)
+        if (Player.instance.currentState != Player.PlayerState.Idle)
         {
             return;
         }
@@ -103,6 +103,7 @@ public class EnterController : MonoBehaviour
                     {
                         HpView.SetActive(false);
                         player.PlayerSetActive(false);
+                        TransportCamera.farClipPlane = 150f;
                         TransportCamera.gameObject.SetActive(true);
                         ActivateTransport();
                         IsPlayerIn = true;
@@ -110,7 +111,7 @@ public class EnterController : MonoBehaviour
                         player.SwitchPlayerState(Player.PlayerState.InTransport, 0);
                         HideEnterInstruction();
                         CanvasManager.instance.InteracteButton.onClick.RemoveAllListeners();
-                        CanvasManager.instance.InteracteButton.gameObject.SetActive(false); 
+                        CanvasManager.instance.InteracteButton.gameObject.SetActive(false);
                     }
 
                 }
@@ -133,6 +134,24 @@ public class EnterController : MonoBehaviour
         CanvasManager.instance.InteracteButton.onClick.RemoveAllListeners();
         player.SwitchPlayerState(Player.PlayerState.Idle);
 
+    }
+    private void OnDestroy()
+    {
+        if (player != null)
+        {
+            if (player.currentNearTransport == this)
+            {
+                if (Geekplay.Instance.mobile)
+                {
+                    CanvasManager.instance.InteracteButton.gameObject.SetActive(false);
+                    CanvasManager.instance.InteracteButton.onClick.RemoveAllListeners();
+                }
+                else
+                {
+                    HideEnterInstruction();
+                }
+            }
+        }
     }
     protected virtual void ActivateTransport()
     {

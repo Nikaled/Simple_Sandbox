@@ -14,6 +14,7 @@ public class SerializedBuilding : MonoBehaviour
     [HideInInspector] public Vector3 CurrentRotationOfTransport;
 
     [HideInInspector] public Vector3 CurrentScale;
+    [HideInInspector] public Vector3 CurrentHpScale;
     [HideInInspector] public Vector3 CurrentPosition;
 
     public void SaveHp()
@@ -22,6 +23,8 @@ public class SerializedBuilding : MonoBehaviour
         if (hpSystem != null)
         {
             CurrentHp = hpSystem.CurrentHP;
+            Debug.Log("CurrentHp:" + CurrentHp);
+            CurrentHpScale = hpSystem.transform.localScale;
         }
     }
     private void Start()
@@ -43,7 +46,7 @@ public class SerializedBuilding : MonoBehaviour
         SavePositionAndScale();
         SaveRotation();
         Debug.Log("Current rotation of Root object:" + CurrentRotationOfObject);
-        SerializedBuildingData BuildingData = new(BuildingIndex, CurrentTextureIndex, CurrentHp, CurrentRotationOfPoint, CurrentRotationOfObject, CurrentRotationOfTransport, CurrentScale, CurrentPosition);
+        SerializedBuildingData BuildingData = new(BuildingIndex, CurrentTextureIndex, CurrentHp, CurrentRotationOfPoint, CurrentRotationOfObject, CurrentRotationOfTransport, CurrentScale, CurrentPosition, CurrentHpScale);
         return BuildingData;
     }
     public void LoadBuilding(SerializedBuildingData BuildingData)
@@ -56,7 +59,7 @@ public class SerializedBuilding : MonoBehaviour
         CurrentScale = BuildingData.CurrentScale;
         CurrentPosition = BuildingData.CurrentPosition;
         CurrentRotationOfTransport = BuildingData.CurrentRotationOfTransport;
-
+        CurrentHpScale = BuildingData.CurrentHpScale;
         LoadPositionAndScale();
         LoadRotation();
         LoadCurrentTextureIndex();
@@ -111,7 +114,9 @@ public class SerializedBuilding : MonoBehaviour
         if (hpSystem != null)
         {
             hpSystem.CurrentHP = CurrentHp;
+            hpSystem.transform.localScale = CurrentHpScale;
         }
+        Debug.Log("LoadedHp:" + hpSystem.CurrentHP);
     }
     public void SaveCurrentTextureIndex()
     {

@@ -18,6 +18,7 @@ public class PlaneEnterController : EnterController
         _planeController.enabled = true;
         _planeController.airplaneState = SimpleAirPlaneController.AirplaneState.Landing;
         //_planeController.GetComponent<Rigidbody>().isKinematic = true;
+        _planeController.GetComponent<Rigidbody>().isKinematic = true;
         _planeController.GetComponent<Rigidbody>().useGravity = false;
         if (Geekplay.Instance.mobile)
         {
@@ -32,9 +33,9 @@ public class PlaneEnterController : EnterController
     {
         if (Geekplay.Instance.mobile)
         {
-            CanvasManager.instance.ShowPlaneMobileInstruction(false);
             _planeController.MyClearButtons();
             PlaneButtons.instance.GetOutButton.onClick.RemoveAllListeners();
+            CanvasManager.instance.ShowPlaneMobileInstruction(false);
         }
         CanvasManager.instance.ShowPlaneInstruction(false);
         _planeController.airplaneState = SimpleAirPlaneController.AirplaneState.Landing;

@@ -141,8 +141,8 @@ namespace KinematicCharacterController.Examples
                 characterInputs.CameraRotation = CharacterCamera.Transform.rotation;
                 characterInputs.JumpDown = IsJumpTrue;
                 IsJumpTrue = false;
-                characterInputs.CrouchDown = Input.GetKeyDown(KeyCode.C);
-                characterInputs.CrouchUp = Input.GetKeyUp(KeyCode.C);
+                //characterInputs.CrouchDown = Input.GetKeyDown(KeyCode.C);
+                //characterInputs.CrouchUp = Input.GetKeyUp(KeyCode.C);
             }
             if (PC)
             {
@@ -154,8 +154,8 @@ namespace KinematicCharacterController.Examples
 
                 characterInputs.CameraRotation = CharacterCamera.Transform.rotation;
                 characterInputs.JumpDown = Input.GetKeyDown(KeyCode.Space);
-                characterInputs.CrouchDown = Input.GetKeyDown(KeyCode.C);
-                characterInputs.CrouchUp = Input.GetKeyUp(KeyCode.C);
+                //characterInputs.CrouchDown = Input.GetKeyDown(KeyCode.C);
+                //characterInputs.CrouchUp = Input.GetKeyUp(KeyCode.C);
             }
             // Apply inputs to character
             Character.SetInputs(ref characterInputs);

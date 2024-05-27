@@ -56,7 +56,7 @@ public class BuildingCell : MonoBehaviour
                 Geekplay.Instance.PlayerData.Coins -= CoinPrice;
                 BuildingManager.instance.SetBuildingObject(objectPrefab);
                 ItemOpened?.Invoke();
-                PriceText.gameObject.SetActive(false);
+                priceObj.gameObject.SetActive(false);
             }
             else
             {
@@ -72,7 +72,7 @@ public class BuildingCell : MonoBehaviour
     {
         if (IsOpened)
         {
-            PriceText.gameObject.SetActive(false);
+            priceObj.gameObject.SetActive(false);
         }
     }
 }

@@ -45,6 +45,8 @@ public class CanvasManager : MonoBehaviour
 
     private bool InAppShopActive;
     private bool SaveMapUIActive;
+    [Header("Unlock cursor Windows")]
+    [SerializeField] private List<GameObject> UnlockCursorWindows;
 
     private void Awake()
     {
@@ -52,13 +54,16 @@ public class CanvasManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        if(Player.instance.currentState == Player.PlayerState.Idle)
         {
-            ShowInAppShop(!InAppShopActive);
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            ShowSaveMapUI(!SaveMapUIActive);
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                ShowInAppShop(!InAppShopActive);
+            }
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                ShowSaveMapUI(!SaveMapUIActive);
+            }
         }
     }
     private void Start()
@@ -101,7 +106,14 @@ public class CanvasManager : MonoBehaviour
     {
         SaveMapUIActive = Is;
         SaveMapUI.SetActive(Is);
-        Player.instance.examplePlayer.LockCursor(!Is);
+        if (Is)
+        {
+        Player.instance.examplePlayer.LockCursor(false);
+        }
+        else
+        {
+            CheckActiveUnlockCursorWindows();
+        }
     }
     public void ShowHelicopterMobileInstruction(bool Is)
     {
@@ -122,10 +134,24 @@ public class CanvasManager : MonoBehaviour
     private void OnEnable()
     {
         Geekplay.Instance.PlayerData.CoinsChanged += ChangeCoinsText;
+        Geekplay.Instance.LockCursorAfterAd += CheckActiveUnlockCursorWindows;
     }
     private void OnDisable()
     {
         Geekplay.Instance.PlayerData.CoinsChanged -= ChangeCoinsText;
+        Geekplay.Instance.LockCursorAfterAd -= CheckActiveUnlockCursorWindows;
+    }
+    private void CheckActiveUnlockCursorWindows()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+
+        for (int i = 0; i < UnlockCursorWindows.Count; i++)
+        {
+            if(UnlockCursorWindows[i].activeInHierarchy == true)
+            {
+                Cursor.lockState = CursorLockMode.None;
+            }
+        }
     }
     private void ChangeCoinsText(int NewValue)
     {
@@ -153,7 +179,14 @@ public class CanvasManager : MonoBehaviour
     {
         InAppShopActive = Is;
         InAppShop.SetActive(Is);
-       Player.instance.examplePlayer.LockCursor(!Is);
+        if (Is)
+        {
+       Player.instance.examplePlayer.LockCursor(false);
+        }
+        else
+        {
+            CheckActiveUnlockCursorWindows();
+        }
     }
     public void ShowCitizenEnterInstruction(bool Is)
     {

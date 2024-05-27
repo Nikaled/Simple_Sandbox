@@ -14,6 +14,7 @@ public class HpSystem : MonoBehaviour
     [SerializeField] private int MaxHp;
     [SerializeField] TextMeshProUGUI HpText;
     [SerializeField] GameObject DestroyAnimation;
+    public Vector3 OriginScale;
     public bool Citizen;
     [SerializeField]  public int CurrentHP
     {
@@ -31,10 +32,11 @@ public class HpSystem : MonoBehaviour
     }
     private int _currentHP;
     public event Action OnDied;
-    private void Start()
+    private void Awake()
     {
         CurrentHP = MaxHp;
         HpBar.gameObject.SetActive(false);
+        OriginScale = gameObject.transform.localScale;
     }
 
     public void TakeDamage(int DamageCount)

@@ -78,6 +78,7 @@ public class Geekplay : MonoBehaviour
     // Alex fields
     public event Action LeaderboardValuesReady;
     public event Action ShowedAdInEditor;
+    public event Action LockCursorAfterAd;
     public bool IsAdWarningShowing;
     public CursorLockMode? cashedCursorModeSilence = null;
     public CursorLockMode? cashedCursorModeAd = null;
@@ -837,8 +838,8 @@ public class Geekplay : MonoBehaviour
     public void StopMusAndGame()
     {
 
-        cashedCursorModeAd = Cursor.lockState;
-        Cursor.lockState = CursorLockMode.None;
+        //cashedCursorModeAd = Cursor.lockState;
+        //Cursor.lockState = CursorLockMode.None;
 
 
         adOpen = true;
@@ -856,14 +857,7 @@ public class Geekplay : MonoBehaviour
         adOpen = false;
         AudioListener.volume = 1;
         Time.timeScale = 1;
-
-
-
-        if(cashedCursorModeSilence != null)
-        {
-        Cursor.lockState = (CursorLockMode)cashedCursorModeAd;
-        }
-        ////////////////
+        LockCursorAfterAd?.Invoke();
     }
 
     //ФОКУС И ЗВУК
@@ -886,18 +880,6 @@ public class Geekplay : MonoBehaviour
         {
             Time.timeScale = 0;
             AudioListener.volume = 0;
-        }
-        //////////
-        if (silence)
-        {
-            cashedCursorModeSilence = Cursor.lockState;
-        }
-        else
-        {
-            if(cashedCursorModeSilence != null)
-            {
-                 Cursor.lockState = (CursorLockMode)cashedCursorModeSilence;
-            }
         }
     }
 
