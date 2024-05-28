@@ -135,16 +135,6 @@ public class SerializeBuildingManager : MonoBehaviour
     }
     private void LoadBuildings(List<SerializedBuildingData> BuildingData)
     {
-        /*for (int i = 0; i < BuildingData.Count; i++)
-        {
-
-            GameObject LoadedObj =  Instantiate(AllPrefabsInGame[BuildingData[i].BuildingIndex]);
-            SerializedBuilding SerObj = LoadedObj.GetComponent<SerializedBuilding>();
-            if (SerObj != null)
-            {
-                SerObj.LoadBuilding(BuildingData[i]);
-            }
-        }*/
         StartCoroutine(L(BuildingData));
         Debug.Log("Загружено объектов:" + BuildingData.Count);
     }
@@ -161,7 +151,7 @@ public class SerializeBuildingManager : MonoBehaviour
                 SerObj.LoadBuilding(BuildingData[i]);
             }
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 }
