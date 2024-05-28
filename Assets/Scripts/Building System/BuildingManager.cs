@@ -570,8 +570,8 @@ public class BuildingManager : MonoBehaviour
 
         }
         RotatingCashedRotating = rotatingObjectCenter.transform.eulerAngles;
-        RotatingCashedScale = rotatingObject.transform.localScale;
         ScalingObject = rotatingObject;
+        RotatingCashedScale = rotatingObject.transform.localScale;
 
 
         if (Is)
@@ -635,7 +635,7 @@ public class BuildingManager : MonoBehaviour
     }
     public void CancelRotatingChanges()
     {
-        rotatingObject.transform.localScale = RotatingCashedScale;
+        ScalingObject.transform.localScale = RotatingCashedScale;
         rotatingObjectCenter.transform.eulerAngles = RotatingCashedRotating;
         CanvasManager.instance.ShowChosenObjectRotatingModeInstruction(true, Scale: RotatingCashedScale, Rotation: RotatingCashedRotating);
     }
@@ -658,6 +658,11 @@ public class BuildingManager : MonoBehaviour
         if (ScalingObject != null)
 
             ScalingObject.transform.DOScaleY(IncreaseNumber, 0);
+        if (hpSystemOnObject != null)
+        {
+                //hpSystemOnObject.gameObject.transform.DOScaleY(hpSystemOnObject.OriginScale.y / IncreaseNumber, 0);
+                hpSystemOnObject.ResizeYHpBar(IncreaseNumber);
+        }
     }
     public void RotatingSliderScaleZ(float IncreaseNumber)
     {

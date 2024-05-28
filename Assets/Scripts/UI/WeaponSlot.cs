@@ -6,16 +6,20 @@ using UnityEngine.UI;
 
 public class WeaponSlot : MonoBehaviour
 {
+    public int WeaponNumber;
     [SerializeField] Image ActiveWeaponImage;
     [SerializeField] TextMeshProUGUI NumberOfSlot;
     // Start is called before the first frame update
     void Start()
     {
-        ActiveWeaponImage.enabled = false;
         if (Geekplay.Instance.mobile)
         {
             NumberOfSlot.gameObject.SetActive(false);
         }
+    }
+    public void TakeWeapon()
+    {
+        Player.instance.SwitchWeapon(WeaponNumber);
     }
     public void WeaponIsActive()
     {

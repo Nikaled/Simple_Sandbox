@@ -44,6 +44,15 @@ public class PlayerData
     public string NameMap3;
     public string NameMap4;
 
+    public int PlayerSkin1;
+    public int PlayerSkin2;
+    public int PlayerSkin3;
+    public int PlayerSkin4;
+    public int PlayerTexture1;
+    public int PlayerTexture2;
+    public int PlayerTexture3;
+    public int PlayerTexture4;
+
     public int CurrentSaveSlotLoading;
     public bool IsPlayerMapLoad;
     /////InApps//////

@@ -23,7 +23,6 @@ public class SerializedBuilding : MonoBehaviour
         if (hpSystem != null)
         {
             CurrentHp = hpSystem.CurrentHP;
-            Debug.Log("CurrentHp:" + CurrentHp);
             CurrentHpScale = hpSystem.transform.localScale;
         }
     }
@@ -45,7 +44,6 @@ public class SerializedBuilding : MonoBehaviour
         SaveHp();
         SavePositionAndScale();
         SaveRotation();
-        Debug.Log("Current rotation of Root object:" + CurrentRotationOfObject);
         SerializedBuildingData BuildingData = new(BuildingIndex, CurrentTextureIndex, CurrentHp, CurrentRotationOfPoint, CurrentRotationOfObject, CurrentRotationOfTransport, CurrentScale, CurrentPosition, CurrentHpScale);
         return BuildingData;
     }
@@ -64,7 +62,6 @@ public class SerializedBuilding : MonoBehaviour
         LoadRotation();
         LoadCurrentTextureIndex();
         LoadHp();
-        Debug.Log("Current rotation of Root object On Load:" + CurrentRotationOfObject);
     }
     public void LoadRotation()
     {
@@ -116,7 +113,6 @@ public class SerializedBuilding : MonoBehaviour
             hpSystem.CurrentHP = CurrentHp;
             hpSystem.transform.localScale = CurrentHpScale;
         }
-        Debug.Log("LoadedHp:" + hpSystem.CurrentHP);
     }
     public void SaveCurrentTextureIndex()
     {
@@ -170,7 +166,6 @@ public class SerializedBuilding : MonoBehaviour
 
             }
         }
-        Debug.Log(gameObject.name + " Позиция сохранена:" + CurrentPosition);
     }
     public void LoadPositionAndScale()
     {
@@ -210,9 +205,6 @@ public class SerializedBuilding : MonoBehaviour
             {
                 transform.localScale = CurrentScale;
             }
-
-            Debug.Log("Current position of " + gameObject.name + ":" + CurrentPosition);
-            Debug.Log("Current position of " + gameObject.name + " по факту:" + transform.position);
         }
     }
 }

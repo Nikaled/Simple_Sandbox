@@ -18,7 +18,7 @@ public class CitizenObjectVariants : ObjectVariants
     {
         for (int i = 0; i < Variants.Length; i++)
         {
-            if (CitizenToChange.materials[0].mainTexture == Variants[i])
+            if (CitizenToChange.sharedMaterials[0].mainTexture == Variants[i])
             {
                 Debug.Log("currentVariantIndex:" + i);
                 currentVariantIndex = i;

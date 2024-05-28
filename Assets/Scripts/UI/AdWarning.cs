@@ -50,6 +50,9 @@ public class AdWarning : MonoBehaviour
         Geekplay.Instance.Save();
         WarningPanel.SetActive(false);
         StartCoroutine(AwaitAndShowWarningPanel());
+#if UNITY_EDITOR
+        CanvasManager.instance.CheckActiveUnlockCursorWindows();
+#endif
     }
 
     private void LocalizateText(int Timer)

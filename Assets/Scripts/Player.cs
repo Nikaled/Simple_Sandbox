@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     public PlayerState currentState = PlayerState.Idle;
     public WeaponType CurrentWeapon;
     public event Action PistolFire;
+    public event Action<int> SwitchedWeapon;
     [SerializeField] public Animator animator;
 
     [SerializeField] public ExamplePlayer examplePlayer;
@@ -123,22 +124,20 @@ public class Player : MonoBehaviour
         }
         else
         {
-            if (currentState == PlayerState.DeletingBuilding)
-            {
-                BuildingManager.instance.TurnDeletingObjectNormalAndClearFields();
-            }
-            if (currentState == PlayerState.RotatingBuilding)
-            {
-                BuildingManager.instance.TurnRotatingObjectNormalAndClearFields();
-            }
-            currentState = newPlayerState;
+            //if (currentState == PlayerState.DeletingBuilding)
+            //{
+            //    BuildingManager.instance.TurnDeletingObjectNormalAndClearFields();
+            //}
+            //if (currentState == PlayerState.RotatingBuilding)
+            //{
+            //    BuildingManager.instance.TurnRotatingObjectNormalAndClearFields();
+            //}
+            //currentState = newPlayerState;
+            AfterSwitchState(newPlayerState);
         }
     }
-    private IEnumerator DelaySwitchState(Player.PlayerState newPlayerState, float Delay)
+    private void AfterSwitchState(Player.PlayerState newPlayerState)
     {
-
-        yield return new WaitForSeconds(Delay);
-
         if (newPlayerState == PlayerState.Idle)
         {
             CanvasManager.instance.DoButton.onClick.AddListener(delegate { MobileFireInput(); });
@@ -159,6 +158,33 @@ public class Player : MonoBehaviour
         }
         currentState = newPlayerState;
         Debug.Log("Player State:" + currentState);
+    }
+    private IEnumerator DelaySwitchState(Player.PlayerState newPlayerState, float Delay)
+    {
+
+        yield return new WaitForSeconds(Delay);
+
+        AfterSwitchState(newPlayerState);
+        //if (newPlayerState == PlayerState.Idle)
+        //{
+        //    CanvasManager.instance.DoButton.onClick.AddListener(delegate { MobileFireInput(); });
+        //    CanvasManager.instance.ShowIdleInstruction(true);
+        //}
+        //else
+        //{
+        //    if (currentState == PlayerState.Idle)
+        //        CanvasManager.instance.ShowIdleInstruction(false);
+        //}
+        //if (currentState == PlayerState.DeletingBuilding)
+        //{
+        //    BuildingManager.instance.TurnDeletingObjectNormalAndClearFields();
+        //}
+        //if (currentState == PlayerState.RotatingBuilding)
+        //{
+        //    BuildingManager.instance.TurnRotatingObjectNormalAndClearFields();
+        //}
+        //currentState = newPlayerState;
+        //Debug.Log("Player State:" + currentState);
     }
     public void SwitchWeapon(int PressedNumber)
     {
@@ -200,6 +226,7 @@ public class Player : MonoBehaviour
                 break;
 
         }
+        SwitchedWeapon?.Invoke(PressedNumber);
         SwitchPlayerState(PlayerState.Idle);
     }
     private void SwitchView()

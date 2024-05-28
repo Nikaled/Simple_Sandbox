@@ -36,6 +36,7 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] GameObject HelicopterMobileInstruction;
     [SerializeField] GameObject PlaneMobileInstruction;
     [SerializeField] GameObject CarMobileInstruction;
+    [SerializeField] GameObject AppShopButton;
     [SerializeField] public Button DoButton;
     [SerializeField] public Button InteracteButton;
     [Header("Rotating Mode")]
@@ -81,6 +82,7 @@ public class CanvasManager : MonoBehaviour
         {
             CanvasMobileInterface.SetActive(false);
             CanvasPCInterface.SetActive(true);
+            AppShopButton.SetActive(false);
         }
     }
     #region Mobile
@@ -141,7 +143,7 @@ public class CanvasManager : MonoBehaviour
         Geekplay.Instance.PlayerData.CoinsChanged -= ChangeCoinsText;
         Geekplay.Instance.LockCursorAfterAd -= CheckActiveUnlockCursorWindows;
     }
-    private void CheckActiveUnlockCursorWindows()
+    public void CheckActiveUnlockCursorWindows()
     {
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -152,6 +154,12 @@ public class CanvasManager : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
             }
         }
+#if UNITY_EDITOR
+        if(Geekplay.Instance.mobile == true)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+#endif
     }
     private void ChangeCoinsText(int NewValue)
     {

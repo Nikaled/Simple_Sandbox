@@ -81,7 +81,8 @@ public class Geekplay : MonoBehaviour
     public event Action LockCursorAfterAd;
     public bool IsAdWarningShowing;
     public CursorLockMode? cashedCursorModeSilence = null;
-    public CursorLockMode? cashedCursorModeAd = null;
+    public int RewardLockTimer;
+    public  Action<int> RewardLockTimeUpdate;
     public void RunCoroutine(IEnumerator enumerator)
     {
         StartCoroutine(enumerator);

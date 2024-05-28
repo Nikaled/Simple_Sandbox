@@ -15,6 +15,7 @@ public class HpSystem : MonoBehaviour
     [SerializeField] TextMeshProUGUI HpText;
     [SerializeField] GameObject DestroyAnimation;
     public Vector3 OriginScale;
+    public float OriginHpBarScale;
     public bool Citizen;
     [SerializeField]  public int CurrentHP
     {
@@ -37,8 +38,12 @@ public class HpSystem : MonoBehaviour
         CurrentHP = MaxHp;
         HpBar.gameObject.SetActive(false);
         OriginScale = gameObject.transform.localScale;
+        OriginHpBarScale = HpBar.gameObject.transform.localScale.y;
     }
-
+    public void ResizeYHpBar(float IncreaseNumber)
+    {
+        HpBar.gameObject.transform.DOScaleY(OriginHpBarScale / IncreaseNumber, 0);
+    }
     public void TakeDamage(int DamageCount)
     {
         if (DamageCount < 0)

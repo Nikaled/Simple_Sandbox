@@ -51,6 +51,8 @@ MonoBehaviour:
   MaxHp: 11
   HpText: {fileID: 655494288119899624}
   DestroyAnimation: {fileID: 1056904543853562, guid: 4cf45cdce36e66e4a93614abb5ae7821, type: 3}
+  OriginScale: {x: 0, y: 0, z: 0}
+  OriginHpBarScale: 0
   Citizen: 0
 --- !u!1 &271818065947765076
 GameObject:
@@ -11242,6 +11244,7 @@ MonoBehaviour:
   accelBack: 0
   steerAmount: 0
   CarQuit: 0
+  MobileInput: 0
 --- !u!114 &474021838746804914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12071,6 +12074,7 @@ MonoBehaviour:
   CurrentRotationOfObject: {x: 0, y: 0, z: 0}
   CurrentRotationOfTransport: {x: 0, y: 0, z: 0}
   CurrentScale: {x: 0, y: 0, z: 0}
+  CurrentHpScale: {x: 0, y: 0, z: 0}
   CurrentPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &5011925853007292367
 GameObject:
@@ -12208,8 +12212,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.303439, y: 1.7558742, z: 4.936093}
-  m_Center: {x: -0.0019836426, y: 0.43235296, z: -0.1890306}
+  m_Size: {x: 3.3597107, y: 2.5939999, z: 8.044708}
+  m_Center: {x: 0.07670593, y: 0.8514159, z: -0.43339634}
 --- !u!114 &2094434496865517524
 MonoBehaviour:
   m_ObjectHideFlags: 0
