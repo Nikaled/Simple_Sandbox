@@ -16,6 +16,7 @@ public class CitizenMovement : MonoBehaviour
     public float DieAnimationTime = 2f;
     private void Start()
     {
+        agent.speed = 0;
         checker = Instantiate(CitizenNavMeshManager.instance.Checker, gameObject.transform.position, Quaternion.identity);
         checker.citizen = this;
         checker.GetComponent<SphereCollider>().enabled = true;

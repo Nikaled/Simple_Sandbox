@@ -5,10 +5,9 @@ using UnityEngine;
 public class CarDamage : MonoBehaviour
 {
     public Rigidbody carRb;
-    float CarRbVelocityToKill = 1;
+    float CarRbVelocityToKill = 100;
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("СarDamageCollider в коллизии с:" + other.gameObject.name);
         if (other.gameObject.CompareTag("Citizen"))
         {
             Debug.Log("Врезался в жителя или зверя");
