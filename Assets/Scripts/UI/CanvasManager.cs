@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CanvasManager : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] public GameObject SaveMapUI;
     [SerializeField] public GameObject CoinsUI;
     [SerializeField] public GameObject MultiplatformUI;
+    [SerializeField] public GameObject WeaponSlotsUI;
     [Header("PC Interfaces")]
     [SerializeField] GameObject _helicopterInstruction;
     [SerializeField] GameObject _planeInstruction;
@@ -37,8 +39,16 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] GameObject PlaneMobileInstruction;
     [SerializeField] GameObject CarMobileInstruction;
     [SerializeField] GameObject AppShopButton;
+    [SerializeField] GameObject UpLeftButtons;
     [SerializeField] public Button DoButton;
     [SerializeField] public Button InteracteButton;
+    [SerializeField]  Button BuildingButton;
+    [SerializeField]  Image BuildingButtonImage;
+    [SerializeField]  Button DeletingButton;
+    [SerializeField]  Image DeletingButtonImage;
+    [SerializeField]  Button RotatingButton;
+    [SerializeField]  Image RotatingButtonImage;
+    [SerializeField]  Image[] InteracteSymbolInButton;
     [Header("Rotating Mode")]
     [SerializeField] GameObject _rotatingChosenObjectModeInstruction;
     [SerializeField] Slider[] RotatingModeSlidersScale;
@@ -66,6 +76,11 @@ public class CanvasManager : MonoBehaviour
                 ShowSaveMapUI(!SaveMapUIActive);
             }
         }
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            Cursor.lockState = CursorLockMode.None;
+            SceneManager.LoadScene(0);
+        }
     }
     private void Start()
     {
@@ -86,12 +101,64 @@ public class CanvasManager : MonoBehaviour
         }
     }
     #region Mobile
+    public void TurnYellowBuildingButton(bool Is)
+    {
+        if (Is)
+        {
+            BuildingButton.image.color = Color.yellow;
+            BuildingButtonImage.color = Color.yellow;
+        }
+        else
+        {
+            BuildingButton.image.color = Color.white;
+            BuildingButtonImage.color = Color.white;
+        }
+    }
+    public void TurnYellowDeletingButton(bool Is)
+    {
+        if (Is)
+        {
+            DeletingButton.image.color = Color.yellow;
+            DeletingButtonImage.color = Color.yellow;
+        }
+        else
+        {
+            DeletingButton.image.color = Color.white;
+            DeletingButtonImage.color = Color.white;
+        }
+    }
+    public void TurnYellowRotatingButton(bool Is)
+    {
+        if (Is)
+        {
+            RotatingButton.image.color = Color.yellow;
+            RotatingButtonImage.color = Color.yellow;
+        }
+        else
+        {
+            RotatingButton.image.color = Color.white;
+            RotatingButtonImage.color = Color.white;
+        }
+    }
     private void ShowMobileIdleButtons(bool Is)
     {
         LeftButtonsZone.SetActive(Is);
         RightButtonsZone.SetActive(Is);
     }
+    private void ShowWeaponSlotsUI(bool Is)
+    {
+        WeaponSlotsUI.SetActive(Is);
+    }
 
+    public void ShowCurrentInteracteButton(int ButtonIndex)
+    {
+        for (int i = 0; i < InteracteSymbolInButton.Length; i++)
+        {
+            InteracteSymbolInButton[i].gameObject.SetActive(false);
+        }
+        InteracteSymbolInButton[ButtonIndex].gameObject.SetActive(true);
+
+    }
     public void ShowAllUI(bool Is)
     {
         if (Geekplay.Instance.mobile)
@@ -145,6 +212,11 @@ public class CanvasManager : MonoBehaviour
     }
     public void CheckActiveUnlockCursorWindows()
     {
+        if (Geekplay.Instance.mobile == true)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            return;
+        }
         Cursor.lockState = CursorLockMode.Locked;
 
         for (int i = 0; i < UnlockCursorWindows.Count; i++)
@@ -154,12 +226,6 @@ public class CanvasManager : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
             }
         }
-#if UNITY_EDITOR
-        if(Geekplay.Instance.mobile == true)
-        {
-            Cursor.lockState = CursorLockMode.None;
-        }
-#endif
     }
     private void ChangeCoinsText(int NewValue)
     {
@@ -240,6 +306,7 @@ public class CanvasManager : MonoBehaviour
     public void ShowIdleInstruction(bool Is)
     {
         _idleInstruction.SetActive(Is);
+        ShowWeaponSlotsUI(Is);
     }
     public void ShowChosenObjectRotatingModeInstruction(bool Is, Vector3 Scale, Vector3 Rotation)
     {
@@ -250,6 +317,12 @@ public class CanvasManager : MonoBehaviour
             ShowCitizenEnterInstruction(false);
             ShowObjectInteructInstruction(false);
         }
+        if (Geekplay.Instance.mobile)
+        {
+        ShowMobileIdleButtons(!Is);
+            UpLeftButtons.SetActive(!Is);
+        }
+
         if (Is)
         {
             float[] ScaleParametres = new float[] { Scale.x, Scale.y, Scale.z };

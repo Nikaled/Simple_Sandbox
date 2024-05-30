@@ -7,6 +7,7 @@ public class AnimationPlayer : MonoBehaviour
     [SerializeField] private Animator anim;
     [SerializeField] private Player player;
     public bool IsMoving;
+    public bool RidingAnimal;
     private void OnEnable()
     {
         player.PistolFire += DoPistolAnimation;
@@ -21,6 +22,11 @@ public class AnimationPlayer : MonoBehaviour
     }
     void Update()
     {
+        if (RidingAnimal)
+        {
+            anim.SetBool("isRun", false);
+            return;
+        }
         if (player.examplePlayer.MyLockOnShoot == false)
         {
             if(Geekplay.Instance.mobile == false)

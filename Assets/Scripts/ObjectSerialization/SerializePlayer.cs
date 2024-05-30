@@ -9,6 +9,14 @@ public class SerializePlayer : MonoBehaviour
     {
         instance = this;
     }
+    public Vector3 SavePlayerPosition()
+    {
+        return Player.instance.gameObject.transform.position;
+    }
+    public void LoadPlayerPosition(Vector3 Position)
+    {
+        Player.instance.motor.SetPosition(Position);
+    }
     public void LoadSkinByIndex(int index)
     {
         Debug.Log("Load player skin");
@@ -16,7 +24,6 @@ public class SerializePlayer : MonoBehaviour
         for (int i = 0; i < player.PlayerMeshes.Length; i++)
         {
             player.PlayerMeshes[i].gameObject.SetActive(false);
-            Debug.Log(player.PlayerMeshes[i].name);
         }
         player.CurrentCitizenMesh = player.PlayerMeshes[index];
         player.PlayerMeshes[index].gameObject.SetActive(true);

@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8597294947276847229
 Transform:
   m_ObjectHideFlags: 0
@@ -124,7 +124,9 @@ MonoBehaviour:
   CurrentHp: 0
   CurrentRotationOfPoint: {x: 0, y: 0, z: 0}
   CurrentRotationOfObject: {x: 0, y: 0, z: 0}
+  CurrentRotationOfTransport: {x: 0, y: 0, z: 0}
   CurrentScale: {x: 0, y: 0, z: 0}
+  CurrentHpScale: {x: 0, y: 0, z: 0}
   CurrentPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &4499249469949470629
 GameObject:
@@ -177,6 +179,8 @@ MonoBehaviour:
   MaxHp: 11
   HpText: {fileID: 4499249470116909328}
   DestroyAnimation: {fileID: 1056904543853562, guid: 4cf45cdce36e66e4a93614abb5ae7821, type: 3}
+  OriginScale: {x: 0, y: 0, z: 0}
+  OriginHpBarScale: 0
   Citizen: 0
 --- !u!1 &4499249470116909330
 GameObject:

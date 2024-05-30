@@ -8,11 +8,14 @@ public class BuildingMenu : MonoBehaviour
 {
     [SerializeField] GameObject[] ContentPanels;
     [SerializeField] Button[] LeftPanelButtons;
+    [SerializeField] Sprite InactiveButtonSprite;
+    [SerializeField] Sprite ActiveButtonSprite;
     public void HideAllOtherPanels()
     {
         for (int i = 0; i < ContentPanels.Length; i++)
         {
             ContentPanels[i].SetActive(false);
+            LeftPanelButtons[i].image.sprite = InactiveButtonSprite;
         }
     }
     private void Start()
@@ -34,6 +37,7 @@ public class BuildingMenu : MonoBehaviour
             }
         }
         HideAllOtherPanels();
+        LeftPanelButtons[index].image.sprite = ActiveButtonSprite;
         ContentPanels[index].SetActive(true);
     }
 }

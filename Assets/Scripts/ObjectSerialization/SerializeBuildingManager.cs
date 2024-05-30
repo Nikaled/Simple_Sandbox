@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,11 +9,16 @@ public class SerializeBuildingManager : MonoBehaviour
     [SerializeField] GameObject[] AllPrefabsInGame;
     public static SerializeBuildingManager instance;
     [HideInInspector] public List<SerializedBuilding> BuildingsOnScene = new();
-   [HideInInspector] public List<SerializedBuildingData> BuildingData = new();
+    [HideInInspector] public List<SerializedBuildingData> BuildingData = new();
 
     private void Awake()
     {
         instance = this;
+    }
+    private void WriteDate(ref string MapDate)
+    {
+        DateTime date1 = DateTime.Now;
+        MapDate = date1.ToString("HH:mm  dd.MM.yyyy");
     }
     public void ToMenuButton()
     {
@@ -22,15 +28,17 @@ public class SerializeBuildingManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-    private void TryLoadPlayerSkin(int SkinIndex, int TextureIndex)
+    private void TryLoadPlayerData(int SkinIndex, int TextureIndex, Vector3 position)
     {
         SerializePlayer.instance.LoadSkinByIndex(SkinIndex);
         SerializePlayer.instance.LoadTextureByIndex(TextureIndex);
+        SerializePlayer.instance.LoadPlayerPosition(position);
     }
-    private void SavePlayerSkin(ref int SkinSlot, ref int TextureSlot)
+    private void SavePlayerData(ref int SkinSlot, ref int TextureSlot, ref Vector3 Position)
     {
         SkinSlot = SerializePlayer.instance.SaveSkinIndex();
         TextureSlot = SerializePlayer.instance.SaveTextureIndex();
+        Position = SerializePlayer.instance.SavePlayerPosition();
     }
     public void SaveInMapSlot(int number)
     {
@@ -46,22 +54,27 @@ public class SerializeBuildingManager : MonoBehaviour
             case 1:
                 Geekplay.Instance.PlayerData.BuildingDataMap1 = Geekplay.Instance.PlayerData.BuildingData;
                 Geekplay.Instance.PlayerData.NameMap1 = SceneManager.GetActiveScene().name;
-                SavePlayerSkin(ref Geekplay.Instance.PlayerData.PlayerSkin1, ref Geekplay.Instance.PlayerData.PlayerTexture1);
+                SavePlayerData(ref Geekplay.Instance.PlayerData.PlayerSkin1, ref Geekplay.Instance.PlayerData.PlayerTexture1, ref Geekplay.Instance.PlayerData.PlayerPositionMap1);
+                WriteDate(ref Geekplay.Instance.PlayerData.MapDate1);
                 break;
             case 2:
                 Geekplay.Instance.PlayerData.BuildingDataMap2 = Geekplay.Instance.PlayerData.BuildingData;
                 Geekplay.Instance.PlayerData.NameMap2 = SceneManager.GetActiveScene().name;
-                SavePlayerSkin(ref Geekplay.Instance.PlayerData.PlayerSkin2, ref Geekplay.Instance.PlayerData.PlayerTexture2);
+                SavePlayerData(ref Geekplay.Instance.PlayerData.PlayerSkin2, ref Geekplay.Instance.PlayerData.PlayerTexture2, ref Geekplay.Instance.PlayerData.PlayerPositionMap2);
+                WriteDate(ref Geekplay.Instance.PlayerData.MapDate2);
                 break;
             case 3:
                 Geekplay.Instance.PlayerData.BuildingDataMap3 = Geekplay.Instance.PlayerData.BuildingData;
                 Geekplay.Instance.PlayerData.NameMap3 = SceneManager.GetActiveScene().name;
-                SavePlayerSkin(ref Geekplay.Instance.PlayerData.PlayerSkin3, ref Geekplay.Instance.PlayerData.PlayerTexture3);
+                SavePlayerData(ref Geekplay.Instance.PlayerData.PlayerSkin3, ref Geekplay.Instance.PlayerData.PlayerTexture3, ref Geekplay.Instance.PlayerData.PlayerPositionMap3);
+                WriteDate(ref Geekplay.Instance.PlayerData.MapDate3);
+
                 break;
             case 4:
                 Geekplay.Instance.PlayerData.BuildingDataMap4 = Geekplay.Instance.PlayerData.BuildingData;
                 Geekplay.Instance.PlayerData.NameMap4 = SceneManager.GetActiveScene().name;
-                SavePlayerSkin(ref Geekplay.Instance.PlayerData.PlayerSkin4, ref Geekplay.Instance.PlayerData.PlayerTexture4);
+                SavePlayerData(ref Geekplay.Instance.PlayerData.PlayerSkin4, ref Geekplay.Instance.PlayerData.PlayerTexture4, ref Geekplay.Instance.PlayerData.PlayerPositionMap4);
+                WriteDate(ref Geekplay.Instance.PlayerData.MapDate4);
                 break;
         }
         BuildingData.Clear();
@@ -71,12 +84,12 @@ public class SerializeBuildingManager : MonoBehaviour
     {
         for (int i = 0; i < AllPrefabsInGame.Length; i++)
         {
-            if(buildingName == AllPrefabsInGame[i]?.GetComponent<SerializedBuilding>()?.ObjectName)
+            if (buildingName == AllPrefabsInGame[i]?.GetComponent<SerializedBuilding>()?.ObjectName)
             {
                 return i;
             }
         }
-        Debug.Log("Не найден префаб в списке:"+buildingName);
+        Debug.Log("Не найден префаб в списке:" + buildingName);
         return -1;
     }
     private void Start()
@@ -94,31 +107,35 @@ public class SerializeBuildingManager : MonoBehaviour
         {
             case 1:
                 LoadBuildings(Geekplay.Instance.PlayerData.BuildingDataMap1);
-                TryLoadPlayerSkin(Geekplay.Instance.PlayerData.PlayerSkin1, Geekplay.Instance.PlayerData.PlayerTexture1);
+                TryLoadPlayerData(Geekplay.Instance.PlayerData.PlayerSkin1, Geekplay.Instance.PlayerData.PlayerTexture1, Geekplay.Instance.PlayerData.PlayerPositionMap1);
                 break;
             case 2:
                 LoadBuildings(Geekplay.Instance.PlayerData.BuildingDataMap2);
-                TryLoadPlayerSkin(Geekplay.Instance.PlayerData.PlayerSkin2, Geekplay.Instance.PlayerData.PlayerTexture2);
+                TryLoadPlayerData(Geekplay.Instance.PlayerData.PlayerSkin2, Geekplay.Instance.PlayerData.PlayerTexture2, Geekplay.Instance.PlayerData.PlayerPositionMap2);
                 break;
             case 3:
                 LoadBuildings(Geekplay.Instance.PlayerData.BuildingDataMap3);
-                TryLoadPlayerSkin(Geekplay.Instance.PlayerData.PlayerSkin3, Geekplay.Instance.PlayerData.PlayerTexture3);
+                TryLoadPlayerData(Geekplay.Instance.PlayerData.PlayerSkin3, Geekplay.Instance.PlayerData.PlayerTexture3, Geekplay.Instance.PlayerData.PlayerPositionMap3);
                 break;
             case 4:
                 LoadBuildings(Geekplay.Instance.PlayerData.BuildingDataMap4);
-                TryLoadPlayerSkin(Geekplay.Instance.PlayerData.PlayerSkin4, Geekplay.Instance.PlayerData.PlayerTexture4);
+                TryLoadPlayerData(Geekplay.Instance.PlayerData.PlayerSkin4, Geekplay.Instance.PlayerData.PlayerTexture4, Geekplay.Instance.PlayerData.PlayerPositionMap4);
                 break;
         }
 
     }
     private void Update()
     {
+        if (Player.instance.AdWarningActive)
+        {
+            return;
+        }
         if (Input.GetKeyDown(KeyCode.L))
         {
             if (Geekplay.Instance?.PlayerData?.BuildingData?.Count > 0)
             {
                 LoadBuildings(Geekplay.Instance.PlayerData.BuildingDataMap1);
-                TryLoadPlayerSkin(Geekplay.Instance.PlayerData.PlayerSkin1, Geekplay.Instance.PlayerData.PlayerTexture1);
+                TryLoadPlayerData(Geekplay.Instance.PlayerData.PlayerSkin1, Geekplay.Instance.PlayerData.PlayerTexture1, Geekplay.Instance.PlayerData.PlayerPositionMap1);
             }
         }
     }

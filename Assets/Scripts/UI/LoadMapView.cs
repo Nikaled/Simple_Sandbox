@@ -10,6 +10,10 @@ public class LoadMapView : MonoBehaviour
     private void Start()
     {
         MapSlotsViewUpdate();
+        //Geekplay.Instance.PlayerData.MapDate1 = null;
+        //    Geekplay.Instance.PlayerData.MapDate2 = null;
+        //Geekplay.Instance.PlayerData.MapDate3 = null;
+        //Geekplay.Instance.PlayerData.MapDate4 = null;
     }
     public void MapSlotsViewUpdate()
     {
@@ -21,7 +25,7 @@ public class LoadMapView : MonoBehaviour
                     if (Geekplay.Instance.PlayerData.NameMap1 != null && Geekplay.Instance.PlayerData.NameMap1 != string.Empty)
                     {
                         //MapsEmptySlotImage[i].SetActive(false);
-                        MapsEmptySlotText[i].text = "央铗 1";
+                        MapsEmptySlotText[i].text = Geekplay.Instance.PlayerData.MapDate1;
                     }
                     else
                     {
@@ -34,7 +38,7 @@ public class LoadMapView : MonoBehaviour
                     if (Geekplay.Instance.PlayerData.NameMap2 != null && Geekplay.Instance.PlayerData.NameMap2 != string.Empty)
                     {
                         //MapsEmptySlotImage[i].SetActive(false);
-                        MapsEmptySlotText[i].text = "央铗 2";
+                        MapsEmptySlotText[i].text = Geekplay.Instance.PlayerData.MapDate2;
                     }
                     else
                     {
@@ -46,7 +50,7 @@ public class LoadMapView : MonoBehaviour
                     if (Geekplay.Instance.PlayerData.NameMap3 != null && Geekplay.Instance.PlayerData.NameMap3 != string.Empty)
                     {
                         //MapsEmptySlotImage[i].SetActive(false);
-                        MapsEmptySlotText[i].text = "央铗 3";
+                        MapsEmptySlotText[i].text = Geekplay.Instance.PlayerData.MapDate3;
 
                     }
                     else
@@ -60,7 +64,7 @@ public class LoadMapView : MonoBehaviour
                     if (Geekplay.Instance.PlayerData.NameMap4 != null && Geekplay.Instance.PlayerData.NameMap4 != string.Empty)
                     {
                         //MapsEmptySlotImage[i].SetActive(false);
-                        MapsEmptySlotText[i].text = "央铗 4";
+                        MapsEmptySlotText[i].text = Geekplay.Instance.PlayerData.MapDate4;
                     }
                     else
                     {

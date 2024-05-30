@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     [SerializeField] public KinematicCharacterMotor motor;
     [SerializeField] public ExampleCharacterController characterController;
     [SerializeField] private PlayerShooting playerShooting;
-    [SerializeField] private AnimationPlayer animationPlayer;
+    [SerializeField] public AnimationPlayer animationPlayer;
     [SerializeField] GrenadeLauncher grenadeLauncher;
     public PlayerState currentState = PlayerState.Idle;
     public WeaponType CurrentWeapon;
@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
     public KeyCode RotatingModeButton = KeyCode.M;
     public static Player instance;
     public bool IsFirstView;
+    public bool AdWarningActive;
 
     public SkinnedMeshRenderer CurrentCitizenMesh;
     public SkinnedMeshRenderer[] PlayerMeshes;
@@ -74,6 +75,8 @@ public class Player : MonoBehaviour
         {
             examplePlayer.Mobile = true;
             examplePlayer.PC = false;
+            CanvasManager.instance.DoButton.onClick.AddListener(delegate { MobileFireInput(); });
+            examplePlayer.LockCursor(false);
         }
         else
         {
@@ -87,7 +90,13 @@ public class Player : MonoBehaviour
     }
     public void SwitchPlayerState(PlayerState newPlayerState, float Delay = 0.1f)
     {
-        CanvasManager.instance.DoButton.onClick.RemoveAllListeners();
+        if (Geekplay.Instance.mobile)
+        {
+            CanvasManager.instance.DoButton.onClick.RemoveAllListeners();
+            CanvasManager.instance.TurnYellowDeletingButton(false);
+            CanvasManager.instance.TurnYellowBuildingButton(false);
+            CanvasManager.instance.TurnYellowRotatingButton(false);
+        }
         switch (newPlayerState)
         {
             case PlayerState.Aiming:
@@ -99,14 +108,20 @@ public class Player : MonoBehaviour
                 break;
             case PlayerState.Idle:
                 animator.SetBool("PistolAiming", false);
+                CanvasManager.instance.ShowIdleInstruction(true);
                 break;
             case PlayerState.DeletingBuilding:
                 BuildingManager.instance.ActivateDeletingMode(true);
+                CanvasManager.instance.TurnYellowDeletingButton(true);
                 break;
             case PlayerState.RotatingBuilding:
                 BuildingManager.instance.ActivateRotatingMode(true);
                 CanvasManager.instance.ShowCitizenEnterInstruction(false);
                 CanvasManager.instance.ShowTransportEnterInstruction(false);
+                CanvasManager.instance.TurnYellowRotatingButton(true);
+                break;
+            case PlayerState.Building:
+                CanvasManager.instance.TurnYellowBuildingButton(true);
                 break;
 
         }
@@ -124,15 +139,6 @@ public class Player : MonoBehaviour
         }
         else
         {
-            //if (currentState == PlayerState.DeletingBuilding)
-            //{
-            //    BuildingManager.instance.TurnDeletingObjectNormalAndClearFields();
-            //}
-            //if (currentState == PlayerState.RotatingBuilding)
-            //{
-            //    BuildingManager.instance.TurnRotatingObjectNormalAndClearFields();
-            //}
-            //currentState = newPlayerState;
             AfterSwitchState(newPlayerState);
         }
     }
@@ -141,7 +147,6 @@ public class Player : MonoBehaviour
         if (newPlayerState == PlayerState.Idle)
         {
             CanvasManager.instance.DoButton.onClick.AddListener(delegate { MobileFireInput(); });
-            CanvasManager.instance.ShowIdleInstruction(true);
         }
         else
         {
@@ -165,26 +170,6 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(Delay);
 
         AfterSwitchState(newPlayerState);
-        //if (newPlayerState == PlayerState.Idle)
-        //{
-        //    CanvasManager.instance.DoButton.onClick.AddListener(delegate { MobileFireInput(); });
-        //    CanvasManager.instance.ShowIdleInstruction(true);
-        //}
-        //else
-        //{
-        //    if (currentState == PlayerState.Idle)
-        //        CanvasManager.instance.ShowIdleInstruction(false);
-        //}
-        //if (currentState == PlayerState.DeletingBuilding)
-        //{
-        //    BuildingManager.instance.TurnDeletingObjectNormalAndClearFields();
-        //}
-        //if (currentState == PlayerState.RotatingBuilding)
-        //{
-        //    BuildingManager.instance.TurnRotatingObjectNormalAndClearFields();
-        //}
-        //currentState = newPlayerState;
-        //Debug.Log("Player State:" + currentState);
     }
     public void SwitchWeapon(int PressedNumber)
     {
@@ -234,6 +219,11 @@ public class Player : MonoBehaviour
         IsFirstView = !IsFirstView;
         GoToNormalCamera();
     }
+    public void SwitchCamera()
+    {
+        examplePlayer.SwitchCamera();
+        SwitchView();
+    }
     private void FixedUpdate()
     {
         //if (animationPlayer.IsMoving == false && currentState == PlayerState.Idle)
@@ -244,7 +234,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
 
-        if (currentState == PlayerState.Sitting)
+        if (currentState == PlayerState.Sitting || AdWarningActive)
         {
             return;
         }

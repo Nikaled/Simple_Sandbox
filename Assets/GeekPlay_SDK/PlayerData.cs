@@ -16,6 +16,11 @@ public class PlayerData
             CoinsChanged?.Invoke(_coinsDontUse);
         }
     }
+
+    public bool IsCloesChangeRewardTaked;
+    public bool IsSlapBattleRewardTaked;
+    public bool IsTwoPlayerGameRewardTaked;
+
     public event Action<int> CoinsChanged;
     public int _coinsDontUse;
 
@@ -24,8 +29,7 @@ public class PlayerData
     public int BuildCount;
     public int DestroyCount;
 
-
-
+    public List<int> Codes;
     public List<bool> CarsOpened;   
     public List<bool> AirTransportOpened;   
     public List<bool> AirportOpened;   
@@ -34,6 +38,7 @@ public class PlayerData
     public List<bool> CityOpened;   
     public List<bool> CitizensOpened;   
     public List<bool> AnimalsOpened;
+    public List<bool> SkyOpened;
     public List<SerializedBuildingData> BuildingData;
     public List<SerializedBuildingData> BuildingDataMap1;
     public List<SerializedBuildingData> BuildingDataMap2;
@@ -44,6 +49,11 @@ public class PlayerData
     public string NameMap3;
     public string NameMap4;
 
+    public string MapDate1;
+    public string MapDate2;
+    public string MapDate3;
+    public string MapDate4;
+
     public int PlayerSkin1;
     public int PlayerSkin2;
     public int PlayerSkin3;
@@ -53,10 +63,15 @@ public class PlayerData
     public int PlayerTexture3;
     public int PlayerTexture4;
 
+    public Vector3 PlayerPositionMap1;
+    public Vector3 PlayerPositionMap2;
+    public Vector3 PlayerPositionMap3;
+    public Vector3 PlayerPositionMap4;
     public int CurrentSaveSlotLoading;
     public bool IsPlayerMapLoad;
     /////InApps//////
     public string lastBuy;
 
     public int downloadsCount2;
+    internal bool IsGeometryDashRewardTaked;
 }

@@ -1548,7 +1548,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4151889221897826404}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 10000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -2570,6 +2570,7 @@ MonoBehaviour:
   CurrentRotationOfObject: {x: 0, y: 0, z: 0}
   CurrentRotationOfTransport: {x: 0, y: 0, z: 0}
   CurrentScale: {x: 0, y: 0, z: 0}
+  CurrentHpScale: {x: 0, y: 0, z: 0}
   CurrentPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &8272449720937628708
 GameObject:

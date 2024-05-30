@@ -10,35 +10,20 @@ public class ObjectInteraction : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            if (Player.instance.currentState != Player.PlayerState.Idle)
+            {
+                return;
+            }
             CanvasManager.instance.ShowObjectInteructInstruction(true);
             _isPlayerNear = true;
             CanvasManager.instance.InteracteButton.onClick.RemoveAllListeners();
+
             CanvasManager.instance.InteracteButton.onClick.AddListener(delegate { ActivateObject(); });
+            CanvasManager.instance.ShowCurrentInteracteButton(3);
             CanvasManager.instance.InteracteButton.gameObject.SetActive(true);
 
         }
     }
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        if (Input.GetKeyDown(KeyCode.F))
-    //        {
-    //            if (_objectActivated == false)
-    //            {
-    //                ActivateObject();
-    //                _objectActivated = true;
-    //                return;
-    //            }
-    //            else
-    //            {
-    //                DeactivateObject();
-    //                _objectActivated = false;
-    //                return;
-    //            }
-    //        }
-    //    }
-    //}
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -58,7 +43,7 @@ public class ObjectInteraction : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (_objectActivated == false)
+            if (_objectActivated == false && Player.instance.currentState == Player.PlayerState.Idle)
             {
                 ActivateObject();
                 _objectActivated = true;

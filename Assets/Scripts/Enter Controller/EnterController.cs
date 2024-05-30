@@ -6,7 +6,7 @@ public class EnterController : MonoBehaviour
 {
     protected bool IsInterfaceActive;
     protected bool IsPlayerIn;
-    [SerializeField] private Transform PlayerSpawnTransform;
+    [SerializeField] protected Transform PlayerSpawnTransform;
     [SerializeField] protected Camera TransportCamera;
     [SerializeField] protected GameObject HpView;
     protected Player player;
@@ -16,6 +16,10 @@ public class EnterController : MonoBehaviour
         {
             Debug.Log("Collider entered");
             player = other.GetComponent<Player>();
+            if(player.currentState != Player.PlayerState.Idle || IsPlayerIn)
+            {
+                return;
+            }
             ShowEnterInstruction();
             IsInterfaceActive = true;
             player.currentNearTransport = this;
@@ -51,6 +55,7 @@ public class EnterController : MonoBehaviour
     protected virtual void ShowEnterInstruction()
     {
         CanvasManager.instance.ShowTransportEnterInstruction(true);
+        CanvasManager.instance.ShowCurrentInteracteButton(1);
     }
 
     protected virtual void Update()
@@ -61,7 +66,7 @@ public class EnterController : MonoBehaviour
             {
                 if (player.currentNearTransport != null)
                 {
-                    if (player.currentNearTransport == this)
+                    if (player.currentNearTransport == this && player.currentState == Player.PlayerState.Idle)
                     {
                         if (Input.GetKeyDown(KeyCode.F))
                         {

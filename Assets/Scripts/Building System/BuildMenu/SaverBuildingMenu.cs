@@ -27,6 +27,7 @@ public class SaverBuildingMenu : MonoBehaviour
         BuildingMenuDataList.Add(Geekplay.Instance.PlayerData.CityOpened);
         BuildingMenuDataList.Add(Geekplay.Instance.PlayerData.CitizensOpened);
         BuildingMenuDataList.Add(Geekplay.Instance.PlayerData.AnimalsOpened);
+        BuildingMenuDataList.Add(Geekplay.Instance.PlayerData.SkyOpened);
 
         //Geekplay.Instance.Save();
         if (Geekplay.Instance.PlayerData.IsFirstPlay == false)
@@ -69,20 +70,17 @@ public class SaverBuildingMenu : MonoBehaviour
         BuildingMenuDataList[ContentManagerIndex].Clear();
         BuildingMenuDataList[ContentManagerIndex].AddRange(contentState);
         Geekplay.Instance.Save();
-        Debug.Log("Geekplay.Instance.PlayerData.CarsOpened.Length:" + Geekplay.Instance.PlayerData.CarsOpened.Count);
     }
     public void LoadItemsState()
     {
         for (int i = 0; i < BuildingMenuDataList.Count; i++)
         {
-            Debug.Log("Номер списка:" + i + "/ Количество объектов: " + BuildingMenuDataList[i].Count);
 
             List<bool> States = BuildingMenuDataList[i];
             for (int j = 0; j < ContentManagers[i].CellsInGrid.Length; j++)
             {
                 if(j > States.Count-1)
                 {
-                    Debug.Log("Номер списка:" + i + "/ Количество объектов: " + BuildingMenuDataList[i].Count + "/// невозможно загрузить");
                     continue;
                 }
                 ContentManagers[i].CellsInGrid[j].IsOpened = States[j];

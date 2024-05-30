@@ -16,7 +16,7 @@ public class BuildingCell : MonoBehaviour
     public GameObject priceObj;
     public bool IsOpened;
 
-    public event Action ItemOpened;
+    public  Action ItemOpened;
     private void Start()
     {
         InitializeButtons();
@@ -37,7 +37,7 @@ public class BuildingCell : MonoBehaviour
             gameObject.GetComponent<Button>().onClick.AddListener(delegate { SendPrefabToManager(); });
         }
     }
-    private IEnumerator SendPrefabToManagerCor()
+    protected virtual IEnumerator SendPrefabToManagerCor()
     {
         yield return new WaitForSeconds(0.1f);
         if (IsOpened)
@@ -55,7 +55,7 @@ public class BuildingCell : MonoBehaviour
                 CanvasManager.instance.ShowBuildingMenu(false);
                 Geekplay.Instance.PlayerData.Coins -= CoinPrice;
                 BuildingManager.instance.SetBuildingObject(objectPrefab);
-                ItemOpened?.Invoke();
+                OpenedInvoker();
                 priceObj.gameObject.SetActive(false);
             }
             else
@@ -74,5 +74,9 @@ public class BuildingCell : MonoBehaviour
         {
             priceObj.gameObject.SetActive(false);
         }
+    }
+    protected virtual void OpenedInvoker()
+    {
+        ItemOpened?.Invoke();
     }
 }

@@ -83,6 +83,9 @@ public class Geekplay : MonoBehaviour
     public CursorLockMode? cashedCursorModeSilence = null;
     public int RewardLockTimer;
     public  Action<int> RewardLockTimeUpdate;
+
+    public OurGameWindow OurGame;
+
     public void RunCoroutine(IEnumerator enumerator)
     {
         StartCoroutine(enumerator);
@@ -109,6 +112,15 @@ public class Geekplay : MonoBehaviour
         }
     }
 
+    public void EnablePlayedGameToggle(int id)
+    {
+        OurGame.EnabledGameToggle(id);
+    }
+
+    public void DisablePlayedGameToggle(int id)
+    {
+        OurGame.DisableGameToggle(id);
+    }
 
     private void Start()
     {

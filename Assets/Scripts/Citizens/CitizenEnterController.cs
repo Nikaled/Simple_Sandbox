@@ -13,7 +13,7 @@ public class CitizenEnterController : EnterController
     protected override void SitIntoTransport()
     {
         HideEnterInstruction();
-        HpView.SetActive(false);
+        //HpView.SetActive(false);
         ActivateTransport();
         IsInterfaceActive = false;
         PlayerPosition = player.transform.position;
@@ -26,6 +26,7 @@ public class CitizenEnterController : EnterController
     protected override void ShowEnterInstruction()
     {
         CanvasManager.instance.ShowCitizenEnterInstruction(true);
+        CanvasManager.instance.ShowCurrentInteracteButton(0);
     }
     protected override void HideEnterInstruction()
     {

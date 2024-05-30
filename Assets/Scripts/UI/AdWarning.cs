@@ -8,14 +8,16 @@ public class AdWarning : MonoBehaviour
     public int TimeToShowWarning;
     public GameObject WarningPanel;
     public TextMeshProUGUI WarningText;
+    [SerializeField] GameObject AddCoinsConfirmUI;
     private void Start()
     {
         StartCoroutine(AwaitAndShowWarningPanel());
         LocalizateText(5);
-        Debug.Log("Geekplay.Instance.cashedCursorMode" + Geekplay.Instance.cashedCursorModeSilence);
+        Geekplay.Instance.ShowedAdInEditor += ResumeTime;
     }
     private void OnEnable()
     {
+        if(Geekplay.Instance !=null)
         Geekplay.Instance.ShowedAdInEditor += ResumeTime;
     }
     private void OnDisable()
@@ -34,6 +36,7 @@ public class AdWarning : MonoBehaviour
     }
     private IEnumerator StartTimer()
     {
+        Player.instance.AdWarningActive = true;
         Cursor.lockState = CursorLockMode.None;
         Geekplay.Instance.IsAdWarningShowing = true;
         Time.timeScale = 0f;
@@ -49,10 +52,13 @@ public class AdWarning : MonoBehaviour
         Geekplay.Instance.PlayerData.Coins++;
         Geekplay.Instance.Save();
         WarningPanel.SetActive(false);
+        AddCoinsConfirmUI.SetActive(true);
+        Player.instance.AdWarningActive = false;
         StartCoroutine(AwaitAndShowWarningPanel());
-#if UNITY_EDITOR
-        CanvasManager.instance.CheckActiveUnlockCursorWindows();
-#endif
+        Cursor.lockState = CursorLockMode.None;
+//#if UNITY_EDITOR
+//        CanvasManager.instance.CheckActiveUnlockCursorWindows();
+//#endif
     }
 
     private void LocalizateText(int Timer)

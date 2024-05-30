@@ -14,9 +14,17 @@ public class CitizenMovement : MonoBehaviour
     private bool IsDying;
     [SerializeField] HpSystem hpSystem;
     public float DieAnimationTime = 2f;
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            agent.enabled = false;
+            agent.enabled = true;
+        }
+    }
     private void Start()
     {
-        agent.speed = 0;
         checker = Instantiate(CitizenNavMeshManager.instance.Checker, gameObject.transform.position, Quaternion.identity);
         checker.citizen = this;
         checker.GetComponent<SphereCollider>().enabled = true;
@@ -28,12 +36,12 @@ public class CitizenMovement : MonoBehaviour
 
         agent.SetDestination(DestinationPosition);
         animator.SetBool("IsWalk", true);
+        animator.SetFloat("Speed_f", 1);
     }
     private void StopMoving()
     {
         animator.SetBool("IsWalk", false);
-        Debug.Log("Stop moving Citizen");
-
+        animator.SetFloat("Speed_f", 0);
     }
     private void CitizenDie()
     {
@@ -41,6 +49,7 @@ public class CitizenMovement : MonoBehaviour
         {
             gameObject.GetComponent<CapsuleCollider>().enabled = false;
         }
+        agent.speed = 0;
         animator.SetBool("IsWalk", false);
         animator.SetTrigger("Die");
         IsDying = true;

@@ -12,10 +12,12 @@ public class WeaponSlotManager : MonoBehaviour
     private void Start()
     {
         OnWeaponSwitched(4);
+        Player.instance.SwitchedWeapon += OnWeaponSwitched;
     }
     private void OnEnable()
     {
-        Player.instance.SwitchedWeapon += OnWeaponSwitched;
+        if (Geekplay.Instance != null)
+            Player.instance.SwitchedWeapon += OnWeaponSwitched;
     }
 
     private void OnDisable()

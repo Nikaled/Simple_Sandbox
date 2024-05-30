@@ -33,7 +33,7 @@ public class HelicopterController : MonoBehaviour
     private void HandleInputs()
     {
         _roll = Input.GetAxis("Roll");
-        _pitch = Input.GetAxis("Pitch");
+        _pitch = Input.GetAxis("Pitch") * 4;
         _yaw = Input.GetAxis("Yaw");
 
         if (Input.GetKey(KeyCode.Space))                                         

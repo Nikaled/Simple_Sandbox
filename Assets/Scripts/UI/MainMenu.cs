@@ -1,15 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] TextMeshProUGUI CoinsText;
+    [SerializeField] TextMeshProUGUI CoinsInPromoText;
     void Start()
     {
         Geekplay.Instance.GameReady();
         Geekplay.Instance.ShowInterstitialAd();
+        ChangeCoinsText(Geekplay.Instance.PlayerData.Coins);
+        Geekplay.Instance.PlayerData.CoinsChanged += ChangeCoinsText;
+    }
+    void ChangeCoinsText(int NewCoinsCount)
+    {
+        CoinsText.text = NewCoinsCount.ToString();
+        CoinsInPromoText.text = NewCoinsCount.ToString();
     }
     public void LoadStandartMap()
     {

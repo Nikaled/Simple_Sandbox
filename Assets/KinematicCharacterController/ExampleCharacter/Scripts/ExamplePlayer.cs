@@ -118,10 +118,15 @@ namespace KinematicCharacterController.Examples
             // Handle toggling zoom level
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                CharacterCamera.TargetDistance = (CharacterCamera.TargetDistance == 0f) ? CharacterCamera.DefaultDistance : 0f;
+                SwitchCamera();
+                //CharacterCamera.TargetDistance = (CharacterCamera.TargetDistance == 0f) ? CharacterCamera.DefaultDistance : 0f;
             }
         }
-
+        public void SwitchCamera()
+        {
+            if(Player.instance.AdWarningActive == false)
+            CharacterCamera.TargetDistance = (CharacterCamera.TargetDistance == 0f) ? CharacterCamera.DefaultDistance : 0f;
+        }
         public void JumpIsTrue()
         {
             IsJumpTrue = true;
@@ -130,8 +135,12 @@ namespace KinematicCharacterController.Examples
         {
             PlayerCharacterInputs characterInputs = new PlayerCharacterInputs();
 
-            // Build the CharacterInputs struct
-            if (Mobile)
+            if (Player.instance.AdWarningActive)
+            {
+                return;
+            }
+                // Build the CharacterInputs struct
+                if (Mobile)
             {
                 if (!MyLockOnShoot)
                 {

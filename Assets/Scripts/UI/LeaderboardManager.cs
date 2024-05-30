@@ -16,16 +16,21 @@ public class LeaderboardManager : MonoBehaviour
 
     private void GetDataToNextLeaderBoard()
     {
+        StartCoroutine(GetDataAfterDelay());
+        
+
+    }
+    private IEnumerator GetDataAfterDelay()
+    {
+        yield return new WaitForSeconds(10);
         Leaderboards[currentLeaderboardIndex].SetText();
         currentLeaderboardIndex++;
         if (currentLeaderboardIndex == Leaderboards.Length)
         {
             currentLeaderboardIndex = 0;
-            return;
+            yield break;
         }
         Leaderboards[currentLeaderboardIndex].UpdateLeaderBoard();
-
-
     }
     private void Update()
     {

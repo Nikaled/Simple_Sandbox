@@ -249,7 +249,10 @@ public class BuildingManager : MonoBehaviour
         }
         else
         {
+            if(pendingObj == null)
+            {
             player.SwitchPlayerState(Player.PlayerState.Idle);
+            }
         }
     }
     private void DeleteObject(GameObject deletingObject)
