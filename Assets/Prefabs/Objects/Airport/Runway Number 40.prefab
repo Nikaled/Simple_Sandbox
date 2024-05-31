@@ -48,9 +48,11 @@ MonoBehaviour:
   RootObject: {fileID: 5328043156580143125}
   MeshObject: {fileID: 9136439951979051470}
   HpBar: {fileID: 5253027462332477094}
-  MaxHp: 11
+  MaxHp: 10
   HpText: {fileID: 2586803674281500065}
   DestroyAnimation: {fileID: 1056904543853562, guid: 4cf45cdce36e66e4a93614abb5ae7821, type: 3}
+  OriginScale: {x: 0, y: 0, z: 0}
+  OriginHpBarScale: 0
   Citizen: 0
 --- !u!1 &1363101712579045135
 GameObject:
@@ -270,7 +272,9 @@ MonoBehaviour:
   CurrentHp: 0
   CurrentRotationOfPoint: {x: 0, y: 0, z: 0}
   CurrentRotationOfObject: {x: 0, y: 0, z: 0}
+  CurrentRotationOfTransport: {x: 0, y: 0, z: 0}
   CurrentScale: {x: 0, y: 0, z: 0}
+  CurrentHpScale: {x: 0, y: 0, z: 0}
   CurrentPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &7604069120384237939
 GameObject:

@@ -226,14 +226,17 @@ public class Player : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        //if (animationPlayer.IsMoving == false && currentState == PlayerState.Idle)
-        //{
-        //    RotatePlayerOnShoot(playerShooting.AimDirection);
-        //}
+        if (/*animationPlayer.IsMoving == false &&*/ currentState == PlayerState.Idle && IsFirstView)
+        {
+            RotatePlayerOnShoot(playerShooting.AimDirection);
+        }
+        if(currentState == PlayerState.AimingGrenade)
+        {
+            RotatePlayerOnShoot(playerShooting.AimDirection);
+        }
     }
     private void Update()
     {
-
         if (currentState == PlayerState.Sitting || AdWarningActive)
         {
             return;
@@ -386,10 +389,10 @@ public class Player : MonoBehaviour
             examplePlayer.MyLockOnShoot = true;
             motor.SetPosition(transform.position);
         }
-        if (CurrentWeapon == WeaponType.Grenade)
-        {
-            AimingGrenadeOnMobile();
-        }
+        //if (CurrentWeapon == WeaponType.Grenade)
+        //{
+        //    AimingGrenadeOnMobile();
+        //}
     } // Used by Fire Button
     public void MobileAiming()// Used by Aim Button
     {
@@ -522,7 +525,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            normalCamera.FollowPointFraming = new Vector2(-0.1f, 0.69f);
+            normalCamera.FollowPointFraming = new Vector2(-0.2f, 0.69f);
             normalCamera.Camera.fieldOfView = 40;
         }
         //playerShooting.lineRenderer.enabled = false;

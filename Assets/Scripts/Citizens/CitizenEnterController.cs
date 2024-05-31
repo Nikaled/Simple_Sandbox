@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CitizenEnterController : EnterController
 {
-    [SerializeField] SkinnedMeshRenderer CitizenMesh;
+    [SerializeField] public SkinnedMeshRenderer CitizenMesh;
     [SerializeField] SkinnedMeshRenderer[] AllCitizenMeshes;
     [SerializeField] GameObject CitizenRoot;
     [SerializeField] CitizenMovement citizenMovement;

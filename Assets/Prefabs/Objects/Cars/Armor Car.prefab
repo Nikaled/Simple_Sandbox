@@ -6634,7 +6634,7 @@ MonoBehaviour:
   RootObject: {fileID: 7817606734230186961}
   MeshObject: {fileID: 7249834854108761126}
   HpBar: {fileID: 5778164376576311693}
-  MaxHp: 11
+  MaxHp: 65
   HpText: {fileID: 7295812860235873308}
   DestroyAnimation: {fileID: 1056904543853562, guid: 4cf45cdce36e66e4a93614abb5ae7821, type: 3}
   OriginScale: {x: 0, y: 0, z: 0}
@@ -12966,7 +12966,7 @@ GameObject:
   - component: {fileID: 4847614215772795547}
   - component: {fileID: 2792345616161941921}
   m_Layer: 11
-  m_Name: Car sedan
+  m_Name: Armor_Car_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13159,12 +13159,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Variants:
-  - {fileID: 2800000, guid: 8b2d37b34a2103e4abb1e3c4cd325afd, type: 3}
-  - {fileID: 2800000, guid: e4280c9625f83464ab294fca72d8a24b, type: 3}
-  - {fileID: 2800000, guid: f2df5b1912860c6449797a2aea7052e9, type: 3}
-  - {fileID: 2800000, guid: eb3d72bd899705f4caa14609d842b7f5, type: 3}
+  - {fileID: 2800000, guid: 91d8e129fe518b34281eef0689092f0d, type: 3}
+  - {fileID: 2800000, guid: ca1369008d4a8d543bfe31d1594e0bb0, type: 3}
+  - {fileID: 2800000, guid: 095aeffd171732c4e8ac618d33a135fd, type: 3}
   ObjectToChange: {fileID: 1138373571204634433}
   currentVariantIndex: 0
+  SecondObjectToChange: {fileID: 1138373571204636241}
 --- !u!65 &4847614215772795547
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13376,6 +13376,11 @@ PrefabInstance:
 --- !u!23 &1138373571204634433 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2326272, guid: aea2a6cdcc9d7944090d528486ebaee1, type: 3}
+  m_PrefabInstance: {fileID: 1138373571206916161}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1138373571204636241 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2323984, guid: aea2a6cdcc9d7944090d528486ebaee1, type: 3}
   m_PrefabInstance: {fileID: 1138373571206916161}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1138373571206995757 stripped

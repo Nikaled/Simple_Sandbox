@@ -24,12 +24,17 @@ public class MobileShootButton : MonoBehaviour, IUpdateSelectedHandler, IPointer
         }
         if (isPressed && Player.instance.CurrentWeapon == Player.WeaponType.Grenade)
         {
-            Player.instance.MobileFireInput();
+            //Player.instance.MobileFireInput();
+            Player.instance.AimingGrenadeOnMobile();
         }
     }
     public void OnPointerDown(PointerEventData data)
     {
         isPressed = true;
+        if (Player.instance.CurrentWeapon == Player.WeaponType.Grenade)
+        {
+            Player.instance.AimingGrenadeOnMobile();
+        }
     }
     public void OnPointerUp(PointerEventData data)
     {

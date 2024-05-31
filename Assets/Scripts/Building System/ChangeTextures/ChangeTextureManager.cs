@@ -16,7 +16,12 @@ public class ChangeTextureManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        if(Geekplay.Instance.language == "ru")
         VariantNames = new string[] {"ЦВЕТ 1", "ЦВЕТ 2", "ЦВЕТ 3", "ЦВЕТ 4", "ЦВЕТ 5"};
+        if (Geekplay.Instance.language == "en")
+            VariantNames = new string[] { "COLOR 1", "COLOR 2", "COLOR 3", "COLOR 4", "COLOR 5" };
+        if(Geekplay.Instance.language == "tr")
+            VariantNames = new string[] { "RENK 1", "RENK 2", "RENK 3", "RENK 4", "RENK 5" };
     }
     public void ChangeVariantText(int index)
     {
@@ -27,6 +32,14 @@ public class ChangeTextureManager : MonoBehaviour
         VariantUI.gameObject.SetActive(true);
         Debug.Log(RootObject.name);
         objectVariants = RootObject.GetComponent<ObjectVariants>();
+        if(objectVariants == null)
+        {
+            var CitizenEnter = RootObject.GetComponentInChildren<CitizenEnterController>();
+            if(CitizenEnter != null)
+            {
+                objectVariants = CitizenEnter.CitizenMesh.GetComponent<ObjectVariants>();
+            }
+        }
         if (objectVariants == null)
         {
             objectVariants = RootObject.GetComponentInParent<ObjectVariants>();

@@ -995,11 +995,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Variants:
-  - {fileID: 2800000, guid: 1b87e52af1c6e944eb0362f765b16393, type: 3}
-  - {fileID: 2800000, guid: ad8104eb0f4d3f24687791e8dcc22725, type: 3}
-  - {fileID: 2800000, guid: b8f01783c59e8a344bb3670eb41daae5, type: 3}
+  - {fileID: 2800000, guid: 91d8e129fe518b34281eef0689092f0d, type: 3}
+  - {fileID: 2800000, guid: ca1369008d4a8d543bfe31d1594e0bb0, type: 3}
+  - {fileID: 2800000, guid: 095aeffd171732c4e8ac618d33a135fd, type: 3}
   ObjectToChange: {fileID: 1064427805616828251}
   currentVariantIndex: 0
+  SecondObjectToChange: {fileID: 1064427805616806807}
 --- !u!65 &1818521465638837486
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12391,6 +12392,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b9b0470169edd24fb7b97a97e4aac1b, type: 3}
+--- !u!23 &1064427805616806807 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2331904, guid: 7b9b0470169edd24fb7b97a97e4aac1b, type: 3}
+  m_PrefabInstance: {fileID: 1064427805618802327}
+  m_PrefabAsset: {fileID: 0}
 --- !u!23 &1064427805616828251 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2351564, guid: 7b9b0470169edd24fb7b97a97e4aac1b, type: 3}
@@ -12669,6 +12675,10 @@ PrefabInstance:
     - target: {fileID: 2138912237128217873, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_Name
       value: Hp System
+      objectReference: {fileID: 0}
+    - target: {fileID: 2138912237128217903, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
+      propertyPath: MaxHp
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217903, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: MeshObject

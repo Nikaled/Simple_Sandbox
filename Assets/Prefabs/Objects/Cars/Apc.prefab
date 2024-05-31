@@ -48,7 +48,7 @@ MonoBehaviour:
   RootObject: {fileID: 2650541927230406624}
   MeshObject: {fileID: 429095860559550056}
   HpBar: {fileID: 336410623961084172}
-  MaxHp: 11
+  MaxHp: 70
   HpText: {fileID: 655494288119899624}
   DestroyAnimation: {fileID: 1056904543853562, guid: 4cf45cdce36e66e4a93614abb5ae7821, type: 3}
   OriginScale: {x: 0, y: 0, z: 0}
@@ -11086,7 +11086,7 @@ GameObject:
   - component: {fileID: 892101162556080139}
   - component: {fileID: 7039092520450372265}
   m_Layer: 11
-  m_Name: Car sedan
+  m_Name: Apc_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11279,12 +11279,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Variants:
-  - {fileID: 2800000, guid: 8b2d37b34a2103e4abb1e3c4cd325afd, type: 3}
-  - {fileID: 2800000, guid: e4280c9625f83464ab294fca72d8a24b, type: 3}
-  - {fileID: 2800000, guid: f2df5b1912860c6449797a2aea7052e9, type: 3}
-  - {fileID: 2800000, guid: eb3d72bd899705f4caa14609d842b7f5, type: 3}
-  ObjectToChange: {fileID: 0}
+  - {fileID: 2800000, guid: 91d8e129fe518b34281eef0689092f0d, type: 3}
+  - {fileID: 2800000, guid: ca1369008d4a8d543bfe31d1594e0bb0, type: 3}
+  - {fileID: 2800000, guid: 095aeffd171732c4e8ac618d33a135fd, type: 3}
+  ObjectToChange: {fileID: 287956441163340204}
   currentVariantIndex: 0
+  SecondObjectToChange: {fileID: 287956441163340306}
 --- !u!65 &892101162556080139
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13351,6 +13351,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b12042939225cd4a9f7ce5c0043e4b1, type: 3}
+--- !u!23 &287956441163340204 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2328466, guid: 2b12042939225cd4a9f7ce5c0043e4b1, type: 3}
+  m_PrefabInstance: {fileID: 287956441165209150}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &287956441163340306 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2327596, guid: 2b12042939225cd4a9f7ce5c0043e4b1, type: 3}
+  m_PrefabInstance: {fileID: 287956441165209150}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &287956441165657122 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 453148, guid: 2b12042939225cd4a9f7ce5c0043e4b1, type: 3}

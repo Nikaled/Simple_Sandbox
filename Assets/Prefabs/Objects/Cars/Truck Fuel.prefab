@@ -2010,12 +2010,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Variants:
-  - {fileID: 2800000, guid: 8b2d37b34a2103e4abb1e3c4cd325afd, type: 3}
-  - {fileID: 2800000, guid: aba2663ca66d4e8429c3419725cd3e6e, type: 3}
-  - {fileID: 2800000, guid: e4280c9625f83464ab294fca72d8a24b, type: 3}
-  - {fileID: 2800000, guid: eb3d72bd899705f4caa14609d842b7f5, type: 3}
+  - {fileID: 2800000, guid: 91d8e129fe518b34281eef0689092f0d, type: 3}
+  - {fileID: 2800000, guid: ca1369008d4a8d543bfe31d1594e0bb0, type: 3}
+  - {fileID: 2800000, guid: 095aeffd171732c4e8ac618d33a135fd, type: 3}
   ObjectToChange: {fileID: 2564147075458192912}
   currentVariantIndex: 0
+  SecondObjectToChange: {fileID: 0}
 --- !u!114 &8187337667876781837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12341,15 +12341,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 456992, guid: 63402f7d51a307e49ba8ad8e2a872641, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.01798396
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 456992, guid: 63402f7d51a307e49ba8ad8e2a872641, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.38
+      value: -1.71
       objectReference: {fileID: 0}
     - target: {fileID: 456992, guid: 63402f7d51a307e49ba8ad8e2a872641, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.000014278351
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 456992, guid: 63402f7d51a307e49ba8ad8e2a872641, type: 3}
       propertyPath: m_LocalRotation.w
@@ -12675,6 +12675,10 @@ PrefabInstance:
     - target: {fileID: 2138912237128217873, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_Name
       value: Hp System
+      objectReference: {fileID: 0}
+    - target: {fileID: 2138912237128217903, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
+      propertyPath: MaxHp
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217903, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: MeshObject

@@ -24,6 +24,7 @@ public class GrenadeLauncher : MonoBehaviour
         crossPosition = PlayerShooting.instance.CrosshairWorldPosition;
         aimDirection = (crossPosition - LaunchPoint.position).normalized;
 
+        Debug.Log("crossPosition:" + crossPosition);
         if (lineRenderer != null)
         {
             DrawTrajectory();
@@ -54,7 +55,7 @@ public class GrenadeLauncher : MonoBehaviour
     {
         Vector3 origin = LaunchPoint.position;
         //Vector3 startVelocity = LaunchSpeed * Camera.main.transform.forward;
-        Vector3 startVelocity = LaunchSpeed * Camera.main.transform.forward+(Vector3.up* 10);
+        Vector3 startVelocity = LaunchSpeed * Camera.main.transform.forward + (Vector3.up * 10);
         lineRenderer.positionCount = linePoints;
         float time = 0;
         for (int i = 0; i < linePoints; i++)
@@ -67,4 +68,4 @@ public class GrenadeLauncher : MonoBehaviour
             time += timeIntervalinPoints;
         }
     }
-    }
+}

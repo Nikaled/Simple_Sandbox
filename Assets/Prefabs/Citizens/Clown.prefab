@@ -161,6 +161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4754219774948205139}
   - component: {fileID: 4754219774936421741}
+  - component: {fileID: 7980311762284464576}
   m_Layer: 0
   m_Name: SC_ShopKeeper
   m_TagString: Untagged
@@ -259,6 +260,25 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.38096666, y: 0.0000017285347, z: 0.04450822}
     m_Extent: {x: 1.4261842, y: 1.6845057, z: 0.44517547}
   m_DirtyAABB: 0
+--- !u!114 &7980311762284464576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4754219774947956659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba2c762cebb6168488ddd7702842874c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Variants:
+  - {fileID: 2800000, guid: 9050fad2ed33d1c43be85269cd9c608b, type: 3}
+  - {fileID: 2800000, guid: fe1a4533e26ed614f89788475fd10ce9, type: 3}
+  - {fileID: 2800000, guid: d3a169c8b49d4d0479192a1dd962475d, type: 3}
+  ObjectToChange: {fileID: 0}
+  currentVariantIndex: 0
+  CitizenToChange: {fileID: 0}
 --- !u!1 &4754219774947958293
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,6 +320,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4754219774948229071}
   - component: {fileID: 4754219774936537117}
+  - component: {fileID: 1945582422331928863}
   m_Layer: 0
   m_Name: SC_Cheerleader
   m_TagString: Untagged
@@ -398,6 +419,25 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.33106005, y: 0.0000017285347, z: -0.07679981}
     m_Extent: {x: 1.3762776, y: 1.6845057, z: 0.4339838}
   m_DirtyAABB: 0
+--- !u!114 &1945582422331928863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4754219774947958461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba2c762cebb6168488ddd7702842874c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Variants:
+  - {fileID: 2800000, guid: 9ba2f89d5e0002445ab9494ddae0c7e9, type: 3}
+  - {fileID: 2800000, guid: 36cfcaecf558de04f903caadb6656327, type: 3}
+  - {fileID: 2800000, guid: 41f15c7d93da22d4c9d6624ae157227c, type: 3}
+  ObjectToChange: {fileID: 0}
+  currentVariantIndex: 0
+  CitizenToChange: {fileID: 0}
 --- !u!1 &4754219774947970803
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,6 +480,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4754219774948208331}
   - component: {fileID: 4754219774936536403}
+  - component: {fileID: 5320019110188051174}
   m_Layer: 0
   m_Name: SC_Tourist
   m_TagString: Untagged
@@ -538,6 +579,27 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.4257214, y: 0.0000017285347, z: 0.0019336343}
     m_Extent: {x: 1.4709389, y: 1.6845057, z: 0.4732977}
   m_DirtyAABB: 0
+--- !u!114 &5320019110188051174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4754219774947971641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba2c762cebb6168488ddd7702842874c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Variants:
+  - {fileID: 2800000, guid: 930edc110ccca3847b5cf47bea2f5028, type: 3}
+  - {fileID: 2800000, guid: 2955af147c52a6744b923e2bae3f9c31, type: 3}
+  - {fileID: 2800000, guid: f229032e00d591d4183c824b0531c84f, type: 3}
+  - {fileID: 2800000, guid: 459118a082f7df44ca3eaccd4d748837, type: 3}
+  - {fileID: 2800000, guid: 56634c81b8e1a4846beaf1bd977f1f96, type: 3}
+  ObjectToChange: {fileID: 0}
+  currentVariantIndex: 0
+  CitizenToChange: {fileID: 0}
 --- !u!1 &4754219774947976335
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,6 +610,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4754219774948169609}
   - component: {fileID: 4754219774936526111}
+  - component: {fileID: 5134357289632234344}
   m_Layer: 0
   m_Name: SC_Mountie
   m_TagString: Untagged
@@ -646,6 +709,25 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.5097586, y: 0.0000017285347, z: 0.01634258}
     m_Extent: {x: 1.5549761, y: 1.6845057, z: 0.55129623}
   m_DirtyAABB: 0
+--- !u!114 &5134357289632234344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4754219774947976335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba2c762cebb6168488ddd7702842874c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Variants:
+  - {fileID: 2800000, guid: 083fc4ccc84293f41a8c2fdcd14a47ff, type: 3}
+  - {fileID: 2800000, guid: 009cefe88d3364f458ab2e1bb6b73e81, type: 3}
+  - {fileID: 2800000, guid: a178b2b23046acf418f6584fde86ae4a, type: 3}
+  ObjectToChange: {fileID: 0}
+  currentVariantIndex: 0
+  CitizenToChange: {fileID: 0}
 --- !u!1 &4754219774947977733
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,6 +738,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4754219774948210919}
   - component: {fileID: 4754219774936524131}
+  - component: {fileID: 7144128972896621387}
   m_Layer: 0
   m_Name: SC_Hippie
   m_TagString: Untagged
@@ -754,6 +837,25 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.36837792, y: 0.0000017285347, z: 0.0019336343}
     m_Extent: {x: 1.4135954, y: 1.6845057, z: 0.37678194}
   m_DirtyAABB: 0
+--- !u!114 &7144128972896621387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4754219774947977733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba2c762cebb6168488ddd7702842874c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Variants:
+  - {fileID: 2800000, guid: cb1b4d583c4277042bfc80dc04ede14e, type: 3}
+  - {fileID: 2800000, guid: 8d230ee6284baec4eb7eaec7880e68a1, type: 3}
+  - {fileID: 2800000, guid: 1ce0b098a98f93a41aac99aed42baea3, type: 3}
+  ObjectToChange: {fileID: 0}
+  currentVariantIndex: 0
+  CitizenToChange: {fileID: 0}
 --- !u!1 &4754219774947984287
 GameObject:
   m_ObjectHideFlags: 0
@@ -904,6 +1006,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4754219774948249965}
   - component: {fileID: 4754219774936485597}
+  - component: {fileID: 724267714650658467}
   m_Layer: 0
   m_Name: SC_Runner
   m_TagString: Untagged
@@ -1002,6 +1105,25 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.36837792, y: 0.0000017285347, z: 0.0019336343}
     m_Extent: {x: 1.4135954, y: 1.6845057, z: 0.37678194}
   m_DirtyAABB: 0
+--- !u!114 &724267714650658467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4754219774948002519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba2c762cebb6168488ddd7702842874c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Variants:
+  - {fileID: 2800000, guid: e2ab565f2bd1fd14495d4568ed6efcc8, type: 3}
+  - {fileID: 2800000, guid: 31ad3f624cb86db4890e6800c01dede9, type: 3}
+  - {fileID: 2800000, guid: 4de350ca63d9bde4d83ddd435bcb32b4, type: 3}
+  ObjectToChange: {fileID: 0}
+  currentVariantIndex: 0
+  CitizenToChange: {fileID: 0}
 --- !u!1 &4754219774948005723
 GameObject:
   m_ObjectHideFlags: 0
@@ -1107,6 +1229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4754219774948249333}
   - component: {fileID: 4754219774936500245}
+  - component: {fileID: 8823079328443337406}
   m_Layer: 0
   m_Name: SC_Luchador
   m_TagString: Untagged
@@ -1205,6 +1328,25 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.38823533, y: 0.0000017285347, z: 0.01634264}
     m_Extent: {x: 1.4334528, y: 1.6845057, z: 0.65080917}
   m_DirtyAABB: 0
+--- !u!114 &8823079328443337406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4754219774948015461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba2c762cebb6168488ddd7702842874c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Variants:
+  - {fileID: 2800000, guid: 8db84243ddf0ab74f9544092b0dd0505, type: 3}
+  - {fileID: 2800000, guid: fa72aeb8d47f6c843a6c4a2da022a513, type: 3}
+  - {fileID: 2800000, guid: a500bb0f62b89234498f721b5b17f86d, type: 3}
+  ObjectToChange: {fileID: 0}
+  currentVariantIndex: 0
+  CitizenToChange: {fileID: 0}
 --- !u!1 &4754219774948015989
 GameObject:
   m_ObjectHideFlags: 0
@@ -1215,6 +1357,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4754219774948152541}
   - component: {fileID: 4754219774936478335}
+  - component: {fileID: 1449775650707853375}
   m_Layer: 0
   m_Name: SC_Grandma
   m_TagString: Untagged
@@ -1313,6 +1456,25 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.40962327, y: 0.0000017285347, z: 0.0016335845}
     m_Extent: {x: 1.4548408, y: 1.6845057, z: 0.35555044}
   m_DirtyAABB: 0
+--- !u!114 &1449775650707853375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4754219774948015989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba2c762cebb6168488ddd7702842874c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Variants:
+  - {fileID: 2800000, guid: b2a136916dc70cc4da22fd5db8b55f47, type: 3}
+  - {fileID: 2800000, guid: 05aa82bfc1d3e6043be0f710951d99e0, type: 3}
+  - {fileID: 2800000, guid: 6aee4ef8d34f8a246a779bdaa1c0a9ac, type: 3}
+  ObjectToChange: {fileID: 0}
+  currentVariantIndex: 0
+  CitizenToChange: {fileID: 0}
 --- !u!1 &4754219774948016077
 GameObject:
   m_ObjectHideFlags: 0
@@ -1323,6 +1485,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4754219774948177571}
   - component: {fileID: 4754219774936539893}
+  - component: {fileID: 91273394037924918}
   m_Layer: 0
   m_Name: SC_Biker
   m_TagString: Untagged
@@ -1421,6 +1584,25 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.45759046, y: 0.0000017285347, z: 0.030932665}
     m_Extent: {x: 1.502808, y: 1.6845057, z: 0.3848495}
   m_DirtyAABB: 0
+--- !u!114 &91273394037924918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4754219774948016077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba2c762cebb6168488ddd7702842874c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Variants:
+  - {fileID: 2800000, guid: a93db1c833d1a9c4a93690ac14a77f34, type: 3}
+  - {fileID: 2800000, guid: 266a9296e8e989f41a28c87ef60a4cc9, type: 3}
+  - {fileID: 2800000, guid: 5d437cc8de97ea44387542539c67a04b, type: 3}
+  ObjectToChange: {fileID: 0}
+  currentVariantIndex: 0
+  CitizenToChange: {fileID: 4754219774936539893}
 --- !u!1 &4754219774948052445
 GameObject:
   m_ObjectHideFlags: 0
@@ -1465,6 +1647,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4754219774948168373}
   - component: {fileID: 4754219774936492695}
+  - component: {fileID: 6553242802968672393}
   m_Layer: 0
   m_Name: SC_Emo
   m_TagString: Untagged
@@ -1563,6 +1746,25 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.36837792, y: 0.0000017285347, z: -0.03664887}
     m_Extent: {x: 1.4135954, y: 1.6845057, z: 0.3938329}
   m_DirtyAABB: 0
+--- !u!114 &6553242802968672393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4754219774948053827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba2c762cebb6168488ddd7702842874c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Variants:
+  - {fileID: 2800000, guid: 034d585e5c2b70b4bb08b412509d4c75, type: 3}
+  - {fileID: 2800000, guid: 0504d419b937b50449afac0f3a840df5, type: 3}
+  - {fileID: 2800000, guid: 2eeab253c1e1b214e9ec780ebe3a4211, type: 3}
+  ObjectToChange: {fileID: 0}
+  currentVariantIndex: 0
+  CitizenToChange: {fileID: 0}
 --- !u!1 &4754219774948055399
 GameObject:
   m_ObjectHideFlags: 0
@@ -1573,6 +1775,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4754219774948152561}
   - component: {fileID: 4754219774936531527}
+  - component: {fileID: 254712078126360977}
   m_Layer: 0
   m_Name: SC_Clown
   m_TagString: Untagged
@@ -1671,6 +1874,25 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.42564082, y: 0.0000017285347, z: 0.0019336343}
     m_Extent: {x: 1.4710195, y: 1.6845057, z: 0.4732977}
   m_DirtyAABB: 0
+--- !u!114 &254712078126360977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4754219774948055399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba2c762cebb6168488ddd7702842874c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Variants:
+  - {fileID: 2800000, guid: 3827a54a4e82de44db942ab78f987950, type: 3}
+  - {fileID: 2800000, guid: 1aa0d4fff9f0d0647999593e882381c1, type: 3}
+  - {fileID: 2800000, guid: 8a0319afc82aca346ada21ab1c9ed1e3, type: 3}
+  ObjectToChange: {fileID: 0}
+  currentVariantIndex: 0
+  CitizenToChange: {fileID: 4754219774936531527}
 --- !u!1 &4754219774948069405
 GameObject:
   m_ObjectHideFlags: 0
@@ -1853,6 +2075,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4754219774948163079}
   - component: {fileID: 4754219774936537499}
+  - component: {fileID: 1279958913812727249}
   m_Layer: 0
   m_Name: SC_Footballer
   m_TagString: Untagged
@@ -1951,6 +2174,25 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.4040476, y: 0.0000017285347, z: -0.00033855438}
     m_Extent: {x: 1.4492651, y: 1.6845057, z: 0.4554423}
   m_DirtyAABB: 0
+--- !u!114 &1279958913812727249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4754219774948078239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba2c762cebb6168488ddd7702842874c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Variants:
+  - {fileID: 2800000, guid: d37deb55f91688f46a5b802283be0f5f, type: 3}
+  - {fileID: 2800000, guid: b41632f550fd158488ec24305b88517d, type: 3}
+  - {fileID: 2800000, guid: 1892025b56f4c074ea45322691ae15eb, type: 3}
+  ObjectToChange: {fileID: 0}
+  currentVariantIndex: 0
+  CitizenToChange: {fileID: 0}
 --- !u!1 &4754219774948081337
 GameObject:
   m_ObjectHideFlags: 0
@@ -1966,7 +2208,6 @@ GameObject:
   - component: {fileID: 4754219774948112411}
   - component: {fileID: 4754219774948112404}
   - component: {fileID: 4754219774948112400}
-  - component: {fileID: 1453871515303156402}
   - component: {fileID: 6650033125069944471}
   m_Layer: 15
   m_Name: Clown
@@ -2130,25 +2371,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSystem: {fileID: 6653101888324985075}
---- !u!114 &1453871515303156402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4754219774948081337}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba2c762cebb6168488ddd7702842874c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Variants:
-  - {fileID: 2800000, guid: 3827a54a4e82de44db942ab78f987950, type: 3}
-  - {fileID: 2800000, guid: 1aa0d4fff9f0d0647999593e882381c1, type: 3}
-  - {fileID: 2800000, guid: 8a0319afc82aca346ada21ab1c9ed1e3, type: 3}
-  ObjectToChange: {fileID: 0}
-  currentVariantIndex: 0
-  CitizenToChange: {fileID: 4754219774936531527}
 --- !u!114 &6650033125069944471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2169,6 +2391,7 @@ MonoBehaviour:
   CurrentRotationOfObject: {x: 0, y: 0, z: 0}
   CurrentRotationOfTransport: {x: 0, y: 0, z: 0}
   CurrentScale: {x: 0, y: 0, z: 0}
+  CurrentHpScale: {x: 0, y: 0, z: 0}
   CurrentPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &4754219774948081345
 GameObject:
@@ -2592,6 +2815,10 @@ PrefabInstance:
     - target: {fileID: 2138912237128217873, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_Name
       value: Hp System
+      objectReference: {fileID: 0}
+    - target: {fileID: 2138912237128217903, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
+      propertyPath: MaxHp
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217903, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: Citizen

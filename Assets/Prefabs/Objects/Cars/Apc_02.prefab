@@ -612,12 +612,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Variants:
-  - {fileID: 2800000, guid: 8b2d37b34a2103e4abb1e3c4cd325afd, type: 3}
-  - {fileID: 2800000, guid: e4280c9625f83464ab294fca72d8a24b, type: 3}
-  - {fileID: 2800000, guid: f2df5b1912860c6449797a2aea7052e9, type: 3}
-  - {fileID: 2800000, guid: eb3d72bd899705f4caa14609d842b7f5, type: 3}
-  ObjectToChange: {fileID: 6030359811711183382}
+  - {fileID: 2800000, guid: 91d8e129fe518b34281eef0689092f0d, type: 3}
+  - {fileID: 2800000, guid: ca1369008d4a8d543bfe31d1594e0bb0, type: 3}
+  - {fileID: 2800000, guid: 095aeffd171732c4e8ac618d33a135fd, type: 3}
+  ObjectToChange: {fileID: 2267180307398299573}
   currentVariantIndex: 0
+  SecondObjectToChange: {fileID: 2267180307398207849}
 --- !u!65 &7535172039153661087
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5706,7 +5706,7 @@ MonoBehaviour:
   RootObject: {fileID: 931761586171752217}
   MeshObject: {fileID: 2084451906062430032}
   HpBar: {fileID: 1649593412300388015}
-  MaxHp: 11
+  MaxHp: 70
   HpText: {fileID: 7786886341813284279}
   DestroyAnimation: {fileID: 1056904543853562, guid: 4cf45cdce36e66e4a93614abb5ae7821, type: 3}
   OriginScale: {x: 0, y: 0, z: 0}
@@ -13439,6 +13439,16 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 490422, guid: b9993c12db5080349964972df52d3c82, type: 3}
   m_PrefabInstance: {fileID: 2267180307395964753}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &2267180307398207849 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2344504, guid: b9993c12db5080349964972df52d3c82, type: 3}
+  m_PrefabInstance: {fileID: 2267180307395964753}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2267180307398299573 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2384100, guid: b9993c12db5080349964972df52d3c82, type: 3}
+  m_PrefabInstance: {fileID: 2267180307395964753}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4586526478961485608
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13598,11 +13608,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aea2a6cdcc9d7944090d528486ebaee1, type: 3}
---- !u!23 &6030359811711183382 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 2326272, guid: aea2a6cdcc9d7944090d528486ebaee1, type: 3}
-  m_PrefabInstance: {fileID: 6030359811713226006}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6030359811713016442 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 489324, guid: aea2a6cdcc9d7944090d528486ebaee1, type: 3}

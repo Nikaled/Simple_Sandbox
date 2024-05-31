@@ -10,6 +10,7 @@ public class Screenshot : MonoBehaviour
     [DllImport("__Internal")]
 	private static extern void DownloadFile(byte[] array, int byteLength, string fileName);
 
+    private int index;
     public void DownloadScreenshot ()
     {
         StartCoroutine(ScreenDo());
@@ -24,6 +25,7 @@ public class Screenshot : MonoBehaviour
     }
     IEnumerator ScreenDo()
     {
+        index = Geekplay.Instance.PlayerData.downloadsCount2;
         //Выключаем весь UI
 
         CanvasManager.instance.ShowAllUI(false);
@@ -38,7 +40,10 @@ public class Screenshot : MonoBehaviour
         //ВКЛЮЧАЕМ UI
         CanvasManager.instance.ShowAllUI(true);
 
-        Geekplay.Instance.PlayerData.downloadsCount2++;
+        index++;
+        yield return new WaitForEndOfFrame();
+        Geekplay.Instance.PlayerData.downloadsCount2 = index;
+        Debug.Log(Geekplay.Instance.PlayerData.downloadsCount2);
         Geekplay.Instance.Save();
     }
 }

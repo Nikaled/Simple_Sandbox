@@ -99,6 +99,8 @@ public class CanvasManager : MonoBehaviour
             CanvasPCInterface.SetActive(true);
             AppShopButton.SetActive(false);
         }
+        Geekplay.Instance.PlayerData.CoinsChanged += ChangeCoinsText;
+        Geekplay.Instance.LockCursorAfterAd += CheckActiveUnlockCursorWindows;
     }
     #region Mobile
     public void TurnYellowBuildingButton(bool Is)
@@ -200,11 +202,6 @@ public class CanvasManager : MonoBehaviour
         ShowMobileIdleButtons(!Is);
     }
     #endregion
-    private void OnEnable()
-    {
-        Geekplay.Instance.PlayerData.CoinsChanged += ChangeCoinsText;
-        Geekplay.Instance.LockCursorAfterAd += CheckActiveUnlockCursorWindows;
-    }
     private void OnDisable()
     {
         Geekplay.Instance.PlayerData.CoinsChanged -= ChangeCoinsText;

@@ -176,7 +176,7 @@ MonoBehaviour:
   RootObject: {fileID: 259203914020430440}
   MeshObject: {fileID: 7260382724214164489}
   HpBar: {fileID: 4499249471114218675}
-  MaxHp: 11
+  MaxHp: 250
   HpText: {fileID: 4499249470116909328}
   DestroyAnimation: {fileID: 1056904543853562, guid: 4cf45cdce36e66e4a93614abb5ae7821, type: 3}
   OriginScale: {x: 0, y: 0, z: 0}

@@ -10,27 +10,49 @@ public class LeaderboardInGame : MonoBehaviour
     [SerializeField] private TextMeshProUGUI[] linesTexts;
     [SerializeField] private TextMeshProUGUI[] linesPointsTexts;
     [SerializeField] private LeaderboardCell[] leaderboardCells;
+    [SerializeField] private TextMeshProUGUI LeaderBoardUpdateText;
 
     public string LeaderboardName;
     private float timeFlag = 0;
 
     void Start()
     {
-        SetNamesAndPointsFieldsFromCells();
         int time = Convert.ToInt32(Geekplay.Instance.remainingTimeUntilUpdateLeaderboard);
+        SetNamesAndPointsFieldsFromCells();
+        if (Geekplay.Instance.language == "en")
+        {
+            for (int i = 0; i < linesTexts.Length; i++)
+            {
+                linesTexts[i].text = "Empty Slot";
+            }
+        }
+        else if (Geekplay.Instance.language == "ru")
+        {
+            for (int i = 0; i < linesTexts.Length; i++)
+            {
+                linesTexts[i].text = "Пустой слот";
+            }
+        }
+        else if (Geekplay.Instance.language == "tr")
+        {
+            for (int i = 0; i < linesTexts.Length; i++)
+            {
+                linesTexts[i].text = "Boş yuva";
+            }
+        }
 
-        //if (Geekplay.Instance.language == "en")
-        //{
-        //    leadersText1Bottom.text = $"Table will be updated in: {time}";
+        //    LeaderBoardUpdateText.text = $"Table will be updated in: {time}";
         //}
         //else if (Geekplay.Instance.language == "ru")
         //{
-        //    leadersText1Bottom.text = $"Таблица обновится через: {time}";
+        //    LeaderBoardUpdateText.text = $"Таблица обновится через: {time}";
         //}
         //else if (Geekplay.Instance.language == "tr")
         //{
-        //    leadersText1Bottom.text = $"Su yolla güncellendi: {time}";
+        //    LeaderBoardUpdateText.text = $"Su yolla güncellendi: {time}";
         //}
+
+
 
         if (Geekplay.Instance.remainingTimeUntilUpdateLeaderboard <= 0)
             UpdateLeaderBoard();
@@ -111,8 +133,8 @@ public class LeaderboardInGame : MonoBehaviour
 
         Geekplay.Instance.leaderNumber = 0;
         Geekplay.Instance.leaderNumberN = 0;
-        Utils.GetLeaderboard("score", 0, LeaderboardName);
-        Utils.GetLeaderboard("name", 0, LeaderboardName);
+        //Utils.GetLeaderboard("score", 0, LeaderboardName);
+        //Utils.GetLeaderboard("name", 0, LeaderboardName);
     }
 
     public void SetLeadersView(string[] name, string[] value, int count)

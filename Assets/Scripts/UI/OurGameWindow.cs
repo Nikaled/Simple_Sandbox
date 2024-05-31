@@ -16,6 +16,9 @@ public class OurGameWindow : MonoBehaviour
     [SerializeField] private TextMeshProUGUI slapBattleRewardButtonTextView;
     [SerializeField] private TextMeshProUGUI twoPlayerGameRewardButtonTextView;
 
+    [SerializeField] private TextMeshProUGUI cloesChangeName;
+    [SerializeField] private TextMeshProUGUI slapBattleName;
+    [SerializeField] private TextMeshProUGUI twoPlayerGameName;
     public int CoinsForPlaying = 50;
     void Start()
     {
@@ -28,8 +31,29 @@ public class OurGameWindow : MonoBehaviour
             Utils.CheckPlayGame(289951);
             Utils.CheckPlayGame(227711);
         }
+        LocalizateNames();
     }
-
+    private void LocalizateNames()
+    {
+        if(Geekplay.Instance.language == "ru")
+        {
+            cloesChangeName.text = "Создай Королеву - Салон Уэнсдей";
+            slapBattleName.text = "Битва Пощечин | Робби Обби";
+            twoPlayerGameName.text = "Игры На Двоих: Дуэль";
+        }
+        else if(Geekplay.Instance.language == "en")
+        {
+            cloesChangeName.text = "Create a Queen - Wednesday Salon";
+            slapBattleName.text = "Slap Battles | Robbi Obbi";
+            twoPlayerGameName.text = "Games For Two: Duel";
+        }
+        else if (Geekplay.Instance.language == "tr")
+        {
+            cloesChangeName.text = "Kralicesini Yaratin - Carsamba Salonu";
+            slapBattleName.text = "Savas Tokadi | Robbi Obbi";
+            twoPlayerGameName.text = "Iki Kisilik Oyunlar: Duello";
+        }
+    }
     public void EnabledGameToggle(int id)
     {
         if (id == 284619)
@@ -228,7 +252,7 @@ public class OurGameWindow : MonoBehaviour
             {
                 geometryDashButtonTextView.text = "Play";
             }
-            else if (Geekplay.Instance.language == "en")
+            else if (Geekplay.Instance.language == "tr")
             {
                 geometryDashButtonTextView.text = "Oynamak";
             }
@@ -250,7 +274,7 @@ public class OurGameWindow : MonoBehaviour
             {
                 cloesChangeRewardButtonTextView.text = "Play";
             }
-            else if (Geekplay.Instance.language == "en")
+            else if (Geekplay.Instance.language == "tr")
             {
                 cloesChangeRewardButtonTextView.text = "Oynamak";
             }
@@ -272,7 +296,7 @@ public class OurGameWindow : MonoBehaviour
             {
                 slapBattleRewardButtonTextView.text = "Play";
             }
-            else if (Geekplay.Instance.language == "en")
+            else if (Geekplay.Instance.language == "tr")
             {
                 slapBattleRewardButtonTextView.text = "Oynamak";
             }
@@ -294,7 +318,7 @@ public class OurGameWindow : MonoBehaviour
             {
                 twoPlayerGameRewardButtonTextView.text = "Play";
             }
-            else if (Geekplay.Instance.language == "en")
+            else if (Geekplay.Instance.language == "tr")
             {
                 twoPlayerGameRewardButtonTextView.text = "Oynamak";
             }

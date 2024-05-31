@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -7,13 +7,38 @@ public class LoadMapView : MonoBehaviour
 {
     [SerializeField] GameObject[] MapsEmptySlotImage;
     [SerializeField] TextMeshProUGUI[] MapsEmptySlotText;
+    [SerializeField] TextMeshProUGUI mir1;
+    [SerializeField] TextMeshProUGUI mir2;
+    [SerializeField] TextMeshProUGUI mir3;
+    [SerializeField] TextMeshProUGUI mir4;
+    private string PustoiSlotLocalization;
     private void Start()
     {
+        if (Geekplay.Instance.language == "ru")
+        {
+            PustoiSlotLocalization = "–ü—É—Å—Ç–æ–π —Å–ª–æ—Ç";
+            mir1.text = "–ú–∏—Ä 1";
+            mir2.text = "–ú–∏—Ä 2";
+            mir3.text = "–ú–∏—Ä 3";
+            mir4.text = "–ú–∏—Ä 4";
+        }
+        if (Geekplay.Instance.language == "en")
+        {
+            PustoiSlotLocalization = "Empty Slot";
+            mir1.text = "World 1";
+            mir2.text = "World 2";
+            mir3.text = "World 3";
+            mir4.text = "World 4";
+        }
+        if (Geekplay.Instance.language == "tr")
+        {
+            PustoiSlotLocalization = "Bo≈ü yuva";
+            mir1.text = "Alem 1";
+            mir2.text = "Alem 2";
+            mir3.text = "Alem 3";
+            mir4.text = "Alem 4";
+        }
         MapSlotsViewUpdate();
-        //Geekplay.Instance.PlayerData.MapDate1 = null;
-        //    Geekplay.Instance.PlayerData.MapDate2 = null;
-        //Geekplay.Instance.PlayerData.MapDate3 = null;
-        //Geekplay.Instance.PlayerData.MapDate4 = null;
     }
     public void MapSlotsViewUpdate()
     {
@@ -30,7 +55,7 @@ public class LoadMapView : MonoBehaviour
                     else
                     {
                         //MapsEmptySlotImage[i].SetActive(true);
-                        MapsEmptySlotText[i].text = "œÛÒÚÓÈ ÒÎÓÚ";
+                        MapsEmptySlotText[i].text = PustoiSlotLocalization;
                     }
 
                     break;
@@ -43,6 +68,7 @@ public class LoadMapView : MonoBehaviour
                     else
                     {
                         //MapsEmptySlotImage[i].SetActive(true);
+                        MapsEmptySlotText[i].text = PustoiSlotLocalization;
                     }
 
                     break;
@@ -56,7 +82,7 @@ public class LoadMapView : MonoBehaviour
                     else
                     {
                         //MapsEmptySlotImage[i].SetActive(true);
-                        MapsEmptySlotText[i].text = "œÛÒÚÓÈ ÒÎÓÚ";
+                        MapsEmptySlotText[i].text = PustoiSlotLocalization;
                     }
 
                     break;
@@ -69,6 +95,7 @@ public class LoadMapView : MonoBehaviour
                     else
                     {
                         //MapsEmptySlotImage[i].SetActive(true);
+                        MapsEmptySlotText[i].text = PustoiSlotLocalization;
                     }
                     break;
             }

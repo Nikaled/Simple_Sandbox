@@ -37,11 +37,13 @@ public class SaverBuildingMenu : MonoBehaviour
     }
     private void Update()
     {
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.O))
         {
             Geekplay.Instance.PlayerData.Coins += 15;
             Geekplay.Instance.Save();
         }
+#endif
     }
     public void ClearSave()
     {

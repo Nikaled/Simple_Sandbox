@@ -5,6 +5,14 @@ using UnityEngine;
 public class CitizenObjectVariants : ObjectVariants
 {
     [SerializeField] protected  SkinnedMeshRenderer CitizenToChange;
+
+    private void Awake()
+    {
+        if(CitizenToChange == null)
+        {
+            CitizenToChange = this?.GetComponent<SkinnedMeshRenderer>();
+        }
+    }
     public override void ChangeTextures(Texture textures)
     {
 
