@@ -554,6 +554,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 0e81b92eae2982740ad1c01230682479, type: 3}
   ObjectToChange: {fileID: 4742134284758407778}
   currentVariantIndex: 0
+  SecondObjectToChange: {fileID: 0}
 --- !u!1001 &4742134284756369942
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -740,15 +741,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalScale.x
-      value: 20
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalScale.y
-      value: 20
+      value: 1.18
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalScale.z
-      value: 20
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalPosition.x
@@ -792,7 +793,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_ConstrainProportionsScale
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217873, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_Name

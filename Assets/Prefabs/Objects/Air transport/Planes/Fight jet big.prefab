@@ -1386,6 +1386,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 923ff6b78a7b973409ec3d8c1cba4703, type: 3}
   ObjectToChange: {fileID: 2249526295827262566}
   currentVariantIndex: 0
+  SecondObjectToChange: {fileID: 0}
 --- !u!1 &7727112278426048375
 GameObject:
   m_ObjectHideFlags: 0
@@ -2414,15 +2415,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalScale.x
-      value: 25
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalScale.y
-      value: 25
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalScale.z
-      value: 25
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalPosition.x

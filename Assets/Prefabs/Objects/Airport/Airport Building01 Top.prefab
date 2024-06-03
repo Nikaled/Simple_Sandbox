@@ -54,6 +54,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 1892025b56f4c074ea45322691ae15eb, type: 3}
   ObjectToChange: {fileID: 970953216653878536}
   currentVariantIndex: 0
+  SecondObjectToChange: {fileID: 0}
 --- !u!114 &254088053727758560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,15 +275,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalScale.x
-      value: 52.83
+      value: 1.9999999
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalScale.y
-      value: 52.83
+      value: 1.9999999
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalScale.z
-      value: 52.83
+      value: 1.9999999
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalPosition.x

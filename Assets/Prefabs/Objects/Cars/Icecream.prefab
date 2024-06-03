@@ -1886,6 +1886,7 @@ MonoBehaviour:
   HpView: {fileID: 743524225241790017}
   FirstViewCameraTransform: {fileID: 6955328955287804577}
   vehicleControl: {fileID: 6955328955276771455}
+  tankShooting: {fileID: 0}
 --- !u!65 &1809339678697340796
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12374,15 +12375,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalScale.x
-      value: 13.636363
+      value: 0.67
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalScale.y
-      value: 15
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalScale.z
-      value: 17.647058
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12426,7 +12427,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_ConstrainProportionsScale
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217873, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_Name

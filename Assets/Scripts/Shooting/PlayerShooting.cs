@@ -56,31 +56,6 @@ public class PlayerShooting : MonoBehaviour
          AimDirection = (CrosshairWorldPosition - PistolProjectileSpawnPoint.position).normalized;
 
     }
-    private void MousePos()
-    {
-        MouseWorldPosition = Vector3.zero;
-        Ray ray = Camera.main.ScreenPointToRay(Crosshair.transform.position);
-        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit raycastHit, 5000, aimColliderLayerMask))
-        {
-            MouseWorldPosition = raycastHit.point;
-            //if (player.CurrentWeapon == Player.WeaponType.Pistol)
-            //{
-            //    lineRenderer.SetPosition(0, PistolProjectileSpawnPoint.position);
-            //}
-            //if (player.CurrentWeapon == Player.WeaponType.Gun)
-            //{
-            //    lineRenderer.SetPosition(0, GunProjectileSpawnPoint.position);
-            //}
-            //lineRenderer.SetPosition(1, raycastHit.point);
-        }
-        else
-        {
-            MouseWorldPosition = ray.GetPoint(1998);
-        }
-
-        AimDirection = (MouseWorldPosition - PistolProjectileSpawnPoint.position).normalized;
-    }
     public void Fire(Player.WeaponType currentWeapon)
     {
         if (currentWeapon == Player.WeaponType.Pistol)

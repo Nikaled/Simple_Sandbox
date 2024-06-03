@@ -10,6 +10,7 @@ public class HpSystem : MonoBehaviour
 {
     [SerializeField]public GameObject RootObject;
     [SerializeField] GameObject MeshObject;
+    [SerializeField] Image HpBarCurrent;
     [SerializeField] Image HpBar;
     [SerializeField] private int MaxHp;
     [SerializeField] TextMeshProUGUI HpText;
@@ -23,7 +24,7 @@ public class HpSystem : MonoBehaviour
         set
         {
             _currentHP = value;
-            HpBar.fillAmount = (float)_currentHP / MaxHp;
+            //HpBarCurrent.fillAmount = (float)_currentHP / MaxHp;
             HpText.text = $"{_currentHP} / {MaxHp}";
             if(_currentHP < MaxHp)
             {

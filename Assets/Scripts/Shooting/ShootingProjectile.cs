@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,8 +7,11 @@ public class ShootingProjectile : MonoBehaviour
 {
     [SerializeField] Rigidbody bulletRigidbody;
     public float speed = 300;
-    int bulletDamage = 1;
+  public  int bulletDamage = 1;
     public GameObject ProjectileSource;
+   public bool TankProjectile;
+    [SerializeField] GameObject DestroyAnimation;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +28,12 @@ public class ShootingProjectile : MonoBehaviour
         if (other.GetComponent<HpSystemCollision>() != null)
         {
             other.GetComponent<HpSystemCollision>().TakeDamage(bulletDamage);
+            if (TankProjectile)
+            {
+                var fx = Instantiate(DestroyAnimation, transform.position, Quaternion.identity);
+                fx.transform.parent = null;
+                fx.transform.DOScale(DestroyAnimation.transform.localScale * 5, 0);
+            }
         Destroy(gameObject);
         }
     }

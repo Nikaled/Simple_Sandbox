@@ -1480,6 +1480,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 9bb50d1cc20713c448e457432893590a, type: 3}
   ObjectToChange: {fileID: 203077038694924173}
   currentVariantIndex: 0
+  SecondObjectToChange: {fileID: 0}
 --- !u!65 &1258788333839146877
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1518,6 +1519,7 @@ MonoBehaviour:
   HpView: {fileID: 5819603812238751764}
   FirstViewCameraTransform: {fileID: 63968495067613425}
   vehicleControl: {fileID: 63968495078707759}
+  tankShooting: {fileID: 0}
 --- !u!1 &63968495067868175
 GameObject:
   m_ObjectHideFlags: 0
@@ -12606,15 +12608,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalScale.x
-      value: 13.636363
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalScale.y
-      value: 15
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalScale.z
-      value: 14.349186
+      value: 1.0522738
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalPosition.x

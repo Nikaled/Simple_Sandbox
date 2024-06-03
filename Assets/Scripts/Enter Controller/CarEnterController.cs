@@ -7,6 +7,8 @@ public class CarEnterController : EnterController
 {
     [SerializeField] private Transform FirstViewCameraTransform;
     [SerializeField] VehicleControl vehicleControl;
+    [Header("Tank Only")]
+    [SerializeField] TankShooting tankShooting;
     protected override void Update()
     {
         base.Update();
@@ -27,6 +29,11 @@ public class CarEnterController : EnterController
             vehicleControl.MyInitializeButtons();
             CarButtons.instance.GetOutButton.onClick.AddListener(delegate { GetOutTransport(); });
         }
+        if (tankShooting != null)
+        {
+            tankShooting.enabled = true;
+            tankShooting.ActivateTankShooting(true);
+        }
     }
     protected override void DeactivateTransport()
     {
@@ -39,6 +46,11 @@ public class CarEnterController : EnterController
             vehicleControl.MyClearButtons();
             CarButtons.instance.GetOutButton.onClick.RemoveAllListeners();
             CanvasManager.instance.ShowCarMobileInstruction(false);
+        }
+        if (tankShooting!=null)
+        {
+            tankShooting.ActivateTankShooting(false);
+            tankShooting.enabled = false;
         }
         //vehicleControl.enabled = false;
     }

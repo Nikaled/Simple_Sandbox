@@ -202,32 +202,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 2158894024547907218}
     m_Modifications:
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 10.63
-      objectReference: {fileID: 0}
-    - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 10.63
-      objectReference: {fileID: 0}
-    - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 10.63
-      objectReference: {fileID: 0}
-    - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.66
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.13
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalRotation.w
@@ -257,21 +241,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217873, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_Name
       value: Hp System
-      objectReference: {fileID: 0}
-    - target: {fileID: 2138912237128217873, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2138912237128217903, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
-      propertyPath: MaxHp
-      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217903, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: MeshObject
@@ -281,22 +253,6 @@ PrefabInstance:
       propertyPath: RootObject
       value: 
       objectReference: {fileID: 2158894024547871410}
-    - target: {fileID: 4774379027788913413, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4774379028695600709, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4774379029074558646, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4774379029344287470, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

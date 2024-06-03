@@ -23,6 +23,10 @@ public class ObjectVariants : MonoBehaviour
     {
         for (int i = 0; i < Variants.Length; i++)
         {
+            if(ObjectToChange.materials[0].mainTexture == null)
+            {
+                return 0;
+            }
             if (ObjectToChange.materials[0].mainTexture == Variants[i])
             {
                 Debug.Log("currentVariantIndex:" + i);

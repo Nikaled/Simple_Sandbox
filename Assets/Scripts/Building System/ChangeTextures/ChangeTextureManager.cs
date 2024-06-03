@@ -28,16 +28,16 @@ public class ChangeTextureManager : MonoBehaviour
         VariantText.text = VariantNames[index];
     }
     public void ButtonsInitialize(GameObject RootObject)
-    {
+     {
         VariantUI.gameObject.SetActive(true);
         Debug.Log(RootObject.name);
         objectVariants = RootObject.GetComponent<ObjectVariants>();
         if(objectVariants == null)
         {
             var CitizenEnter = RootObject.GetComponentInChildren<CitizenEnterController>();
-            if(CitizenEnter != null)
+            if (CitizenEnter != null)
             {
-                objectVariants = CitizenEnter.CitizenMesh.GetComponent<ObjectVariants>();
+                objectVariants = CitizenEnter.CitizenMesh?.GetComponent<ObjectVariants>();
             }
         }
         if (objectVariants == null)

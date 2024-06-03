@@ -81,7 +81,7 @@ public class LocalizationMenu : MonoBehaviour
     private void EnLocalization()
     {
         Button1.text = "CREATE A WORLD";
-        Button2.text = "DOWNLOAD THE WORLD";
+        Button2.text = "LOAD THE WORLD";
         Button3.text = "LEADERS";
         Button4.text = "BONUSES";
         Button5.text = "OUR GAMES";

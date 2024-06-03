@@ -52,6 +52,13 @@ public class EnterController : MonoBehaviour
         }
 
     }
+    private void Start()
+    {
+        if (HpView == null)
+        {
+            HpView = GetComponentInChildren<HpSystem>().gameObject;
+        }
+    }
     protected virtual void ShowEnterInstruction()
     {
         CanvasManager.instance.ShowTransportEnterInstruction(true);

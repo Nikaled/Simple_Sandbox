@@ -30,18 +30,19 @@ public class Screenshot : MonoBehaviour
 
         CanvasManager.instance.ShowAllUI(false);
         yield return new WaitForEndOfFrame();
-
+        DateTime date1 = DateTime.Now;
+        string MapDate = date1.ToString("HH_mm__dd_MM_yyyy");
         //ДЕЛАЕМ СКРИН НА ВЕБЕ
         var texture = ScreenCapture.CaptureScreenshotAsTexture();
 		byte[] textureBytes = texture.EncodeToPNG();
-        DownloadFile(textureBytes, textureBytes.Length, $"screenshot_{Geekplay.Instance.PlayerData.downloadsCount2}.png");
+        DownloadFile(textureBytes, textureBytes.Length, $"screenshot_{MapDate}.png");
         Destroy(texture);
 
         //ВКЛЮЧАЕМ UI
         CanvasManager.instance.ShowAllUI(true);
 
+        yield return new WaitForSeconds(1f);
         index++;
-        yield return new WaitForEndOfFrame();
         Geekplay.Instance.PlayerData.downloadsCount2 = index;
         Debug.Log(Geekplay.Instance.PlayerData.downloadsCount2);
         Geekplay.Instance.Save();
