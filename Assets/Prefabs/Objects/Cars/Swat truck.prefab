@@ -52,8 +52,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.780365, y: 2.7419434, z: 5.149475}
-  m_Center: {x: 0.016860962, y: 1.2835693, z: 0.4223938}
+  m_Size: {x: 2.9, y: 3.0600007, z: 6.281458}
+  m_Center: {x: 0.01686096, y: 1.2835693, z: 0.60667104}
 --- !u!114 &4809432646003488697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -870,7 +870,7 @@ Transform:
   m_GameObject: {fileID: 5590705504168305318}
   serializedVersion: 2
   m_LocalRotation: {x: -1.110223e-16, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.131, y: 0.128, z: -0.7340051}
+  m_LocalPosition: {x: -0.131, y: 0.128, z: -0.5170251}
   m_LocalScale: {x: 1.33, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11636,6 +11636,8 @@ MonoBehaviour:
   HpView: {fileID: 3986934375560582496}
   FirstViewCameraTransform: {fileID: 5590705504168109156}
   vehicleControl: {fileID: 5590705504162365114}
+  tankShooting: {fileID: 0}
+  IsTank: 0
 --- !u!1 &5590705504168360440
 GameObject:
   m_ObjectHideFlags: 0
@@ -11786,7 +11788,7 @@ Transform:
   m_GameObject: {fileID: 5590705504168368002}
   serializedVersion: 2
   m_LocalRotation: {x: -1.110223e-16, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.154, y: 0.341, z: -0.337}
+  m_LocalPosition: {x: -0.154, y: 0.341, z: -0.12}
   m_LocalScale: {x: 1.45, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12465,27 +12467,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalScale.x
-      value: 11.84411
+      value: 0.46
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalScale.y
-      value: 8.625305
+      value: 0.3349885
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalScale.z
-      value: 16.730762
+      value: 0.64978725
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.19578642
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.58607554
+      value: 0.24
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.3484513
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalRotation.w

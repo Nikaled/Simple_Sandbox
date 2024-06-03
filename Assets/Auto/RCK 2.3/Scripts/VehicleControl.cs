@@ -298,6 +298,8 @@ public class VehicleControl : MonoBehaviour
         CarButtons.instance.GoRight.GetComponent<HelicopterButton>().TranslatingFloat = 3f;
         CarButtons.instance.GoRight.GetComponent<HelicopterButton>().ActionOnHold += GoLeftAndRight;
 
+
+
     }
     public void MyClearButtons()
     {

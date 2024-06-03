@@ -5,6 +5,8 @@ using UnityEngine;
 public class AnimalEnterController : EnterController
 {
     [SerializeField] AnimalRiding animalRiding;
+
+    private readonly string AnalyticsRidingAnimal = "RidingAnimal";
     protected override void SitIntoTransport()
     {
         IsPlayerIn = true;
@@ -16,6 +18,8 @@ public class AnimalEnterController : EnterController
 
         CanvasManager.instance.InteracteButton.onClick.RemoveAllListeners();
         CanvasManager.instance.InteracteButton.onClick.AddListener(delegate { GetOutTransport(); });
+
+        Analytics.instance.SendEvent(AnalyticsRidingAnimal);
     }
     protected override void ShowEnterInstruction()
     {

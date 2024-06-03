@@ -9,6 +9,7 @@ public class CarEnterController : EnterController
     [SerializeField] VehicleControl vehicleControl;
     [Header("Tank Only")]
     [SerializeField] TankShooting tankShooting;
+    public bool IsTank;
     protected override void Update()
     {
         base.Update();
@@ -19,7 +20,7 @@ public class CarEnterController : EnterController
     }
     protected override void ActivateTransport()
     {
-        CanvasManager.instance.ShowControlCarInstruction(true);
+        CanvasManager.instance.ShowControlCarInstruction(true, IsTank);
         vehicleControl.GetComponent<VehicleControl>().activeControl = true;
         vehicleControl.enabled = true;
         vehicleControl.OnCarEnter();
@@ -28,16 +29,22 @@ public class CarEnterController : EnterController
             CanvasManager.instance.ShowCarMobileInstruction(true);
             vehicleControl.MyInitializeButtons();
             CarButtons.instance.GetOutButton.onClick.AddListener(delegate { GetOutTransport(); });
+            CarButtons.instance.ShootButton.gameObject.SetActive(false);
         }
         if (tankShooting != null)
         {
             tankShooting.enabled = true;
             tankShooting.ActivateTankShooting(true);
+            if (Geekplay.Instance.mobile)
+            {
+                CarButtons.instance.ShootButton.onClick.AddListener(delegate { tankShooting.Fire(); });
+                CarButtons.instance.ShootButton.gameObject.SetActive(true);
+            }
         }
     }
     protected override void DeactivateTransport()
     {
-        CanvasManager.instance.ShowControlCarInstruction(false);
+        CanvasManager.instance.ShowControlCarInstruction(false, IsTank);
         vehicleControl.carSetting.brakePower = float.MaxValue;
         vehicleControl.GetComponent<VehicleControl>().activeControl = false;
         vehicleControl.GetComponent<VehicleControl>().OnCarQuit();
@@ -46,11 +53,16 @@ public class CarEnterController : EnterController
             vehicleControl.MyClearButtons();
             CarButtons.instance.GetOutButton.onClick.RemoveAllListeners();
             CanvasManager.instance.ShowCarMobileInstruction(false);
+            CarButtons.instance.ShootButton.gameObject.SetActive(false);
         }
         if (tankShooting!=null)
         {
             tankShooting.ActivateTankShooting(false);
             tankShooting.enabled = false;
+            if (Geekplay.Instance.mobile)
+            {
+                CarButtons.instance.ShootButton.onClick.RemoveAllListeners();
+            }
         }
         //vehicleControl.enabled = false;
     }

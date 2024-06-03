@@ -114,6 +114,7 @@ public class EnterController : MonoBehaviour
                     if (player.currentNearTransport == this)
                     {
                         HpView.SetActive(false);
+                        RotatingToPlayer.target = this.transform;
                         player.PlayerSetActive(false);
                         TransportCamera.farClipPlane = 150f;
                         TransportCamera.gameObject.SetActive(true);
@@ -133,7 +134,7 @@ public class EnterController : MonoBehaviour
     }
     protected virtual void GetOutTransport()
     {
-
+        RotatingToPlayer.target = Player.instance.transform;
         HpView.SetActive(true);
         player.PlayerParent.transform.position = PlayerSpawnTransform.position;
         player.motor.SetPositionAndRotation(PlayerSpawnTransform.position, PlayerSpawnTransform.rotation, true);

@@ -17,6 +17,7 @@ public class SerializedBuilding : MonoBehaviour
     [HideInInspector] public Vector3 CurrentHpScale;
     [HideInInspector] public Vector3 CurrentPosition;
 
+    [HideInInspector] public int CurrentMeshIndex;
     public void SaveHp()
     {
         HpSystem hpSystem = GetComponentInChildren<HpSystem>();
@@ -24,6 +25,20 @@ public class SerializedBuilding : MonoBehaviour
         {
             CurrentHp = hpSystem.CurrentHP;
             CurrentHpScale = hpSystem.transform.localScale;
+        }
+    }
+    public void SaveMeshIndex()
+    {
+        if (gameObject.CompareTag("Citizen"))
+        {
+            CurrentMeshIndex =  GetComponentInChildren<CitizenEnterController>().CurrentMeshIndex;
+        }
+    }
+    public void LoadMeshIndex()
+    {
+        if (gameObject.CompareTag("Citizen"))
+        {
+         GetComponentInChildren<CitizenEnterController>().LoadMeshIndex(CurrentMeshIndex);
         }
     }
     private void Start()
@@ -44,7 +59,8 @@ public class SerializedBuilding : MonoBehaviour
         SaveHp();
         SavePositionAndScale();
         SaveRotation();
-        SerializedBuildingData BuildingData = new(BuildingIndex, CurrentTextureIndex, CurrentHp, CurrentRotationOfPoint, CurrentRotationOfObject, CurrentRotationOfTransport, CurrentScale, CurrentPosition, CurrentHpScale);
+        SaveMeshIndex();
+        SerializedBuildingData BuildingData = new(BuildingIndex, CurrentTextureIndex, CurrentHp, CurrentRotationOfPoint, CurrentRotationOfObject, CurrentRotationOfTransport, CurrentScale, CurrentPosition, CurrentHpScale, CurrentMeshIndex);
         return BuildingData;
     }
     public void LoadBuilding(SerializedBuildingData BuildingData)
@@ -58,8 +74,10 @@ public class SerializedBuilding : MonoBehaviour
         CurrentPosition = BuildingData.CurrentPosition;
         CurrentRotationOfTransport = BuildingData.CurrentRotationOfTransport;
         CurrentHpScale = BuildingData.CurrentHpScale;
+        CurrentMeshIndex = BuildingData.CurrentMeshIndex;
         LoadPositionAndScale();
         LoadRotation();
+        LoadMeshIndex();
         LoadCurrentTextureIndex();
         LoadHp();
     }

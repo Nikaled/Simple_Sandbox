@@ -517,6 +517,7 @@ MonoBehaviour:
   Variants: []
   ObjectToChange: {fileID: 0}
   currentVariantIndex: 0
+  SecondObjectToChange: {fileID: 0}
   CurrentActiveSkin: {fileID: 0}
   AnimalSkins:
   - {fileID: 4896637213054691078}
@@ -1116,15 +1117,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.3272727
+      value: 0.06636365
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.3272727
+      value: 0.06636365
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.3272727
+      value: 0.06636365
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalPosition.x

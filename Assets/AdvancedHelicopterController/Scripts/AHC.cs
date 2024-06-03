@@ -190,6 +190,13 @@ namespace alelavoie
             //Debug.Log(Mathf.Round(hVelocity.magnitude * 3.6f).ToString()); 
         }
 
+        public void OnHeliExit()
+        {
+            HeliRigidbody.velocity = Vector3.zero;
+            HeliConstantForce.force = Vector3.zero;
+            HeliConstantForce.torque = Vector3.zero;
+
+        }
         void LateUpdate()
         {
             _physics.ApplyForces();
@@ -270,8 +277,8 @@ namespace alelavoie
         }
         public void MyRotorAnimation()
         {
-                _rotorMainTransform.Rotate(Vector3.up * (_engine.EngineSpeed*15));
-            _rotorTailTransform.Rotate(Vector3.left * (_engine.EngineSpeed * 15));
+                _rotorMainTransform.Rotate(Vector3.up * (_engine.EngineSpeed*5));
+            _rotorTailTransform.Rotate(Vector3.left * (_engine.EngineSpeed * 5));
         }
 
         private void SyncAudioSourcePitch() {

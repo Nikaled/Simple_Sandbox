@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RotatingToPlayer : MonoBehaviour
 {
-    public Transform target;
+    public static Transform target;
 
     private void Start()
     {

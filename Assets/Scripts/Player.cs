@@ -82,6 +82,7 @@ public class Player : MonoBehaviour
         {
             examplePlayer.Mobile = false;
             examplePlayer.PC = true;
+           
         }
     }
     public void PlayerSetActive(bool Is)
@@ -109,19 +110,23 @@ public class Player : MonoBehaviour
             case PlayerState.Idle:
                 animator.SetBool("PistolAiming", false);
                 CanvasManager.instance.ShowIdleInstruction(true);
+                CanvasManager.instance.ChangeDoButtonImageToMode(false);
                 break;
             case PlayerState.DeletingBuilding:
                 BuildingManager.instance.ActivateDeletingMode(true);
                 CanvasManager.instance.TurnYellowDeletingButton(true);
+                CanvasManager.instance.ChangeDoButtonImageToMode(true);
                 break;
             case PlayerState.RotatingBuilding:
                 BuildingManager.instance.ActivateRotatingMode(true);
                 CanvasManager.instance.ShowCitizenEnterInstruction(false);
                 CanvasManager.instance.ShowTransportEnterInstruction(false);
                 CanvasManager.instance.TurnYellowRotatingButton(true);
+                CanvasManager.instance.ChangeDoButtonImageToMode(true);
                 break;
             case PlayerState.Building:
                 CanvasManager.instance.TurnYellowBuildingButton(true);
+                CanvasManager.instance.ChangeDoButtonImageToMode(true);
                 break;
 
         }
@@ -446,7 +451,10 @@ public class Player : MonoBehaviour
             {
                 animator.SetTrigger("GunFire");
                 playerShooting.Fire(CurrentWeapon);
+                if (motor.GroundingStatus.IsStableOnGround)
+                {
                 motor.SetPosition(transform.position);
+                }
             }
         }
         if (CurrentWeapon == WeaponType.Grenade)

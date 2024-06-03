@@ -11,6 +11,7 @@ public class CarButtons : MonoBehaviour
     public Button GoBack;
     public Button DownEngine;
     public Button GetOutButton;
+    public Button ShootButton;
     public static CarButtons instance;
     private void Awake()
     {

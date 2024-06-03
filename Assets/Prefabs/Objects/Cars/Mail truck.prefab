@@ -525,7 +525,7 @@ Transform:
   m_GameObject: {fileID: 2591663414687898066}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.67, y: 0.422, z: -2.647}
+  m_LocalPosition: {x: 0.498, y: 0.422, z: -2.647}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -963,8 +963,8 @@ Transform:
   m_GameObject: {fileID: 2591663414687918130}
   serializedVersion: 2
   m_LocalRotation: {x: -1.110223e-16, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.131, y: 0.128, z: -0.7340051}
-  m_LocalScale: {x: 1.33, y: 1, z: 1}
+  m_LocalPosition: {x: -0.11, y: -0, z: -0.37}
+  m_LocalScale: {x: 1.53, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2591663414688231980}
@@ -1694,6 +1694,7 @@ MonoBehaviour:
   FirstViewCameraTransform: {fileID: 2591663414688247536}
   vehicleControl: {fileID: 2591663414681515054}
   tankShooting: {fileID: 0}
+  IsTank: 0
 --- !u!65 &2833827085592198512
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1834,8 +1835,8 @@ Transform:
   m_GameObject: {fileID: 2591663414687980822}
   serializedVersion: 2
   m_LocalRotation: {x: -1.110223e-16, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.154, y: 0.341, z: -0.337}
-  m_LocalScale: {x: 1.45, y: 1, z: 1}
+  m_LocalPosition: {x: -0.18, y: 0.131, z: 0.112}
+  m_LocalScale: {x: 1.5, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2591663414688267492}

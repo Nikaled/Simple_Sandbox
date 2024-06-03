@@ -11154,6 +11154,7 @@ MonoBehaviour:
   FirstViewCameraTransform: {fileID: 580446308878405025}
   vehicleControl: {fileID: 6201723724091825782}
   tankShooting: {fileID: 3951984836431526642}
+  IsTank: 1
 --- !u!1 &2856544445550789150
 GameObject:
   m_ObjectHideFlags: 0

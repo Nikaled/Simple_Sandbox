@@ -10,6 +10,30 @@ public class CitizenEnterController : EnterController
     [SerializeField] CitizenMovement citizenMovement;
     private Vector3 PlayerPosition;
     private Quaternion PlayerRotation;
+
+    public int CurrentMeshIndex;
+    private readonly string AnalyticsCitizenSwaped = "SwapedCitizenBody";
+    private void Start()
+    {
+        for (int i = 0; i < AllCitizenMeshes.Length; i++)
+        {
+            if (AllCitizenMeshes[i].gameObject.activeInHierarchy)
+            {
+                CurrentMeshIndex = i;
+                CitizenMesh = AllCitizenMeshes[i];
+            }
+        }
+    }
+    public void LoadMeshIndex(int MeshIndex)
+    {
+        CurrentMeshIndex = MeshIndex;
+        for (int i = 0; i < AllCitizenMeshes.Length; i++)
+        {
+            AllCitizenMeshes[i].gameObject.SetActive(false);
+        }
+        AllCitizenMeshes[MeshIndex].gameObject.SetActive(true);
+        CitizenMesh = AllCitizenMeshes[MeshIndex];
+    }
     protected override void SitIntoTransport()
     {
         HideEnterInstruction();
@@ -22,6 +46,8 @@ public class CitizenEnterController : EnterController
         SwapMeshes();
         CitizenRoot.transform.position = PlayerPosition;
         CitizenRoot.transform.rotation = PlayerRotation;
+
+        Analytics.instance.SendEvent(AnalyticsCitizenSwaped);
     }
     protected override void ShowEnterInstruction()
     {
@@ -66,6 +92,7 @@ public class CitizenEnterController : EnterController
             {
                 AllCitizenMeshes[i].gameObject.SetActive(true);
                 CitizenMesh = AllCitizenMeshes[i];
+                CurrentMeshIndex = i;
             }
         }
 

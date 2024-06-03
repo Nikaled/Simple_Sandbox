@@ -45,6 +45,7 @@ public class LocalizationGameplay : MonoBehaviour
     public TextMeshProUGUI CarControl2;
     public TextMeshProUGUI CarControl3;
     public TextMeshProUGUI CarControl4;
+    public TextMeshProUGUI CarControl5;
 
     [Header("Mobile")]
     public TextMeshProUGUI LeftUpButton1;
@@ -151,6 +152,7 @@ public class LocalizationGameplay : MonoBehaviour
         CarControl2.text = "Тормоз: Пробел";
         CarControl3.text = "Сменить камеру: Q";
         CarControl4.text = "Выйти: F";
+        CarControl5.text = "Выстрел: Левая кнопка мыши";
 
         LeftUpButton1.text = "Скриншот";
         LeftUpButton2.text = "Сохранить";
@@ -241,6 +243,7 @@ public class LocalizationGameplay : MonoBehaviour
         CarControl2.text = "Brake: Space bar";
         CarControl3.text = "Change camera: Q";
         CarControl4.text = "Exit: F";
+        CarControl5.text = "Shoot: Left mouse button";
 
         LeftUpButton1.text = "Screenshot";
         LeftUpButton2.text = "Save";
@@ -329,6 +332,8 @@ public class LocalizationGameplay : MonoBehaviour
         CarControl2.text = "Fren: Boşluk Çubuğu";
         CarControl3.text = "Kamerayı değiştir: Q";
         CarControl4.text = "Çık: F";
+        CarControl5.text = "Atış: Farenin sol düğmesi";
+
 
         LeftUpButton1.text = "Ekran görüntüsü";
         LeftUpButton2.text = "Kaydet";

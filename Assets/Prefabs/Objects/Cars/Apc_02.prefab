@@ -656,7 +656,8 @@ MonoBehaviour:
   HpView: {fileID: 1252788223684312732}
   FirstViewCameraTransform: {fileID: 1468140939417516903}
   vehicleControl: {fileID: 7926748560061446385}
-  tankShooting: {fileID: 0}
+  tankShooting: {fileID: 5741522240542438698}
+  IsTank: 1
 --- !u!1 &937639077846127954
 GameObject:
   m_ObjectHideFlags: 0
@@ -13667,6 +13668,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a33c5eac84511b4b99944a4e6c5c59b, type: 3}
+--- !u!114 &5741522240542438698 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2616963826991869458, guid: 4a33c5eac84511b4b99944a4e6c5c59b, type: 3}
+  m_PrefabInstance: {fileID: 7781286338139839288}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ac63a6d5fbb1744a80a7d6c553c52c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6084559454103421908 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4579065864706889964, guid: 4a33c5eac84511b4b99944a4e6c5c59b, type: 3}

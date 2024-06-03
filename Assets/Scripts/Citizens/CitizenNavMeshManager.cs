@@ -22,9 +22,9 @@ public class CitizenNavMeshManager : MonoBehaviour
     public Vector3 RandomPointInBounds(Bounds bounds)
     {
         return new Vector3(
-            UnityEngine.Random.Range(bounds.min.x, bounds.max.x),
+            UnityEngine.Random.Range(bounds.min.x*0.9f, bounds.max.x * 0.9f),
             UnityEngine.Random.Range(bounds.max.y, bounds.max.y),
-            UnityEngine.Random.Range(bounds.min.z, bounds.max.z)
+            UnityEngine.Random.Range(bounds.min.z * 0.9f, bounds.max.z * 0.9f)
         );
     }
 }

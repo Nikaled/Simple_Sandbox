@@ -20,9 +20,12 @@ public class TankShooting : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Geekplay.Instance.mobile == false)
         {
-            Fire();
+            if (Input.GetMouseButtonDown(0))
+            {
+                Fire();
+            }
         }
     }
     public void ActivateTankShooting(bool Is)

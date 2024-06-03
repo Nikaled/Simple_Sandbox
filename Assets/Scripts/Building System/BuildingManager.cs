@@ -43,7 +43,9 @@ public class BuildingManager : MonoBehaviour
     private float CashedRotatingZ;
     HpSystem hpSystemOnObject;
     private GameObject rotatingObjectCenter;
-
+    readonly string BuildingAnalytics = "BuildingMenuOpened";
+    readonly string BuildingObjectAnalytics = "ObjectBuilt";
+    readonly string RotatingAnalytics = "RotatingMenuOpened";
     public bool RotateChosenObjectMode { get; private set; }
 
     private void Awake()
@@ -249,9 +251,9 @@ public class BuildingManager : MonoBehaviour
         }
         else
         {
-            if(pendingObj == null)
+            if (pendingObj == null)
             {
-            player.SwitchPlayerState(Player.PlayerState.Idle);
+                player.SwitchPlayerState(Player.PlayerState.Idle);
             }
         }
     }
@@ -306,6 +308,11 @@ public class BuildingManager : MonoBehaviour
         }
         if (pendingObj != null) { Destroy(pendingObj); }
         CanvasManager.instance.ShowBuildingModeInstruction(false);
+
+        if (Is)
+        {
+            Analytics.instance.SendEvent(BuildingAnalytics);
+        }
     }
     private void RotateObject()
     {
@@ -353,6 +360,8 @@ public class BuildingManager : MonoBehaviour
 
         Geekplay.Instance.Save();
 
+
+        Analytics.instance.SendEvent(BuildingObjectAnalytics);
     }
     private void DeactivateColliders(Collider[] colliders)
     {
@@ -430,6 +439,9 @@ public class BuildingManager : MonoBehaviour
         if (IsActive)
         {
             DoButton.onClick.AddListener(delegate { ActivateRotateChosenObjectMode(true); });
+
+
+            Analytics.instance.SendEvent(RotatingAnalytics);
         }
     }
     public void RotatingInput()
@@ -506,7 +518,7 @@ public class BuildingManager : MonoBehaviour
         {
             return;
         }
-         hpSystemOnObject = rotatingObject.GetComponentInChildren<HpSystem>();
+        hpSystemOnObject = rotatingObject.GetComponentInChildren<HpSystem>();
         if (Is)
         {
             if (hpSystemOnObject != null)
@@ -651,7 +663,7 @@ public class BuildingManager : MonoBehaviour
             if (hpSystemOnObject != null)
             {
                 //if (ScalingObject.transform.localScale.x < IncreaseNumber)
-                    hpSystemOnObject.gameObject.transform.DOScaleX(hpSystemOnObject.OriginScale.x / IncreaseNumber, 0);
+                hpSystemOnObject.gameObject.transform.DOScaleX(hpSystemOnObject.OriginScale.x / IncreaseNumber, 0);
 
             }
         }
@@ -663,8 +675,8 @@ public class BuildingManager : MonoBehaviour
             ScalingObject.transform.DOScaleY(IncreaseNumber, 0);
         if (hpSystemOnObject != null)
         {
-                //hpSystemOnObject.gameObject.transform.DOScaleY(hpSystemOnObject.OriginScale.y / IncreaseNumber, 0);
-                hpSystemOnObject.ResizeYHpBar(IncreaseNumber);
+            //hpSystemOnObject.gameObject.transform.DOScaleY(hpSystemOnObject.OriginScale.y / IncreaseNumber, 0);
+            hpSystemOnObject.ResizeYHpBar(IncreaseNumber);
         }
     }
     public void RotatingSliderScaleZ(float IncreaseNumber)

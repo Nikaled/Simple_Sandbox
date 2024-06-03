@@ -6271,7 +6271,7 @@ Transform:
   m_GameObject: {fileID: 3210830048201340989}
   serializedVersion: 2
   m_LocalRotation: {x: -1.110223e-16, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.008, y: 0.128, z: -0.021}
+  m_LocalPosition: {x: -0.008, y: 1.0039766, z: -0.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6371,7 +6371,6 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9049ea6618ff8804381987a457700fb2, type: 2}
   - {fileID: 2100000, guid: a5d947ad3d911a44ebe11bb7013a74f1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -6926,7 +6925,7 @@ Transform:
   m_GameObject: {fileID: 4750545036111223340}
   serializedVersion: 2
   m_LocalRotation: {x: -1.110223e-16, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.01, y: 0.264, z: 0.286}
+  m_LocalPosition: {x: -0.01, y: 1.14, z: -0.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12774,7 +12773,8 @@ MonoBehaviour:
   HpView: {fileID: 4740206486434003273}
   FirstViewCameraTransform: {fileID: 1486034682764338315}
   vehicleControl: {fileID: 5946874698935415383}
-  tankShooting: {fileID: 0}
+  tankShooting: {fileID: 6449038626218804605}
+  IsTank: 1
 --- !u!1 &8015326251840265748
 GameObject:
   m_ObjectHideFlags: 0
@@ -13254,3 +13254,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4579065864706889964, guid: 4a33c5eac84511b4b99944a4e6c5c59b, type: 3}
   m_PrefabInstance: {fileID: 9020363475723889519}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6449038626218804605 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2616963826991869458, guid: 4a33c5eac84511b4b99944a4e6c5c59b, type: 3}
+  m_PrefabInstance: {fileID: 9020363475723889519}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ac63a6d5fbb1744a80a7d6c553c52c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

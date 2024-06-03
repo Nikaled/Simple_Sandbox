@@ -127,6 +127,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 2eeab253c1e1b214e9ec780ebe3a4211, type: 3}
   ObjectToChange: {fileID: 0}
   currentVariantIndex: 0
+  SecondObjectToChange: {fileID: 0}
   CitizenToChange: {fileID: 0}
 --- !u!1 &96944815062919573
 GameObject:
@@ -255,6 +256,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 8a0319afc82aca346ada21ab1c9ed1e3, type: 3}
   ObjectToChange: {fileID: 0}
   currentVariantIndex: 0
+  SecondObjectToChange: {fileID: 0}
   CitizenToChange: {fileID: 0}
 --- !u!1 &96944815062924591
 GameObject:
@@ -417,6 +419,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 1892025b56f4c074ea45322691ae15eb, type: 3}
   ObjectToChange: {fileID: 0}
   currentVariantIndex: 0
+  SecondObjectToChange: {fileID: 0}
   CitizenToChange: {fileID: 0}
 --- !u!1 &96944815062928905
 GameObject:
@@ -1408,6 +1411,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: a500bb0f62b89234498f721b5b17f86d, type: 3}
   ObjectToChange: {fileID: 0}
   currentVariantIndex: 0
+  SecondObjectToChange: {fileID: 0}
   CitizenToChange: {fileID: 0}
 --- !u!1 &96944815063125823
 GameObject:
@@ -1536,6 +1540,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 5d437cc8de97ea44387542539c67a04b, type: 3}
   ObjectToChange: {fileID: 0}
   currentVariantIndex: 0
+  SecondObjectToChange: {fileID: 0}
   CitizenToChange: {fileID: 96944815059784199}
 --- !u!1 &96944815063125895
 GameObject:
@@ -1664,6 +1669,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 6aee4ef8d34f8a246a779bdaa1c0a9ac, type: 3}
   ObjectToChange: {fileID: 0}
   currentVariantIndex: 0
+  SecondObjectToChange: {fileID: 0}
   CitizenToChange: {fileID: 0}
 --- !u!1 &96944815063127667
 GameObject:
@@ -1887,6 +1893,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 4de350ca63d9bde4d83ddd435bcb32b4, type: 3}
   ObjectToChange: {fileID: 0}
   currentVariantIndex: 0
+  SecondObjectToChange: {fileID: 0}
   CitizenToChange: {fileID: 0}
 --- !u!1 &96944815063148353
 GameObject:
@@ -2015,6 +2022,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: d3a169c8b49d4d0479192a1dd962475d, type: 3}
   ObjectToChange: {fileID: 0}
   currentVariantIndex: 0
+  SecondObjectToChange: {fileID: 0}
   CitizenToChange: {fileID: 0}
 --- !u!1 &96944815063150159
 GameObject:
@@ -2143,6 +2151,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 41f15c7d93da22d4c9d6624ae157227c, type: 3}
   ObjectToChange: {fileID: 0}
   currentVariantIndex: 0
+  SecondObjectToChange: {fileID: 0}
   CitizenToChange: {fileID: 0}
 --- !u!1 &96944815063150311
 GameObject:
@@ -2366,6 +2375,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: a178b2b23046acf418f6584fde86ae4a, type: 3}
   ObjectToChange: {fileID: 0}
   currentVariantIndex: 0
+  SecondObjectToChange: {fileID: 0}
   CitizenToChange: {fileID: 96944815059770861}
 --- !u!1 &96944815063161591
 GameObject:
@@ -2494,6 +2504,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 1ce0b098a98f93a41aac99aed42baea3, type: 3}
   ObjectToChange: {fileID: 0}
   currentVariantIndex: 0
+  SecondObjectToChange: {fileID: 0}
   CitizenToChange: {fileID: 0}
 --- !u!1 &96944815063163595
 GameObject:
@@ -2624,6 +2635,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 56634c81b8e1a4846beaf1bd977f1f96, type: 3}
   ObjectToChange: {fileID: 0}
   currentVariantIndex: 0
+  SecondObjectToChange: {fileID: 0}
   CitizenToChange: {fileID: 0}
 --- !u!1 &96944815063170561
 GameObject:
@@ -2758,15 +2770,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalScale.x
-      value: 12.08
+      value: 0.604
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalScale.y
-      value: 12.08
+      value: 0.604
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalScale.z
-      value: 12.08
+      value: 0.604
       objectReference: {fileID: 0}
     - target: {fileID: 2138912237128217872, guid: ce8d9773ecd170f45a4094a370773726, type: 3}
       propertyPath: m_LocalPosition.x

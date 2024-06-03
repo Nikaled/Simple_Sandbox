@@ -31,6 +31,7 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] GameObject _buildingModeInstruction;
     [SerializeField] GameObject _deletingModeInstruction;
     [SerializeField] GameObject CanvasPCInterface;
+    [SerializeField] GameObject CarShootingText;
     [Header("Mobile Interfaces")]
     [SerializeField] GameObject CanvasMobileInterface;
     [SerializeField] GameObject LeftButtonsZone;
@@ -49,6 +50,8 @@ public class CanvasManager : MonoBehaviour
     [SerializeField]  Button RotatingButton;
     [SerializeField]  Image RotatingButtonImage;
     [SerializeField]  Image[] InteracteSymbolInButton;
+    [SerializeField]  Image DoButtonImageInIdle;
+    [SerializeField]  Image DoButtonImageInMode;
     [Header("Rotating Mode")]
     [SerializeField] GameObject _rotatingChosenObjectModeInstruction;
     [SerializeField] Slider[] RotatingModeSlidersScale;
@@ -58,6 +61,8 @@ public class CanvasManager : MonoBehaviour
     private bool SaveMapUIActive;
     [Header("Unlock cursor Windows")]
     [SerializeField] private List<GameObject> UnlockCursorWindows;
+
+    private readonly string LoadedInGameplay = "LoadedInGameplay";
 
     private void Awake()
     {
@@ -101,8 +106,23 @@ public class CanvasManager : MonoBehaviour
         }
         Geekplay.Instance.PlayerData.CoinsChanged += ChangeCoinsText;
         Geekplay.Instance.LockCursorAfterAd += CheckActiveUnlockCursorWindows;
+
+        Analytics.instance.SendEvent(LoadedInGameplay);
     }
     #region Mobile
+    public void ChangeDoButtonImageToMode(bool Mode)
+    {
+        if (Mode)
+        {
+            DoButtonImageInIdle.gameObject.SetActive(false);
+            DoButtonImageInMode.gameObject.SetActive(true);
+        }
+        else
+        {
+            DoButtonImageInIdle.gameObject.SetActive(true);
+            DoButtonImageInMode.gameObject.SetActive(false);
+        }
+    }
     public void TurnYellowBuildingButton(bool Is)
     {
         if (Is)
@@ -241,9 +261,13 @@ public class CanvasManager : MonoBehaviour
             ShowCitizenEnterInstruction(false);
         }
     }
-    public void ShowControlCarInstruction(bool Is)
+    public void ShowControlCarInstruction(bool Is, bool IsTank)
     {
         _ControlCarInstruction.SetActive(Is);
+        if (IsTank)
+        {
+            CarShootingText.SetActive(Is);
+        }
     }
 
     public void ShowInAppShop(bool Is)

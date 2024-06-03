@@ -8,6 +8,12 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI CoinsText;
     [SerializeField] TextMeshProUGUI CoinsInPromoText;
+    string AnalyticMapCreate = "CreateMap";
+    string AnalyticMapChooseField = "Field_ChooseMap";
+    string AnalyticMapChooseMilitary = "Military_ChooseMap";
+    string AnalyticMapChooseFarm = "Farm_ChooseMap";
+    string AnalyticMapChooseAirport = "Airport_ChooseMap";
+    string AnalyticMapChooseLoaded = "Loaded_ChooseMap";
     void Start()
     {
         Geekplay.Instance.GameReady();
@@ -20,6 +26,28 @@ public class MainMenu : MonoBehaviour
         CoinsText.text = NewCoinsCount.ToString();
         CoinsInPromoText.text = NewCoinsCount.ToString();
     }
+    #region Analytics
+    public void AnalyticsOnMapCreate()
+    {
+        Analytics.instance.SendEvent(AnalyticMapCreate);
+    }
+    public void AnalyticsOnMapChooseField()
+    {
+        Analytics.instance.SendEvent(AnalyticMapChooseField);
+    }
+    public void AnalyticsOnMapChooseMilitary()
+    {
+        Analytics.instance.SendEvent(AnalyticMapChooseMilitary);
+    }
+    public void AnalyticsOnMapChooseFarm()
+    {
+        Analytics.instance.SendEvent(AnalyticMapChooseFarm);
+    }
+    public void AnalyticsOnMapChooseAirport()
+    {
+        Analytics.instance.SendEvent(AnalyticMapChooseAirport);
+    }
+    #endregion
     public void LoadStandartMap()
     {
         Geekplay.Instance.PlayerData.IsPlayerMapLoad = false;
@@ -31,7 +59,7 @@ public class MainMenu : MonoBehaviour
     }
     public void LoadChosenMap(int index)
     {
-       
+        Analytics.instance.SendEvent(AnalyticMapChooseLoaded);
         switch (index)
         {
             case 1:

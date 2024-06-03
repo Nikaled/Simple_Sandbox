@@ -32,6 +32,7 @@ public class HelicopterEnterController : EnterController
              _helicopterController.MyClearButtons();
             HelicopterButtons.instance.GetOutButton.onClick.RemoveAllListeners();
         }
+        _helicopterController.OnHeliExit();
         _helicopterController.enabled = false;
     }
 }

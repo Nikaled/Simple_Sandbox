@@ -18,13 +18,14 @@ public class HpSystem : MonoBehaviour
     public Vector3 OriginScale;
     public float OriginHpBarScale;
     public bool Citizen;
+    private readonly string AnalyticsDestroyObject = "ObjectDestroyed";
     [SerializeField]  public int CurrentHP
     {
         get { return _currentHP; }
         set
         {
             _currentHP = value;
-            //HpBarCurrent.fillAmount = (float)_currentHP / MaxHp;
+            HpBarCurrent.transform.DOScaleX((float)_currentHP / MaxHp, 0);
             HpText.text = $"{_currentHP} / {MaxHp}";
             if(_currentHP < MaxHp)
             {
@@ -90,6 +91,8 @@ public class HpSystem : MonoBehaviour
 
         Geekplay.Instance.PlayerData.DestroyCount++;
         Geekplay.Instance.Leaderboard("Destroy", Geekplay.Instance.PlayerData.DestroyCount);
+
+        Analytics.instance.SendEvent(AnalyticsDestroyObject);
         Geekplay.Instance.Save();
     }
     private void Explosion(GameObject rootObject)
