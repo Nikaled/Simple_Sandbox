@@ -69,6 +69,7 @@ MonoBehaviour:
   CurrentScale: {x: 0, y: 0, z: 0}
   CurrentHpScale: {x: 0, y: 0, z: 0}
   CurrentPosition: {x: 0, y: 0, z: 0}
+  CurrentMeshIndex: 0
 --- !u!1 &4826744396133391163
 GameObject:
   m_ObjectHideFlags: 0
@@ -7347,7 +7348,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4826744397757303187}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!114 &4826744397757303197
 MonoBehaviour:
   m_ObjectHideFlags: 0

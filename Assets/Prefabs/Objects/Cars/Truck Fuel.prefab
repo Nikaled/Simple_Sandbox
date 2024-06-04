@@ -2034,6 +2034,7 @@ MonoBehaviour:
   FirstViewCameraTransform: {fileID: 4424408186775080796}
   vehicleControl: {fileID: 4424408186785027458}
   tankShooting: {fileID: 0}
+  IsTank: 0
 --- !u!65 &98246575633108902
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12316,6 +12317,7 @@ MonoBehaviour:
   CurrentScale: {x: 0, y: 0, z: 0}
   CurrentHpScale: {x: 0, y: 0, z: 0}
   CurrentPosition: {x: 0, y: 0, z: 0}
+  CurrentMeshIndex: 0
 --- !u!1001 &2564147075460541132
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12457,7 +12459,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8100000, guid: 8512d52775bf95340b741dfb9552c938, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 8512d52775bf95340b741dfb9552c938, type: 3}
       propertyPath: Angle
@@ -12490,6 +12492,10 @@ PrefabInstance:
     - target: {fileID: 11400000, guid: 8512d52775bf95340b741dfb9552c938, type: 3}
       propertyPath: CarUI.tachometerNeedle
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 8512d52775bf95340b741dfb9552c938, type: 3}
+      propertyPath: lineOfSightMask.m_Bits
+      value: 130805
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 8512d52775bf95340b741dfb9552c938, type: 3}
       propertyPath: cameraSwitchView.Array.size

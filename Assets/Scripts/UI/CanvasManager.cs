@@ -264,10 +264,7 @@ public class CanvasManager : MonoBehaviour
     public void ShowControlCarInstruction(bool Is, bool IsTank)
     {
         _ControlCarInstruction.SetActive(Is);
-        if (IsTank)
-        {
-            CarShootingText.SetActive(Is);
-        }
+        CarShootingText.SetActive(IsTank);
     }
 
     public void ShowInAppShop(bool Is)

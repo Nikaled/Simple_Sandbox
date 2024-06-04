@@ -50,7 +50,7 @@ public class AnimalRiding : MonoBehaviour
     public void DeactivateRiding()
     {
         Player player = Player.instance;
-        player.motor.CapsuleHeight =2;
+        player.motor.CapsuleHeight =1.83f;
         player.motor.ValidateData();
         gameObject.transform.parent = null;
         player.animationPlayer.RidingAnimal = false;

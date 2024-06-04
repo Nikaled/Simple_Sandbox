@@ -79,7 +79,10 @@ public class PlaneEnterController : EnterController
                 }
                 if (PlaneUpButton.instance.isPressed && Time.time - startTime > timeToUp)
                 {
+                    if (_planeController.airplaneState == SimpleAirPlaneController.AirplaneState.Takeoff)
+                    {
                     _planeController.airplaneState = SimpleAirPlaneController.AirplaneState.Flying;
+                    }
                     _planeController.UpThePlaneFromGround();
                     Debug.Log((Time.time - startTime).ToString("00:00.00"));
                 }
@@ -116,7 +119,10 @@ public class PlaneEnterController : EnterController
                 }
                 if (Input.GetKey(KeyCode.Space) && Time.time - startTime > timeToUp)
                 {
-                    _planeController.airplaneState = SimpleAirPlaneController.AirplaneState.Flying;
+                    if (_planeController.airplaneState == SimpleAirPlaneController.AirplaneState.Takeoff)
+                    {
+                        _planeController.airplaneState = SimpleAirPlaneController.AirplaneState.Flying;
+                    }
                     _planeController.UpThePlaneFromGround();
                     Debug.Log((Time.time - startTime).ToString("00:00.00"));
                 }

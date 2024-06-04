@@ -10533,6 +10533,7 @@ MonoBehaviour:
   FirstViewCameraTransform: {fileID: 2429533209910102281}
   vehicleControl: {fileID: 2429533209900159959}
   tankShooting: {fileID: 0}
+  IsTank: 0
 --- !u!1 &2429533209909833207
 GameObject:
   m_ObjectHideFlags: 0
@@ -12346,7 +12347,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4085169850214543563}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!114 &2429533211760465705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12368,7 +12369,7 @@ MonoBehaviour:
   - {fileID: 2429533209910102281}
   lineOfSightMask:
     serializedVersion: 2
-    m_Bits: 4294967037
+    m_Bits: 130805
   CarUI:
     tachometerNeedle: {fileID: 0}
     barShiftGUI: {fileID: 0}
@@ -12527,6 +12528,7 @@ MonoBehaviour:
   CurrentScale: {x: 0, y: 0, z: 0}
   CurrentHpScale: {x: 0, y: 0, z: 0}
   CurrentPosition: {x: 0, y: 0, z: 0}
+  CurrentMeshIndex: 0
 --- !u!1001 &4475197706464532546
 PrefabInstance:
   m_ObjectHideFlags: 0

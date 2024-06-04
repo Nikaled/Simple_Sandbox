@@ -10942,7 +10942,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5582894346361031105}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!114 &2797014820494966728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11334,6 +11334,7 @@ MonoBehaviour:
   CurrentScale: {x: 0, y: 0, z: 0}
   CurrentHpScale: {x: 0, y: 0, z: 0}
   CurrentPosition: {x: 0, y: 0, z: 0}
+  CurrentMeshIndex: 0
 --- !u!1 &6584517738947274081
 GameObject:
   m_ObjectHideFlags: 0
@@ -12364,6 +12365,7 @@ MonoBehaviour:
   FirstViewCameraTransform: {fileID: 4998943418578399969}
   vehicleControl: {fileID: 7285528824245204739}
   tankShooting: {fileID: 0}
+  IsTank: 0
 --- !u!1 &8974973863526008233
 GameObject:
   m_ObjectHideFlags: 0

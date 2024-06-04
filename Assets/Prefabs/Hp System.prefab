@@ -52,6 +52,7 @@ MonoBehaviour:
   MaxHp: 20
   HpText: {fileID: 4608971943510742021}
   DestroyAnimation: {fileID: 1056904543853562, guid: 4cf45cdce36e66e4a93614abb5ae7821, type: 3}
+  AudioExplosionPrefab: {fileID: 6125671318750552675, guid: 2856fa0b75583f549907306bd75970a9, type: 3}
   OriginScale: {x: 0, y: 0, z: 0}
   OriginHpBarScale: 0
   Citizen: 0
@@ -379,7 +380,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ac05032855dae6478d1942eb670d549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
 --- !u!1 &4774379029344287470
 GameObject:
   m_ObjectHideFlags: 0

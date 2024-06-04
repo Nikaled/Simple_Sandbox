@@ -15,6 +15,7 @@ public class HpSystem : MonoBehaviour
     [SerializeField] private int MaxHp;
     [SerializeField] TextMeshProUGUI HpText;
     [SerializeField] GameObject DestroyAnimation;
+    [SerializeField] AudioExplosion AudioExplosionPrefab;
     public Vector3 OriginScale;
     public float OriginHpBarScale;
     public bool Citizen;
@@ -113,6 +114,8 @@ public class HpSystem : MonoBehaviour
         Vector3 bounds = rootObject.GetComponent<MeshRenderer>().bounds.size;
         float SumOfSides = FindSumOfSides(bounds) / 9 ;
         Vector3 ExplosionPos = new Vector3(HpBar.transform.position.x, HpBar.transform.position.y-bounds.y, HpBar.transform.position.z);
+        AudioExplosion audioExplosion = Instantiate(AudioExplosionPrefab, ExplosionPos, Quaternion.identity);
+        audioExplosion.PlayExplosionSound();
         var fx = Instantiate(DestroyAnimation, ExplosionPos, Quaternion.identity);
         fx.transform.parent = null;
         fx.transform.DOScale(DestroyAnimation.transform.localScale *SumOfSides, 0);

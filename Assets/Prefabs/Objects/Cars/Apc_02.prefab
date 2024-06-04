@@ -305,7 +305,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 375370642863340040}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!114 &2240954896109180211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,6 +404,7 @@ MonoBehaviour:
   CurrentScale: {x: 0, y: 0, z: 0}
   CurrentHpScale: {x: 0, y: 0, z: 0}
   CurrentPosition: {x: 0, y: 0, z: 0}
+  CurrentMeshIndex: 0
 --- !u!1 &931761586171752217
 GameObject:
   m_ObjectHideFlags: 0
@@ -5712,6 +5713,7 @@ MonoBehaviour:
   MaxHp: 70
   HpText: {fileID: 7786886341813284279}
   DestroyAnimation: {fileID: 1056904543853562, guid: 4cf45cdce36e66e4a93614abb5ae7821, type: 3}
+  AudioExplosionPrefab: {fileID: 0}
   OriginScale: {x: 0, y: 0, z: 0}
   OriginHpBarScale: 0
   Citizen: 0
@@ -6712,7 +6714,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ac05032855dae6478d1942eb670d549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
 --- !u!1 &2800080576065122229
 GameObject:
   m_ObjectHideFlags: 0
@@ -8015,7 +8016,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ac05032855dae6478d1942eb670d549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
 --- !u!1 &6838193161481229045
 GameObject:
   m_ObjectHideFlags: 0

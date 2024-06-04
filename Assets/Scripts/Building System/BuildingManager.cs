@@ -24,6 +24,7 @@ public class BuildingManager : MonoBehaviour
     [SerializeField] Material RedMaterial;
     [SerializeField] Material YellowMaterial;
     [SerializeField] Button DoButton;
+    [SerializeField] AudioSource PlaceObjectSoundSource;
 
     Player player;
     public static BuildingManager instance;
@@ -344,6 +345,7 @@ public class BuildingManager : MonoBehaviour
     private void PlaceObject()
     {
         DoButton.onClick.RemoveAllListeners();
+        PlaceObjectSoundSource.Play();
 
         var newObj = Instantiate(CurrentPrefab, pendingObj.transform.position, pendingObj.transform.rotation);
         CanvasManager.instance.ShowBuildingModeInstruction(false);

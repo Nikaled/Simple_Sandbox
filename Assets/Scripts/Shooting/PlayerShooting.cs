@@ -23,7 +23,14 @@ public class PlayerShooting : MonoBehaviour
     public static PlayerShooting instance;
     public IEnumerator HoldingCoroutine;
     //[SerializeField] public LineRenderer lineRenderer;
-
+    public AudioSource FireAudioSource;
+    [SerializeField] AudioClip PistolSound;
+    [SerializeField] AudioClip GunSound;
+    [SerializeField] AudioClip HandAttackSound;
+    [SerializeField] AudioClip HandAttackHitObjectSound;
+    [SerializeField] AudioClip KnifeAttackSound;
+    [SerializeField] AudioClip KnifeAttackHitObjectSound;
+    [SerializeField] public AudioClip GrenadeThrowSound;
     private void Start()
     {
         instance = this;
@@ -64,6 +71,8 @@ public class PlayerShooting : MonoBehaviour
             player.RotatePlayerOnShoot(aimDirection);
             ShootingProjectile proj = Instantiate(projectile, PistolProjectileSpawnPoint.position, Quaternion.LookRotation(aimDirection, Vector3.up));
             LockPlayerMovement(0.7f);
+            FireAudioSource.clip = PistolSound;
+            FireAudioSource.Play();
         }
 
         if (currentWeapon == Player.WeaponType.Gun)
@@ -98,6 +107,8 @@ public class PlayerShooting : MonoBehaviour
            
             ShootingProjectile proj = Instantiate(projectile, GunProjectileSpawnPoint.position, Quaternion.LookRotation(aimDirection, Vector3.up));
             GunTimer = Time.time;
+            FireAudioSource.clip = GunSound;
+            FireAudioSource.Play();
         }
 
     }
@@ -122,7 +133,32 @@ public class PlayerShooting : MonoBehaviour
             {
                 targets[i].TakeDamage(meleeDamage);
             }
+            if (meleeWeapon == Player.WeaponType.Knife)
+            {
+                FireAudioSource.clip = KnifeAttackHitObjectSound;
+                FireAudioSource.Play();
+            }
+            else
+            {
+                FireAudioSource.clip = HandAttackHitObjectSound;
+                FireAudioSource.Play();
+            }
         }
+        else
+        {
+            if (meleeWeapon == Player.WeaponType.Knife)
+            {
+                FireAudioSource.clip = KnifeAttackSound;
+                FireAudioSource.Play();
+            }
+            else
+            {
+                FireAudioSource.clip = HandAttackSound;
+                FireAudioSource.Play();
+            }
+
+        }
+
         handHitbox.EndAttack();
     }
 

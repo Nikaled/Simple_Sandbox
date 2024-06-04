@@ -152,7 +152,7 @@ namespace HeneGames.Airplane
             PlaneButtons.instance.GoBack.GetComponent<HelicopterButton>().ActionOnHold += GoUpAndDown;
 
             //HelicopterButtons.instance.UpEngine.GetComponent<HelicopterButton>().TranslatingFloat = 1f;
-            //HelicopterButtons.instance.UpEngine.GetComponent<HelicopterButton>().ActionOnHold += OnCollectiveMobile;
+            //HelicopterButtons.instance.UpEngine.GetComponent<HelicopterButton>().ActionOnHold += UpThePlane;
 
 
             PlaneButtons.instance.DownEngine.GetComponent<HelicopterButton>().TranslatingFloat = 1f;
@@ -210,6 +210,7 @@ namespace HeneGames.Airplane
             AudioSystem();
             HandleInputs();
 
+            Debug.Log(airplaneState);
             switch (airplaneState)
             {
                 case AirplaneState.Flying:
@@ -310,17 +311,17 @@ namespace HeneGames.Airplane
             //rb.AddForce(Vector3.up /** currentSpeed * 0.2f*/ * Time.deltaTime);
             ////rb.Move(Vector3.up * 5, Quaternion.identity);
             ////rb.Move(Vector3.forward * 5, Quaternion.identity);
-            rb.velocity = new Vector3(0, currentSpeed * 0.2f, currentSpeed * 0.2f);
-            //transform.Translate(Vector3.forward * currentSpeed * 0.2f * Time.deltaTime);
-            //transform.Translate(Vector3.up * currentSpeed * 0.2f * Time.deltaTime);
+            //rb.velocity = new Vector3(0, currentSpeed * 0.2f, currentSpeed * 0.2f);
+            transform.Translate(Vector3.forward * currentSpeed * 0.2f * Time.deltaTime);
+            transform.Translate(Vector3.up * currentSpeed * 0.2f * Time.deltaTime);
         }
         public void UpThePlane()
         {
             //rb.AddForce(Vector3.up);
             //rb.MovePosition((transform.position + Vector3.up) /** Time.deltaTime*/);
 
-            rb.velocity = new Vector3(0, currentSpeed * 0.2f, currentSpeed * 0.2f);
-            //transform.Translate(Vector3.up * currentSpeed * 0.2f * Time.deltaTime);
+            //rb.velocity = new Vector3(0, currentSpeed * 0.2f, currentSpeed * 0.2f);
+            transform.Translate(Vector3.up * currentSpeed * 0.2f * Time.deltaTime);
             //rb.AddForce(Vector3.up /** currentSpeed * 0.2f */* Time.deltaTime);
             ////rb.Move(Vector3.up * 5, Quaternion.identity);
             ///
@@ -439,6 +440,7 @@ namespace HeneGames.Airplane
         //My trasform is runway landing adjuster child
         private void LandingUpdate()
         {
+
             UpdatePropellersAndLights();
 
             ChangeWingTrailEffectThickness(0f);
@@ -478,12 +480,12 @@ namespace HeneGames.Airplane
             transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime);
 
             //Far enough from the runaway go back to flying state
-            float _distanceToRunway = Vector3.Distance(transform.position, currentRunway.transform.position);
-            if(_distanceToRunway > takeoffLenght)
-            {
-                currentRunway = null;
-                airplaneState = AirplaneState.Flying;
-            }
+            //float _distanceToRunway = Vector3.Distance(transform.position, transform.position);
+            //if(_distanceToRunway > takeoffLenght)
+            //{
+            //    currentRunway = null;
+            //    airplaneState = AirplaneState.Flying;
+            //}
         }
 
         #endregion

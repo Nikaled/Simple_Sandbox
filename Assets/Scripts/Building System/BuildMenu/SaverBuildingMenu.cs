@@ -79,6 +79,10 @@ public class SaverBuildingMenu : MonoBehaviour
         {
 
             List<bool> States = BuildingMenuDataList[i];
+            if(States == null)
+            {
+                return;
+            }
             for (int j = 0; j < ContentManagers[i].CellsInGrid.Length; j++)
             {
                 if(j > States.Count-1)

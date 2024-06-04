@@ -10,6 +10,7 @@ public class Grenade : MonoBehaviour
     [SerializeField] GameObject DestroyAnimation;
     [SerializeField] int GrenadeDamage = 10;
     [SerializeField] int ExplosionScale = 3;
+    [SerializeField] AudioExplosion Source;
     public void OnLaunch()
     {
         StartCoroutine(Explosion());
@@ -17,6 +18,7 @@ public class Grenade : MonoBehaviour
     private IEnumerator Explosion()
     {
         yield return new WaitForSeconds(DelayBeforeExplosion);
+        Source.PlayExplosionSound();
         GetComponent<SphereCollider>().enabled = true;
 
         yield return new WaitForSeconds(0.1f);

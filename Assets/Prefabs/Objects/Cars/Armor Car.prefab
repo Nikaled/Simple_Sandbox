@@ -6871,7 +6871,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4705291314798068483}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!114 &5799594217490522167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7179,6 +7179,7 @@ MonoBehaviour:
   CurrentScale: {x: 0, y: 0, z: 0}
   CurrentHpScale: {x: 0, y: 0, z: 0}
   CurrentPosition: {x: 0, y: 0, z: 0}
+  CurrentMeshIndex: 0
 --- !u!1 &5981934651074648326
 GameObject:
   m_ObjectHideFlags: 0

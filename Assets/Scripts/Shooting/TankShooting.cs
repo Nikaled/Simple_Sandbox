@@ -13,7 +13,7 @@ public class TankShooting : MonoBehaviour
     [SerializeField] ShootingProjectile TankProjectile;
     [SerializeField] GameObject TankHpCollider;
 
-
+    [SerializeField] AudioSource ShootSource;
     private void Start()
     {
          Crosshair = CanvasManager.instance.Crosshair;
@@ -34,6 +34,7 @@ public class TankShooting : MonoBehaviour
     }
     public void Fire()
     {
+        ShootSource.Play();
         ShootingProjectile proj = Instantiate(TankProjectile, TankProjectileSpawnPoint.position, TankProjectileSpawnPoint.transform.rotation);
     }
 }

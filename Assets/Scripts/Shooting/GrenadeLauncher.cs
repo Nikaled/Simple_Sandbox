@@ -46,6 +46,8 @@ public class GrenadeLauncher : MonoBehaviour
         _projectile.GetComponent<Grenade>().OnLaunch();
         lineRenderer.enabled = false;
         Player.instance.RotatePlayerOnShoot(aimDirection);
+        PlayerShooting.instance.FireAudioSource.clip = PlayerShooting.instance.GrenadeThrowSound;
+        PlayerShooting.instance.FireAudioSource.Play();
     }
     public void ClearTrajectory()
     {

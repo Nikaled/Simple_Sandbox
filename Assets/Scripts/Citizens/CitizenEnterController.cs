@@ -36,6 +36,7 @@ public class CitizenEnterController : EnterController
     }
     protected override void SitIntoTransport()
     {
+        Player.instance.SwapCitizenAudioSource.Play();
         HideEnterInstruction();
         //HpView.SetActive(false);
         ActivateTransport();

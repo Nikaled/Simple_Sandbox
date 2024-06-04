@@ -32,7 +32,8 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject KnifeModel;
     [SerializeField] GameObject GrenadeModel;
     [SerializeField] GameObject CharacterModel;
-
+    [SerializeField] public AudioSource SwapCitizenAudioSource;
+    
     public KeyCode DeletingModeButton = KeyCode.N;
     public KeyCode BuildingModeButton = KeyCode.B;
     public KeyCode RotatingModeButton = KeyCode.M;
