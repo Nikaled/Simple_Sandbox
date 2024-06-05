@@ -32,7 +32,8 @@ public class RotatingCenter : MonoBehaviour
     {
         if (IsManualSet == false)
         {
-            gameObject.transform.position = RootObjectMesh.bounds.center;
+            if (RootObjectMesh != null)
+                gameObject.transform.position = RootObjectMesh.bounds.center;
         }
         if (RootObjectMesh != null)
         {

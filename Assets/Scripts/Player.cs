@@ -192,22 +192,22 @@ public class Player : MonoBehaviour
 
         switch (PressedNumber)
         {
-            case 1:
+            case 4:
                 CurrentWeapon = WeaponType.Gun;
                 GunModel.SetActive(true);
                 CanvasManager.instance.DoButton.onClick.RemoveAllListeners();
                 CanvasManager.instance.DoButton.GetComponent<MobileShootButton>().enabled = true;
 
                 break;
-            case 2:
+            case 3:
                 CurrentWeapon = WeaponType.Pistol;
                 PistolModel.SetActive(true);
                 break;
-            case 3:
+            case 2:
                 CurrentWeapon = WeaponType.Knife;
                 KnifeModel.SetActive(true);
                 break;
-            case 4:
+            case 1:
                 CurrentWeapon = WeaponType.Hand;
                 break;
             case 5:

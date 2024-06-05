@@ -75,5 +75,10 @@ public class PlayerData
     public string lastBuy;
 
     public int downloadsCount2;
-    internal bool IsGeometryDashRewardTaked;
+    public bool IsGeometryDashRewardTaked;
+
+    public int CurrentSkyIndexMap1;
+    public int CurrentSkyIndexMap2;
+    public int CurrentSkyIndexMap3;
+    public int CurrentSkyIndexMap4;
 }

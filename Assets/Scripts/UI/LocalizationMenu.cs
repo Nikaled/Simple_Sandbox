@@ -74,7 +74,7 @@ public class LocalizationMenu : MonoBehaviour
         MenuButton2.text = "Меню";
         PromoAsk.text = "Подпишись на наш канал и введи промокод который найдешь там";
         PlaceHolder.text = "Введите код...";
-        TelegramButton.text = "Телеграм";
+        TelegramButton.text = "Наш канал";
         TakeButton.text = "Забрать";
         PromoMessage1.text = "Промокод успешно введен";
         PromoMessage2.text = "Промокод уже использован";
@@ -105,7 +105,7 @@ public class LocalizationMenu : MonoBehaviour
         MenuButton2.text = "Menu";
         PromoAsk.text = "Subscribe to our channel and enter the promo code that you will find there";
         PlaceHolder.text = "Enter the code...";
-        TelegramButton.text = "Telegram";
+        TelegramButton.text = "Our Channel";
         TakeButton.text = "Pick up";
         PromoMessage1.text = "Promo code successfully entered";
         PromoMessage2.text = "Promo code has already been used";
@@ -136,7 +136,7 @@ public class LocalizationMenu : MonoBehaviour
         MenuButton2.text = "Menü";
         PromoAsk.text = "Kanalımıza abone olun ve orada bulduğunuz promosyon kodunu girin";
         PlaceHolder.text = "Kodu girin...";
-        TelegramButton.text = "Telegram";
+        TelegramButton.text = "Kanalımız";
         TakeButton.text = "Al";
         PromoMessage1.text = "Promosyon Kodu başarıyla girildi";
         PromoMessage2.text = "Promosyon Kodu zaten kullanılıyor";

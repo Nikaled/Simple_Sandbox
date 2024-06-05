@@ -1008,11 +1008,11 @@ Transform:
   m_GameObject: {fileID: 6274784122229519186}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.45, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 2.1303923, z: 0}
+  m_LocalScale: {x: 0.86956525, y: 0.86956525, z: 0.86956525}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2496181221717908456}
+  m_Father: {fileID: 6600088738804683724}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &3688761909162134027
 BoxCollider:
@@ -1222,7 +1222,6 @@ GameObject:
   - component: {fileID: 780294564409667848}
   - component: {fileID: 7745234764910458564}
   - component: {fileID: 780294564409667855}
-  - component: {fileID: 1560081253119851622}
   - component: {fileID: 9010188106938655850}
   m_Layer: 0
   m_Name: Fighter Jet Big
@@ -1250,6 +1249,7 @@ Transform:
   - {fileID: 8132985477274786933}
   - {fileID: 2982017127678243231}
   - {fileID: 8132985479380498170}
+  - {fileID: 1730546442148142572}
   m_Father: {fileID: 2496181221717908456}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &780294564409667848
@@ -1352,22 +1352,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 7.598227, y: 4.477789, z: 13.995756}
   m_Center: {x: 0.08712479, y: 1.4612472, z: 0.9047749}
---- !u!208 &1560081253119851622
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6600088738804683725}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!114 &9010188106938655850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1420,7 +1404,6 @@ Transform:
   m_Children:
   - {fileID: 6600088738804683724}
   - {fileID: 696254094236859325}
-  - {fileID: 1730546442148142572}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3905363313223747357
@@ -1457,6 +1440,7 @@ MonoBehaviour:
   CurrentScale: {x: 0, y: 0, z: 0}
   CurrentHpScale: {x: 0, y: 0, z: 0}
   CurrentPosition: {x: 0, y: 0, z: 0}
+  CurrentMeshIndex: 0
 --- !u!1 &7820574836250398383
 GameObject:
   m_ObjectHideFlags: 0

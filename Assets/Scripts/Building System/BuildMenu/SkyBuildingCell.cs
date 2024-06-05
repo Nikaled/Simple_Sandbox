@@ -5,6 +5,7 @@ using UnityEngine;
 public class SkyBuildingCell : BuildingCell
 {
     [SerializeField] Material SkyMaterial;
+    public int SkyIndex;
     protected override IEnumerator SendPrefabToManagerCor()
     {
         yield return new WaitForSeconds(0.1f);
@@ -34,9 +35,10 @@ public class SkyBuildingCell : BuildingCell
             }
         }
     }
-    private void ChangeSky()
+    public void ChangeSky()
     {
         RenderSettings.skybox = SkyMaterial;
+        SerializeBuildingManager.instance.SkyIndex = SkyIndex;
     }
     protected override void OpenedInvoker()
     {

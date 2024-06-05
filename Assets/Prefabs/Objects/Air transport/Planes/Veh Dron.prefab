@@ -531,6 +531,7 @@ GameObject:
   - component: {fileID: 1357953696891064224}
   - component: {fileID: 1357953696891910516}
   - component: {fileID: 1357953696893097146}
+  - component: {fileID: 5027853684409378301}
   m_Layer: 0
   m_Name: SK_Veh_Drone_01
   m_TagString: Untagged
@@ -607,6 +608,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &5027853684409378301
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357953696890628320}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 7.1970005, y: 1.335, z: 4.7910004}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.664, z: 0.19700001}
+  m_TimeToStationary: 0.5
 --- !u!1 &1357953696890846288
 GameObject:
   m_ObjectHideFlags: 0
@@ -1425,7 +1442,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3127386116595395379
 Transform:
   m_ObjectHideFlags: 0
@@ -1456,7 +1473,6 @@ GameObject:
   - component: {fileID: 7553215280742273697}
   - component: {fileID: 683097408338531693}
   - component: {fileID: 7553215280742273702}
-  - component: {fileID: 4397929601145128461}
   - component: {fileID: 6114819179009213914}
   m_Layer: 0
   m_Name: Veh Drone
@@ -1588,22 +1604,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 7.5982265, y: 2.434761, z: 10.483307}
   m_Center: {x: 0.087124825, y: 2.4827614, z: 0.41375732}
---- !u!208 &4397929601145128461
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4151889221897826404}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!114 &6114819179009213914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2573,6 +2573,7 @@ MonoBehaviour:
   CurrentScale: {x: 0, y: 0, z: 0}
   CurrentHpScale: {x: 0, y: 0, z: 0}
   CurrentPosition: {x: 0, y: 0, z: 0}
+  CurrentMeshIndex: 0
 --- !u!1 &8272449720937628708
 GameObject:
   m_ObjectHideFlags: 0

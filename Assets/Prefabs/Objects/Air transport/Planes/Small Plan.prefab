@@ -215,7 +215,6 @@ Transform:
   m_Children:
   - {fileID: 6457980452639010370}
   - {fileID: 5202388515792202634}
-  - {fileID: 8755422888293735828}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-8063914994461970302
@@ -1068,12 +1067,12 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8333333, y: 0.8333333, z: 0.8333333}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2830832353149654445}
   - {fileID: 7387963932979985896}
-  m_Father: {fileID: 8077351718636334134}
+  m_Father: {fileID: 6457980452639010370}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4266746212384870791
 GameObject:
@@ -1414,6 +1413,7 @@ Transform:
   - {fileID: 8275726672140657147}
   - {fileID: 8275726671929592692}
   - {fileID: 6743138963956853259}
+  - {fileID: 8755422888293735828}
   m_Father: {fileID: 8077351718636334134}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &635934959424162950
@@ -2553,7 +2553,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 100002, guid: 848f58107b766bd44a25121dcf7683c7, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2901176632257303635}
+      addedObject: {fileID: 619811501221986291}
   m_SourcePrefab: {fileID: 100100000, guid: 848f58107b766bd44a25121dcf7683c7, type: 3}
 --- !u!4 &8858452178077216108 stripped
 Transform:
@@ -2565,7 +2565,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100002, guid: 848f58107b766bd44a25121dcf7683c7, type: 3}
   m_PrefabInstance: {fileID: 8858452178077349870}
   m_PrefabAsset: {fileID: 0}
---- !u!208 &2901176632257303635
+--- !u!208 &619811501221986291
 NavMeshObstacle:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2575,11 +2575,11 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 6.54, y: 0.8, z: 6.458}
+  m_Extents: {x: 9.567, y: 2.378, z: 6.458}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 3.07, z: -3.0110002}
+  m_Center: {x: 0, y: 2.3590002, z: -3.0110002}
   m_TimeToStationary: 0.5
 --- !u!23 &8858452178079510412 stripped
 MeshRenderer:

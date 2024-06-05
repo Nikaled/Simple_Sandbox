@@ -8,9 +8,11 @@ public class SerializeBuildingManager : MonoBehaviour
 {
     [SerializeField] GameObject[] AllPrefabsInGame;
     public static SerializeBuildingManager instance;
-    [HideInInspector] public List<SerializedBuilding> BuildingsOnScene = new();
+     public List<SerializedBuilding> BuildingsOnScene = new();
     [HideInInspector] public List<SerializedBuildingData> BuildingData = new();
-
+    public GameObject SceneObjectsParent;
+    public BuildingContentManager SkyContentManager;
+    [HideInInspector] public int SkyIndex;
     private void Awake()
     {
         instance = this;
@@ -19,6 +21,15 @@ public class SerializeBuildingManager : MonoBehaviour
     {
         DateTime date1 = DateTime.Now;
         MapDate = date1.ToString("HH:mm  dd.MM.yyyy");
+    }
+    private void LoadSky(int Index)
+    {
+        SkyBuildingCell SkyCell = SkyContentManager.CellsInGrid[Index].GetComponent<SkyBuildingCell>();
+        SkyCell.ChangeSky();
+    }
+    private void SaveSky(ref int SkyInPlayerData)
+    {
+        SkyInPlayerData = SkyIndex;
     }
     public void ToMenuButton()
     {
@@ -52,29 +63,36 @@ public class SerializeBuildingManager : MonoBehaviour
         switch (number)
         {
             case 1:
+                Geekplay.Instance.PlayerData.BuildingDataMap1 = new();
                 Geekplay.Instance.PlayerData.BuildingDataMap1 = Geekplay.Instance.PlayerData.BuildingData;
                 Geekplay.Instance.PlayerData.NameMap1 = SceneManager.GetActiveScene().name;
                 SavePlayerData(ref Geekplay.Instance.PlayerData.PlayerSkin1, ref Geekplay.Instance.PlayerData.PlayerTexture1, ref Geekplay.Instance.PlayerData.PlayerPositionMap1);
                 WriteDate(ref Geekplay.Instance.PlayerData.MapDate1);
+                SaveSky(ref Geekplay.Instance.PlayerData.CurrentSkyIndexMap1);
                 break;
             case 2:
+                Geekplay.Instance.PlayerData.BuildingDataMap2 = new();
                 Geekplay.Instance.PlayerData.BuildingDataMap2 = Geekplay.Instance.PlayerData.BuildingData;
                 Geekplay.Instance.PlayerData.NameMap2 = SceneManager.GetActiveScene().name;
                 SavePlayerData(ref Geekplay.Instance.PlayerData.PlayerSkin2, ref Geekplay.Instance.PlayerData.PlayerTexture2, ref Geekplay.Instance.PlayerData.PlayerPositionMap2);
                 WriteDate(ref Geekplay.Instance.PlayerData.MapDate2);
+                SaveSky(ref Geekplay.Instance.PlayerData.CurrentSkyIndexMap2);
                 break;
             case 3:
+                Geekplay.Instance.PlayerData.BuildingDataMap3 = new();
                 Geekplay.Instance.PlayerData.BuildingDataMap3 = Geekplay.Instance.PlayerData.BuildingData;
                 Geekplay.Instance.PlayerData.NameMap3 = SceneManager.GetActiveScene().name;
                 SavePlayerData(ref Geekplay.Instance.PlayerData.PlayerSkin3, ref Geekplay.Instance.PlayerData.PlayerTexture3, ref Geekplay.Instance.PlayerData.PlayerPositionMap3);
                 WriteDate(ref Geekplay.Instance.PlayerData.MapDate3);
-
+                SaveSky(ref Geekplay.Instance.PlayerData.CurrentSkyIndexMap3);
                 break;
             case 4:
+                Geekplay.Instance.PlayerData.BuildingDataMap4 = new();
                 Geekplay.Instance.PlayerData.BuildingDataMap4 = Geekplay.Instance.PlayerData.BuildingData;
                 Geekplay.Instance.PlayerData.NameMap4 = SceneManager.GetActiveScene().name;
                 SavePlayerData(ref Geekplay.Instance.PlayerData.PlayerSkin4, ref Geekplay.Instance.PlayerData.PlayerTexture4, ref Geekplay.Instance.PlayerData.PlayerPositionMap4);
                 WriteDate(ref Geekplay.Instance.PlayerData.MapDate4);
+                SaveSky(ref Geekplay.Instance.PlayerData.CurrentSkyIndexMap4);
                 break;
         }
         BuildingData.Clear();
@@ -98,6 +116,7 @@ public class SerializeBuildingManager : MonoBehaviour
         {
             LoadBuildingsFromSlot();
             Geekplay.Instance.PlayerData.IsPlayerMapLoad = false;
+            Destroy(SceneObjectsParent);
             Geekplay.Instance.Save();
         }
     }
@@ -108,18 +127,22 @@ public class SerializeBuildingManager : MonoBehaviour
             case 1:
                 LoadBuildings(Geekplay.Instance.PlayerData.BuildingDataMap1);
                 TryLoadPlayerData(Geekplay.Instance.PlayerData.PlayerSkin1, Geekplay.Instance.PlayerData.PlayerTexture1, Geekplay.Instance.PlayerData.PlayerPositionMap1);
+                LoadSky(Geekplay.Instance.PlayerData.CurrentSkyIndexMap1);
                 break;
             case 2:
                 LoadBuildings(Geekplay.Instance.PlayerData.BuildingDataMap2);
                 TryLoadPlayerData(Geekplay.Instance.PlayerData.PlayerSkin2, Geekplay.Instance.PlayerData.PlayerTexture2, Geekplay.Instance.PlayerData.PlayerPositionMap2);
+                LoadSky(Geekplay.Instance.PlayerData.CurrentSkyIndexMap2);
                 break;
             case 3:
                 LoadBuildings(Geekplay.Instance.PlayerData.BuildingDataMap3);
                 TryLoadPlayerData(Geekplay.Instance.PlayerData.PlayerSkin3, Geekplay.Instance.PlayerData.PlayerTexture3, Geekplay.Instance.PlayerData.PlayerPositionMap3);
+                LoadSky(Geekplay.Instance.PlayerData.CurrentSkyIndexMap3);
                 break;
             case 4:
                 LoadBuildings(Geekplay.Instance.PlayerData.BuildingDataMap4);
                 TryLoadPlayerData(Geekplay.Instance.PlayerData.PlayerSkin4, Geekplay.Instance.PlayerData.PlayerTexture4, Geekplay.Instance.PlayerData.PlayerPositionMap4);
+                LoadSky(Geekplay.Instance.PlayerData.CurrentSkyIndexMap4);
                 break;
         }
 
@@ -160,7 +183,7 @@ public class SerializeBuildingManager : MonoBehaviour
     {
         for (int i = 0; i < BuildingData.Count; i++)
         {
-
+            if (BuildingData.Count == 0) break;
             GameObject LoadedObj = Instantiate(AllPrefabsInGame[BuildingData[i].BuildingIndex]);
             SerializedBuilding SerObj = LoadedObj.GetComponent<SerializedBuilding>();
             if (SerObj != null)
@@ -170,5 +193,6 @@ public class SerializeBuildingManager : MonoBehaviour
 
             yield return new WaitForSeconds(0.1f);
         }
+        SaveBuildings();
     }
 }

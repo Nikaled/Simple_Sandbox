@@ -74,12 +74,12 @@ public class Promocode : MonoBehaviour
     public void Promocode1()
     {
         // награды
-        Geekplay.Instance.PlayerData.Coins += 50;
+        Geekplay.Instance.PlayerData.Coins += 25;
     }
 
     public void Promocode2()
     {
-        Geekplay.Instance.PlayerData.Coins += 100;
+        Geekplay.Instance.PlayerData.Coins += 25;
 
     }
 
