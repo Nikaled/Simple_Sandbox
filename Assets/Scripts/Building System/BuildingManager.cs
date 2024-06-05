@@ -9,6 +9,7 @@ using Unity.AI.Navigation;
 
 public class BuildingManager : MonoBehaviour
 {
+    [SerializeField] private AudioSource deleteSound;
     private GameObject CurrentPrefab;
     private Vector3 pos;
     private RaycastHit hit;
@@ -266,21 +267,16 @@ public class BuildingManager : MonoBehaviour
             if (deletingObject.GetComponentInParent<DeletingRoot>() != null)
             {
                 Destroy(deletingObject.GetComponentInParent<DeletingRoot>().gameObject);
-                Debug.Log("Удален родитель");
             }
             if (deletingObject.GetComponentInParent<SerializedBuilding>() != null)
             {
                 Destroy(deletingObject.GetComponentInParent<SerializedBuilding>().gameObject);
-                Debug.Log("Удален родитель");
             }
             else
             {
                 Destroy(deletingObject);
             }
-        }
-        else
-        {
-            Debug.Log("Этот объект нельзя удалить");
+            deleteSound.Play();
         }
     }
     private bool IsItDestructable(GameObject deletingObject)

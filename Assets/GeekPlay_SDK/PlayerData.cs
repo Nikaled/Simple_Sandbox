@@ -17,6 +17,8 @@ public class PlayerData
         }
     }
 
+    public int myDonat;
+
     public bool IsCloesChangeRewardTaked;
     public bool IsSlapBattleRewardTaked;
     public bool IsTwoPlayerGameRewardTaked;

@@ -24,6 +24,11 @@ public class OurGameWindow : MonoBehaviour
     {
         Geekplay.Instance.OurGame = this;
 
+        DisableGameToggle(284619);
+        DisableGameToggle(295391);
+        DisableGameToggle(289951);
+        DisableGameToggle(227711);
+
         if (Geekplay.Instance.Platform == Platform.Yandex)
         {
             Utils.CheckPlayGame(284619);
@@ -37,9 +42,9 @@ public class OurGameWindow : MonoBehaviour
     {
         if(Geekplay.Instance.language == "ru")
         {
-            cloesChangeName.text = "Создай Королеву - Салон Уэнсдей";
-            slapBattleName.text = "Битва Пощечин | Робби Обби";
-            twoPlayerGameName.text = "Игры На Двоих: Дуэль";
+            cloesChangeName.text = "РЎРѕР·РґР°Р№ РљРѕСЂРѕР»РµРІСѓ - РЎР°Р»РѕРЅ РЈСЌРЅСЃРґРµР№";
+            slapBattleName.text = "Р‘РёС‚РІР° РЁР»РµРїРєРѕРІ | Р РѕР±Р±Рё РћР±Р±Рё";
+            twoPlayerGameName.text = "РРіСЂС‹ РќР° Р”РІРѕРёС…: Р”СѓСЌР»СЊ";
         }
         else if(Geekplay.Instance.language == "en")
         {
@@ -70,7 +75,7 @@ public class OurGameWindow : MonoBehaviour
 
                 if (Geekplay.Instance.language == "ru")
                 {
-                    geometryDashButtonTextView.text = "Забрать";
+                    geometryDashButtonTextView.text = "Р—Р°Р±СЂР°С‚СЊ";
                 }
                 else if (Geekplay.Instance.language == "en")
                 {
@@ -87,7 +92,7 @@ public class OurGameWindow : MonoBehaviour
 
                 if (Geekplay.Instance.language == "ru")
                 {
-                    geometryDashButtonTextView.text = "Забрали";
+                    geometryDashButtonTextView.text = "Р—Р°Р±СЂР°Р»Рё";
                 }
                 else if (Geekplay.Instance.language == "en")
                 {
@@ -114,7 +119,7 @@ public class OurGameWindow : MonoBehaviour
 
                 if (Geekplay.Instance.language == "ru")
                 {
-                    cloesChangeRewardButtonTextView.text = "Забрать";
+                    cloesChangeRewardButtonTextView.text = "Р—Р°Р±СЂР°С‚СЊ";
                 }
                 else if (Geekplay.Instance.language == "en")
                 {
@@ -131,7 +136,7 @@ public class OurGameWindow : MonoBehaviour
 
                 if (Geekplay.Instance.language == "ru")
                 {
-                    cloesChangeRewardButtonTextView.text = "Забрали";
+                    cloesChangeRewardButtonTextView.text = "Р—Р°Р±СЂР°Р»Рё";
                 }
                 else if (Geekplay.Instance.language == "en")
                 {
@@ -157,7 +162,7 @@ public class OurGameWindow : MonoBehaviour
 
                 if (Geekplay.Instance.language == "ru")
                 {
-                    slapBattleRewardButtonTextView.text = "Забрать";
+                    slapBattleRewardButtonTextView.text = "Р—Р°Р±СЂР°С‚СЊ";
                 }
                 else if (Geekplay.Instance.language == "en")
                 {
@@ -174,7 +179,7 @@ public class OurGameWindow : MonoBehaviour
 
                 if (Geekplay.Instance.language == "ru")
                 {
-                    slapBattleRewardButtonTextView.text = "Забрали";
+                    slapBattleRewardButtonTextView.text = "Р—Р°Р±СЂР°Р»Рё";
                 }
                 else if (Geekplay.Instance.language == "en")
                 {
@@ -200,7 +205,7 @@ public class OurGameWindow : MonoBehaviour
 
                 if (Geekplay.Instance.language == "ru")
                 {
-                    twoPlayerGameRewardButtonTextView.text = "Забрать";
+                    twoPlayerGameRewardButtonTextView.text = "Р—Р°Р±СЂР°С‚СЊ";
                 }
                 else if (Geekplay.Instance.language == "en")
                 {
@@ -217,7 +222,7 @@ public class OurGameWindow : MonoBehaviour
 
                 if (Geekplay.Instance.language == "ru")
                 {
-                    twoPlayerGameRewardButtonTextView.text = "Забрали";
+                    twoPlayerGameRewardButtonTextView.text = "Р—Р°Р±СЂР°Р»Рё";
                 }
                 else if (Geekplay.Instance.language == "en")
                 {
@@ -237,6 +242,8 @@ public class OurGameWindow : MonoBehaviour
     {
         if (id == 284619)
         {
+            geometryDashButton.onClick.RemoveAllListeners();
+
             geometryDashButton.interactable = true;
 
             geometryDashButton.onClick.AddListener(() =>
@@ -246,7 +253,7 @@ public class OurGameWindow : MonoBehaviour
 
             if (Geekplay.Instance.language == "ru")
             {
-                geometryDashButtonTextView.text = "Играть";
+                geometryDashButtonTextView.text = "РРіСЂР°С‚СЊ";
             }
             else if (Geekplay.Instance.language == "en")
             {
@@ -259,6 +266,8 @@ public class OurGameWindow : MonoBehaviour
         }
         else if (id == 295391)
         {
+            cloesChangeRewardButton.onClick.RemoveAllListeners();
+
             cloesChangeRewardButton.interactable = true;
 
             cloesChangeRewardButton.onClick.AddListener(() =>
@@ -268,7 +277,7 @@ public class OurGameWindow : MonoBehaviour
 
             if (Geekplay.Instance.language == "ru")
             {
-                cloesChangeRewardButtonTextView.text = "Играть";
+                cloesChangeRewardButtonTextView.text = "РРіСЂР°С‚СЊ";
             }
             else if (Geekplay.Instance.language == "en")
             {
@@ -281,6 +290,8 @@ public class OurGameWindow : MonoBehaviour
         }
         else if (id == 289951)
         {
+            slapBattleRewardButton.onClick.RemoveAllListeners();
+
             slapBattleRewardButton.interactable = true;
 
             slapBattleRewardButton.onClick.AddListener(() =>
@@ -290,7 +301,7 @@ public class OurGameWindow : MonoBehaviour
 
             if (Geekplay.Instance.language == "ru")
             {
-                slapBattleRewardButtonTextView.text = "Играть";
+                slapBattleRewardButtonTextView.text = "РРіСЂР°С‚СЊ";
             }
             else if (Geekplay.Instance.language == "en")
             {
@@ -303,6 +314,8 @@ public class OurGameWindow : MonoBehaviour
         }
         else if (id == 227711)
         {
+            twoPlayerGameRewardButton.onClick.RemoveAllListeners();
+
             twoPlayerGameRewardButton.interactable = true;
 
             twoPlayerGameRewardButton.onClick.AddListener(() =>
@@ -312,7 +325,7 @@ public class OurGameWindow : MonoBehaviour
 
             if (Geekplay.Instance.language == "ru")
             {
-                twoPlayerGameRewardButtonTextView.text = "Играть";
+                twoPlayerGameRewardButtonTextView.text = "РРіСЂР°С‚СЊ";
             }
             else if (Geekplay.Instance.language == "en")
             {
@@ -346,7 +359,7 @@ public class OurGameWindow : MonoBehaviour
 
         if (Geekplay.Instance.language == "ru")
         {
-            text.text = "Забрали";
+            text.text = "РџРѕР»СѓС‡РµРЅРѕ";
         }
         else if (Geekplay.Instance.language == "en")
         {

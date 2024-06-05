@@ -5,6 +5,8 @@ using TMPro;
 
 public class LocalizationGameplay : MonoBehaviour
 {
+    public TextMeshProUGUI textYouGot;
+
     public TextMeshProUGUI text1;
 
     public TextMeshProUGUI Heli1;
@@ -114,6 +116,8 @@ public class LocalizationGameplay : MonoBehaviour
     }
     private void RuLocalization()
     {
+        textYouGot.text = "Вы получите 1";
+
         text1.text = "Нажмите F, чтобы сесть";
 
         Heli1.text = "Наклон: W,A,S,D";
@@ -190,11 +194,11 @@ public class LocalizationGameplay : MonoBehaviour
         InAppShop1.text = "МАГАЗИН";
         InAppShop2.text = "10 монет";
         InAppShop3.text = "50 монет";
-        InAppShop4.text = "100 монет";
-        InAppShop5.text = "500 монет";
-        InAppShopB1.text = "10 Ян";
-        InAppShopB2.text = "10 Ян";
-        InAppShopB3.text = "10 Ян";
+        InAppShop4.text = "150 монет";
+        InAppShop5.text = "300 монет";
+        InAppShopB1.text = "20 Ян";
+        InAppShopB2.text = "45 Ян";
+        InAppShopB3.text = "60 Ян";
 
         InAppShopConfirm1.text = "Вы получили:";
         InAppShopConfirm2.text = "ОТЛИЧНО!";
@@ -204,6 +208,8 @@ public class LocalizationGameplay : MonoBehaviour
     }
     private void EnLocalization()
     {
+        textYouGot.text = "you will get 1";
+
         text1.text = "Press F to sit";
 
         Heli1.text = "Pitch: W,A,S,D";
@@ -281,11 +287,11 @@ public class LocalizationGameplay : MonoBehaviour
         InAppShop1.text = "STORE";
         InAppShop2.text = "10 coins";
         InAppShop3.text = "50 coins";
-        InAppShop4.text = "100 coins";
-        InAppShop5.text = "500 coins";
-        InAppShopB1.text = "10 Yan";
-        InAppShopB2.text = "10 Yan";
-        InAppShopB3.text = "10 Yan";
+        InAppShop4.text = "150 coins";
+        InAppShop5.text = "300 coins";
+        InAppShopB1.text = "20 Yan";
+        InAppShopB2.text = "45 Yan";
+        InAppShopB3.text = "60 Yan";
 
         InAppShopConfirm1.text = "You got:";
         InAppShopConfirm2.text = "GREAT!";
@@ -294,6 +300,8 @@ public class LocalizationGameplay : MonoBehaviour
     }
     private void TrLocalization()
     {
+        textYouGot.text = "1 tane alacaksın";
+        
         text1.text = "Oturmak için F'ye basın";
 
         Heli1.text = "Eğim: W,A,S,D";
@@ -371,11 +379,11 @@ public class LocalizationGameplay : MonoBehaviour
         InAppShop1.text = "MAĞAZA";
         InAppShop2.text = "10 jeton";
         InAppShop3.text = "50 jeton";
-        InAppShop4.text = "100 jeton";
-        InAppShop5.text = "500 jeton";
-        InAppShopB1.text = "10 Yan";
-        InAppShopB2.text = "10 Yan";
-        InAppShopB3.text = "10 Yan";
+        InAppShop4.text = "150 jeton";
+        InAppShop5.text = "300 jeton";
+        InAppShopB1.text = "20 Yan";
+        InAppShopB2.text = "45 Yan";
+        InAppShopB3.text = "60 Yan";
 
         InAppShopConfirm1.text = "Aldınız:";
         InAppShopConfirm2.text = "HARİKA!";

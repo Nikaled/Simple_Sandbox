@@ -152,11 +152,11 @@ var plugin = {
                 if(id == res[i].appID)
                 {
                     console.log("true");
-                    myGameInstance.SendMessage('Init', 'EnablePlayedGameToggle', id);
+                    myGameInstance.SendMessage('OurGames', 'EnabledGameToggle', id);
                     return "true";
                 }
             }   
-            myGameInstance.SendMessage('Init', 'DisablePlayedGameToggle', id);
+            myGameInstance.SendMessage('OurGames', 'DisableGameToggle', id);
           });
 
         return "false";
@@ -189,7 +189,7 @@ var plugin = {
 
   		  payments.getPurchases().then(purchases => {
   		    if (purchases.some(purchase => purchase.productID === idOrTag)) {
-  		    	myGameInstance.SendMessage('Init', 'SetPurchasedItem');
+  		    	myGameInstance.SendMessage('Init', 'OnPurchasedItem');
   		    }
   		  }).catch(err => {
   		    // Выбрасывает исключение USER_NOT_AUTHORIZED для неавторизованных пользователей.
@@ -201,7 +201,7 @@ var plugin = {
       console.log(type);
 
       name = UTF8ToString(name);
-      console.log(type);
+      console.log(name);
 
           ysdk.getLeaderboards()
       .then(lb => {
@@ -211,7 +211,7 @@ var plugin = {
             console.log(res);
             if (res.entries.length <= number)
             {
-              myGameInstance.SendMessage('Init', 'EndGetLeaderboardsValue');
+              //myGameInstance.SendMessage('Init', 'EndGetLeaderboardsValue');
               console.log("NULL");
               return;
             }
@@ -219,17 +219,155 @@ var plugin = {
             {
               console.log("SCORE");              
               console.log(String(res.entries[number].score));
-              var message = String(res.entries[number].score) + "," + String(name);
-              myGameInstance.SendMessage('Init', 'GetLeadersScore', message);
-              //return String(res.entries[number].score);
+              var message = String(res.entries[number].score);
+              if (name == "Buildings")
+              {
+                myGameInstance.SendMessage('Init', 'GetLeaders', message);
+              }
+              if (name == "Destroy")
+              {
+                myGameInstance.SendMessage('Init', 'GetLeaders2', message);
+              }
+              if (name == "Donat")
+              {
+                myGameInstance.SendMessage('Init', 'GetLeaders3', message);
+              }
             }
             else if (type == "name")
             {
               console.log("NAME");
               console.log(String(res.entries[number].player.publicName))
-              var message = String(res.entries[number].player.publicName) + "," + String(name);
-              myGameInstance.SendMessage('Init', 'GetLeadersName', message);
-              //return UTF8ToString(res.entries[number].player.publicName);
+              var message = String(res.entries[number].player.publicName);
+              if (name == "Buildings")
+              {
+                myGameInstance.SendMessage('Init', 'GetLeadersName', message);
+              }
+              if (name == "Destroy")
+              {
+                myGameInstance.SendMessage('Init', 'GetLeadersName2', message);
+              }
+              if (name == "Donat")
+              {
+                myGameInstance.SendMessage('Init', 'GetLeadersName3', message);
+              }
+            }
+          });
+      });
+    },
+
+    GetLeaderboard2: function (type, number, name) {
+      type = UTF8ToString(type);
+      console.log(type);
+
+      name = UTF8ToString(name);
+      console.log(name);
+
+          ysdk.getLeaderboards()
+      .then(lb => {
+        // Получение 10 топов
+        lb.getLeaderboardEntries(name, { quantityTop: 10 })
+          .then(res => {
+            console.log(res);
+            if (res.entries.length <= number)
+            {
+              //myGameInstance.SendMessage('Init', 'EndGetLeaderboardsValue');
+              console.log("NULL");
+              return;
+            }
+            else if (type == "score")
+            {
+              console.log("SCORE");              
+              console.log(String(res.entries[number].score));
+              var message = String(res.entries[number].score);
+              if (name == "Buildings")
+              {
+                myGameInstance.SendMessage('Init', 'GetLeaders', message);
+              }
+              if (name == "Destroy")
+              {
+                myGameInstance.SendMessage('Init', 'GetLeaders2', message);
+              }
+              if (name == "Donat")
+              {
+                myGameInstance.SendMessage('Init', 'GetLeaders3', message);
+              }
+            }
+            else if (type == "name")
+            {
+              console.log("NAME");
+              console.log(String(res.entries[number].player.publicName))
+              var message = String(res.entries[number].player.publicName);
+              if (name == "Buildings")
+              {
+                myGameInstance.SendMessage('Init', 'GetLeadersName', message);
+              }
+              if (name == "Destroy")
+              {
+                myGameInstance.SendMessage('Init', 'GetLeadersName2', message);
+              }
+              if (name == "Donat")
+              {
+                myGameInstance.SendMessage('Init', 'GetLeadersName3', message);
+              }
+            }
+          });
+      });
+    },
+
+    GetLeaderboard3: function (type, number, name) {
+      type = UTF8ToString(type);
+      console.log(type);
+
+      name = UTF8ToString(name);
+      console.log(name);
+
+          ysdk.getLeaderboards()
+      .then(lb => {
+        // Получение 10 топов
+        lb.getLeaderboardEntries(name, { quantityTop: 10 })
+          .then(res => {
+            console.log(res);
+            if (res.entries.length <= number)
+            {
+              //myGameInstance.SendMessage('Init', 'EndGetLeaderboardsValue');
+              console.log("NULL");
+              return;
+            }
+            else if (type == "score")
+            {
+              console.log("SCORE");              
+              console.log(String(res.entries[number].score));
+              var message = String(res.entries[number].score);
+              if (name == "Buildings")
+              {
+                myGameInstance.SendMessage('Init', 'GetLeaders', message);
+              }
+              if (name == "Destroy")
+              {
+                myGameInstance.SendMessage('Init', 'GetLeaders2', message);
+              }
+              if (name == "Donat")
+              {
+                myGameInstance.SendMessage('Init', 'GetLeaders3', message);
+              }
+            }
+            else if (type == "name")
+            {
+              console.log("NAME");
+              console.log(String(res.entries[number].player.publicName))
+              var message = String(res.entries[number].player.publicName);
+              if (name == "Buildings")
+              {
+                myGameInstance.SendMessage('Init', 'GetLeadersName', message);
+              }
+              if (name == "Destroy")
+              {
+                myGameInstance.SendMessage('Init', 'GetLeadersName2', message);
+              }
+              if (name == "Donat")
+              {
+                myGameInstance.SendMessage('Init', 'GetLeadersName3', message);
+              }
             }
           });
       });

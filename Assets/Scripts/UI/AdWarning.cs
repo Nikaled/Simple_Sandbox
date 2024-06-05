@@ -64,7 +64,7 @@ public class AdWarning : MonoBehaviour
     private void LocalizateText(int Timer)
     {
         if (Geekplay.Instance.language == "ru")
-            WarningText.text = $"реклама через: {Timer}";
+            WarningText.text = $"Р РµРєР»Р°РјР° С‡РµСЂРµР·: {Timer}";
         if (Geekplay.Instance.language == "en")
             WarningText.text = $"Advertisement in: {Timer}";
         if (Geekplay.Instance.language == "tr")
