@@ -36,7 +36,7 @@ public class AdWarning : MonoBehaviour
     }
     private IEnumerator StartTimer()
     {
-        Player.instance.AdWarningActive = true;
+        Player.instance.InterfaceActive = true;
         Cursor.lockState = CursorLockMode.None;
         Geekplay.Instance.IsAdWarningShowing = true;
         Time.timeScale = 0f;
@@ -53,7 +53,7 @@ public class AdWarning : MonoBehaviour
         Geekplay.Instance.Save();
         WarningPanel.SetActive(false);
         AddCoinsConfirmUI.SetActive(true);
-        Player.instance.AdWarningActive = false;
+        Player.instance.InterfaceActive = false;
         StartCoroutine(AwaitAndShowWarningPanel());
         Cursor.lockState = CursorLockMode.None;
 //#if UNITY_EDITOR

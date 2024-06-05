@@ -149,10 +149,11 @@ public class SerializeBuildingManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Player.instance.AdWarningActive)
+        if (Player.instance.InterfaceActive)
         {
             return;
         }
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.L))
         {
             if (Geekplay.Instance?.PlayerData?.BuildingData?.Count > 0)
@@ -161,6 +162,7 @@ public class SerializeBuildingManager : MonoBehaviour
                 TryLoadPlayerData(Geekplay.Instance.PlayerData.PlayerSkin1, Geekplay.Instance.PlayerData.PlayerTexture1, Geekplay.Instance.PlayerData.PlayerPositionMap1);
             }
         }
+#endif
     }
     public void SaveBuildings()
     {

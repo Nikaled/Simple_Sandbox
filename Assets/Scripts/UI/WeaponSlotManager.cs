@@ -11,7 +11,7 @@ public class WeaponSlotManager : MonoBehaviour
     }
     private void Start()
     {
-        OnWeaponSwitched(4);
+        OnWeaponSwitched(1);
         Player.instance.SwitchedWeapon += OnWeaponSwitched;
     }
     private void OnEnable()

@@ -200,6 +200,8 @@ public class CanvasManager : MonoBehaviour
         if (Is)
         {
         Player.instance.examplePlayer.LockCursor(false);
+            Player.instance.InterfaceActive = true;
+
         }
         else
         {
@@ -229,9 +231,11 @@ public class CanvasManager : MonoBehaviour
     }
     public void CheckActiveUnlockCursorWindows()
     {
+        StartCoroutine(DelayDeactivateInterface(false));
         if (Geekplay.Instance.mobile == true)
         {
             Cursor.lockState = CursorLockMode.None;
+           
             return;
         }
         Cursor.lockState = CursorLockMode.Locked;
@@ -241,8 +245,14 @@ public class CanvasManager : MonoBehaviour
             if(UnlockCursorWindows[i].activeInHierarchy == true)
             {
                 Cursor.lockState = CursorLockMode.None;
+                StartCoroutine(DelayDeactivateInterface(true));
             }
         }
+    }
+    private IEnumerator DelayDeactivateInterface(bool Is)
+    {
+        yield return new WaitForSeconds(0.1f);
+        Player.instance.InterfaceActive = Is;
     }
     private void ChangeCoinsText(int NewValue)
     {
@@ -274,6 +284,7 @@ public class CanvasManager : MonoBehaviour
         if (Is)
         {
        Player.instance.examplePlayer.LockCursor(false);
+            Player.instance.InterfaceActive = true;
         }
         else
         {

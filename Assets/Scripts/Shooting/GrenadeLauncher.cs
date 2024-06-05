@@ -21,6 +21,10 @@ public class GrenadeLauncher : MonoBehaviour
     public void GrenadeInput()
     {
 
+        if (Player.instance.InterfaceActive)
+        {
+            return;
+        }
         crossPosition = PlayerShooting.instance.CrosshairWorldPosition;
         aimDirection = (crossPosition - LaunchPoint.position).normalized;
 

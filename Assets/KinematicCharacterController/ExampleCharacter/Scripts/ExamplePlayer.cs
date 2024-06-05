@@ -124,7 +124,7 @@ namespace KinematicCharacterController.Examples
         }
         public void SwitchCamera()
         {
-            if(Player.instance.AdWarningActive == false)
+            if(Player.instance.InterfaceActive == false)
             CharacterCamera.TargetDistance = (CharacterCamera.TargetDistance == 0f) ? CharacterCamera.DefaultDistance : 0f;
         }
         public void JumpIsTrue()
@@ -135,7 +135,7 @@ namespace KinematicCharacterController.Examples
         {
             PlayerCharacterInputs characterInputs = new PlayerCharacterInputs();
 
-            if (Player.instance.AdWarningActive)
+            if (Player.instance.InterfaceActive)
             {
                 return;
             }

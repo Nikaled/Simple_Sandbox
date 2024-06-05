@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
     public KeyCode RotatingModeButton = KeyCode.M;
     public static Player instance;
     public bool IsFirstView;
-    public bool AdWarningActive;
+    public bool InterfaceActive;
 
     public SkinnedMeshRenderer CurrentCitizenMesh;
     public SkinnedMeshRenderer[] PlayerMeshes;
@@ -55,6 +55,7 @@ public class Player : MonoBehaviour
         DeletingBuilding,
         RotatingBuilding,
         AimingGrenade,
+        InterfaceActive,
     }
     float startTime;
     public enum WeaponType
@@ -243,7 +244,7 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
-        if (currentState == PlayerState.Sitting || AdWarningActive)
+        if (currentState == PlayerState.Sitting || InterfaceActive || InterfaceActive)
         {
             return;
         }

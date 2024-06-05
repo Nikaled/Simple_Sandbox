@@ -106,7 +106,7 @@ public class LocalizationMenu : MonoBehaviour
         PromoAsk.text = "Subscribe to our channel and enter the promo code that you will find there";
         PlaceHolder.text = "Enter the code...";
         TelegramButton.text = "Our Channel";
-        TakeButton.text = "Pick up";
+        TakeButton.text = "Enter";
         PromoMessage1.text = "Promo code successfully entered";
         PromoMessage2.text = "Promo code has already been used";
         PromoMessage3.text = "There is no such promo code";
