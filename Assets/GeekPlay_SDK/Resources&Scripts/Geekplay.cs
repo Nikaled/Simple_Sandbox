@@ -89,7 +89,7 @@ public class Geekplay : MonoBehaviour
 
     //public LeaderboardInGame leaderboardInGame;
     public float remainingTimeUntilUpdateLeaderboard;
-    public float timeToUpdateLeaderboard = 60;
+    public float timeToUpdateLeaderboard = 180;
     public string lastLeaderText;
     public string lastLeaderText2;
     public string lastLeaderText3;
