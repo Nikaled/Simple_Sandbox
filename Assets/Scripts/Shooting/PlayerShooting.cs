@@ -20,6 +20,7 @@ public class PlayerShooting : MonoBehaviour
     [HideInInspector] public Vector3 MouseWorldPosition;
     float GunTimer;
     float GunShootInterval = 0.05f;
+    int gunCount;
     public static PlayerShooting instance;
     public IEnumerator HoldingCoroutine;
     //[SerializeField] public LineRenderer lineRenderer;
@@ -107,8 +108,13 @@ public class PlayerShooting : MonoBehaviour
            
             ShootingProjectile proj = Instantiate(projectile, GunProjectileSpawnPoint.position, Quaternion.LookRotation(aimDirection, Vector3.up));
             GunTimer = Time.time;
-            FireAudioSource.clip = GunSound;
-            FireAudioSource.Play();
+            gunCount += 1;
+            if(gunCount > 7)
+            {
+                FireAudioSource.clip = GunSound;
+                FireAudioSource.Play();
+                gunCount = 0;
+            }
         }
 
     }

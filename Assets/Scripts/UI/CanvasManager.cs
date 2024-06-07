@@ -70,6 +70,10 @@ public class CanvasManager : MonoBehaviour
     }
     private void Update()
     {
+        if(Player.instance.AdWarningActive == true)
+        {
+            return;
+        }
         if(Player.instance.currentState == Player.PlayerState.Idle)
         {
             if (Input.GetKeyDown(KeyCode.I))
@@ -304,9 +308,9 @@ public class CanvasManager : MonoBehaviour
     {
         _planeInstruction.SetActive(Is);
     }
-    public void ShowBuildingMenu(bool Is)
-    {
-        BuildingMenu.SetActive(Is);
+    public void ShowBuildingMenu(bool Is){
+        BuildingMenu.SetActive(Is);    
+        CheckActiveUnlockCursorWindows();
     }
     public void ShowObjectInteructInstruction(bool Is)
     {

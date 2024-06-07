@@ -29,7 +29,7 @@ namespace KinematicCharacterController.Examples
         {
             if (IsCursorLocked)
             {
-            Cursor.lockState = CursorLockMode.Locked;
+                Cursor.lockState = CursorLockMode.Locked;
             }
 
             if(Geekplay.Instance.mobile == false)
@@ -46,6 +46,7 @@ namespace KinematicCharacterController.Examples
 
         public void LockCursor(bool Is)
         {
+            Debug.Log(Is);
             if(Geekplay.Instance != null)
             {
                 if (Geekplay.Instance.mobile)
@@ -100,8 +101,8 @@ namespace KinematicCharacterController.Examples
             }
             else
             {
-                lookInputVector = SwipeDetector.instance.swipeDelta;
-                SwipeDetector.instance.swipeDelta = Vector2.zero;
+                lookInputVector = new Vector2(SwipeDetector.instance.swipeDelta.x * 2.5f, SwipeDetector.instance.swipeDelta.y * 2.5f);
+                //SwipeDetector.instance.swipeDelta = Vector2.zero;
             }
 
             // Prevent moving the camera while the cursor isn't locked

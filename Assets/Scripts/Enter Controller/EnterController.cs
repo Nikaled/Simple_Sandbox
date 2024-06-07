@@ -16,7 +16,7 @@ public class EnterController : MonoBehaviour
         {
             Debug.Log("Collider entered");
             player = other.GetComponent<Player>();
-            if(player.currentState != Player.PlayerState.Idle || IsPlayerIn)
+            if(player.currentState != Player.PlayerState.Idle || IsPlayerIn || player.animationPlayer.RidingAnimal == true)
             {
                 return;
             }
@@ -33,6 +33,10 @@ public class EnterController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             HideEnterInstruction();
+            if(Player.instance.animationPlayer.RidingAnimal == true)
+            {
+                return;
+            }
             CanvasManager.instance.InteracteButton.onClick.RemoveListener(delegate { SitIntoTransport(); });
             CanvasManager.instance.InteracteButton.gameObject.SetActive(false);
             if (player != null)
@@ -73,7 +77,7 @@ public class EnterController : MonoBehaviour
             {
                 if (player.currentNearTransport != null)
                 {
-                    if (player.currentNearTransport == this && player.currentState == Player.PlayerState.Idle)
+                    if (player.currentNearTransport == this && player.currentState == Player.PlayerState.Idle && player.InterfaceActive== false && player.AdWarningActive==false)
                     {
                         if (Input.GetKeyDown(KeyCode.F))
                         {
@@ -111,20 +115,21 @@ public class EnterController : MonoBehaviour
             {
                 if (player.currentNearTransport != null)
                 {
-                    if (player.currentNearTransport == this)
+                    if (player.currentNearTransport == this && player.animationPlayer.RidingAnimal == false)
                     {
                         HpView.SetActive(false);
                         RotatingToPlayer.target = this.transform;
                         player.PlayerSetActive(false);
                         TransportCamera.farClipPlane = 150f;
                         TransportCamera.gameObject.SetActive(true);
+                        CanvasManager.instance.InteracteButton.onClick.RemoveAllListeners();
+                        CanvasManager.instance.InteracteButton.gameObject.SetActive(false);
+                        HideEnterInstruction();
                         ActivateTransport();
                         IsPlayerIn = true;
                         IsInterfaceActive = false;
                         player.SwitchPlayerState(Player.PlayerState.InTransport, 0);
-                        HideEnterInstruction();
-                        CanvasManager.instance.InteracteButton.onClick.RemoveAllListeners();
-                        CanvasManager.instance.InteracteButton.gameObject.SetActive(false);
+
                     }
 
                 }

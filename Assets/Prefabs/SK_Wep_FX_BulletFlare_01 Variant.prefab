@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletRigidbody: {fileID: 868298532}
-  speed: 50
+  speed: 300
   bulletDamage: 1
   ProjectileSource: {fileID: 0}
   TankProjectile: 0

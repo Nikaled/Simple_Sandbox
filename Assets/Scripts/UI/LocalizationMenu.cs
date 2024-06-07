@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class LocalizationMenu : MonoBehaviour
 {
+    [SerializeField] TextMeshProUGUI otherGames;
     [SerializeField] TextMeshProUGUI onlyForAutho;
     [SerializeField] TextMeshProUGUI Button1;
     [SerializeField] TextMeshProUGUI Button2;
@@ -51,7 +52,8 @@ public class LocalizationMenu : MonoBehaviour
     } 
     private void RuLocalization()
     {
-        onlyForAutho.text = "Только для авторизованных пользователей";
+        otherGames.text = "ДРУГИЕ ИГРЫ";
+        onlyForAutho.text = "Награда только для авторизованных пользователей";
         Button1.text = "СОЗДАТЬ МИР";
         Button2.text = "ЗАГРУЗИТЬ МИР";
         Button3.text = "ЛИДЕРЫ";
@@ -82,7 +84,8 @@ public class LocalizationMenu : MonoBehaviour
     }
     private void EnLocalization()
     {
-        onlyForAutho.text = "Only for authorized users";
+        otherGames.text = "OTHER GAMES";
+        onlyForAutho.text = "Reward only for authorized users";
         Button1.text = "CREATE A WORLD";
         Button2.text = "LOAD THE WORLD";
         Button3.text = "LEADERS";
@@ -113,6 +116,7 @@ public class LocalizationMenu : MonoBehaviour
     }
     private void TrLocalization()
     {
+        otherGames.text = "DİĞER OYUNLAR";
         onlyForAutho.text = "Yalnızca yetkili kullanıcılar için";
         Button1.text = "DÜNYAYI YARATMAK";
         Button2.text = "DÜNYAYI YÜKLE";

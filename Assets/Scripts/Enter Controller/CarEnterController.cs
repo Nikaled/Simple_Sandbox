@@ -21,8 +21,9 @@ public class CarEnterController : EnterController
     protected override void ActivateTransport()
     {
         CanvasManager.instance.ShowControlCarInstruction(true, IsTank);
-        vehicleControl.GetComponent<VehicleControl>().activeControl = true;
+        vehicleControl.gameObject.transform.position = new Vector3(vehicleControl.gameObject.transform.position.x, vehicleControl.gameObject.transform.position.y + 1f, vehicleControl.gameObject.transform.position.z);
         vehicleControl.enabled = true;
+        vehicleControl.GetComponent<VehicleControl>().activeControl = true;
         vehicleControl.OnCarEnter();
         if (Geekplay.Instance.mobile)
         {

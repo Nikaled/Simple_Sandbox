@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
     public static Player instance;
     public bool IsFirstView;
     public bool InterfaceActive;
+    public bool AdWarningActive;
 
     public SkinnedMeshRenderer CurrentCitizenMesh;
     public SkinnedMeshRenderer[] PlayerMeshes;
@@ -100,6 +101,10 @@ public class Player : MonoBehaviour
             CanvasManager.instance.TurnYellowBuildingButton(false);
             CanvasManager.instance.TurnYellowRotatingButton(false);
         }
+        if (currentState == PlayerState.DeletingBuilding)
+        {
+            BuildingManager.instance.ActivateDeletingMode(false);
+        }
         switch (newPlayerState)
         {
             case PlayerState.Aiming:
@@ -136,10 +141,6 @@ public class Player : MonoBehaviour
         {
             GoToNormalCamera();
         }
-        if (currentState == PlayerState.DeletingBuilding)
-        {
-            BuildingManager.instance.ActivateDeletingMode(false);
-        }
         if (Delay > 0)
         {
         StartCoroutine(DelaySwitchState(newPlayerState, Delay));
@@ -148,10 +149,10 @@ public class Player : MonoBehaviour
         {
             AfterSwitchState(newPlayerState);
         }
-    }
+    }   
     private void AfterSwitchState(Player.PlayerState newPlayerState)
     {
-        if (newPlayerState == PlayerState.Idle)
+        if (newPlayerState == PlayerState.Idle || newPlayerState == PlayerState.Aiming)
         {
             CanvasManager.instance.DoButton.onClick.AddListener(delegate { MobileFireInput(); });
         }
@@ -244,7 +245,7 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
-        if (currentState == PlayerState.Sitting || InterfaceActive || InterfaceActive)
+        if (currentState == PlayerState.Sitting || InterfaceActive || AdWarningActive)
         {
             return;
         }

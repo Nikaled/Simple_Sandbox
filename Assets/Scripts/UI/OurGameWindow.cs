@@ -65,6 +65,7 @@ public class OurGameWindow : MonoBehaviour
         {
             if (!Geekplay.Instance.PlayerData.IsGeometryDashRewardTaked)
             {
+                geometryDashButton.onClick.RemoveAllListeners();
                 geometryDashButton.interactable = true;
                 geometryDashButton.onClick.AddListener(() =>
                 {
@@ -108,7 +109,7 @@ public class OurGameWindow : MonoBehaviour
         {
             if (!Geekplay.Instance.PlayerData.IsCloesChangeRewardTaked)
             {
-
+                cloesChangeRewardButton.onClick.RemoveAllListeners();
                 cloesChangeRewardButton.interactable = true;
                 cloesChangeRewardButton.onClick.AddListener(() =>
                 {
@@ -152,6 +153,7 @@ public class OurGameWindow : MonoBehaviour
         {
             if (!Geekplay.Instance.PlayerData.IsSlapBattleRewardTaked)
             {
+                slapBattleRewardButton.onClick.RemoveAllListeners();
                 slapBattleRewardButton.interactable = true;
                 slapBattleRewardButton.onClick.AddListener(() =>
                 {
@@ -195,6 +197,7 @@ public class OurGameWindow : MonoBehaviour
         {
             if (!Geekplay.Instance.PlayerData.IsTwoPlayerGameRewardTaked)
             {
+                twoPlayerGameRewardButton.onClick.RemoveAllListeners();
                 twoPlayerGameRewardButton.interactable = true;
                 twoPlayerGameRewardButton.onClick.AddListener(() =>
                 {

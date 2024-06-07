@@ -10,16 +10,18 @@ public class AnimalEnterController : EnterController
     protected override void SitIntoTransport()
     {
         IsPlayerIn = true;
-        HideEnterInstruction();
+        //HideEnterInstruction();
         HpView.SetActive(false);
         ActivateTransport();
         IsInterfaceActive = false;
         player.motor.SetPositionAndRotation(animalRiding.PlayerSittingTransform.position, animalRiding.PlayerSittingTransform.rotation, true);
 
-        CanvasManager.instance.InteracteButton.onClick.RemoveAllListeners();
-        CanvasManager.instance.InteracteButton.onClick.AddListener(delegate { GetOutTransport(); });
+       
+
 
         Analytics.instance.SendEvent(AnalyticsRidingAnimal);
+
+
     }
     protected override void ShowEnterInstruction()
     {
@@ -43,15 +45,18 @@ public class AnimalEnterController : EnterController
     }
     protected override void ActivateTransport()
     {
-        //CanvasManager.instance.ShowHelicopterInstruction(true);
-        //CanvasManager.instance.ShowHelicopterMobileInstruction(true);
+
 
         animalRiding.enabled = true;
         animalRiding.ActivateRiding();
-        //if (Geekplay.Instance.mobile)
-        //{
-        //    HelicopterButtons.instance.GetOutButton.onClick.AddListener(delegate { GetOutTransport(); });
-        //}
+        CanvasManager.instance.InteracteButton.onClick.RemoveAllListeners();
+        CanvasManager.instance.InteracteButton.onClick.AddListener(delegate { GetOutTransport(); });
+        StartCoroutine(ShowExitTransportButton());
+    }
+    private IEnumerator ShowExitTransportButton()
+    {
+        yield return new WaitForSeconds(0.1f);
+        CanvasManager.instance.InteracteButton.gameObject.SetActive(true);
     }
     protected override void DeactivateTransport()
     {

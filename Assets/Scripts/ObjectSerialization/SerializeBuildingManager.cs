@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class SerializeBuildingManager : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class SerializeBuildingManager : MonoBehaviour
     public GameObject SceneObjectsParent;
     public BuildingContentManager SkyContentManager;
     [HideInInspector] public int SkyIndex;
+    [SerializeField] private TextMeshProUGUI buildingsCountText;
+
     private void Awake()
     {
         instance = this;
@@ -53,13 +56,17 @@ public class SerializeBuildingManager : MonoBehaviour
     }
     public void SaveInMapSlot(int number)
     {
+        if (BuildingsOnScene.Count > 50)
+            return;
+        BuildingData = new();
+
         for (int i = 0; i < BuildingsOnScene.Count; i++)
         {
             BuildingData.Add(BuildingsOnScene[i].SaveBuilding());
         }
         Geekplay.Instance.PlayerData.BuildingData = new();
         Geekplay.Instance.PlayerData.BuildingData.AddRange(BuildingData);
-        Debug.Log("��������� ��������: " + Geekplay.Instance.PlayerData.BuildingData.Count);
+        Debug.Log("Ñîõðàíåíî îáúåêòîâ: " + Geekplay.Instance.PlayerData.BuildingData.Count);
         switch (number)
         {
             case 1:
@@ -97,6 +104,7 @@ public class SerializeBuildingManager : MonoBehaviour
         }
         BuildingData.Clear();
         Geekplay.Instance.Save();
+        //Geekplay.Instance.PlayerData.BuildingData.Clear();
     }
     public int FindObjectPrefabIndex(string buildingName)
     {
@@ -107,7 +115,7 @@ public class SerializeBuildingManager : MonoBehaviour
                 return i;
             }
         }
-        Debug.Log("�� ������ ������ � ������:" + buildingName);
+        Debug.Log("Íå íàéäåí ïðåôàá â ñïèñêå:" + buildingName);
         return -1;
     }
     private void Start()
@@ -153,6 +161,27 @@ public class SerializeBuildingManager : MonoBehaviour
         {
             return;
         }
+        if (Geekplay.Instance.language == "ru")
+        {
+        	if (BuildingsOnScene.Count <= 50)
+            	buildingsCountText.text = $"Сохранить можно карту с максимум 50 объектами. У вас: {BuildingsOnScene.Count}/50";
+        	else
+            	buildingsCountText.text = $"<color=red>Сохранить можно карту с максимум 50 объектами. У вас: {BuildingsOnScene.Count}/50</color>";
+        }
+        else if (Geekplay.Instance.language == "en")
+        {
+        	if (BuildingsOnScene.Count <= 50)
+            	buildingsCountText.text = $"You can save a map with a maximum of 50 objects. You have: {BuildingsOnScene.Count}/50";
+        	else
+            	buildingsCountText.text = $"<color=red>You can save a map with a maximum of 50 objects. You have: {BuildingsOnScene.Count}/50</color>";
+        }
+        else if (Geekplay.Instance.language == "tr")
+        {
+        	if (BuildingsOnScene.Count <= 50)
+            	buildingsCountText.text = $"En fazla 50 nesne içeren bir haritayı kaydedebilirsiniz. Elinizde: {BuildingsOnScene.Count}/50";
+        	else
+            	buildingsCountText.text = $"<color=red>En fazla 50 nesne içeren bir haritayı kaydedebilirsiniz. Elinizde: {BuildingsOnScene.Count}/50</color>";
+        }
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.L))
         {
@@ -166,19 +195,29 @@ public class SerializeBuildingManager : MonoBehaviour
     }
     public void SaveBuildings()
     {
+        if (BuildingsOnScene.Count <= 50)
+        {
+            StartCoroutine(SAVE());
+        }
+    }
+
+    IEnumerator SAVE()
+    {   
         for (int i = 0; i < BuildingsOnScene.Count; i++)
         {
             BuildingData.Add(BuildingsOnScene[i].SaveBuilding());
+            yield return new WaitForSeconds(0.01f);
         }
         Geekplay.Instance.PlayerData.BuildingData = new();
         Geekplay.Instance.PlayerData.BuildingData.AddRange(BuildingData);
-        Debug.Log("��������� ��������: " + Geekplay.Instance.PlayerData.BuildingData.Count);
+        Debug.Log("Ñîõðàíåíî îáúåêòîâ: " + Geekplay.Instance.PlayerData.BuildingData.Count);
         Geekplay.Instance.Save();
     }
+
     private void LoadBuildings(List<SerializedBuildingData> BuildingData)
     {
         StartCoroutine(L(BuildingData));
-        Debug.Log("��������� ��������:" + BuildingData.Count);
+        Debug.Log("Çàãðóæåíî îáúåêòîâ:" + BuildingData.Count);
     }
 
     IEnumerator L(List<SerializedBuildingData> BuildingData)

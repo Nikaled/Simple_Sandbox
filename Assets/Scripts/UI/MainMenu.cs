@@ -68,7 +68,12 @@ public class MainMenu : MonoBehaviour
                     Geekplay.Instance.PlayerData.IsPlayerMapLoad = true;
                     Geekplay.Instance.PlayerData.CurrentSaveSlotLoading = index;
                     Geekplay.Instance.Save();
-                SceneManager.LoadScene(Geekplay.Instance.PlayerData.NameMap1);
+                    Geekplay.Instance.ShowInterstitialAd();
+                    SceneManager.LoadScene(Geekplay.Instance.PlayerData.NameMap1);
+                }
+                else
+                {
+                    Cursor.lockState = CursorLockMode.None;
                 }
                 break;
             case 2:
@@ -77,7 +82,12 @@ public class MainMenu : MonoBehaviour
                     Geekplay.Instance.PlayerData.IsPlayerMapLoad = true;
                     Geekplay.Instance.PlayerData.CurrentSaveSlotLoading = index;
                     Geekplay.Instance.Save();
+                    Geekplay.Instance.ShowInterstitialAd();
                     SceneManager.LoadScene(Geekplay.Instance.PlayerData.NameMap2);
+                }
+                else
+                {
+                    Cursor.lockState = CursorLockMode.None;
                 }
                 break;
             case 3:
@@ -86,7 +96,12 @@ public class MainMenu : MonoBehaviour
                     Geekplay.Instance.PlayerData.IsPlayerMapLoad = true;
                     Geekplay.Instance.PlayerData.CurrentSaveSlotLoading = index;
                     Geekplay.Instance.Save();
+                    Geekplay.Instance.ShowInterstitialAd();
                     SceneManager.LoadScene(Geekplay.Instance.PlayerData.NameMap3);
+                }
+                else
+                {
+                    Cursor.lockState = CursorLockMode.None;
                 }
                 break;
             case 4:
@@ -95,7 +110,12 @@ public class MainMenu : MonoBehaviour
                     Geekplay.Instance.PlayerData.IsPlayerMapLoad = true;
                     Geekplay.Instance.PlayerData.CurrentSaveSlotLoading = index;
                     Geekplay.Instance.Save();
+                    Geekplay.Instance.ShowInterstitialAd();
                     SceneManager.LoadScene(Geekplay.Instance.PlayerData.NameMap4);
+                }
+                else
+                {
+                    Cursor.lockState = CursorLockMode.None;
                 }
                 break;
         }

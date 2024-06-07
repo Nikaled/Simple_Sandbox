@@ -52,7 +52,7 @@ public class ShootingProjectile : MonoBehaviour
     }
     private IEnumerator DestroyObj()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
     }
 }

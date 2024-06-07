@@ -273,6 +273,10 @@ public class VehicleControl : MonoBehaviour
     public void OnCarEnter()
     {
         CarQuit = false;
+        accel = 0;
+        accelFwd = 0;
+        accelBack = 0;
+        myRigidbody.velocity = Vector3.zero;
     }
 
     public void OnCarQuit()
