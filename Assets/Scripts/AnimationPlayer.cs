@@ -22,6 +22,10 @@ public class AnimationPlayer : MonoBehaviour
     }
     void Update()
     {
+        if (Player.instance.AdWarningActive)
+        {
+            return;
+        }
         if (RidingAnimal)
         {
             anim.SetBool("isRun", false);

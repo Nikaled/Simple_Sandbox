@@ -616,6 +616,10 @@ public class VehicleControl : MonoBehaviour
                 {
                     if(MobileInput == false)
                     {
+                        if (Player.instance.AdWarningActive)
+                        {
+                            return;
+                        }
                         steer = Mathf.MoveTowards(steer, Input.GetAxis("Horizontal"), 0.2f);
                         accel = Input.GetAxis("Vertical");
                         brake = Input.GetButton("Jump");

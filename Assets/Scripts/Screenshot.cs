@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 
 public class Screenshot : MonoBehaviour
 {
+    [SerializeField] private GameObject adPanel;
     [DllImport("__Internal")]
 	private static extern void DownloadFile(byte[] array, int byteLength, string fileName);
 
@@ -18,7 +19,7 @@ public class Screenshot : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P) && Player.instance.AdWarningActive==false)
         {
             DownloadScreenshot();
         }

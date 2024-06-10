@@ -92,7 +92,7 @@ public class EnterController : MonoBehaviour
         }
         if (IsPlayerIn)
         {
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.F) && player.AdWarningActive == false)
             {
                 Debug.Log("F pressed");
                 GetOutTransport();

@@ -2875,6 +2875,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1609392009933638215, guid: 56d76495770c721458fac1ebfeb0cd7e, type: 3}
+      propertyPath: adPanel
+      value: 
+      objectReference: {fileID: 844271713}
     - target: {fileID: 1868302378746468629, guid: 56d76495770c721458fac1ebfeb0cd7e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2935,6 +2939,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3429420654428197447, guid: 56d76495770c721458fac1ebfeb0cd7e, type: 3}
+      propertyPath: adPanel
+      value: 
+      objectReference: {fileID: 844271713}
     - target: {fileID: 3440846128807200060, guid: 56d76495770c721458fac1ebfeb0cd7e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3531,6 +3539,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &844271713 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3232007615190049272, guid: 56d76495770c721458fac1ebfeb0cd7e, type: 3}
+  m_PrefabInstance: {fileID: 844271711}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &854968844 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3289661418094656551, guid: c5123644f32887d4a879e34e9132d975, type: 3}

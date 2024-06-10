@@ -68,6 +68,10 @@ public class AnimalRiding : MonoBehaviour
 
     void Update()
     {
+        if (Player.instance.AdWarningActive)
+        {
+            return;
+        }
         if (Geekplay.Instance.mobile == false)
         {
             float h = Input.GetAxisRaw("Horizontal");

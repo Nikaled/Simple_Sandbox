@@ -9,6 +9,8 @@ namespace KinematicCharacterController.Examples
 {
     public class ExamplePlayer : MonoBehaviour
     {
+        [SerializeField] private GameObject adPanel;
+
         public ExampleCharacterController Character;
         public ExampleCharacterCamera CharacterCamera;
 
@@ -117,7 +119,7 @@ namespace KinematicCharacterController.Examples
             CharacterCamera.UpdateWithInput(Time.deltaTime, scrollInput, lookInputVector);
 
             // Handle toggling zoom level
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q) && Player.instance.AdWarningActive == false)
             {
                 SwitchCamera();
                 //CharacterCamera.TargetDistance = (CharacterCamera.TargetDistance == 0f) ? CharacterCamera.DefaultDistance : 0f;

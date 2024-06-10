@@ -46,7 +46,7 @@ public class PlaneEnterController : EnterController
     protected override void Update()
     {
         base.Update();
-        if(Geekplay.Instance.mobile == false)
+        if(Geekplay.Instance.mobile == false && Player.instance.AdWarningActive == false)
         {
             PCPlaneInput();
         }

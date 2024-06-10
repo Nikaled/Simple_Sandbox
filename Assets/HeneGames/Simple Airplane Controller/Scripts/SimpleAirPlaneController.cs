@@ -207,6 +207,10 @@ namespace HeneGames.Airplane
 
         private void Update()
         {
+            if(Player.instance.AdWarningActive == true)
+            {
+                return;
+            }
             AudioSystem();
             HandleInputs();
 
