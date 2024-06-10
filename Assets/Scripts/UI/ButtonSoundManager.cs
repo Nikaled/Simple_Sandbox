@@ -12,6 +12,7 @@ public class ButtonSoundManager : MonoBehaviour
     }
     public void OnButtonClickSound()
     {
+        Debug.Log("Sound plays");
         SoundOnClickButton.Play();
     }
 }
