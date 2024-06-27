@@ -99,6 +99,10 @@ public class LocalizationGameplay : MonoBehaviour
 
     public TextMeshProUGUI AdWarningConfirm1;
     public TextMeshProUGUI AdWarningConfirm2;
+
+    public TextMeshProUGUI GainMoneyBuildingButton;
+    public TextMeshProUGUI ConfirmUIFromReward1;
+    public TextMeshProUGUI ConfirmUIFromReward2;
     private void Start()
     {
         if (Geekplay.Instance.language == "ru")
@@ -118,45 +122,46 @@ public class LocalizationGameplay : MonoBehaviour
     {
         textYouGot.text = "Вы получите 1";
 
-        text1.text = "Нажмите F, чтобы сесть";
+        text1.text = "<color=orange>[F]</color> Cесть";
 
-        Heli1.text = "Наклон: W,A,S,D";
-        Heli2.text = "Поворот: Q, E";
-        Heli3.text = "Увеличить/уменьшить мощность: Пробел, Z";
-        Heli4.text = "Включить/выключить двигатель: X";
-        Heli5.text = "Выйти: F";
+        Heli1.text = "<color=orange>[W,A,S,D]</color> Наклон";
+        Heli2.text = "<color=orange>[Q, E]</color> Поворот";
+        Heli3.text = "<color=orange>[Пробел, Z]</color>Увеличить/уменьшить мощность";
+        Heli4.text = "<color=orange>[X]</color> Включить/выключить двигатель ";
+        Heli5.text = "<color=orange>[F]</color> Выйти";
 
-        Plane1.text = "Взлететь: удерживай пробел";
-        Plane2.text = "Наклон: W,A,S,D";
-        Plane3.text = "Поворот: Q, E";
-        Plane4.text = "Выйти: F";
-        ObjectInteraction.text = "Нажмите F, чтобы взаимодействовать";
-        BuildObject1.text = "Поставить объект: Левая кнопка мыши";
-        BuildObject2.text = "Повернуть: R";
-        BuildObject3.text = "Выйти из режима: B";
+        Plane1.text = "<color=orange>[удерживать Пробел]</color> Взлететь";
+        Plane2.text = "<color=orange>[W,A,S,D]</color> Наклон";
+        Plane3.text = "<color=orange>[Q, E]</color> Поворот";
+        Plane4.text = "<color=orange>[F]</color> Выйти";
 
-        DeletingObject1.text = "Удалить объект: Левая кнопка мыши";
-        DeletingObject2.text = "Выйти из режима:N";
+        ObjectInteraction.text = "<color=orange>[F]</color> Взаимодействовать";
+        BuildObject1.text = "<color=orange>[ЛКМ]</color> Поставить объект";
+        BuildObject2.text = "<color=orange>[R]</color> Повернуть";
+        BuildObject3.text = "<color=orange>[B]</color> Выйти из режима";
 
-        RotatingObject1.text = "Выбрать объект: Левая кнопка мыши";
-        RotatingObject2.text = "Выйти из режима:M";
+        DeletingObject1.text = "<color=orange>[ЛКМ]</color> Удалить объект";
+        DeletingObject2.text = "<color=orange>[N]</color> Выйти из режима";
 
-        IdleInstruction1.text = "Строительство: B";
-        IdleInstruction2.text = "Удаление: N";
-        IdleInstruction3.text = "Перестройка: M";
-        IdleInstruction4.text = "Скриншот: P";
-        IdleInstruction5.text = "Сохранение: K";
-        IdleInstruction6.text = "Сменить камеру: Q";
-        IdleInstruction7.text = "Магазин: I";
-        IdleInstruction8.text = "В меню: Tab";
+        RotatingObject1.text = "<color=orange>[ЛКМ]</color> Выбрать объект";
+        RotatingObject2.text = "<color=orange>[M]</color> Выйти из режима";
 
-        CitizenEnterInstruction.text = "Нажмите F, чтобы поменяться телами";
+        IdleInstruction1.text = "<color=orange>[B]</color> Строительство";
+        IdleInstruction2.text = "<color=orange>[N]</color> Удаление";
+        IdleInstruction3.text = "<color=orange>[M]</color> Перестройка";
+        IdleInstruction4.text = "<color=orange>[P]</color> Скриншот";
+        IdleInstruction5.text = "<color=orange>[K]</color> Сохранение";
+        IdleInstruction6.text = "<color=orange>[Q]</color> Сменить камеру";
+        IdleInstruction7.text = "<color=orange>[I]</color> Магазин";
+        IdleInstruction8.text = "<color=orange>[Tab]</color> В меню";
 
-        CarControl1.text = "Управление: W,A,S,D";
-        CarControl2.text = "Тормоз: Пробел";
-        CarControl3.text = "Сменить камеру: Q";
-        CarControl4.text = "Выйти: F";
-        CarControl5.text = "Выстрел: Левая кнопка мыши";
+        CitizenEnterInstruction.text = "<color=orange>[F]</color> Поменяться телами";
+
+        CarControl1.text = "<color=orange>[W,A,S,D]</color> Управление";
+        CarControl2.text = "<color=orange>[Пробел]</color> Тормоз";
+        CarControl3.text = "<color=orange>[Q]</color> Сменить камеру";
+        CarControl4.text = "<color=orange>[F]</color> Выйти";
+        CarControl5.text = "<color=orange>[ЛКМ]</color> Выстрел";
 
         LeftUpButton1.text = "Скриншот";
         LeftUpButton2.text = "Сохранить";
@@ -205,51 +210,55 @@ public class LocalizationGameplay : MonoBehaviour
 
         AdWarningConfirm1.text = InAppShopConfirm1.text;
         AdWarningConfirm2.text = InAppShopConfirm2.text;
+
+        GainMoneyBuildingButton.text = "Получить 10 монет";
+        ConfirmUIFromReward1.text = InAppShopConfirm1.text;
+        ConfirmUIFromReward2.text = InAppShopConfirm2.text;
     }
     private void EnLocalization()
     {
         textYouGot.text = "you will get 1";
 
-        text1.text = "Press F to sit";
+        text1.text = "<color=orange>[F]</color> Sit down";
 
-        Heli1.text = "Pitch: W,A,S,D";
-        Heli2.text = "Roll: Q, E";
-        Heli3.text = "Increase/decrease power: Space, Z";
-        Heli4.text = "Turn on/off the engine: X";
-        Heli5.text = "Exit: F";
+        Heli1.text = "<color=orange>[W,A,S,D]</color> Pitch";
+        Heli2.text = "<color=orange>[Q, E]</color> Roll";
+        Heli3.text = "<color=orange>[Space, Z]</color>Increase/decrease power";
+        Heli4.text = "<color=orange>[X]</color> Turn on/off the engine";
+        Heli5.text = "<color=orange>[F]</color> Exit";
 
-        Plane1.text = "Take off: hold the space bar";
-        Plane2.text = "Pitch: W,A,S,D";
-        Plane3.text = "Roll: Q, E";
-        Plane4.text = "Exit: F";
+        Plane1.text = "<color=orange>[hold the Space bar]</color> Take off";
+        Plane2.text = "<color=orange>[W,A,S,D]</color> Pitch";
+        Plane3.text = "<color=orange>[Q, E]</color> Roll";
+        Plane4.text = "<color=orange>[F]</color> Exit";
 
-        ObjectInteraction.text = "Press F to interact";
-        BuildObject1.text = "Put the object: Left mouse button";
-        BuildObject2.text = "Rotate: R";
-        BuildObject3.text = "Exit mode: B";
+        ObjectInteraction.text = "<color=orange>[F]</color> Interact";
+        BuildObject1.text = "<color=orange>[LMB]</color> Place object";
+        BuildObject2.text = "<color=orange>[R]</color> Rotate";
+        BuildObject3.text = "<color=orange>[B]</color> Exit mode";
 
-        DeletingObject1.text = "Delete object: Left mouse button";
-        DeletingObject2.text = "Exit mode:N";
+        DeletingObject1.text = "<color=orange>[LMB]</color> Delete object";
+        DeletingObject2.text = "<color=orange>[N]</color> Exit mode";
 
-        RotatingObject1.text = "Select an object: Left mouse button";
-        RotatingObject2.text = "Exit mode:M";
+        RotatingObject1.text = "<color=orange>[LMB]</color> Select object";
+        RotatingObject2.text = "<color=orange>[M]</color> Exit mode";
 
-        IdleInstruction1.text = "Building: B";
-        IdleInstruction2.text = "Deleting: N";
-        IdleInstruction3.text = "Rebuild: M";
-        IdleInstruction4.text = "Screenshot: P";
-        IdleInstruction5.text = "Save: K";
-        IdleInstruction6.text = "Change camera: Q";
-        IdleInstruction7.text = "Store: I";
-        IdleInstruction8.text = "Go to menu: Tab";
+        IdleInstruction1.text = "<color=orange>[B]</color> Build";
+        IdleInstruction2.text = "<color=orange>[N]</color> Delete";
+        IdleInstruction3.text = "<color=orange>[M]</color> Rebuild";
+        IdleInstruction4.text = "<color=orange>[P]</color> Screenshot";
+        IdleInstruction5.text = "<color=orange>[K]</color> Save";
+        IdleInstruction6.text = "<color=orange>[Q]</color> Change camera";
+        IdleInstruction7.text = "<color=orange>[I]</color> Shop";
+        IdleInstruction8.text = "<color=orange>[Tab]</color> To menu";
 
-        CitizenEnterInstruction.text = "Press F to swap bodies";
+        CitizenEnterInstruction.text = "<color=orange>[F]</color> Swap bodies";
 
-        CarControl1.text = "Controls: W,A,S,D";
-        CarControl2.text = "Brake: Space bar";
-        CarControl3.text = "Change camera: Q";
-        CarControl4.text = "Exit: F";
-        CarControl5.text = "Shoot: Left mouse button";
+        CarControl1.text = "<color=orange>[W,A,S,D]</color> Movement";
+        CarControl2.text = "<color=orange>[Space bar]</color> Brake";
+        CarControl3.text = "<color=orange>[Q]</color> Change camera";
+        CarControl4.text = "<color=orange>[F]</color> Exit";
+        CarControl5.text = "<color=orange>[LMB]</color> Shoot";
 
         LeftUpButton1.text = "Screenshot";
         LeftUpButton2.text = "Save";
@@ -297,50 +306,55 @@ public class LocalizationGameplay : MonoBehaviour
         InAppShopConfirm2.text = "GREAT!";
         AdWarningConfirm1.text = InAppShopConfirm1.text;
         AdWarningConfirm2.text = InAppShopConfirm2.text;
+
+        GainMoneyBuildingButton.text = "Get 10 coins";
+        ConfirmUIFromReward1.text = InAppShopConfirm1.text;
+        ConfirmUIFromReward2.text = InAppShopConfirm2.text;
     }
     private void TrLocalization()
     {
         textYouGot.text = "1 tane alacaksın";
-        
-        text1.text = "Oturmak için F'ye basın";
 
-        Heli1.text = "Eğim: W,A,S,D";
-        Heli2.text = "Dönüş: Q, E";
-        Heli3.text = "Gücü Arttır/azalt: Boşluk, Z";
-        Heli4.text = "Motoru aç/kapat: X";
-        Heli5.text = "Çık: F";
+        text1.text = "<color=orange>[F]</color> Otur";
 
-        Plane1.text = "Kalkış: boşluğu koru";
-        Plane2.text = "Eğim: W,A,S,D";
-        Plane3.text = "Dönüş: Q, E";
-        Plane4.text = "Çık: F";
-        ObjectInteraction.text = "Etkileşim kurmak için F'ye basın";
-        BuildObject1.text = "Nesneyi koy: Farenin sol düğmesi";
-        BuildObject2.text = "Döndür: R";
-        BuildObject3.text = "Moddan çık: B";
+        Heli1.text = "<color=orange>[W,A,S,D]</color> Eğim";
+        Heli2.text = "<color=orange>[Q, E]</color> Döndürme";
+        Heli3.text = "<color=orange>[Boşluk, Z]</color>Gücü artırın/azaltın";
+        Heli4.text = "<color=orange>[X]</color>Motoru aç/kapat ";
+        Heli5.text = "<color=orange>[F]</color> Çık";
 
-        DeletingObject1.text = "Nesneyi sil: Farenin sol düğmesi";
-        DeletingObject2.text = "Moddan çık:N";
+        Plane1.text = "<color=orange>[Boşluğu tut]</color> Uçmak";
+        Plane2.text = "<color=orange>[W,A,S,D]</color> Eğim";
+        Plane3.text = "<color=orange>[Q, E]</color> Döndürme";
+        Plane4.text = "<color=orange>[F]</color> Çık";
 
-        RotatingObject1.text = "Nesne seç: Farenin sol düğmesi";
-        RotatingObject2.text = "Moddan çık:M";
+        ObjectInteraction.text = "<color=orange>[F]</color> Etkileşimde bulunun";
+        BuildObject1.text = "<color=orange>[LMB]</color> Nesneyi koy";
+        BuildObject2.text = "<color=orange>[R]</color> Döndür";
+        BuildObject3.text = "<color=orange>[B]</color> Moddan çık";
 
-        IdleInstruction1.text = "İnşaat: B";
-        IdleInstruction2.text = "Silme: N";
-        IdleInstruction3.text = "Yeniden yapılandırma: M";
-        IdleInstruction4.text = "Ekran görüntüsü: P";
-        IdleInstruction5.text = "Kaydet: K";
-        IdleInstruction6.text = "Kamerayı değiştir:Q";
-        IdleInstruction7.text = "Mağaza: İ";
-        IdleInstruction8.text = "Menüde: Sekme";
+        DeletingObject1.text = "<color=orange>[LMB]</color> Nesneyi sil";
+        DeletingObject2.text = "<color=orange>[N]</color> Moddan çık";
 
-        CitizenEnterInstruction.text = "Beden değiştirmek için F'ye basın";
+        RotatingObject1.text = "<color=orange>[LMB]</color> Nesne seç";
+        RotatingObject2.text = "<color=orange>[M]</color> Moddan çık";
 
-        CarControl1.text = "Kontrol: W,A,S,D";
-        CarControl2.text = "Fren: Boşluk Çubuğu";
-        CarControl3.text = "Kamerayı değiştir: Q";
-        CarControl4.text = "Çık: F";
-        CarControl5.text = "Atış: Farenin sol düğmesi";
+        IdleInstruction1.text = "<color=orange>[B]</color> İnşaat";
+        IdleInstruction2.text = "<color=orange>[N]</color> Silme";
+        IdleInstruction3.text = "<color=orange>[M]</color> Yeniden yapılandırma";
+        IdleInstruction4.text = "<color=orange>[P]</color> Ekran görüntüsü";
+        IdleInstruction5.text = "<color=orange>[K]</color> Kaydetme";
+        IdleInstruction6.text = "<color=orange>[Q]</color> Kamerayı değiştir";
+        IdleInstruction7.text = "<color=orange>[I]</color> Mağaza";
+        IdleInstruction8.text = "<color=orange>[Tab]</color> Menüye git";
+
+        CitizenEnterInstruction.text = "<color=orange>[F]</color> Organları değiştir";
+
+        CarControl1.text = "<color=orange>[W,A,S,D]</color> Yönetimi";
+        CarControl2.text = "<color=orange>[Boşluk]</color> Fren";
+        CarControl3.text = "<color=orange>[Q]</color> Kamerayı değiştir";
+        CarControl4.text = "<color=orange>[F]</color> Çık";
+        CarControl5.text = "<color=orange>[LMB]</color> Atış";
 
 
         LeftUpButton1.text = "Ekran görüntüsü";
@@ -390,5 +404,9 @@ public class LocalizationGameplay : MonoBehaviour
 
         AdWarningConfirm1.text = InAppShopConfirm1.text;
         AdWarningConfirm2.text = InAppShopConfirm2.text;
+
+        GainMoneyBuildingButton.text = "10 jeton alın";
+        ConfirmUIFromReward1.text = InAppShopConfirm1.text;
+        ConfirmUIFromReward2.text = InAppShopConfirm2.text;
     }
 }

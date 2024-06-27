@@ -35,6 +35,19 @@ public class LocalizationMenu : MonoBehaviour
     [SerializeField] TextMeshProUGUI PromoMessage2;
     [SerializeField] TextMeshProUGUI PromoMessage3;
     [SerializeField] Text PlaceHolder;
+
+    public TextMeshProUGUI ShopButton;
+    public TextMeshProUGUI InAppShop1;
+    public TextMeshProUGUI InAppShop2;
+    public TextMeshProUGUI InAppShop3;
+    public TextMeshProUGUI InAppShop4;
+    public TextMeshProUGUI InAppShop5;
+    public TextMeshProUGUI InAppShopB1;
+    public TextMeshProUGUI InAppShopB2;
+    public TextMeshProUGUI InAppShopB3;
+
+    public TextMeshProUGUI InAppShopConfirm1;
+    public TextMeshProUGUI InAppShopConfirm2;
     private void Start()
     {
       if(Geekplay.Instance.language == "ru")
@@ -81,6 +94,19 @@ public class LocalizationMenu : MonoBehaviour
         PromoMessage1.text = "Промокод успешно введен";
         PromoMessage2.text = "Промокод уже использован";
         PromoMessage3.text = "Такого промокода нет";
+
+        InAppShop1.text = "МАГАЗИН";
+        InAppShop2.text = "10 монет";
+        InAppShop3.text = "50 монет";
+        InAppShop4.text = "150 монет";
+        InAppShop5.text = "300 монет";
+        InAppShopB1.text = "20 Ян";
+        InAppShopB2.text = "45 Ян";
+        InAppShopB3.text = "60 Ян";
+
+        InAppShopConfirm1.text = "Вы получили:";
+        InAppShopConfirm2.text = "ОТЛИЧНО!";
+        ShopButton.text = "Больше \n <color=orange>   Золота </color> ";
     }
     private void EnLocalization()
     {
@@ -113,6 +139,20 @@ public class LocalizationMenu : MonoBehaviour
         PromoMessage1.text = "Promo code successfully entered";
         PromoMessage2.text = "Promo code has already been used";
         PromoMessage3.text = "There is no such promo code";
+
+        InAppShop1.text = "STORE";
+        InAppShop2.text = "10 coins";
+        InAppShop3.text = "50 coins";
+        InAppShop4.text = "150 coins";
+        InAppShop5.text = "300 coins";
+        InAppShopB1.text = "20 Yan";
+        InAppShopB2.text = "45 Yan";
+        InAppShopB3.text = "60 Yan";
+
+        InAppShopConfirm1.text = "You got:";
+        InAppShopConfirm2.text = "GREAT!";
+
+        ShopButton.text = "More \n <color=orange>   Gold </color> ";
     }
     private void TrLocalization()
     {
@@ -145,5 +185,18 @@ public class LocalizationMenu : MonoBehaviour
         PromoMessage1.text = "Promosyon Kodu başarıyla girildi";
         PromoMessage2.text = "Promosyon Kodu zaten kullanılıyor";
         PromoMessage3.text = "Böyle bir promosyon kodu yok";
+
+        InAppShop1.text = "MAĞAZA";
+        InAppShop2.text = "10 jeton";
+        InAppShop3.text = "50 jeton";
+        InAppShop4.text = "150 jeton";
+        InAppShop5.text = "300 jeton";
+        InAppShopB1.text = "20 Yan";
+        InAppShopB2.text = "45 Yan";
+        InAppShopB3.text = "60 Yan";
+
+        InAppShopConfirm1.text = "Aldınız:";
+        InAppShopConfirm2.text = "HARİKA!";
+        ShopButton.text = "Altın \n <color=orange>   Alın </color> ";
     }
 }

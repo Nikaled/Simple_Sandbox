@@ -1,39 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
-
-public class AppShopCell : MonoBehaviour
+public class UndependAppShopCell : MonoBehaviour
 {
     public string PurName;
     public int PurGold;
     public Button BuyGoldButton;
     [Header("Only Reward")]
-    [SerializeField]  GameObject RewardBlocker;
-    [SerializeField]  TextMeshProUGUI RewardTimerText;
-
+    [SerializeField] protected GameObject RewardBlocker;
+    [SerializeField] protected TextMeshProUGUI RewardTimerText;
+    [SerializeField] GameObject ConfirmUI;
+    [SerializeField] Image ButtonImage;
+    [SerializeField] GameObject ObjectsToHide;
+    private void Start()
+    {
+        SubscribeOnReward();
+    }
     private void OnEnable()
     {
-        if(RewardBlocker != null && RewardTimerText !=null)
+        if (RewardBlocker != null && RewardTimerText != null)
         {
             Geekplay.Instance.RewardLockTimeUpdate += SetNewTimerTextAndCheckEnd;
             if (Geekplay.Instance.RewardLockTimer > 0)
             {
+                ShowButton(false);
                 RewardBlocker.SetActive(true);
                 RewardTimerText.text = string.Format("{0:00}:{1:00}", 01, 30);
             }
             else
             {
+                ShowButton(true);
                 RewardBlocker.SetActive(false);
             }
         }
     }
-    private void OnDisable()
+    private void ShowButton(bool Is)
     {
-        if(RewardBlocker != null && RewardTimerText != null)
+        ButtonImage.enabled = Is;
+        ObjectsToHide.gameObject.SetActive(Is);
+    }
+    protected virtual void OnDisable()
+    {
+        if (RewardBlocker != null && RewardTimerText != null)
         {
-        Geekplay.Instance.RewardLockTimeUpdate -= SetNewTimerTextAndCheckEnd;
+            Geekplay.Instance.RewardLockTimeUpdate -= SetNewTimerTextAndCheckEnd;
         }
     }
     public void SubscribeOnPurchase()
@@ -58,26 +70,28 @@ public class AppShopCell : MonoBehaviour
         RewardTimerText.text = string.Format("{0:00}:{1:00}", 01, 30);
         RewardBlocker.SetActive(true);
         BuyGoldButton.enabled = false;
+        ShowButton(false);
     }
-   private void SetNewTimerTextAndCheckEnd(int Timer)
+    private void SetNewTimerTextAndCheckEnd(int Timer)
     {
         if (RewardTimerText == null)
         {
             return;
         }
-        if(Timer < 60)
+        if (Timer < 60)
         {
-        RewardTimerText.text = string.Format("{0:00}:{1:00}", 00, Timer);
+            RewardTimerText.text = string.Format("{0:00}:{1:00}", 00, Timer);
         }
         else
         {
-           int TimerSeconds = Timer - 60;
+            int TimerSeconds = Timer - 60;
             RewardTimerText.text = string.Format("{0:00}:{1:00}", 01, TimerSeconds);
         }
         if (Timer <= 0)
         {
             RewardBlocker.SetActive(false);
             BuyGoldButton.enabled = true;
+            ShowButton(true);
         }
     }
     private void GetGold()
@@ -88,9 +102,9 @@ public class AppShopCell : MonoBehaviour
     private IEnumerator BlockRewardOnTimeByGeekplay()
     {
         Geekplay.Instance.RewardLockTimer = 90;
-        while(Geekplay.Instance.RewardLockTimer > 0)
+        while (Geekplay.Instance.RewardLockTimer > 0)
         {
-        yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(1);
             Geekplay.Instance.RewardLockTimer--;
             Geekplay.Instance.RewardLockTimeUpdate?.Invoke(Geekplay.Instance.RewardLockTimer);
         }
