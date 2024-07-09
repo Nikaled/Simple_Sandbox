@@ -22,10 +22,12 @@ public class AppShopCell : MonoBehaviour
             {
                 RewardBlocker.SetActive(true);
                 RewardTimerText.text = string.Format("{0:00}:{1:00}", 01, 30);
+                BuyGoldButton.enabled = false;
             }
             else
             {
                 RewardBlocker.SetActive(false);
+                BuyGoldButton.enabled = true;
             }
         }
     }

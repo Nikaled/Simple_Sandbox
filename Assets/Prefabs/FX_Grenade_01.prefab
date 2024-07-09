@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a88af1f365538043a3049578f52112b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DelayBeforeExplosion: 5
+  DelayBeforeExplosion: 3
   DestroyAnimation: {fileID: 1056904543853562, guid: 4cf45cdce36e66e4a93614abb5ae7821, type: 3}
   GrenadeDamage: 10
   ExplosionScale: 2
