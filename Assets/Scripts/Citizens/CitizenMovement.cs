@@ -5,25 +5,28 @@ using UnityEngine.AI;
 
 public class CitizenMovement : MonoBehaviour
 {
-    private bool isMoving;
+    protected bool isMoving;
     public NavMeshAgent agent;
     public Animator animator;
     public Transform CurrentDestination;
-    private Vector3? CurrentDest;
-    private NavMeshChecker checker;
+    protected Vector3? CurrentDest;
+    protected NavMeshChecker checker;
     private bool IsDying;
-    [SerializeField] HpSystem hpSystem;
+    [SerializeField] protected HpSystem hpSystem;
     public float DieAnimationTime = 2f;
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            agent.enabled = false;
-            agent.enabled = true;
+            if(agent != null)
+            {
+                agent.enabled = false;
+                agent.enabled = true;
+            }      
         }
     }
-    private void Start()
+    protected virtual void Start()
     {
         checker = Instantiate(CitizenNavMeshManager.instance.Checker, gameObject.transform.position, Quaternion.identity);
         checker.citizen = this;
@@ -43,7 +46,7 @@ public class CitizenMovement : MonoBehaviour
         animator.SetBool("IsWalk", false);
         animator.SetFloat("Speed_f", 0);
     }
-    private void CitizenDie()
+    protected void CitizenDie()
     {
         if(gameObject.GetComponent<CapsuleCollider>() != null)
         {
@@ -62,7 +65,7 @@ public class CitizenMovement : MonoBehaviour
         yield return new WaitForSeconds(DieAnimationTime);
         Destroy(hpSystem.RootObject);
     }
-    public void FindNewDestination()
+    public virtual void FindNewDestination()
     {
         CitizenNavMeshManager.instance.MoveCheckerToNewPoint(checker.gameObject);
     }
