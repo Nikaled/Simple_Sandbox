@@ -618,7 +618,11 @@ public class BuildingManager : MonoBehaviour
             {
                 TurnNormalChosenCitizen(rotatingObject.GetComponentsInChildren<SkinnedMeshRenderer>(), CashedMaterialsOnRotating);
 
+                var navmesh = rotatingObject.GetComponent<NavMeshAgent>();
+                if(navmesh != null)
+                {
                 rotatingObject.GetComponent<NavMeshAgent>().enabled = false;
+                }
 
             }
         }
@@ -627,7 +631,11 @@ public class BuildingManager : MonoBehaviour
             ChangeTextureManager.instance.ClearButtonListeners();
             if (rotatingObject.CompareTag("Citizen"))
             {
-                rotatingObject.GetComponent<NavMeshAgent>().enabled = true;
+                var navmesh = rotatingObject.GetComponent<NavMeshAgent>();
+                if (navmesh != null)
+                {
+                    rotatingObject.GetComponent<NavMeshAgent>().enabled = true;
+                }
 
             }
         }

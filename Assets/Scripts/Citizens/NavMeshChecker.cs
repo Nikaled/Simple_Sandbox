@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NavMeshChecker : MonoBehaviour
 {
-    public CitizenMovement citizen;
+    public IMoveableAgent citizen;
     [SerializeField] LayerMask NotAvailableToGoMask;
 
     private void OnTriggerEnter(Collider other)

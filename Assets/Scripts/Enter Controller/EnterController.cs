@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class EnterController : MonoBehaviour
 {
-    protected bool IsInterfaceActive;
+    public bool IsInterfaceActive;
     [HideInInspector] public bool IsPlayerIn;
     [SerializeField] protected Transform PlayerSpawnTransform;
     [SerializeField] protected Camera TransportCamera;
     [SerializeField] protected GameObject HpView;
-    protected Player player;
+    [HideInInspector] public Player player;
     protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -103,7 +103,23 @@ public class EnterController : MonoBehaviour
     {
         CanvasManager.instance.ShowTransportEnterInstruction(false);
     }
-    protected virtual void SitIntoTransport()
+    public void ForceEnter()
+    {
+        player = Player.instance;
+        HpView.SetActive(false);
+        RotatingToPlayer.target = this.transform;
+        player.PlayerSetActive(false);
+        TransportCamera.farClipPlane = 150f;
+        TransportCamera.gameObject.SetActive(true);
+        CanvasManager.instance.InteracteButton.onClick.RemoveAllListeners();
+        CanvasManager.instance.InteracteButton.gameObject.SetActive(false);
+        HideEnterInstruction();
+        ActivateTransport();
+        IsPlayerIn = true;
+        IsInterfaceActive = false;
+        player.SwitchPlayerState(Player.PlayerState.InTransport, 0);
+    }
+    public virtual void SitIntoTransport()
     {
         if (Player.instance.currentState != Player.PlayerState.Idle)
         {

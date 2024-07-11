@@ -115,10 +115,14 @@ public class TutorialShootingCitizen : MonoBehaviour
     }
     protected void CitizenDie()
     {
-        if (gameObject.GetComponent<CapsuleCollider>() != null)
+        if (IsDying)
         {
-            gameObject.GetComponent<CapsuleCollider>().enabled = false;
+            return;
         }
+        //if (gameObject.GetComponent<CapsuleCollider>() != null)
+        //{
+        //    gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        //}
         IsDying = true;
         animator.SetBool("IsWalk", false);
         animator.SetTrigger("Die");

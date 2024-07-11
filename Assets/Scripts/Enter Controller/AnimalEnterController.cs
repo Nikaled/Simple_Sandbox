@@ -7,7 +7,7 @@ public class AnimalEnterController : EnterController
     [SerializeField] AnimalRiding animalRiding;
 
     private readonly string AnalyticsRidingAnimal = "RidingAnimal";
-    protected override void SitIntoTransport()
+    public override void SitIntoTransport()
     {
         IsPlayerIn = true;
         //HideEnterInstruction();

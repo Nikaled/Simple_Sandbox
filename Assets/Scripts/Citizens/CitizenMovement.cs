@@ -73,12 +73,13 @@ public class CitizenMovement : MonoBehaviour, IMoveableAgent
     {
         if(IsDying == false)
         {
-            MoveToPosition(checker.transform.position);
-            if (Vector3.Distance(gameObject.transform.position, checker.transform.position) < 9)
-            {
-                StopMoving();
-                FindNewDestination();
-            }
+                MoveToPosition(checker.transform.position);
+                if (Vector3.Distance(gameObject.transform.position, checker.transform.position) < 9)
+                {
+                    StopMoving();
+                    FindNewDestination();
+                }
+              
         }
 
     }

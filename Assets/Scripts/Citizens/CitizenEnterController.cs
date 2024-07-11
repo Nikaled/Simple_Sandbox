@@ -34,7 +34,7 @@ public class CitizenEnterController : EnterController
         AllCitizenMeshes[MeshIndex].gameObject.SetActive(true);
         CitizenMesh = AllCitizenMeshes[MeshIndex];
     }
-    protected override void SitIntoTransport()
+    public override void SitIntoTransport()
     {
         Player.instance.SwapCitizenAudioSource.Play();
         HideEnterInstruction();

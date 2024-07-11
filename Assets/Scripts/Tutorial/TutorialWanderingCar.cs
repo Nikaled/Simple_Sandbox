@@ -4,15 +4,14 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-public class TutorialWanderingCar : MonoBehaviour
+public class TutorialWanderingCar : MonoBehaviour, IMoveableAgent
 {
     protected NavMeshChecker checker;
     [SerializeField] NavMeshAgent agent;
-    [SerializeField] CarEnterController carEnterController;
     void Start()
     {
         checker = Instantiate(CitizenNavMeshManager.instance.Checker, gameObject.transform.position, Quaternion.identity);
-        //checker.citizen = this;
+        checker.citizen = this;
         checker.GetComponent<SphereCollider>().enabled = true;
         FindNewDestination();
     }
@@ -26,13 +25,11 @@ public class TutorialWanderingCar : MonoBehaviour
     }
     void Update()
     {
-        if(carEnterController.IsPlayerIn == false)
-        {
+
             MoveToPosition(checker.transform.position);
-            if (Vector3.Distance(gameObject.transform.position, checker.transform.position) < 9)
+            if (Vector3.Distance(gameObject.transform.position, checker.transform.position) < 18)
             {
                 FindNewDestination();
             }
-        }
     }
 }

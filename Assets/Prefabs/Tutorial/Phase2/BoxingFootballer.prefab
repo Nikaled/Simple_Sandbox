@@ -1009,9 +1009,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f89b7e7f7ec85b4f8b8976a8b6665a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsInterfaceActive: 0
+  IsPlayerIn: 0
   PlayerSpawnTransform: {fileID: 780369749507641328}
   TransportCamera: {fileID: 0}
   HpView: {fileID: 789639026156443961}
+  player: {fileID: 0}
   CitizenMesh: {fileID: 6727717089681851961}
   AllCitizenMeshes:
   - {fileID: 2685786268187928329}
@@ -1346,7 +1349,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 94
   m_CollisionDetection: 0
 --- !u!136 &2282924522357714550
 CapsuleCollider:
@@ -2334,7 +2337,7 @@ GameObject:
   - component: {fileID: 5259985436354716397}
   - component: {fileID: 7012326339908903257}
   - component: {fileID: 750894973484715157}
-  m_Layer: 15
+  m_Layer: 7
   m_Name: HitCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2375,8 +2378,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.9709473, y: 2.383667, z: 4.1287537}
-  m_Center: {x: 0.29647827, y: -0.6918335, z: 0.9082794}
+  m_Size: {x: 4.9709473, y: 11.102783, z: 4.1287537}
+  m_Center: {x: 0.29647827, y: -0.83483887, z: 0.9082794}
 --- !u!114 &750894973484715157
 MonoBehaviour:
   m_ObjectHideFlags: 0

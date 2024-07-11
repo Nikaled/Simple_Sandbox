@@ -126,6 +126,7 @@ public class SerializeBuildingManager : MonoBehaviour
             Geekplay.Instance.PlayerData.IsPlayerMapLoad = false;
             Destroy(SceneObjectsParent);
             Geekplay.Instance.Save();
+            Input.GetKeyDown(KeyCode.K);
         }
     }
     private void LoadBuildingsFromSlot()
