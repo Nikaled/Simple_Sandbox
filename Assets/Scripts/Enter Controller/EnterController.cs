@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnterController : MonoBehaviour
 {
     protected bool IsInterfaceActive;
-    protected bool IsPlayerIn;
+    [HideInInspector] public bool IsPlayerIn;
     [SerializeField] protected Transform PlayerSpawnTransform;
     [SerializeField] protected Camera TransportCamera;
     [SerializeField] protected GameObject HpView;

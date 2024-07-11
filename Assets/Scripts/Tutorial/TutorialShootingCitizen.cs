@@ -21,7 +21,6 @@ public class TutorialShootingCitizen : MonoBehaviour
         Pistol,
         Gun,
         Grenade,
-        Melee
     }
     private void Start()
     {
@@ -163,10 +162,11 @@ public class TutorialShootingCitizen : MonoBehaviour
     private void LaunchGrenade()
     {
         int LaunchSpeed = 10;
+        Vector3 AimVector = (SpawnedObjectTransform.position - transform.position).normalized;
         GameObject _projectile = projectiles.Dequeue();
         _projectile.transform.SetPositionAndRotation(BulletSpawnPoint.transform.position, BulletSpawnPoint.transform.rotation);
         _projectile.SetActive(true);
-        _projectile.GetComponent<Rigidbody>().velocity = LaunchSpeed * Vector3.forward + (Vector3.up * 10);
+        _projectile.GetComponent<Rigidbody>().velocity = LaunchSpeed * AimVector + (Vector3.up * 10);
         _projectile.GetComponent<CapsuleCollider>().enabled = true;
         _projectile.GetComponent<Rigidbody>().useGravity = true;
         _projectile.GetComponent<Grenade>().OnLaunch();

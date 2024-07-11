@@ -1941,9 +1941,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 261862291744427561}
   projectile: {fileID: 6973970911524555488, guid: e623b11a1fc859a4995805c79026dbca, type: 3}
-  weapon: 2
+  weapon: 0
   BulletSpawnPoint: {fileID: 4235588316483775191}
-  SpawnedObjectPrefab: {fileID: 2868574372054975504, guid: df016dd881d89ef46953ca2f1de82347, type: 3}
+  SpawnedObjectPrefab: {fileID: 2868574372054975504, guid: 85f95ff767537ed4caf1873312ef5b69, type: 3}
   SpawnedObjectTransform: {fileID: 5565494573096927454}
   hpSystem: {fileID: 6165921735537208449}
 --- !u!114 &2032416716868009437

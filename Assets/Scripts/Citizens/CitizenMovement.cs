@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class CitizenMovement : MonoBehaviour
+public class CitizenMovement : MonoBehaviour, IMoveableAgent
 {
     protected bool isMoving;
     public NavMeshAgent agent;

@@ -1250,7 +1250,7 @@ MonoBehaviour:
   projectile: {fileID: 438583851593024563, guid: 7474afd020e99a34a96ad7c26b048d30, type: 3}
   weapon: 0
   BulletSpawnPoint: {fileID: 7853976452331536779}
-  SpawnedObjectPrefab: {fileID: 2868574372054975504, guid: df016dd881d89ef46953ca2f1de82347, type: 3}
+  SpawnedObjectPrefab: {fileID: 2868574372054975504, guid: 85f95ff767537ed4caf1873312ef5b69, type: 3}
   SpawnedObjectTransform: {fileID: 2556685932462807538}
   hpSystem: {fileID: 7919923577243716492}
 --- !u!114 &6761186922097565140

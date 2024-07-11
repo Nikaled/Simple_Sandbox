@@ -24,7 +24,7 @@ public class ShootingProjectile : MonoBehaviour
         {
             return;
         }
-        Debug.Log(other.name);
+        //Debug.Log(other.name);
         if (other.GetComponent<HpSystemCollision>() != null)
         {
             other.GetComponent<HpSystemCollision>().TakeDamage(bulletDamage);

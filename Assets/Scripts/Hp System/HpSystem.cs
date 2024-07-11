@@ -90,6 +90,10 @@ public class HpSystem : MonoBehaviour
             Destroy(RootObject);
         }
 
+        RewardPlayer();
+    }
+    protected virtual void RewardPlayer()
+    {
         Geekplay.Instance.PlayerData.DestroyCount++;
         Geekplay.Instance.Leaderboard("Destroy", Geekplay.Instance.PlayerData.DestroyCount);
 

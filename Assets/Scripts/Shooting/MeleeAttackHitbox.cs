@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MeleeAttackHitbox : MonoBehaviour
 {
-    List<HpSystemCollision> collisions = new();
+    public List<HpSystemCollision> collisions = new();
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<HpSystemCollision>()!=null)
