@@ -14,12 +14,14 @@ public class PlaneEnterController : EnterController
     float timeToUp = 1.5f;
     protected override void ActivateTransport()
     {
+        _planeController.enterController = this;
         CanvasManager.instance.ShowPlaneInstruction(true);
         _planeController.enabled = true;
         _planeController.airplaneState = SimpleAirPlaneController.AirplaneState.Landing;
         //_planeController.GetComponent<Rigidbody>().isKinematic = true;
         _planeController.GetComponent<Rigidbody>().isKinematic = true;
         _planeController.GetComponent<Rigidbody>().useGravity = false;
+        TransportCamera.farClipPlane = 500;
         if (Geekplay.Instance.mobile)
         {
             CanvasManager.instance.ShowPlaneMobileInstruction(true);

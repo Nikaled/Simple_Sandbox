@@ -35,6 +35,17 @@ public class TankShooting : MonoBehaviour
     public void Fire()
     {
         ShootSource.Play();
-        ShootingProjectile proj = Instantiate(TankProjectile, TankProjectileSpawnPoint.position, TankProjectileSpawnPoint.transform.rotation);
+        Ray ray = Camera.main.ScreenPointToRay(Crosshair.transform.position);
+        if (Physics.Raycast(ray, out RaycastHit raycastHit, 5000, aimColliderLayerMask))
+        {
+            CrosshairWorldPosition = raycastHit.point;
+        }
+        else
+        {
+            CrosshairWorldPosition = ray.GetPoint(1998);
+        }
+
+        AimDirection = (CrosshairWorldPosition - TankProjectileSpawnPoint.position).normalized;
+        Instantiate(TankProjectile, TankProjectileSpawnPoint.position, Quaternion.LookRotation(AimDirection, Vector3.up));
     }
 }

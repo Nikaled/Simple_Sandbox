@@ -19,6 +19,7 @@ public class PlayerData
 
     public int myDonat;
 
+    public bool IsGeometryDashRewardTaked;
     public bool IsCloesChangeRewardTaked;
     public bool IsSlapBattleRewardTaked;
     public bool IsTwoPlayerGameRewardTaked;
@@ -26,7 +27,7 @@ public class PlayerData
     public event Action<int> CoinsChanged;
     public int _coinsDontUse;
 
-    public bool IsFirstPlay;
+    public bool IsNotFirstPlay;
 
     public int BuildCount;
     public int DestroyCount;
@@ -71,14 +72,16 @@ public class PlayerData
     public Vector3 PlayerPositionMap4;
     public int CurrentSaveSlotLoading;
     public bool IsPlayerMapLoad;
-    /////InApps//////
-    public string lastBuy;
-
-    public int downloadsCount2;
-    public bool IsGeometryDashRewardTaked;
-
     public int CurrentSkyIndexMap1;
     public int CurrentSkyIndexMap2;
     public int CurrentSkyIndexMap3;
     public int CurrentSkyIndexMap4;
+    public bool[] PhaseBordersCompleteState;
+    /////InApps//////
+    public string lastBuy;
+
+    public int downloadsCount2;
+
+
+
 }

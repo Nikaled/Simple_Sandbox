@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5226142962038121636}
   m_Layer: 8
   m_Name: Ground (4)
-  m_TagString: Ground
+  m_TagString: MapBorder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 5043028997387151800}
   m_Layer: 8
   m_Name: Ground (6)
-  m_TagString: Ground
+  m_TagString: MapBorder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 4766862100226933746}
   m_Layer: 8
   m_Name: Ground (2)
-  m_TagString: Ground
+  m_TagString: MapBorder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -471,7 +471,7 @@ GameObject:
   - component: {fileID: 3488244944834879082}
   m_Layer: 8
   m_Name: Ground (5)
-  m_TagString: Ground
+  m_TagString: MapBorder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -576,7 +576,7 @@ GameObject:
   - component: {fileID: 3694570251535991109}
   m_Layer: 8
   m_Name: Ground (3)
-  m_TagString: Ground
+  m_TagString: MapBorder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

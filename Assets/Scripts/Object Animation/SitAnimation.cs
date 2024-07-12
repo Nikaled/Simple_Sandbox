@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class SitAnimation : ObjectInteraction
 {
-    [SerializeField] Transform SitTransform;
+    [SerializeField] protected Transform SitTransform;
     protected override void ActivateObject()
     {
         base.ActivateObject();
         Player.instance.motor.SetPositionAndRotation(SitTransform.position, SitTransform.rotation);
         Player.instance.motor.enabled = false;
         Player.instance.SwitchPlayerState(Player.PlayerState.Sitting);
-        Player.instance.animator.SetBool("Sitting", true);
+        EnableSitAnimation(true);
+    }
+    protected virtual void EnableSitAnimation(bool Is)
+    {
+        Player.instance.animator.SetBool("Sitting", Is);
     }
     protected override void DeactivateObject()
     {
         base.DeactivateObject();
-        Player.instance.animator.SetBool("Sitting", false);
+        EnableSitAnimation(false);
         Player.instance.motor.enabled = true;
         Player.instance.SwitchPlayerState(Player.PlayerState.Idle);
 

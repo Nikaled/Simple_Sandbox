@@ -153,7 +153,7 @@ public class EnterController : MonoBehaviour
             }
         }
     }
-    protected virtual void GetOutTransport()
+    public virtual void GetOutTransport()
     {
         RotatingToPlayer.target = Player.instance.transform;
         HpView.SetActive(true);

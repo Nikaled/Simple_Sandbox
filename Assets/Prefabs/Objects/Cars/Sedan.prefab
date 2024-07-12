@@ -7167,9 +7167,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8267b16683a55d14bb52394bb5f5cc69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsInterfaceActive: 0
+  IsPlayerIn: 0
   PlayerSpawnTransform: {fileID: 5872017710144175624}
   TransportCamera: {fileID: 3867275593831446889}
   HpView: {fileID: 0}
+  player: {fileID: 0}
   FirstViewCameraTransform: {fileID: 521654308350410579}
   vehicleControl: {fileID: 8283545475344078699}
   tankShooting: {fileID: 0}
@@ -7290,9 +7293,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 834656842843184889}
   smooth: 0.3
-  distance: 7
-  height: 2.5
-  Angle: 4
+  distance: 12
+  height: 6
+  Angle: 7
   cameraSwitchView:
   - {fileID: 521654308350410579}
   lineOfSightMask:

@@ -20,6 +20,7 @@ public class HpSystem : MonoBehaviour
     public float OriginHpBarScale;
     public bool Citizen;
     private readonly string AnalyticsDestroyObject = "ObjectDestroyed";
+    private IEnumerator HideHpCor;
     [SerializeField]  public int CurrentHP
     {
         get { return _currentHP; }
@@ -31,6 +32,7 @@ public class HpSystem : MonoBehaviour
             if(_currentHP < MaxHp)
             {
                 HpBar.gameObject.SetActive(true);
+                HideHpAfterDelay();
             }
         }
     }
@@ -42,6 +44,20 @@ public class HpSystem : MonoBehaviour
         HpBar.gameObject.SetActive(false);
         OriginScale = gameObject.transform.localScale;
         OriginHpBarScale = HpBar.gameObject.transform.localScale.y;
+    }
+    private void HideHpAfterDelay()
+    {
+        if(HideHpCor != null)
+        {
+            StopCoroutine(HideHpCor);
+        }
+        HideHpCor = HideHp();
+        StartCoroutine(HideHpCor);
+        IEnumerator HideHp()
+        {
+            yield return new WaitForSeconds(1.5f);
+            HpBar.gameObject.SetActive(false);
+        }
     }
     public void ResizeYHpBar(float IncreaseNumber)
     {
@@ -69,6 +85,13 @@ public class HpSystem : MonoBehaviour
     private void ObjectDies()
     {
         OnDied?.Invoke();
+
+        RewardPlayer();
+        if (HideHpCor != null)
+        {
+            StopCoroutine(HideHpCor);
+        }
+
         if (RootObject.CompareTag("Citizen"))
         {
             return;
@@ -89,8 +112,6 @@ public class HpSystem : MonoBehaviour
             if(RootObject !=null)
             Destroy(RootObject);
         }
-
-        RewardPlayer();
     }
     protected virtual void RewardPlayer()
     {

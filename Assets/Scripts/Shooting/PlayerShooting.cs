@@ -26,7 +26,7 @@ public class PlayerShooting : MonoBehaviour
     //[SerializeField] public LineRenderer lineRenderer;
     public AudioSource FireAudioSource;
     [SerializeField] AudioClip PistolSound;
-    [SerializeField] AudioClip GunSound;
+    [SerializeField] public AudioClip GunSound;
     [SerializeField] AudioClip HandAttackSound;
     [SerializeField] AudioClip HandAttackHitObjectSound;
     [SerializeField] AudioClip KnifeAttackSound;
@@ -42,19 +42,9 @@ public class PlayerShooting : MonoBehaviour
     {
         CrosshairWorldPosition = Vector3.zero;
         Ray ray = Camera.main.ScreenPointToRay(Crosshair.transform.position);
-        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit raycastHit, 5000, aimColliderLayerMask))
         {
             CrosshairWorldPosition = raycastHit.point;
-            //if (player.CurrentWeapon == Player.WeaponType.Pistol)
-            //{
-            //    lineRenderer.SetPosition(0, PistolProjectileSpawnPoint.position);
-            //}
-            //if (player.CurrentWeapon == Player.WeaponType.Gun)
-            //{
-            //    lineRenderer.SetPosition(0, GunProjectileSpawnPoint.position);
-            //}
-            //lineRenderer.SetPosition(1, raycastHit.point);
         }
         else
         {
@@ -109,7 +99,7 @@ public class PlayerShooting : MonoBehaviour
             ShootingProjectile proj = Instantiate(projectile, GunProjectileSpawnPoint.position, Quaternion.LookRotation(aimDirection, Vector3.up));
             GunTimer = Time.time;
             gunCount += 1;
-            if(gunCount > 7)
+            if(gunCount > 2)
             {
                 FireAudioSource.clip = GunSound;
                 FireAudioSource.Play();

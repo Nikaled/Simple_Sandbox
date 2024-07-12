@@ -12,6 +12,7 @@ TagManager:
   - Road
   - Citizen
   - Car
+  - MapBorder
   layers:
   - Default
   - TransparentFX

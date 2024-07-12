@@ -35,7 +35,6 @@ public class LocalizationMenu : MonoBehaviour
     [SerializeField] TextMeshProUGUI PromoMessage2;
     [SerializeField] TextMeshProUGUI PromoMessage3;
     [SerializeField] Text PlaceHolder;
-
     public TextMeshProUGUI ShopButton;
     public TextMeshProUGUI InAppShop1;
     public TextMeshProUGUI InAppShop2;
@@ -48,6 +47,7 @@ public class LocalizationMenu : MonoBehaviour
 
     public TextMeshProUGUI InAppShopConfirm1;
     public TextMeshProUGUI InAppShopConfirm2;
+    [SerializeField] TextMeshProUGUI TutorialButton;
     private void Start()
     {
       if(Geekplay.Instance.language == "ru")
@@ -107,6 +107,7 @@ public class LocalizationMenu : MonoBehaviour
         InAppShopConfirm1.text = "Вы получили:";
         InAppShopConfirm2.text = "ОТЛИЧНО!";
         ShopButton.text = "Больше \n <color=orange>   Золота </color> ";
+        TutorialButton.text = "ОБУЧЕНИЕ";
     }
     private void EnLocalization()
     {
@@ -153,6 +154,7 @@ public class LocalizationMenu : MonoBehaviour
         InAppShopConfirm2.text = "GREAT!";
 
         ShopButton.text = "More \n <color=orange>   Gold </color> ";
+        TutorialButton.text = "TUTORIAL";
     }
     private void TrLocalization()
     {
@@ -198,5 +200,6 @@ public class LocalizationMenu : MonoBehaviour
         InAppShopConfirm1.text = "Aldınız:";
         InAppShopConfirm2.text = "HARİKA!";
         ShopButton.text = "Altın \n <color=orange>   Alın </color> ";
+        TutorialButton.text = "EĞİTİM";
     }
 }

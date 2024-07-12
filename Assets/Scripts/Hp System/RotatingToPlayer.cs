@@ -8,7 +8,10 @@ public class RotatingToPlayer : MonoBehaviour
 
     private void Start()
     {
+        if(target == null)
+        {
         target = Player.instance.transform;
+        }
     }
     void Update()
     {

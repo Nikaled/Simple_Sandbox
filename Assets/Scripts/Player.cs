@@ -94,6 +94,14 @@ public class Player : MonoBehaviour
     }
     public void SwitchPlayerState(PlayerState newPlayerState, float Delay = 0.1f)
     {
+        if (currentState == PlayerState.Sitting)
+        {
+            CanvasManager.instance.LeftButtonsZone.SetActive(true);
+            if(newPlayerState != PlayerState.Idle)
+            {
+            return;
+            }
+        }
         if (Geekplay.Instance.mobile)
         {
             CanvasManager.instance.DoButton.onClick.RemoveAllListeners();
@@ -134,6 +142,9 @@ public class Player : MonoBehaviour
             case PlayerState.Building:
                 CanvasManager.instance.TurnYellowBuildingButton(true);
                 CanvasManager.instance.ChangeDoButtonImageToMode(true);
+                break;
+            case PlayerState.Sitting:
+                CanvasManager.instance.LeftButtonsZone.SetActive(false);
                 break;
 
         }
@@ -181,6 +192,10 @@ public class Player : MonoBehaviour
     }
     public void SwitchWeapon(int PressedNumber)
     {
+        if(currentState == PlayerState.Sitting)
+        {
+            return;
+        }
         GunModel.SetActive(false);
         PistolModel.SetActive(false);
         KnifeModel.SetActive(false);
@@ -371,6 +386,10 @@ public class Player : MonoBehaviour
     }
     public void MobileFireInput()
     {
+        if(currentState == PlayerState.Sitting)
+        {
+            return;
+        }
         if (CurrentWeapon == WeaponType.Pistol)
         {
 

@@ -20,6 +20,11 @@ public class MainMenu : MonoBehaviour
         Geekplay.Instance.ShowInterstitialAd();
         ChangeCoinsText(Geekplay.Instance.PlayerData.Coins);
         Geekplay.Instance.PlayerData.CoinsChanged += ChangeCoinsText;
+        if(Geekplay.Instance.PlayerData.IsNotFirstPlay == false)
+        {
+            Geekplay.Instance.PlayerData.IsNotFirstPlay = true;
+            SceneManager.LoadScene(5);
+        }
     }
     void ChangeCoinsText(int NewCoinsCount)
     {

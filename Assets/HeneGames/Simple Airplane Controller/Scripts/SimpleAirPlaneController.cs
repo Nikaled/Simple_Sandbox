@@ -143,6 +143,21 @@ namespace HeneGames.Airplane
         [Tooltip("How far must the plane be from the runway before it can be controlled again")]
         [SerializeField] private float takeoffLenght = 30f;
 
+        [HideInInspector] public PlaneEnterController enterController;
+
+        public void ExitOnMapBorderCollision()
+        {
+            if(enterController != null)
+            {
+                enterController.GetOutTransport();
+                enterController = null;
+            }
+
+        }
+        public void ForceBack()
+        {
+            transform.Translate(Vector3.back *2);
+        }
         public void MyInitializeButtons()
         {
             PlaneButtons.instance.GoForward.GetComponent<HelicopterButton>().TranslatingFloat = -1;

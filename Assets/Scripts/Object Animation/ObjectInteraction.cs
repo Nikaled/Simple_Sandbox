@@ -35,14 +35,15 @@ public class ObjectInteraction : MonoBehaviour
         }
     }
 
-    private void Update()
+    protected virtual void Update()
     {
-        if (_isPlayerNear == false)
+        if (_isPlayerNear == false || Player.instance.AdWarningActive)
         {
             return;
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
+            Debug.Log("F Pressed");
             if (_objectActivated == false && Player.instance.currentState == Player.PlayerState.Idle)
             {
                 ActivateObject();

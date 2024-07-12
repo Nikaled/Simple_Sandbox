@@ -306,10 +306,12 @@ public class Geekplay : MonoBehaviour
 
     private void Update()
     {
-        //if(Input.GetKeyDown(KeyCode.P)) 
-        //{
-        //    PlayerData = new PlayerData();
-        //}
+        if (Input.GetKeyDown(KeyCode.P) && Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.RightShift))
+        {
+            PlayerData = new PlayerData();
+            Save();
+            Debug.Log("ПОЛЬЗОВАТЕЛЬСКИЕ ДАННЫЕ УДАЛЕНЫ");
+        }
 
         remainingTimeUntilUpdateLeaderboard -= Time.deltaTime;
     }

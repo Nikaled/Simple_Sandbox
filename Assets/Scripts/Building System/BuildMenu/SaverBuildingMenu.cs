@@ -15,7 +15,7 @@ public class SaverBuildingMenu : MonoBehaviour
 
     private void Start()
     {
-        Geekplay.Instance.PlayerData.IsFirstPlay = false;
+        Geekplay.Instance.PlayerData.IsNotFirstPlay = true;
         //Geekplay.Instance.PlayerData.IsFirstPlay = true;
 
 
@@ -30,7 +30,7 @@ public class SaverBuildingMenu : MonoBehaviour
         BuildingMenuDataList.Add(Geekplay.Instance.PlayerData.SkyOpened);
 
         //Geekplay.Instance.Save();
-        if (Geekplay.Instance.PlayerData.IsFirstPlay == false)
+        if (Geekplay.Instance.PlayerData.IsNotFirstPlay == true)
         {
             LoadItemsState();
         }
@@ -54,12 +54,12 @@ public class SaverBuildingMenu : MonoBehaviour
                 BuildingMenuDataList[i][j] = false;
             }
         }
-        Geekplay.Instance.PlayerData.IsFirstPlay = true;
+        Geekplay.Instance.PlayerData.IsNotFirstPlay = false;
         Geekplay.Instance.Save();
     }
     public void SaveItemsState(List<bool> contentState, BuildingContentManager ContentManager)
     {
-        Geekplay.Instance.PlayerData.IsFirstPlay = false;
+        Geekplay.Instance.PlayerData.IsNotFirstPlay = true;
        int ContentManagerIndex = -1;
         for (int i = 0; i < ContentManagers.Length; i++)
         {

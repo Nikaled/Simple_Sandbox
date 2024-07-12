@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System;
 
 public class MobileShootButton : MonoBehaviour, IUpdateSelectedHandler, IPointerDownHandler, IPointerUpHandler
 {
@@ -9,7 +10,7 @@ public class MobileShootButton : MonoBehaviour, IUpdateSelectedHandler, IPointer
     public bool isPressed;
 
     public static MobileShootButton instance;
-
+    public Action OnHolding;
     private void Start()
     {
         instance = this;
@@ -27,6 +28,11 @@ public class MobileShootButton : MonoBehaviour, IUpdateSelectedHandler, IPointer
             //Player.instance.MobileFireInput();
             Player.instance.AimingGrenadeOnMobile();
         }
+        if (isPressed)
+        {
+            OnHolding?.Invoke();
+        }
+        
     }
     public void OnPointerDown(PointerEventData data)
     {

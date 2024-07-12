@@ -28,7 +28,7 @@ public class AnimalEnterController : EnterController
         base.ShowEnterInstruction();
         CanvasManager.instance.ShowCurrentInteracteButton(2);
     }
-    protected override void GetOutTransport()
+    public override void GetOutTransport()
     {
         animalRiding.DeactivateRiding();
         animalRiding.enabled = false;

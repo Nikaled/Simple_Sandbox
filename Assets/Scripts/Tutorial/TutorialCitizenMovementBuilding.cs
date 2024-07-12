@@ -2,8 +2,6 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.VirtualTexturing;
-
 public class TutorialCitizenMovementBuilding : CitizenMovement
 {
     [SerializeField] Transform BuildSpawnPoint;

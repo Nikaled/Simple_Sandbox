@@ -34,7 +34,7 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] GameObject CarShootingText;
     [Header("Mobile Interfaces")]
     [SerializeField] GameObject CanvasMobileInterface;
-    [SerializeField] GameObject LeftButtonsZone;
+    [SerializeField] public GameObject LeftButtonsZone;
     [SerializeField] GameObject RightButtonsZone;
     [SerializeField] GameObject HelicopterMobileInstruction;
     [SerializeField] GameObject PlaneMobileInstruction;
@@ -64,14 +64,14 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private List<GameObject> UnlockCursorWindows;
 
     private readonly string LoadedInGameplay = "LoadedInGameplay";
-
+    [HideInInspector] public bool IsTutorial;
     private void Awake()
     {
         instance = this;
     }
     private void Update()
     {
-        if (Player.instance.AdWarningActive == true)
+        if (Player.instance.AdWarningActive == true || IsTutorial)
         {
             return;
         }
@@ -87,7 +87,7 @@ public class CanvasManager : MonoBehaviour
             }
         }
         if (Input.GetKeyDown(KeyCode.Tab))
-        {
+        {         
             Cursor.lockState = CursorLockMode.None;
             SceneManager.LoadScene(0);
         }

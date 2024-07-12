@@ -10,6 +10,7 @@ namespace HeneGames.Airplane
         public LayerMask ColliderLayerMask;
         [HideInInspector]
         public SimpleAirPlaneController controller;
+        public PlaneEnterController enterController;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -22,12 +23,18 @@ namespace HeneGames.Airplane
             {
                 Debug.Log("Столкновение с землей");
                 controller.airplaneState = SimpleAirPlaneController.AirplaneState.Landing;
+              
             }
             if ((ColliderLayerMask & (1 << other.gameObject.layer)) != 0)
             {
                 Debug.Log("Столкновение с объектом по маске:" + other.gameObject.name + "/" + other.gameObject.layer);
                 controller.airplaneState = SimpleAirPlaneController.AirplaneState.Landing;
             }
+            //if (other.CompareTag("MapBorder"))
+            //{
+            //    if(controller.airplaneState == SimpleAirPlaneController.AirplaneState.Takeoff)
+            //    controller.ExitOnMapBorderCollision();
+            //}
             //if (Physics.Raycast(gameObject.transform.position, Vector3.down, out RaycastHit raycastHit, 45))
             //{
             //    Debug.Log(raycastHit.collider.gameObject.name);
@@ -37,6 +44,14 @@ namespace HeneGames.Airplane
             //        controller.airplaneState = SimpleAirPlaneController.AirplaneState.Landing;
             //    }
             //}
+        }
+        private void OnTriggerStay(Collider other)
+        {
+            if (other.CompareTag("MapBorder"))
+            {
+                //controller.airplaneState = SimpleAirPlaneController.AirplaneState.Landing;
+                controller.ForceBack();
+            }
         }
     }
 }

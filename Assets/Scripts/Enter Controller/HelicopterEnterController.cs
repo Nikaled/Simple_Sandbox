@@ -12,13 +12,14 @@ public class HelicopterEnterController : EnterController
         CanvasManager.instance.ShowHelicopterInstruction(true);
         CanvasManager.instance.ShowHelicopterMobileInstruction(true);
         _helicopterController.enabled = true;
+        TransportCamera.farClipPlane = 500;
         if (Geekplay.Instance.mobile)
         {
         _helicopterController.MyInitializeButtons();
         HelicopterButtons.instance.GetOutButton.onClick.AddListener(delegate { GetOutTransport(); });
         }
     }
-    protected override void GetOutTransport()
+    public override void GetOutTransport()
     {
         base.GetOutTransport();
 

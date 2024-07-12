@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Airport.unity
     guid: 032d1432aa69447bb97d213d14ae9ccb
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 64dea5f4fddf5664dbfe6d09d139f9a8
   m_configObjects: {}
