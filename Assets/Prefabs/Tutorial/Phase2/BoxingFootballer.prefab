@@ -1390,6 +1390,8 @@ MonoBehaviour:
   handHitbox: {fileID: 750894973484715157}
   animator: {fileID: 9032115592541473729}
   hpSystem: {fileID: 6049695906473269787}
+  FootballerTextureVariants: {fileID: 2104872645699221786}
+  IsWhite: 0
 --- !u!114 &3942131723371626516
 MonoBehaviour:
   m_ObjectHideFlags: 0

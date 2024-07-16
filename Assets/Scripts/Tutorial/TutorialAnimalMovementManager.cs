@@ -6,6 +6,7 @@ public class TutorialAnimalMovementManager : MonoBehaviour
 {
     public static TutorialAnimalMovementManager instance;
     [SerializeField] BoxCollider SpawnArea;
+    [SerializeField] BoxCollider SpawnAreaAnimalLeft;
     [SerializeField] BoxCollider SpawnAreaForCar;
     [SerializeField] public NavMeshChecker Checker;
     private void Awake()
@@ -16,6 +17,13 @@ public class TutorialAnimalMovementManager : MonoBehaviour
     {
         sphere.SetActive(false);
         sphere.transform.position = RandomPointInBounds(SpawnArea.bounds);
+        sphere.SetActive(true);
+        return sphere.transform.position;
+    }
+    public Vector3? MoveCheckerToNewPointToLeft(GameObject sphere)
+    {
+        sphere.SetActive(false);
+        sphere.transform.position = RandomPointInBounds(SpawnAreaAnimalLeft.bounds);
         sphere.SetActive(true);
         return sphere.transform.position;
     }

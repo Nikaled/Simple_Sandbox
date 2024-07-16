@@ -9,11 +9,20 @@ public class TutorialBoxingCitizen : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] HpSystem hpSystem;
     private bool IsDying;
-
+    [SerializeField] ObjectVariants FootballerTextureVariants;
+    [SerializeField] bool IsWhite;
     private void Start()
     {
         StartCoroutine(InfinityBoxing());
         hpSystem.OnDied += CitizenDie;
+        ChangeTexturesToWhite(IsWhite);
+    }
+    public void ChangeTexturesToWhite(bool IsWhite)
+    {
+        if (IsWhite)
+        {
+            FootballerTextureVariants.ChangeTexturesOnLoad(2);
+        }
     }
     protected void CitizenDie()
     {
@@ -22,7 +31,7 @@ public class TutorialBoxingCitizen : MonoBehaviour
             return;
         }
         IsDying = true;
-        TutorialMeleeCitizenSpawner.instance.CreateNewUnit(transform.position, transform.rotation);
+        TutorialMeleeCitizenSpawner.instance.CreateNewUnit(transform.position, transform.rotation, IsWhite);
         animator.SetBool("IsWalk", false);
         animator.SetTrigger("Die");
         StartCoroutine(WaitForDyingAnimation());

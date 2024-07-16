@@ -10,13 +10,17 @@ public class TutorialMeleeCitizenSpawner : MonoBehaviour
     {
         instance = this;
     }
-    public void CreateNewUnit(Vector3 DeadUnitPosition, Quaternion DeadUnitRotation)
+    public void CreateNewUnit(Vector3 DeadUnitPosition, Quaternion DeadUnitRotation, bool IsWhite)
     {
         StartCoroutine(CreateUnitAfterDelay());
         IEnumerator CreateUnitAfterDelay()
         {
             yield return new WaitForSeconds(2.4f);
-            Instantiate(BoxerPrefab, DeadUnitPosition, DeadUnitRotation);
+          var NewBoxer=  Instantiate(BoxerPrefab, DeadUnitPosition, DeadUnitRotation);
+            if (IsWhite)
+            {
+                NewBoxer.GetComponent<TutorialBoxingCitizen>().ChangeTexturesToWhite(true);
+            }
         }
 
     }

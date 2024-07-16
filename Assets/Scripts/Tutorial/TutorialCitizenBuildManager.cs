@@ -8,6 +8,7 @@ public class TutorialCitizenBuildManager : MonoBehaviour
     [SerializeField] GameObject[] ObjectsToSpawn;
     private Queue<GameObject> ObjectsOnScene;
     [SerializeField] BoxCollider SpawnArea;
+    [SerializeField] BoxCollider LeftSpawnArea;
     [SerializeField] public NavMeshChecker Checker;
     private int TimerToAbleBuilding = 3;
     private int MaxBuildingCount = 30;
@@ -20,6 +21,14 @@ public class TutorialCitizenBuildManager : MonoBehaviour
     {
         sphere.SetActive(false);
         sphere.transform.position = RandomPointInBounds(SpawnArea.bounds);
+        //Debug.Log("sphere.transform.position"+sphere.transform.position);
+        sphere.SetActive(true);
+        return sphere.transform.position;
+    }
+    public Vector3? MoveCheckerToNewPointLeftSide(GameObject sphere)
+    {
+        sphere.SetActive(false);
+        sphere.transform.position = RandomPointInBounds(LeftSpawnArea.bounds);
         //Debug.Log("sphere.transform.position"+sphere.transform.position);
         sphere.SetActive(true);
         return sphere.transform.position;
