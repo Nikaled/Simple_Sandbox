@@ -1346,9 +1346,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f89b7e7f7ec85b4f8b8976a8b6665a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsInterfaceActive: 0
+  IsPlayerIn: 0
   PlayerSpawnTransform: {fileID: 3911999771217393846}
   TransportCamera: {fileID: 0}
   HpView: {fileID: 8672085786811312892}
+  player: {fileID: 0}
   CitizenMesh: {fileID: 6838509912766240866}
   AllCitizenMeshes:
   - {fileID: 6838509912766240866}
@@ -1912,7 +1915,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 3.136963
   m_Direction: 1
-  m_Center: {x: 0, y: 1.4530029, z: 0}
+  m_Center: {x: 0, y: 1.6, z: 0}
 --- !u!114 &622159235355445363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1931,6 +1934,7 @@ MonoBehaviour:
   hpSystem: {fileID: 7564637826904374685}
   DieAnimationTime: 2
   BuildSpawnPoint: {fileID: 6377409941722141279}
+  LeftSide: 0
 --- !u!195 &1432017965085498563
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1942,7 +1946,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 6
-  m_Acceleration: 5
+  m_Acceleration: 3
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
